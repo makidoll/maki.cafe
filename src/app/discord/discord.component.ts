@@ -41,7 +41,7 @@ interface DataEvent {
 		timestamps: { start: number; end: number };
 		type: number;
 	}[];
-	discord_status: "online" | "offline";
+	discord_status: "online" | "idle";
 	discord_user: {
 		avatar: string;
 		discriminator: string;
