@@ -1,4 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { config } from "../config";
 
 enum Op {
 	Event = 0,
@@ -73,6 +74,8 @@ interface DataInitialize {
 	styleUrls: ["./discord.component.scss"],
 })
 export class DiscordComponent implements OnInit, OnDestroy {
+	config = config;
+
 	@Input() discordId: string = null;
 
 	socket: WebSocket;
