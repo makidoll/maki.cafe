@@ -10,5 +10,6 @@ export const config = {
 		steam: "https://steamcommunity.com/id/MakiXx",
 		skeb: "https://skeb.jp/@Maki",
 		psnProfiles: "https://psnprofiles.com/MakiXx_",
+		matrix: "https://matrix.to/#/@maki:cutelab.space",
 	},
 };

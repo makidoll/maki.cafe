@@ -14,6 +14,7 @@ export class SocialComponent implements OnInit {
 		{ name: "instagram", url: config.socialLinks.instagram },
 		{ name: "steam", url: config.socialLinks.steam },
 		{ name: "skeb", url: config.socialLinks.skeb },
+		{ name: "element-alt", url: config.socialLinks.matrix },
 	];
 
 	constructor() {}
