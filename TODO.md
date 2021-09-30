@@ -1,6 +1,7 @@
--   self host material icons
 -   make ui component for social icon
+    -   dont load over url, use svg in ts
 -   make ui component for material icon
+    -   self host material icons
 -   animate pins on dot-map
 -   add my figure collection
 -   add twitter feed from nitter
