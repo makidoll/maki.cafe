@@ -1,0 +1,5 @@
+-   self host material icons
+-   make ui component for social icon
+-   make ui component for material icon
+-   animate pins on dot-map
+-   add my figure collection
