@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { config } from "../config";
 
 @Component({
 	selector: "app-skeb",
@@ -6,6 +7,7 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./skeb.component.scss"],
 })
 export class SkebComponent implements OnInit {
+	config = config;
 	encodeURIComponent = encodeURIComponent;
 
 	skebs = [

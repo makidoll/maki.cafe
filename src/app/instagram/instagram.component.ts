@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from "@angular/core";
 import * as fastXmlParser from "fast-xml-parser";
+import { config } from "../config";
 
 interface Post {
 	title: string;
@@ -14,6 +15,8 @@ interface Post {
 })
 export class InstagramComponent implements OnInit {
 	readonly bibliogramUrl = "https://bibliogram.cutelab.space";
+
+	config = config;
 
 	@Input() username: string;
 

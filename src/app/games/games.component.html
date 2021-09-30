@@ -1,4 +1,4 @@
-<app-card-title href="https://steamcommunity.com/id/MakiXx" socialIcon="steam">
+<app-card-title [href]="config.socialLinks.steam" socialIcon="steam">
 	favorite games
 </app-card-title>
 <div
@@ -25,7 +25,7 @@
 		/>
 	</a>
 </div>
-<a href="https://psnprofiles.com/MakiXx_">
+<a [href]="config.socialLinks.psnProfiles">
 	<img
 		style="height: 120px; margin-top: 8px"
 		src="https://card.psnprofiles.com/1/MakiXx_.png"

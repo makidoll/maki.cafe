@@ -1,10 +1,10 @@
-<app-card-title href="https://skeb.jp/@Maki" socialIcon="skeb"
+<app-card-title [href]="config.socialLinks.skeb" socialIcon="skeb"
 	>my skebs
 </app-card-title>
 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px">
 	<a
 		class="post"
-		href="https://skeb.jp/@Maki"
+		[href]="config.socialLinks.skeb"
 		*ngFor="let skeb of skebs"
 		style="display: block"
 	>

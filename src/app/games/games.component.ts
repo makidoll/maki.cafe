@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { config } from "../config";
 
 @Component({
 	selector: "app-games",
@@ -6,6 +7,8 @@ import { Component, OnInit } from "@angular/core";
 	styleUrls: ["./games.component.scss"],
 })
 export class GamesComponent implements OnInit {
+	config = config;
+
 	steamIds = [
 		"972660", // spiritfarer
 		"210970", // the witness

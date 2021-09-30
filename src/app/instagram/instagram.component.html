@@ -1,6 +1,9 @@
 <app-spinner *ngIf="posts.length == 0"></app-spinner>
 <ng-container *ngIf="posts.length != 0">
-	<app-card-title href="https://instagram.com/MakiXx" socialIcon="instagram">
+	<app-card-title
+		[href]="config.socialLinks.instagram"
+		socialIcon="instagram"
+	>
 		instagram
 	</app-card-title>
 	<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px">

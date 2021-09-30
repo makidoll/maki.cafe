@@ -8,15 +8,12 @@ import { config } from "../config";
 })
 export class SocialComponent implements OnInit {
 	social: { name: string; url: string }[] = [
-		{
-			name: "discord",
-			url: "https://discord.com/users/" + config.discordId,
-		},
-		{ name: "twitter", url: "https://twitter.com/MakiXx_" },
-		{ name: "github", url: "https://github.com/makitsune" },
-		{ name: "instagram", url: "https://instagram.com/MakiXx" },
-		{ name: "steam", url: "https://steamcommunity.com/id/MakiXx" },
-		{ name: "skeb", url: "https://skeb.jp/@Maki" },
+		{ name: "discord", url: config.socialLinks.discord },
+		{ name: "twitter", url: config.socialLinks.twitter },
+		{ name: "github", url: config.socialLinks.github },
+		{ name: "instagram", url: config.socialLinks.instagram },
+		{ name: "steam", url: config.socialLinks.steam },
+		{ name: "skeb", url: config.socialLinks.skeb },
 	];
 
 	constructor() {}
