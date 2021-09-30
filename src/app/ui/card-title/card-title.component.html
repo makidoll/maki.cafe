@@ -1,0 +1,13 @@
+<h2
+	class="cursive"
+	style="text-align: center; margin-bottom: 8px; margin-top: -12px"
+>
+	<ng-container *ngIf="href == ''">
+		<ng-content></ng-content>
+	</ng-container>
+	<ng-container *ngIf="href != ''">
+		<a [href]="href" style="color: #000; text-decoration: none">
+			<ng-content></ng-content>
+		</a>
+	</ng-container>
+</h2>

@@ -1,0 +1,7 @@
+@mixin scaleOnHover($size, $duration: 150ms) {
+	transition: transform $duration ease-in-out;
+
+	&:hover {
+		transform: scale($size);
+	}
+}

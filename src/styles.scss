@@ -1,0 +1,27 @@
+@import url(fonts/inter/inter.css);
+@import url(fonts/kg-always-a-good-time/kg-always-a-good-time.css);
+
+* {
+	margin: 0;
+}
+
+body {
+	font-family: "Inter", sans-serif;
+}
+
+.cursive {
+	font-family: "KG Always A Good Time", cursive;
+	text-transform: lowercase;
+	font-weight: 400 !important; // because there is no other weight
+	letter-spacing: 0 !important; // because it would ruin the font
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.05em;
+}
+
+img {
+	border-radius: 8px;
+}

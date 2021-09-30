@@ -1,0 +1,46 @@
+<svg
+	xmlns="http://www.w3.org/2000/svg"
+	viewBox="0 0 32 32"
+	[attr.width]="size"
+	[attr.height]="size"
+>
+	<mask
+		id="user-image-mask"
+		maskContentUnits="objectBoundingBox"
+		viewBox="0 0 1 1"
+	>
+		<circle fill="white" cx="0.5" cy="0.5" r="0.5"></circle>
+		<circle fill="black" cx="0.84375" cy="0.84375" r="0.25"></circle>
+		<circle fill="black" cx="0.84375" cy="0.84375" r="0.1"></circle>
+	</mask>
+	<mask
+		id="user-image-offline-mask"
+		maskContentUnits="objectBoundingBox"
+		viewBox="0 0 1 1"
+	>
+		<circle fill="white" cx="0.5" cy="0.5" r="0.5"></circle>
+		<circle fill="black" cx="0.5" cy="0.5" r="0.25"></circle>
+	</mask>
+	<image
+		mask="url(#user-image-mask)"
+		[attr.href]="url"
+		height="32"
+		width="32"
+		preserveAspectRatio="xMaxYMin slice"
+	/>
+	<circle
+		*ngIf="online"
+		fill="rgb(67, 181, 129)"
+		cx="27"
+		cy="27"
+		r="5"
+	></circle>
+	<circle
+		*ngIf="!online"
+		fill="rgb(116, 127, 141)"
+		mask="url(#user-image-offline-mask)"
+		cx="27"
+		cy="27"
+		r="5"
+	></circle>
+</svg>

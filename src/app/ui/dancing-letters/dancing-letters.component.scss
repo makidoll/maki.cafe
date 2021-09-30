@@ -1,0 +1,23 @@
+.letters {
+	$intensity: 2px;
+
+	@keyframes dance {
+		0% {
+			transform: translateY(-$intensity);
+		}
+		50% {
+			transform: translateY($intensity);
+		}
+		100% {
+			transform: translateY(-$intensity);
+		}
+	}
+
+	> span {
+		display: inline-block;
+		animation-name: dance;
+		animation-duration: 1.5s;
+		animation-timing-function: ease-in-out;
+		animation-iteration-count: infinite;
+	}
+}

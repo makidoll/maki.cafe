@@ -1,0 +1,23 @@
+<app-card-title href="https://skeb.jp/@Maki">my skebs</app-card-title>
+<div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px">
+	<a
+		class="post"
+		href="https://skeb.jp/@Maki"
+		*ngFor="let skeb of skebs"
+		style="display: block"
+	>
+		<div
+			[style.background-image]="
+				'url(/assets/skebs/' + encodeURIComponent(skeb) + ')'
+			"
+			style="
+				width: 80px;
+				height: 96px;
+				border-radius: 4px;
+				background-size: cover;
+				background-position: center;
+				image-rendering: optimizeQuality;
+			"
+		></div>
+	</a>
+</div>

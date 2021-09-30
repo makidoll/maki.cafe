@@ -1,0 +1,35 @@
+{
+	"name": "maki",
+	"version": "0.0.0",
+	"scripts": {
+		"start": "ng serve",
+		"build": "ng build --configuration production"
+	},
+	"private": true,
+	"dependencies": {
+		"@angular/animations": "~12.2.0",
+		"@angular/common": "~12.2.0",
+		"@angular/compiler": "~12.2.0",
+		"@angular/core": "~12.2.0",
+		"@angular/forms": "~12.2.0",
+		"@angular/platform-browser": "~12.2.0",
+		"@angular/platform-browser-dynamic": "~12.2.0",
+		"@angular/router": "~12.2.0",
+		"fast-xml-parser": "^3.20.3",
+		"lottie-web": "^5.7.13",
+		"ngx-lottie": "^7.0.4",
+		"rxjs": "~6.6.0",
+		"tslib": "^2.3.0",
+		"zone.js": "~0.11.4"
+	},
+	"devDependencies": {
+		"@angular-devkit/build-angular": "~12.2.6",
+		"@angular/cli": "~12.2.6",
+		"@angular/compiler-cli": "~12.2.0",
+		"@types/node": "^12.11.1",
+		"jsdom": "^17.0.0",
+		"node-fetch": "^3.0.0",
+		"puppeteer": "^10.4.0",
+		"typescript": "~4.3.5"
+	}
+}

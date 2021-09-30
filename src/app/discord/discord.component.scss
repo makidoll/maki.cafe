@@ -1,0 +1,26 @@
+// @import "../../styles/scale-on-hover.scss";
+
+// .spotify {
+// 	@include scaleOnHover(1.02);
+// }
+
+.song {
+	$deg: 2deg;
+
+	@keyframes listening {
+		0% {
+			transform: rotate(-$deg);
+		}
+		50% {
+			transform: rotate($deg);
+		}
+		100% {
+			transform: rotate(-$deg);
+		}
+	}
+
+	animation-name: listening;
+	animation-duration: 2 * 1s;
+	animation-timing-function: ease-in-out;
+	animation-iteration-count: infinite;
+}

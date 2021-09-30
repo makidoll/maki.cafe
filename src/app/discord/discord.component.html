@@ -1,0 +1,121 @@
+<app-spinner *ngIf="!data"></app-spinner>
+<div *ngIf="data">
+	<div style="display: flex; flex-direction: row; align-items: center">
+		<div style="display: flex; flex-direction: row; align-items: center">
+			<app-user-image
+				[url]="
+					'https://cdn.discordapp.com/avatars/' +
+					discordId +
+					'/' +
+					data.discord_user.avatar +
+					'.webp?size=128'
+				"
+				[online]="data.discord_status == 'online'"
+				[size]="48"
+			></app-user-image>
+			<h2 style="margin-left: 12px; opacity: 0.8; line-height: 0.8em">
+				{{ data.discord_user.username }}
+				<br />
+				<span style="font-size: 0.7em; opacity: 0.6; font-weight: 600">
+					#{{ data.discord_user.discriminator }}
+				</span>
+			</h2>
+		</div>
+		<h1 style="opacity: 0.4; font-weight: 200; flex: 1; text-align: center">
+			{{ data.discord_status }}
+		</h1>
+	</div>
+	<a
+		class="spotify"
+		[href]="
+			data.spotify
+				? 'https://open.spotify.com/track/' + data.spotify.track_id
+				: ''
+		"
+		style="
+			border-radius: 8px;
+			margin-top: 16px;
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			width: 250px;
+			max-width: 250px;
+			padding: 8px;
+			text-decoration: none;
+		"
+		[style.background]="data.spotify ? '#1db954' : 'rgba(0,0,0,0.5)'"
+	>
+		<ng-container>
+			<img
+				*ngIf="data.spotify"
+				class="song"
+				[src]="data.spotify.album_art_url"
+				[alt]="data.spotify.album"
+				style="width: 64px; height: 64px; border-radius: 6px"
+			/>
+			<div
+				*ngIf="!data.spotify"
+				style="
+					width: 64px;
+					height: 64px;
+					border-radius: 6px;
+					background: rgba(255, 255, 255, 0.5);
+					display: inline-flex;
+					align-items: center;
+					justify-content: center;
+					font-size: 32px;
+					color: rgba(255, 255, 255, 0.5);
+				"
+			>
+				#!
+			</div>
+			<h4
+				style="
+					color: #fff;
+					margin: 0 8px;
+					white-space: nowrap;
+					text-overflow: ellipsis;
+					overflow: hidden;
+					margin-top: -4px;
+				"
+			>
+				<span
+					style="
+						font-weight: 300;
+						font-size: 0.8em;
+						opacity: 0.8;
+						display: inline-flex;
+						flex-direction: row;
+						align-items: center;
+					"
+				>
+					<img
+						src="/assets/social-icons/spotify-light.svg"
+						style="
+							width: 12px;
+							height: 12px;
+							margin-right: 4px;
+							margin-top: 2px;
+						"
+					/>
+					Spotify
+				</span>
+				<br />
+				<ng-container *ngIf="data.spotify">
+					<app-dancing-letters
+						[text]="data.spotify.song"
+					></app-dancing-letters>
+					<br />
+					<span style="font-weight: 400">
+						by {{ data.spotify.artist }}
+					</span>
+				</ng-container>
+				<ng-container *ngIf="!data.spotify">
+					Not listening
+					<br />
+					<span style="font-weight: 400">to anything</span>
+				</ng-container>
+			</h4>
+		</ng-container>
+	</a>
+</div>

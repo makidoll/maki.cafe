@@ -1,0 +1,166 @@
+@use "sass:math";
+
+.logo {
+	width: 100%;
+	height: 100%;
+
+	fill-rule: evenodd;
+	clip-rule: evenodd;
+	stroke-linejoin: round;
+	stroke-miterlimit: 2;
+
+	cursor: pointer;
+
+	// document.querySelector(".m").getTotalLength()
+	$letters: (
+		("m", 506.8434753417969px),
+		("a", 471.4337463378906px),
+		("k", 738.4037475585938px),
+		("i-line", 112.5px),
+		("i-dot", 5.978884696960449px)
+	);
+	$letters-length: length($letters);
+
+	$letter-color: #e91e63;
+	$letter-delay: 400ms;
+
+	$letter-width: 30px;
+	$letter-shadow-distance: 20px;
+	$letter-spacing: -20px;
+
+	$letter-speed: 1.5;
+	$letter-backwards-speed: 0.5;
+
+	path {
+		fill: none;
+		stroke: $letter-color;
+		stroke-width: $letter-width;
+		stroke-linecap: round;
+		stroke-miterlimit: 1.5;
+	}
+
+	@each $class, $letter-total-length in $letters {
+		$i: index(($letters), ($class, $letter-total-length)) - 1;
+
+		&.animate-hide {
+			.#{$class} {
+				// first frame
+				stroke-width: 0;
+				stroke-dashoffset: $letter-total-length;
+			}
+		}
+		.#{$class} {
+			// default should be last frame
+			stroke-width: $letter-width;
+			stroke-dashoffset: 0;
+
+			@keyframes #{$class} {
+				0% {
+					stroke-width: 0;
+					stroke-dashoffset: $letter-total-length;
+				}
+				100% {
+					stroke-width: $letter-width;
+					stroke-dashoffset: 0;
+				}
+			}
+
+			stroke-dasharray: $letter-total-length;
+			transform: translateX($i * $letter-spacing);
+
+			animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+			animation-fill-mode: both;
+
+			animation-duration: 1000ms * $letter-speed;
+			animation-delay: ($i) * $letter-delay;
+		}
+		&.animate-backward {
+			.#{$class} {
+				animation-duration: 1000ms *
+					$letter-speed *
+					$letter-backwards-speed;
+				animation-delay: ($letters-length - $i - 1) *
+					$letter-delay *
+					$letter-backwards-speed;
+			}
+		}
+
+		// next part is similar to the first
+
+		&.animate-hide {
+			.#{$class}-shadow {
+				// first frame
+				stroke-width: 0;
+				opacity: 0;
+				transform: translate($i * $letter-spacing, 0);
+			}
+		}
+		.#{$class}-shadow {
+			// default should be last frame
+			stroke-width: $letter-width;
+			opacity: 0.2;
+			transform: translate(
+				($i * $letter-spacing) + $letter-shadow-distance,
+				$letter-shadow-distance
+			);
+
+			@keyframes #{$class}-shadow {
+				0% {
+					stroke-width: 0;
+					opacity: 0;
+					transform: translate($i * $letter-spacing, 0);
+				}
+
+				100% {
+					stroke-width: $letter-width;
+					opacity: 0.2;
+					transform: translate(
+						($i * $letter-spacing) + $letter-shadow-distance,
+						$letter-shadow-distance
+					);
+				}
+			}
+
+			stroke: mix($letter-color, #000, 80%);
+			stroke-dasharray: $letter-total-length;
+
+			animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+			animation-fill-mode: both;
+
+			animation-duration: 1000ms * $letter-speed;
+			animation-delay: ($i) * $letter-delay + math.div($letter-delay, 3);
+		}
+		&.animate-backward {
+			.#{$class}-shadow {
+				animation-duration: 1000ms *
+					$letter-speed *
+					$letter-backwards-speed;
+				animation-delay: ($letters-length - $i - 1) *
+					$letter-delay *
+					$letter-backwards-speed;
+			}
+		}
+
+		// final classes for javascript
+
+		&.animate-forward {
+			.#{$class} {
+				animation-name: #{$class};
+			}
+			.#{$class}-shadow {
+				animation-name: #{$class}-shadow;
+			}
+		}
+
+		&.animate-backward {
+			.#{$class} {
+				animation-name: #{$class};
+				animation-direction: reverse;
+			}
+			.#{$class}-shadow {
+				animation-name: #{$class}-shadow;
+				animation-direction: reverse;
+			}
+		}
+	}
+}

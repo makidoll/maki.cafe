@@ -1,0 +1,30 @@
+.spinner {
+	width: 48px;
+	height: 48px;
+	opacity: 0.15;
+
+	stroke-dasharray: 137.33934020996094px;
+
+	@keyframes stroke {
+		0% {
+			stroke-dashoffset: 137.33934020996094px * 2;
+		}
+		50% {
+			stroke-dashoffset: 137.33934020996094px;
+		}
+		100% {
+			stroke-dashoffset: 0;
+		}
+	}
+
+	@keyframes rotate {
+		0% {
+			transform: rotate(0deg);
+		}
+		100% {
+			transform: rotate(360deg);
+		}
+	}
+
+	animation: stroke 1.5s ease 0s infinite, rotate 2s linear 0s infinite;
+}

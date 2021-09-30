@@ -1,0 +1,35 @@
+<div class="home" [class.fade-in]="environment.production">
+	<app-logo
+		style="width: 400px; max-width: 400px; margin-top: 64px"
+	></app-logo>
+	<div style="margin-bottom: 64px; margin-top: 32px">
+		<app-social></app-social>
+	</div>
+	<div class="cards">
+		<div>
+			<app-card>
+				<app-discord [discordId]="config.discordId"></app-discord>
+			</app-card>
+		</div>
+		<div>
+			<app-card>
+				<app-where></app-where>
+			</app-card>
+		</div>
+		<div>
+			<app-card>
+				<app-work></app-work>
+			</app-card>
+		</div>
+		<div>
+			<app-card>
+				<app-instagram username="makixx_"></app-instagram>
+			</app-card>
+		</div>
+		<div>
+			<app-card>
+				<app-skeb></app-skeb>
+			</app-card>
+		</div>
+	</div>
+</div>

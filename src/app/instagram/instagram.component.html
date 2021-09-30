@@ -1,0 +1,16 @@
+<app-spinner *ngIf="posts.length == 0"></app-spinner>
+<ng-container *ngIf="posts.length != 0">
+	<app-card-title href="https://instagram.com/MakiXx"
+		>instagram</app-card-title
+	>
+	<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px">
+		<a
+			class="post"
+			*ngFor="let post of posts"
+			[href]="post.link"
+			style="display: block"
+		>
+			<img [src]="post.imageUrl" [alt]="post.title" style="width: 96px" />
+		</a>
+	</div>
+</ng-container>

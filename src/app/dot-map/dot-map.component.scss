@@ -1,0 +1,70 @@
+.dot-map {
+	position: relative;
+
+	// lol no
+
+	// .rows {
+	// 	display: flex;
+	// 	flex-direction: column;
+
+	// 	.row {
+	// 		display: flex;
+	// 		flex-direction: row;
+
+	// 		.dot {
+	// 			width: 2px;
+	// 			height: 2px;
+	// 			background-color: #b3e5fc; // material light blue 100
+	// 			// border-radius: 50%;
+	// 			margin: 0.5px;
+	// 			opacity: 1;
+
+	// 			&.on {
+	// 				opacity: 0.8;
+	// 				background-color: #9ccc65; // material light green 400
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	.canvas {
+		image-rendering: pixelated;
+	}
+
+	.pin {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		&:before {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			$scale: 0.04;
+			left: -128px * $scale;
+			width: 256px * $scale;
+			height: 640px * $scale;
+			background-image: url("/assets/dot-map/pin.svg");
+			background-repeat: no-repeat;
+		}
+
+		// .stick {
+		// 	position: absolute;
+		// 	width: 1px;
+		// 	height: 6px;
+		// 	bottom: 0;
+		// 	background-color: mix(#000, #fff, 40%);
+		// }
+
+		// .top {
+		// 	position: absolute;
+		// 	width: 6px;
+		// 	height: 6px;
+		// 	bottom: 0;
+		// 	background-color: #f44336;
+		// 	border-radius: 2px;
+		// 	left: -1.45px;
+		// 	bottom: 6px;
+		// }
+	}
+}

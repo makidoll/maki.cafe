@@ -1,0 +1,26 @@
+.logos {
+	display: grid;
+	grid-template-columns: repeat(6, 1fr);
+	gap: 16px;
+
+	width: 300px;
+	margin-bottom: 16px;
+
+	> img {
+		border-radius: 0;
+		width: 100%;
+		margin: auto;
+	}
+}
+
+.list {
+	line-height: 1em;
+	font-weight: 500;
+	font-size: 0.9em;
+	// margin-left: -32px;
+	margin-left: -24px;
+
+	li {
+		margin-bottom: 4px;
+	}
+}

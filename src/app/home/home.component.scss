@@ -1,0 +1,60 @@
+.home {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	width: 100%;
+
+	&.fade-in {
+		@keyframes fadeIn {
+			0% {
+				opacity: 0;
+			}
+			100% {
+				opacity: 1;
+			}
+		}
+
+		> div {
+			animation-name: fadeIn;
+			animation-duration: 1s;
+			animation-timing-function: linear;
+			transform-origin: 0 0;
+		}
+	}
+
+	.cards {
+		display: grid;
+
+		$cardWidth: 400px;
+
+		grid-template-columns: repeat(4, $cardWidth);
+		@media (max-width: $cardWidth * 4) {
+			grid-template-columns: repeat(3, $cardWidth);
+		}
+		@media (max-width: $cardWidth * 3) {
+			grid-template-columns: repeat(2, $cardWidth);
+		}
+		@media (max-width: $cardWidth * 2) {
+			grid-template-columns: repeat(1, $cardWidth);
+		}
+
+		> div {
+			width: $cardWidth;
+			max-width: $cardWidth;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			// background-color: red;
+			margin-bottom: 64px;
+
+			> app-card {
+				display: inline-block;
+			}
+		}
+
+		// app-card {
+		// 	margin: 32px;
+		// }
+	}
+}

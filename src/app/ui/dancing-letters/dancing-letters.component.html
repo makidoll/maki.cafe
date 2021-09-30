@@ -1,0 +1,9 @@
+<span class="letters">
+	<span
+		*ngFor="let letter of letters; let i = index"
+		[style.animationDelay]="(letters.length - i) * -100 + 'ms'"
+		[style.display]="letter == ' ' ? 'initial' : ''"
+	>
+		{{ letter }}
+	</span>
+</span>
