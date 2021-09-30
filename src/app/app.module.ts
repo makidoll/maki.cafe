@@ -19,6 +19,7 @@ import { LottieModule } from "ngx-lottie";
 import player from "lottie-web";
 import { SocialComponent } from './social/social.component';
 import { SkebComponent } from './skeb/skeb.component';
+import { GamesComponent } from './games/games.component';
 
 // Note we need a separate function as it's required
 // by the AOT compiler.
@@ -46,6 +47,7 @@ const routes: Routes = [{ path: "", component: HomeComponent }];
 		WhereComponent,
   SocialComponent,
   SkebComponent,
+  GamesComponent,
 	],
 	imports: [
 		BrowserModule,

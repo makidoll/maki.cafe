@@ -6,10 +6,12 @@
 	width: 300px;
 	margin-bottom: 16px;
 
-	> img {
-		border-radius: 0;
-		width: 100%;
+	a {
 		margin: auto;
+		img {
+			border-radius: 0;
+			width: 100%;
+		}
 	}
 }
 

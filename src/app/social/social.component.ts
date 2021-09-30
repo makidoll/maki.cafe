@@ -16,6 +16,7 @@ export class SocialComponent implements OnInit {
 		{ name: "github", url: "https://github.com/makitsune" },
 		{ name: "instagram", url: "https://instagram.com/MakiXx" },
 		{ name: "steam", url: "https://steamcommunity.com/id/MakiXx" },
+		{ name: "skeb", url: "https://skeb.jp/@Maki" },
 	];
 
 	constructor() {}

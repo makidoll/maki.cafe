@@ -11,7 +11,7 @@ export class DotMapComponent implements OnInit {
 	@ViewChild("canvas", { static: true })
 	canvas: ElementRef<HTMLCanvasElement>;
 
-	scale = 5;
+	scale = 6;
 	width = 16 * this.scale;
 	height = 9 * this.scale;
 

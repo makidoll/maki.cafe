@@ -1,0 +1,33 @@
+<app-card-title href="https://steamcommunity.com/id/MakiXx" socialIcon="steam">
+	favorite games
+</app-card-title>
+<div
+	style="
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		row-gap: 2px;
+		width: 405px;
+		max-width: 405px;
+	"
+>
+	<a
+		*ngFor="let steamId of steamIds"
+		[href]="'https://steamcommunity.com/app/' + steamId"
+		style="display: block"
+	>
+		<img
+			style="border-radius: 4px; width: 130px"
+			[src]="
+				'https://cdn.cloudflare.steamstatic.com/steam/apps/' +
+				steamId +
+				'/capsule_184x69.jpg'
+			"
+		/>
+	</a>
+</div>
+<a href="https://psnprofiles.com/MakiXx_">
+	<img
+		style="height: 120px; margin-top: 8px"
+		src="https://card.psnprofiles.com/1/MakiXx_.png"
+	/>
+</a>
