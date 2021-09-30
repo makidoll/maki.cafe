@@ -4,4 +4,4 @@
 -   animate pins on dot-map
 -   add my figure collection
 -   add twitter feed from nitter
--   too many images loading at the same time, should probably move to homelab for http3?
+-   too many images loading at the same time
