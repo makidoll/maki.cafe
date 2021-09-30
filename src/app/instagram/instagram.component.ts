@@ -1,4 +1,5 @@
-import { Component, Input, OnInit } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import { Component, Inject, Input, OnInit, PLATFORM_ID } from "@angular/core";
 import * as fastXmlParser from "fast-xml-parser";
 import { config } from "../config";
 
@@ -22,9 +23,11 @@ export class InstagramComponent implements OnInit {
 
 	posts: Post[] = [];
 
-	constructor() {}
+	constructor(@Inject(PLATFORM_ID) private readonly platformId) {}
 
 	ngOnInit(): void {
+		if (!isPlatformBrowser(this.platformId)) return;
+
 		this.getPosts(this.username);
 	}
 

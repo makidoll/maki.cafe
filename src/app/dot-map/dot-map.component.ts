@@ -1,4 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from "@angular/core";
+import { isPlatformBrowser } from "@angular/common";
+import {
+	Component,
+	ElementRef,
+	Inject,
+	OnInit,
+	PLATFORM_ID,
+	ViewChild,
+} from "@angular/core";
 
 @Component({
 	selector: "app-dot-map",
@@ -15,7 +23,7 @@ export class DotMapComponent implements OnInit {
 	width = 16 * this.scale;
 	height = 9 * this.scale;
 
-	constructor() {}
+	constructor(@Inject(PLATFORM_ID) private readonly platformId) {}
 
 	getImage(url: string) {
 		return new Promise<HTMLImageElement>((resolve, reject) => {
@@ -61,6 +69,8 @@ export class DotMapComponent implements OnInit {
 	}
 
 	async ngOnInit() {
+		if (!isPlatformBrowser(this.platformId)) return;
+
 		const canvas = this.canvas.nativeElement;
 		// each dot is 2 px with 1 px space
 		// dont add extra space at the end
