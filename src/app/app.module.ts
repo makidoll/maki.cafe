@@ -27,7 +27,10 @@ export function playerFactory() {
 	return player;
 }
 
-const routes: Routes = [{ path: "", component: HomeComponent }];
+const routes: Routes = [
+	{ path: "", component: HomeComponent },
+	{ path: "**", redirectTo: "/" },
+];
 
 @NgModule({
 	declarations: [
