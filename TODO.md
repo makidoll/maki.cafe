@@ -3,3 +3,4 @@
 -   make ui component for material icon
 -   animate pins on dot-map
 -   add my figure collection
+-   add twitter feed from nitter
