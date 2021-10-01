@@ -1,6 +1,5 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
-import player from "lottie-web";
 import { LottieModule } from "ngx-lottie";
 import { UiModule } from "../ui/ui.module";
 import { DiscordComponent } from "./discord/discord.component";
@@ -11,10 +10,10 @@ import { TwitterComponent } from "./twitter/twitter.component";
 import { WhereComponent } from "./where/where.component";
 import { WorkComponent } from "./work/work.component";
 
-// Note we need a separate function as it's required
-// by the AOT compiler.
 export function playerFactory() {
-	return player;
+	return import(
+		/* webpackChunkName: 'lottie-web' */ "lottie-web/build/player/lottie_light_html"
+	);
 }
 
 const components = [
