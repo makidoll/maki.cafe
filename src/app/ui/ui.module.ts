@@ -1,5 +1,6 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
+import { CardFooterComponent } from "./card-footer/card-footer.component";
 import { CardTitleComponent } from "./card-title/card-title.component";
 import { CardComponent } from "./card/card.component";
 import { DancingLettersComponent } from "./dancing-letters/dancing-letters.component";
@@ -13,6 +14,7 @@ import { SpinnerComponent } from "./spinner/spinner.component";
 import { UserImageComponent } from "./user-image/user-image.component";
 
 const components = [
+	CardFooterComponent,
 	CardTitleComponent,
 	CardComponent,
 	DancingLettersComponent,

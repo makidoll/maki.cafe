@@ -82,16 +82,7 @@
 		[style.background-position]="game.position"
 	></div>
 </div>
-<div
-	style="
-		display: flex;
-		flex-direction: row;
-		align-items: center;
-		justify-content: center;
-		margin-top: 12px;
-		margin-bottom: -4px;
-	"
->
+<app-card-footer>
 	<a
 		*ngFor="let profile of profiles"
 		[href]="profile[2]"
@@ -103,7 +94,6 @@
 			text-decoration: none;
 			color: #000;
 			font-weight: 600;
-			opacity: 0.4;
 			margin-right: 24px;
 		"
 	>
@@ -113,4 +103,4 @@
 		></svg>
 		{{ profile[1] }}
 	</a>
-</div>
+</app-card-footer>
