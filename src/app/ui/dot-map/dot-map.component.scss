@@ -40,7 +40,8 @@
 			left: -128px * $scale;
 			width: 256px * $scale;
 			height: 640px * $scale;
-			background-image: url("/assets/dot-map/pin.svg");
+			// background-image: url("/assets/dot-map/pin.svg");
+			background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjU2IDY0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWw6c3BhY2U9InByZXNlcnZlIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjIiPjxwYXRoIGQ9Im02NTAuNjI4IDMzNy4yMzIgMjkuMTUzIDI4NS40MjFoLTU4LjMwNWwyOS4xNTItMjg1LjQyMXoiIHN0eWxlPSJmaWxsOnNpbHZlciIgdHJhbnNmb3JtPSJtYXRyaXgoLTEuNjQ2NTMgMCAwIC0xLjc5Mzg0IDExOTkuMjggMTI0NC45NCkiLz48Y2lyY2xlIGN4PSI3MTUuMzY2IiBjeT0iNDAwLjYzNCIgcj0iMTgwLjQxNCIgc3R5bGU9ImZpbGw6I2Y0NDMzNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTM3OS41MzggLTE1Ni4yNDIpIHNjYWxlKC43MDk0OCkiLz48L3N2Zz4=");
 			background-repeat: no-repeat;
 		}
 
