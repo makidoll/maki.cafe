@@ -2,8 +2,9 @@
 -   add my figure collection
 -   add twitter feed from nitter
 -   too many images loading at the same time. getting there haha
+    -   just emojis left?
 -   add gitlab
 -   dancing letters get out of sync lol
--   fcp has the logo showing. makes it flash on load
--   document is not defined in social and logo icon. affects prerender
 -   do prerender better. try scully
+    -   fcp has the logo showing. makes it flash on load
+    -   document is not defined in social and logo icon. affects prerender
