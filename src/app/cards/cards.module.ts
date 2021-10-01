@@ -12,7 +12,7 @@ import { WorkComponent } from "./work/work.component";
 
 export function playerFactory() {
 	return import(
-		/* webpackChunkName: 'lottie-web' */ "lottie-web/build/player/lottie_light_html"
+		/* webpackChunkName: 'lottie-web' */ "lottie-web/build/player/lottie_light"
 	);
 }
 
