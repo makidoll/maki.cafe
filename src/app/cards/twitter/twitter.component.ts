@@ -1,7 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { isScullyRunning } from "@scullyio/ng-lib";
 import { config } from "../../config";
-import * as fastXmlParser from "fast-xml-parser";
 
 interface Tweet {
 	username: string;
@@ -44,12 +43,12 @@ export class TwitterComponent implements OnInit {
 
 		const res = await fetch(this.nitterUrl + "/" + username + "/rss");
 		const xmlStr = await res.text();
-		const xmlObj = fastXmlParser.getTraversalObj(xmlStr);
-		const { rss } = fastXmlParser.convertToJson(xmlObj, {
-			arrayMode: false,
-		});
+		const xml = new DOMParser().parseFromString(xmlStr, "application/xml");
 
-		const userImageUrl = rss.channel.image.url;
+		const userImageUrl = xml.querySelector(
+			"rss > channel > image > url",
+		).textContent;
+
 		this.userImageUrlCache[username] = userImageUrl;
 		return userImageUrl;
 	}
@@ -63,51 +62,57 @@ export class TwitterComponent implements OnInit {
 				"/rss",
 		);
 		const xmlStr = await res.text();
-		const xmlObj = fastXmlParser.getTraversalObj(xmlStr);
-		const { rss } = fastXmlParser.convertToJson(xmlObj, {
-			arrayMode: false,
-		});
+		const xml = new DOMParser().parseFromString(xmlStr, "application/xml");
 
-		this.tweets = rss.channel.item.slice(0, 4).map(item => {
-			const username: string = item["dc:creator"];
-			let title: string = item.title;
+		this.tweets = Array.from(xml.querySelectorAll("rss > channel > item"))
+			.slice(0, 4)
+			.map(item => {
+				const username = item.querySelector("creator").textContent;
+				let title: string = item.querySelector("title").textContent;
 
-			let retweet = false;
-			if (/^RT by @[^]+?: /.test(title)) {
-				retweet = true;
-				title = title.replace(/^RT by @[^]+?: /, "");
-			}
+				let retweet = false;
+				if (/^RT by @[^]+?: /.test(title)) {
+					retweet = true;
+					title = title.replace(/^RT by @[^]+?: /, "");
+				}
 
-			let reply = "";
-			const replyMatches = title.match(/^R to (@[^]+?): /);
-			if (replyMatches != null) {
-				reply = replyMatches[1];
-				title = title.replace(/^R to @[^]+?: /, "");
-			}
+				let reply = "";
+				const replyMatches = title.match(/^R to (@[^]+?): /);
+				if (replyMatches != null) {
+					reply = replyMatches[1];
+					title = title.replace(/^R to @[^]+?: /, "");
+				}
 
-			let imageUrl = "";
-			const imageUrlMatches = item.description.match(/src="(http[^]+?)"/);
-			if (imageUrlMatches != null) {
-				imageUrl = imageUrlMatches[1];
-			}
+				let imageUrl = "";
+				const imageUrlMatches = item
+					.querySelector("description")
+					.textContent.match(/src="(http[^]+?)"/);
+				if (imageUrlMatches != null) {
+					imageUrl = imageUrlMatches[1];
+				}
 
-			let tweet: Tweet = {
-				username,
-				// userImageUrl: "https://unavatar.io/twitter/" + lowerUsername,
-				userImageUrl: "",
-				title,
-				link: item.link.replace(this.nitterUrl, "https://twitter.com"),
-				retweet,
-				reply,
-				imageUrl,
-			};
+				let tweet: Tweet = {
+					username,
+					// userImageUrl: "https://unavatar.io/twitter/" + lowerUsername,
+					userImageUrl: "",
+					title,
+					link: item
+						.querySelector("link")
+						.textContent.replace(
+							this.nitterUrl,
+							"https://twitter.com",
+						),
+					retweet,
+					reply,
+					imageUrl,
+				};
 
-			// dont await this
-			this.getUserImage(username).then(userImageUrl => {
-				tweet.userImageUrl = userImageUrl;
+				// dont await this
+				this.getUserImage(username).then(userImageUrl => {
+					tweet.userImageUrl = userImageUrl;
+				});
+
+				return tweet;
 			});
-
-			return tweet;
-		});
 	}
 }
