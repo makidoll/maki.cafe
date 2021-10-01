@@ -5,6 +5,3 @@
     -   just emojis left?
 -   add gitlab
 -   dancing letters get out of sync lol
--   do prerender better. try scully
-    -   fcp has the logo showing. makes it flash on load
-    -   document is not defined in social and logo icon. affects prerender
