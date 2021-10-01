@@ -44,23 +44,20 @@
 			background-repeat: no-repeat;
 		}
 
-		// .stick {
-		// 	position: absolute;
-		// 	width: 1px;
-		// 	height: 6px;
-		// 	bottom: 0;
-		// 	background-color: mix(#000, #fff, 40%);
-		// }
+		@keyframes dropDown {
+			0% {
+				opacity: 0;
+				transform: translateY(-30px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
 
-		// .top {
-		// 	position: absolute;
-		// 	width: 6px;
-		// 	height: 6px;
-		// 	bottom: 0;
-		// 	background-color: #f44336;
-		// 	border-radius: 2px;
-		// 	left: -1.45px;
-		// 	bottom: 6px;
-		// }
+		animation-name: dropDown;
+		animation-duration: 1s;
+		animation-timing-function: ease-out;
+		animation-fill-mode: both;
 	}
 }

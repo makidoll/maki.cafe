@@ -17,6 +17,12 @@ export class DotMapComponent implements OnInit {
 	width = 16 * this.scale;
 	height = 9 * this.scale;
 
+	pins = [
+		[47.5, 37], // belgium
+		[43.5, 46], // tenerife
+		[12.5, 49], // california
+	];
+
 	constructor() {}
 
 	getImage(url: string) {
