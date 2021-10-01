@@ -83,24 +83,22 @@
 	></div>
 </div>
 <app-card-footer>
-	<a
-		*ngFor="let profile of profiles"
-		[href]="profile[2]"
-		style="
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			justify-content: center;
-			text-decoration: none;
-			color: #000;
-			font-weight: 600;
-			margin-right: 24px;
-		"
-	>
-		<svg
-			[socialIcon]="profile[0]"
-			style="height: 16px; margin-right: 4px"
-		></svg>
-		{{ profile[1] }}
-	</a>
+	<hstack>
+		<a
+			*ngFor="let profile of profiles"
+			[href]="profile[2]"
+			style="
+				font-weight: 600;
+				margin-right: 24px;
+				text-decoration: none;
+				color: #000;
+			"
+		>
+			<svg
+				[socialIcon]="profile[0]"
+				style="height: 16px; margin-right: 4px"
+			></svg>
+			{{ profile[1] }}
+		</a>
+	</hstack>
 </app-card-footer>

@@ -1,43 +1,41 @@
 <app-spinner *ngIf="!data"></app-spinner>
 <div *ngIf="data">
-	<div style="display: flex; flex-direction: row; align-items: center">
+	<hstack>
 		<a
 			[href]="config.socialLinks.discord"
-			style="
-				display: flex;
-				flex-direction: row;
-				align-items: center;
-				text-decoration: none;
-				color: #000;
-			"
+			style="text-decoration: none; color: #000"
 		>
-			<app-user-image
-				[url]="
-					'https://cdn.discordapp.com/avatars/' +
-					discordId +
-					'/' +
-					data.discord_user.avatar +
-					'.webp?size=128'
-				"
-				[online]="data.discord_status == 'online'"
-				[mobile]="data.active_on_discord_mobile"
-				[size]="48"
-			></app-user-image>
-			<h2 style="margin-left: 12px; opacity: 0.8; line-height: 0.8em">
-				{{ data.discord_user.username }}
-				<br />
-				<span style="font-size: 0.7em; opacity: 0.6; font-weight: 600">
-					#{{ data.discord_user.discriminator }}
-				</span>
-			</h2>
+			<hstack>
+				<app-user-image
+					[url]="
+						'https://cdn.discordapp.com/avatars/' +
+						discordId +
+						'/' +
+						data.discord_user.avatar +
+						'.webp?size=128'
+					"
+					[online]="data.discord_status == 'online'"
+					[mobile]="data.active_on_discord_mobile"
+					[size]="48"
+				></app-user-image>
+				<h2 style="margin-left: 12px; opacity: 0.8; line-height: 0.8em">
+					{{ data.discord_user.username }}
+					<br />
+					<span
+						style="font-size: 0.7em; opacity: 0.6; font-weight: 600"
+					>
+						#{{ data.discord_user.discriminator }}
+					</span>
+				</h2>
+			</hstack>
 		</a>
 		<h1 style="opacity: 0.4; font-weight: 200; flex: 1; text-align: center">
 			{{ data.discord_status == "online" ? "online" : "offline" }}
 		</h1>
-	</div>
+	</hstack>
 	<a
 		class="spotify"
-		[href]="
+		[attr.href]="
 			data.spotify
 				? 'https://open.spotify.com/track/' + data.spotify.track_id
 				: ''
@@ -63,22 +61,19 @@
 				[alt]="data.spotify.album"
 				style="width: 64px; height: 64px; border-radius: 6px"
 			/>
-			<div
+			<hstack
 				*ngIf="!data.spotify"
 				style="
 					width: 64px;
 					height: 64px;
 					border-radius: 6px;
 					background: rgba(255, 255, 255, 0.5);
-					display: inline-flex;
-					align-items: center;
-					justify-content: center;
 					font-size: 32px;
 					color: rgba(255, 255, 255, 0.5);
 				"
 			>
 				#!
-			</div>
+			</hstack>
 			<h4
 				style="
 					color: #fff;

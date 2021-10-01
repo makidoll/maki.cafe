@@ -9,10 +9,8 @@
 		[href]="tweet.link"
 		style="text-decoration: none; color: #000"
 	>
-		<div
+		<hstack
 			style="
-				display: flex;
-				flex-direction: row;
 				align-items: flex-start;
 				justify-content: flex-start;
 				font-size: 0.75em;
@@ -33,10 +31,8 @@
 					background-color: rgba(0, 0, 0, 0.1);
 				"
 			></div>
-			<div
+			<vstack
 				style="
-					display: flex;
-					flex-direction: column;
 					align-items: flex-start;
 					justify-content: flex-start;
 					flex-grow: 1;
@@ -45,14 +41,7 @@
 			>
 				<div
 					*ngIf="tweet.retweet || tweet.reply"
-					style="
-						display: flex;
-						flex-direction: row;
-						align-items: center;
-						justify-content: center;
-						font-weight: 600;
-						opacity: 0.4;
-					"
+					style="font-weight: 600; opacity: 0.4"
 				>
 					<ng-container *ngIf="tweet.retweet">
 						{{ username }} retweeted
@@ -74,7 +63,7 @@
 				>
 					{{ tweet.title }}
 				</div>
-			</div>
+			</vstack>
 			<div
 				*ngIf="tweet.imageUrl"
 				[style.backgroundImage]="'url(' + tweet.imageUrl + ')'"
@@ -88,30 +77,13 @@
 					background-color: rgba(0, 0, 0, 0.1);
 				"
 			></div>
-		</div>
+		</hstack>
+
 		<div
 			*ngIf="i != tweets.length - 1"
 			style="margin: 8px 0; border-top: solid 1px rgba(0, 0, 0, 0.1)"
 		></div>
 	</a>
 
-	<a
-		[href]="nitterUrl"
-		style="
-			text-align: center;
-			opacity: 0.4;
-			color: #000;
-			text-decoration: none;
-			margin-top: 8px;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-			margin-bottom: -4px;
-		"
-	>
-		Powered by Nitter
-		<app-material-icon style="margin-left: 4px; opacity: 0.6">
-			open_in_new
-		</app-material-icon>
-	</a>
+	<app-card-footer [href]="nitterUrl">Powered by Nitter</app-card-footer>
 </ng-container>
