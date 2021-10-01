@@ -11,7 +11,7 @@
 	a {
 		margin: auto;
 		@include scaleOnHover(1.05);
-		img {
+		svg {
 			border-radius: 0;
 			width: 100%;
 		}

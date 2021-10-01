@@ -1,10 +1,10 @@
 import { Directive, ElementRef, Input, OnInit } from "@angular/core";
 
 @Directive({
-	selector: "svg[socialIcon]",
+	selector: "svg[logoIcon]",
 })
-export class SocialIconDirective implements OnInit {
-	@Input("socialIcon") icon: string = "";
+export class LogoIconDirective implements OnInit {
+	@Input("logoIcon") icon: string = "";
 
 	constructor(private readonly el: ElementRef<SVGElement>) {}
 
@@ -12,7 +12,7 @@ export class SocialIconDirective implements OnInit {
 		if (this.icon == "") return;
 		const svg = this.el.nativeElement;
 
-		const iconModule = require("./social-icons/" +
+		const iconModule = require("./logo-icons/" +
 			this.icon.toLowerCase() +
 			".svg");
 		if (iconModule == null) return;

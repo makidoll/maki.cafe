@@ -5,6 +5,7 @@ import { CardComponent } from "./card/card.component";
 import { DancingLettersComponent } from "./dancing-letters/dancing-letters.component";
 import { DotMapComponent } from "./dot-map/dot-map.component";
 import { EmojiComponent } from "./emoji/emoji.component";
+import { LogoIconDirective } from "./logo-icon/logo-icon.directive";
 import { LogoComponent } from "./logo/logo.component";
 import { MaterialIconComponent } from "./material-icon/material-icon.component";
 import { SocialIconDirective } from "./social-icon/social-icon.directive";
@@ -19,14 +20,15 @@ const components = [
 	EmojiComponent,
 	LogoComponent,
 	MaterialIconComponent,
-	SocialIconDirective,
 	SpinnerComponent,
 	UserImageComponent,
 ];
 
+const directives = [LogoIconDirective, SocialIconDirective];
+
 @NgModule({
-	declarations: [...components],
+	declarations: [...components, ...directives],
 	imports: [CommonModule],
-	exports: [...components],
+	exports: [...components, ...directives],
 })
 export class UiModule {}
