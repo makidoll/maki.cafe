@@ -32,6 +32,5 @@ export class GamesComponent implements OnInit {
 			steamId: steamIds[i],
 			position,
 		}));
-		console.log(this.games);
 	}
 }

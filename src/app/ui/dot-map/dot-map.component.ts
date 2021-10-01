@@ -45,7 +45,9 @@ export class DotMapComponent implements OnInit {
 
 		const ctx = canvas.getContext("2d");
 
-		const image = await this.getImage("/assets/dot-map/world-map.svg");
+		const image = await this.getImage(
+			"data:image/svg+xml;utf8," + require("./world-map.svg").default,
+		);
 		ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
 		return { canvas, ctx };
