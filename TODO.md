@@ -1,5 +1,3 @@
--   make ui component for social icon
-    -   dont load over url, use svg in ts
 -   animate pins on dot-map
 -   add my figure collection
 -   add twitter feed from nitter

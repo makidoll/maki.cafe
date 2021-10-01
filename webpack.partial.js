@@ -1,7 +1,7 @@
 module.exports = config => {
 	config.module.rules.push({
-		test: /\.(html|svg)$/,
-		use: [{ loader: "raw-loader" }],
+		test: /\.(svg|html)$/,
+		loader: "raw-loader",
 	});
 
 	const angularWebpackPlugin = config.plugins.find(
