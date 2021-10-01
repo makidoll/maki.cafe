@@ -16,12 +16,29 @@ export class GamesComponent implements OnInit {
 		"1113560", // nier replicant
 		"504230", // celeste
 		"447040", // watch dogs 2
-		"394690", // tower unite
-		"413150", // stardew valley
+	];
+
+	moreSteamIds = [
+		"438100", // vrchat
+		"224760", // fez
 		"620", // portal 2
-		"219890", // anti chamber
 		"257850", // hyper light drifer
+		"219890", // anti chamber
+		"413150", // stardew valley
+		"394690", // tower unite
 		"275850", // no mans sky
+	];
+
+	urls = [
+		"/assets/games/earthbound-steam-horizontal.png",
+		"/assets/games/catherine-full-body-steam-horizontal.png",
+		"/assets/games/super-mario-odyssey-steam-horizontal.png",
+	];
+
+	profiles = [
+		["steam", "Steam", config.socialLinks.steam],
+		["playstation", "PSN", config.socialLinks.psnProfiles],
+		["osu", "Osu!", config.socialLinks.osu],
 	];
 
 	constructor() {}

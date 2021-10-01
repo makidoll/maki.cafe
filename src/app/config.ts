@@ -11,5 +11,6 @@ export const config = {
 		skeb: "https://skeb.jp/@Maki",
 		psnProfiles: "https://psnprofiles.com/MakiXx_",
 		matrix: "https://matrix.to/#/@maki:cutelab.space",
+		osu: "https://osu.ppy.sh/users/3286216",
 	},
 };

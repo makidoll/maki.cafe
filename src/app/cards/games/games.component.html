@@ -1,6 +1,4 @@
-<app-card-title [href]="config.socialLinks.steam" socialIcon="steam">
-	favorite games
-</app-card-title>
+<app-card-title>favorite games</app-card-title>
 <div
 	style="
 		display: grid;
@@ -26,9 +24,70 @@
 		/>
 	</a>
 </div>
-<a [href]="config.socialLinks.psnProfiles">
-	<img
-		style="height: 120px; margin-top: 8px"
-		src="https://card.psnprofiles.com/1/MakiXx_.png"
-	/>
-</a>
+<div
+	style="
+		display: grid;
+		grid-template-columns: repeat(4, 1fr);
+		row-gap: 2px;
+		width: 405px;
+		max-width: 405px;
+	"
+>
+	<a
+		class="game"
+		*ngFor="let steamId of moreSteamIds"
+		[href]="'https://steamcommunity.com/app/' + steamId"
+		style="display: block"
+	>
+		<img
+			style="border-radius: 4px; width: 98px"
+			[src]="
+				'https://cdn.cloudflare.steamstatic.com/steam/apps/' +
+				steamId +
+				'/capsule_184x69.jpg'
+			"
+		/>
+	</a>
+</div>
+<div
+	style="
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		row-gap: 2px;
+		width: 405px;
+		max-width: 405px;
+	"
+>
+	<a class="game" *ngFor="let url of urls" style="display: block">
+		<img style="border-radius: 4px; width: 130px" [src]="url" />
+	</a>
+</div>
+<div
+	style="
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		justify-content: center;
+		margin-top: 8px;
+		margin-bottom: -4px;
+	"
+>
+	<a
+		*ngFor="let profile of profiles"
+		[href]="profile[2]"
+		style="
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			text-decoration: none;
+			color: #000;
+			font-weight: 600;
+			opacity: 0.4;
+			margin-right: 24px;
+		"
+	>
+		<svg [icon]="profile[0]" style="height: 16px; margin-right: 4px"></svg>
+		{{ profile[1] }}
+	</a>
+</div>
