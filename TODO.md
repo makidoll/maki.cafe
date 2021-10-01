@@ -3,3 +3,4 @@
 -   add twitter feed from nitter
 -   too many images loading at the same time
 -   add gitlab
+-   dancing letters get out of sync lol
