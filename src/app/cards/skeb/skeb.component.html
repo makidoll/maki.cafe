@@ -1,5 +1,5 @@
-<app-card-title [href]="config.socialLinks.skeb" socialIcon="skeb"
-	>my skebs
+<app-card-title [href]="config.socialLinks.skeb" socialIcon="skeb">
+	my skebs
 </app-card-title>
 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px">
 	<a
@@ -9,17 +9,16 @@
 		style="display: block"
 	>
 		<div
-			[style.background-image]="
-				'url(/assets/skebs/' + encodeURIComponent(skeb) + ')'
-			"
 			style="
 				width: 80px;
 				height: 96px;
 				border-radius: 4px;
-				background-size: cover;
-				background-position: center;
 				image-rendering: optimizeQuality;
+				background-image: url(/assets/skeb-spritesheet.jpg);
+				background-position: 66% 0%;
 			"
+			[style.background-size]="sheetWidth + '00% ' + sheetHeight + '00%'"
+			[style.background-position]="skeb"
 		></div>
 	</a>
 </div>

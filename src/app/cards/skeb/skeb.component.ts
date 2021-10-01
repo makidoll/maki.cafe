@@ -10,23 +10,25 @@ export class SkebComponent implements OnInit {
 	config = config;
 	encodeURIComponent = encodeURIComponent;
 
-	skebs = [
-		"2021-09-07 mokarooru_0x0.png",
-		"2021-08-15 nhshio.png",
-		"2021-08-04 MyugummyCandy.png",
-		"2021-07-31 amehakoniwa.png",
-		"2021-07-26 saka_14_8.png",
-		"2021-07-18 hit0m1417.png",
-		"2021-07-17 mitsuki_366.png",
-		"2021-07-09 hitosazi0000.png",
-		"2021-07-01 kotohatoko510.png",
-		"2021-06-13 Yomo_yomotsu.png",
-		"2021-06-12 puryurumeuu.png",
-		"2021-06-06 hakonatunakann.png",
-		"2021-03-04 srn_111.png",
-	];
+	sheetWidth = 4;
+	sheetHeight = 3;
+
+	skebs: string[] = [];
 
 	constructor() {}
 
-	ngOnInit(): void {}
+	ngOnInit(): void {
+		let skebs: string[] = [];
+		for (let i = 0; i < this.sheetWidth * this.sheetHeight; i++) {
+			const x = i % this.sheetWidth;
+			const y = Math.floor(i / this.sheetWidth);
+			skebs.push(
+				[
+					(x / (this.sheetWidth - 1)) * 100 + "%",
+					(y / (this.sheetHeight - 1)) * 100 + "%",
+				].join(" "),
+			);
+		}
+		this.skebs = skebs;
+	}
 }
