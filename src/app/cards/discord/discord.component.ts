@@ -1,12 +1,5 @@
-import { isPlatformBrowser } from "@angular/common";
-import {
-	Component,
-	Inject,
-	Input,
-	OnDestroy,
-	OnInit,
-	PLATFORM_ID,
-} from "@angular/core";
+import { Component, Input, OnDestroy, OnInit } from "@angular/core";
+import { isScullyRunning } from "@scullyio/ng-lib";
 import { config } from "../../config";
 
 enum Op {
@@ -91,10 +84,10 @@ export class DiscordComponent implements OnInit, OnDestroy {
 
 	data: DataEvent;
 
-	constructor(@Inject(PLATFORM_ID) private readonly platformId) {}
+	constructor() {}
 
 	ngOnInit() {
-		if (!isPlatformBrowser(this.platformId)) return;
+		if (isScullyRunning()) return;
 
 		this.socket = new WebSocket("wss://api.lanyard.rest/socket");
 		this.socket.addEventListener("message", this.onMessage);

@@ -1,6 +1,7 @@
 import { NgModule } from "@angular/core";
 import { BrowserModule } from "@angular/platform-browser";
 import { RouterModule, Routes } from "@angular/router";
+import { ScullyLibModule } from "@scullyio/ng-lib";
 import { AppComponent } from "./app.component";
 import { CardsModule } from "./cards/cards.module";
 import { HomeComponent } from "./home/home.component";
@@ -19,6 +20,7 @@ const routes: Routes = [
 		RouterModule.forRoot(routes),
 		UiModule,
 		CardsModule,
+		ScullyLibModule,
 	],
 	providers: [],
 	bootstrap: [AppComponent],

@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { isScullyRunning } from "@scullyio/ng-lib";
 
 @Component({
 	selector: "app-logo",
@@ -17,12 +18,16 @@ export class LogoComponent implements OnInit {
 	readonly animationBackwardTime = 1400;
 
 	ngOnInit(): void {
+		// // keep animateHide on for prerender so it doesnt flash
+		// if (isScullyRunning()) return;
+
 		// this.animating = true; // make sure cant click when init
 		// setTimeout(() => {
 		// 	this.animating = false;
 		// 	this.animateHide = false;
 		// 	this.playForward();
-		// }, 500);
+		// }, 100);
+
 		this.playForward();
 	}
 
@@ -36,6 +41,9 @@ export class LogoComponent implements OnInit {
 		this.animating = true;
 		this.animateForward = true;
 		setTimeout(() => {
+			// keeping it in the above state is what we want for prerender
+			if (isScullyRunning()) return;
+
 			this.animateForward = false;
 			this.animating = false;
 			// console.log("forward done");

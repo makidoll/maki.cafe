@@ -2,4 +2,8 @@
 
 .game {
 	@include scaleOnHover(1.05);
+
+	.image {
+		aspect-ratio: 92 / 43;
+	}
 }

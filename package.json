@@ -3,7 +3,8 @@
 	"version": "0.0.0",
 	"scripts": {
 		"start": "ng serve",
-		"build": "ng build --configuration production"
+		"build": "ng build --configuration production",
+		"prerender": "scully --noPrompt"
 	},
 	"private": true,
 	"dependencies": {
@@ -15,6 +16,8 @@
 		"@angular/platform-browser": "~12.2.0",
 		"@angular/platform-browser-dynamic": "~12.2.0",
 		"@angular/router": "~12.2.0",
+		"@scullyio/ng-lib": "^2.0.0",
+		"@scullyio/scully": "^2.0.0",
 		"cheerio": "^1.0.0-rc.10",
 		"lottie-web": "^5.7.13",
 		"ngx-lottie": "^7.0.4",

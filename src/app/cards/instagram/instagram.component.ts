@@ -1,5 +1,5 @@
-import { isPlatformBrowser } from "@angular/common";
-import { Component, Inject, Input, OnInit, PLATFORM_ID } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
+import { isScullyRunning } from "@scullyio/ng-lib";
 import * as cheerio from "cheerio";
 import { config } from "../../config";
 
@@ -23,10 +23,10 @@ export class InstagramComponent implements OnInit {
 
 	posts: Post[] = [];
 
-	constructor(@Inject(PLATFORM_ID) private readonly platformId) {}
+	constructor() {}
 
 	ngOnInit(): void {
-		if (!isPlatformBrowser(this.platformId)) return;
+		if (isScullyRunning()) return;
 
 		this.getPosts(this.username);
 	}
