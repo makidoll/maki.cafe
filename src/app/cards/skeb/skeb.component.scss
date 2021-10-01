@@ -1,0 +1,5 @@
+@import "../../../styles/scale-on-hover.scss";
+
+.skeb {
+	@include scaleOnHover(1.05);
+}

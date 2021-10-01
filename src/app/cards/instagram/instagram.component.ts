@@ -1,7 +1,7 @@
 import { isPlatformBrowser } from "@angular/common";
 import { Component, Inject, Input, OnInit, PLATFORM_ID } from "@angular/core";
 import * as fastXmlParser from "fast-xml-parser";
-import { config } from "../config";
+import { config } from "../../config";
 
 interface Post {
 	title: string;

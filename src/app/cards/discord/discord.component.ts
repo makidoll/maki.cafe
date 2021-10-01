@@ -7,7 +7,7 @@ import {
 	OnInit,
 	PLATFORM_ID,
 } from "@angular/core";
-import { config } from "../config";
+import { config } from "../../config";
 
 enum Op {
 	Event = 0,
