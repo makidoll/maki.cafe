@@ -3,64 +3,84 @@
 	style="
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		row-gap: 2px;
+		row-gap: 6px;
 		width: 405px;
 		max-width: 405px;
 	"
 >
 	<a
+		*ngFor="let game of games.slice(0, 6)"
 		class="game"
-		*ngFor="let steamId of steamIds"
-		[href]="'https://steamcommunity.com/app/' + steamId"
+		[href]="'https://store.steampowered.com/app/' + game.steamId"
 		style="display: block"
 	>
-		<img
-			style="border-radius: 4px; width: 130px"
-			[src]="
-				'https://cdn.cloudflare.steamstatic.com/steam/apps/' +
-				steamId +
-				'/capsule_184x69.jpg'
+		<div
+			style="
+				border-radius: 4px;
+				aspect-ratio: 92 / 43;
+				width: 130px;
+				image-rendering: optimizeQuality;
+				background-image: url(/assets/steam-spritesheet.jpg);
+				background-position: 66% 0%;
 			"
-		/>
+			[style.background-size]="sheetWidth + '00% ' + sheetHeight + '00%'"
+			[style.background-position]="game.position"
+		></div>
 	</a>
 </div>
 <div
 	style="
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
-		row-gap: 2px;
+		row-gap: 4px;
 		width: 405px;
 		max-width: 405px;
+		margin-top: 4px;
 	"
 >
 	<a
+		*ngFor="let game of games.slice(6, 14)"
 		class="game"
-		*ngFor="let steamId of moreSteamIds"
-		[href]="'https://steamcommunity.com/app/' + steamId"
+		[href]="'https://store.steampowered.com/app/' + game.steamId"
 		style="display: block"
 	>
-		<img
-			style="border-radius: 4px; width: 98px"
-			[src]="
-				'https://cdn.cloudflare.steamstatic.com/steam/apps/' +
-				steamId +
-				'/capsule_184x69.jpg'
+		<div
+			style="
+				border-radius: 4px;
+				aspect-ratio: 92 / 43;
+				width: 96px;
+				image-rendering: optimizeQuality;
+				background-image: url(/assets/steam-spritesheet.jpg);
+				background-position: 66% 0%;
 			"
-		/>
+			[style.background-size]="sheetWidth + '00% ' + sheetHeight + '00%'"
+			[style.background-position]="game.position"
+		></div>
 	</a>
 </div>
 <div
 	style="
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		row-gap: 2px;
+		row-gap: 4px;
 		width: 405px;
 		max-width: 405px;
+		margin-top: 4px;
 	"
 >
-	<a class="game" *ngFor="let url of urls" style="display: block">
-		<img style="border-radius: 4px; width: 130px" [src]="url" />
-	</a>
+	<div
+		*ngFor="let game of games.slice(14, 17)"
+		style="
+			border-radius: 4px;
+			aspect-ratio: 92 / 43;
+			width: 130px;
+			image-rendering: optimizeQuality;
+			background-image: url(/assets/steam-spritesheet.jpg);
+			background-position: 66% 0%;
+		"
+		[style.background-size]="sheetWidth + '00% ' + sheetHeight + '00%'"
+		[style.background-position]="game.position"
+	></div>
 </div>
 <div
 	style="
@@ -68,7 +88,7 @@
 		flex-direction: row;
 		align-items: center;
 		justify-content: center;
-		margin-top: 8px;
+		margin-top: 12px;
 		margin-bottom: -4px;
 	"
 >

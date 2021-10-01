@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { config } from "../../config";
+import { getBackgroundPositionsForSpritesheet } from "../../utils";
 
 @Component({
 	selector: "app-skeb",
@@ -18,17 +19,9 @@ export class SkebComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit(): void {
-		let skebs: string[] = [];
-		for (let i = 0; i < this.sheetWidth * this.sheetHeight; i++) {
-			const x = i % this.sheetWidth;
-			const y = Math.floor(i / this.sheetWidth);
-			skebs.push(
-				[
-					(x / (this.sheetWidth - 1)) * 100 + "%",
-					(y / (this.sheetHeight - 1)) * 100 + "%",
-				].join(" "),
-			);
-		}
-		this.skebs = skebs;
+		this.skebs = getBackgroundPositionsForSpritesheet(
+			this.sheetWidth,
+			this.sheetHeight,
+		);
 	}
 }
