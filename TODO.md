@@ -1,6 +1,7 @@
 -   animate pins on dot-map
 -   add my figure collection
 -   add twitter feed from nitter
--   too many images loading at the same time
+-   too many images loading at the same time. getting there haha
 -   add gitlab
 -   dancing letters get out of sync lol
+-   fcp has the logo showing. makes it flash on load
