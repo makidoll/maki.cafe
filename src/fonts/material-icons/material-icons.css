@@ -21,4 +21,6 @@
 	direction: ltr;
 	-webkit-font-feature-settings: "liga";
 	-webkit-font-smoothing: antialiased;
+	/* stops showing text before icon font is loaded */
+	font-display: block;
 }
