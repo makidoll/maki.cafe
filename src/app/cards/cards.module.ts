@@ -7,6 +7,7 @@ import { DiscordComponent } from "./discord/discord.component";
 import { GamesComponent } from "./games/games.component";
 import { InstagramComponent } from "./instagram/instagram.component";
 import { SkebComponent } from "./skeb/skeb.component";
+import { TwitterComponent } from "./twitter/twitter.component";
 import { WhereComponent } from "./where/where.component";
 import { WorkComponent } from "./work/work.component";
 
@@ -21,6 +22,7 @@ const components = [
 	GamesComponent,
 	InstagramComponent,
 	SkebComponent,
+	TwitterComponent,
 	WhereComponent,
 	WorkComponent,
 ];

@@ -19,6 +19,7 @@
 		"@scullyio/ng-lib": "^2.0.0",
 		"@scullyio/scully": "^2.0.0",
 		"cheerio": "^1.0.0-rc.10",
+		"fast-xml-parser": "^3.20.3",
 		"lottie-web": "^5.7.13",
 		"ngx-lottie": "^7.0.4",
 		"rxjs": "~6.6.0",
