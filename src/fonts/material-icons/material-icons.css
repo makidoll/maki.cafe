@@ -5,6 +5,8 @@
 	font-weight: 400;
 	src: url("./material-icons.woff2") format("woff2"),
 		url("./material-icons.woff") format("woff");
+	/* stops showing text before icon font is loaded */
+	font-display: block;
 }
 
 .material-icons {
@@ -21,6 +23,4 @@
 	direction: ltr;
 	-webkit-font-feature-settings: "liga";
 	-webkit-font-smoothing: antialiased;
-	/* stops showing text before icon font is loaded */
-	font-display: block;
 }
