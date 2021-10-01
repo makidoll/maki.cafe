@@ -1,7 +1,5 @@
 -   animate pins on dot-map
 -   add my figure collection
 -   add twitter feed from nitter
--   too many images loading at the same time. getting there haha
-    -   just emojis left?
 -   add gitlab
 -   dancing letters get out of sync lol
