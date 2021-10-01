@@ -1,5 +1,5 @@
 <div class="social">
 	<a *ngFor="let social of social" [href]="social.url">
-		<img [src]="'/assets/social-icons/' + social.name + '.svg'" />
+		<svg [icon]="social.name"></svg>
 	</a>
 </div>

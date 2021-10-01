@@ -1,7 +1,7 @@
 @import "../../../styles/scale-on-hover.scss";
 
 .social {
-	img {
+	svg {
 		opacity: 0.3;
 		@include scaleOnHover(1.1);
 		margin: 0 4px;

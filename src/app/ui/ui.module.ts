@@ -7,6 +7,7 @@ import { DotMapComponent } from "./dot-map/dot-map.component";
 import { EmojiComponent } from "./emoji/emoji.component";
 import { LogoComponent } from "./logo/logo.component";
 import { MaterialIconComponent } from "./material-icon/material-icon.component";
+import { SocialIconDirective } from "./social-icon/social-icon.directive";
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { UserImageComponent } from "./user-image/user-image.component";
 
@@ -18,6 +19,7 @@ const components = [
 	EmojiComponent,
 	LogoComponent,
 	MaterialIconComponent,
+	SocialIconDirective,
 	SpinnerComponent,
 	UserImageComponent,
 ];

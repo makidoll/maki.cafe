@@ -4,10 +4,10 @@
 >
 	<a [attr.href]="href" style="color: #000; text-decoration: none">
 		<ng-content></ng-content>
-		<img
+		<svg
 			*ngIf="socialIcon"
-			[src]="'/assets/social-icons/' + socialIcon + '.svg'"
+			[icon]="socialIcon"
 			style="vertical-align: middle; margin-left: 4px; height: 24px"
-		/>
+		></svg>
 	</a>
 </h2>

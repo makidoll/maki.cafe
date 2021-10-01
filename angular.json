@@ -40,8 +40,11 @@
 			"prefix": "app",
 			"architect": {
 				"build": {
-					"builder": "@angular-devkit/build-angular:browser",
+					"builder": "@angular-builders/custom-webpack:browser",
 					"options": {
+						"customWebpackConfig": {
+							"path": "./webpack.partial.js"
+						},
 						"outputPath": "dist/maki/browser",
 						"index": "src/index.html",
 						"main": "src/main.ts",
@@ -86,7 +89,7 @@
 					"defaultConfiguration": "production"
 				},
 				"serve": {
-					"builder": "@angular-devkit/build-angular:dev-server",
+					"builder": "@angular-builders/custom-webpack:dev-server",
 					"configurations": {
 						"production": {
 							"browserTarget": "maki:build:production"
@@ -98,14 +101,17 @@
 					"defaultConfiguration": "development"
 				},
 				"extract-i18n": {
-					"builder": "@angular-devkit/build-angular:extract-i18n",
+					"builder": "@angular-builders/custom-webpack:extract-i18n",
 					"options": {
 						"browserTarget": "maki:build"
 					}
 				},
 				"server": {
-					"builder": "@angular-devkit/build-angular:server",
+					"builder": "@angular-builders/custom-webpack:server",
 					"options": {
+						"customWebpackConfig": {
+							"path": "./webpack.partial.js"
+						},
 						"outputPath": "dist/maki/server",
 						"main": "server.ts",
 						"tsConfig": "tsconfig.server.json",
