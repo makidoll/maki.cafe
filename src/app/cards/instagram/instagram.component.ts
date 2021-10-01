@@ -1,10 +1,10 @@
 import { isPlatformBrowser } from "@angular/common";
 import { Component, Inject, Input, OnInit, PLATFORM_ID } from "@angular/core";
-import * as fastXmlParser from "fast-xml-parser";
+import * as cheerio from "cheerio";
 import { config } from "../../config";
 
 interface Post {
-	title: string;
+	alt: string;
 	link: string;
 	imageUrl: string;
 }
@@ -31,6 +31,31 @@ export class InstagramComponent implements OnInit {
 		this.getPosts(this.username);
 	}
 
+	async getPosts(username: string) {
+		const res = await fetch(this.bibliogramUrl + "/u/" + username);
+		const htmlStr = await res.text();
+		const $ = cheerio.load(htmlStr);
+
+		$("a.sized-link").each((i, linkEl) => {
+			const link = "https://www.instagram.com" + linkEl.attribs.href;
+			const imageEl = linkEl.firstChild as cheerio.Element;
+			const alt = imageEl.attribs.alt;
+			const imageUrl =
+				this.bibliogramUrl +
+				imageEl.attribs.srcset
+					.split(",")
+					.map(src => src.trim())
+					.find(src => src.endsWith("150w"))
+					.split(" ")[0];
+			this.posts.push({
+				alt,
+				link,
+				imageUrl,
+			});
+		});
+	}
+
+	/*
 	async getPosts(username: string) {
 		const res = await fetch(
 			this.bibliogramUrl + "/u/" + username + "/rss.xml",
@@ -60,4 +85,5 @@ export class InstagramComponent implements OnInit {
 			});
 		}
 	}
+	*/
 }
