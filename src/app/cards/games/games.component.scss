@@ -1,9 +1,9 @@
 @import "../../../styles/scale-on-hover.scss";
 
-.game {
+.game-link {
 	@include scaleOnHover(1.05);
+}
 
-	.image {
-		aspect-ratio: 92 / 43;
-	}
+.game-image {
+	aspect-ratio: 92 / 43;
 }

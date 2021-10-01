@@ -3,22 +3,22 @@
 	style="
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
-		row-gap: 6px;
-		width: 405px;
-		max-width: 405px;
+		row-gap: 4px;
+		width: 350px;
+		max-width: 350px;
 	"
 >
 	<a
 		*ngFor="let game of games.slice(0, 6)"
-		class="game"
+		class="game-link"
 		[href]="'https://store.steampowered.com/app/' + game.steamId"
 		style="display: block"
 	>
 		<div
-			class="image"
+			class="game-image"
 			style="
 				border-radius: 4px;
-				width: 130px;
+				width: 112px;
 				image-rendering: optimizeQuality;
 				background-image: url(/assets/steam-spritesheet.jpg);
 				background-position: 66% 0%;
@@ -33,22 +33,22 @@
 		display: grid;
 		grid-template-columns: repeat(4, 1fr);
 		row-gap: 4px;
-		width: 405px;
-		max-width: 405px;
+		width: 350px;
+		max-width: 350px;
 		margin-top: 4px;
 	"
 >
 	<a
 		*ngFor="let game of games.slice(6, 14)"
-		class="game"
+		class="game-link"
 		[href]="'https://store.steampowered.com/app/' + game.steamId"
 		style="display: block"
 	>
 		<div
-			class="image"
+			class="game-image"
 			style="
 				border-radius: 4px;
-				width: 96px;
+				width: 83px;
 				image-rendering: optimizeQuality;
 				background-image: url(/assets/steam-spritesheet.jpg);
 				background-position: 66% 0%;
@@ -63,17 +63,17 @@
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		row-gap: 4px;
-		width: 405px;
-		max-width: 405px;
+		width: 350px;
+		max-width: 350px;
 		margin-top: 4px;
 	"
 >
 	<div
 		*ngFor="let game of games.slice(14, 17)"
-		class="image"
+		class="game-image"
 		style="
 			border-radius: 4px;
-			width: 130px;
+			width: 110px;
 			image-rendering: optimizeQuality;
 			background-image: url(/assets/steam-spritesheet.jpg);
 			background-position: 66% 0%;
