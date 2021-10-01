@@ -18,18 +18,18 @@ jobs:
               run: yarn install
 
             - name: Build
-              run: yarn prerender
+              run: yarn build
 
             # - name: Deploy
             #   uses: peaceiris/actions-gh-pages@v3
             #   with:
             #       github_token: ${{ secrets.GITHUB_TOKEN }}
-            #       publish_dir: ./dist/maki/browser
+            #       publish_dir: ./dist/maki
             #       cname: maki.cafe
 
             - name: Publish
               run: |
-                  npx -p "@getmeli/cli" meli upload ./dist/maki/browser \
+                  npx -p "@getmeli/cli" meli upload ./dist/maki \
                     --url "https://meli.cutelab.space" \
                     --site "fc910c27-54b4-433e-963e-fd49b5d17b00" \
                     --token "$MELI_TOKEN" \

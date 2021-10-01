@@ -6,3 +6,4 @@
 -   dancing letters get out of sync lol
 -   fcp has the logo showing. makes it flash on load
 -   document is not defined in social and logo icon. affects prerender
+-   do prerender better. try scully
