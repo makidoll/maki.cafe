@@ -5,42 +5,117 @@
 	[attr.height]="size"
 >
 	<mask
-		id="user-image-mask"
+		id="svg-mask-avatar-status-round-32"
 		maskContentUnits="objectBoundingBox"
 		viewBox="0 0 1 1"
 	>
 		<circle fill="white" cx="0.5" cy="0.5" r="0.5"></circle>
 		<circle fill="black" cx="0.84375" cy="0.84375" r="0.25"></circle>
-		<circle fill="black" cx="0.84375" cy="0.84375" r="0.1"></circle>
 	</mask>
 	<mask
-		id="user-image-offline-mask"
+		id="svg-mask-avatar-status-mobile-32"
+		maskContentUnits="objectBoundingBox"
+		viewBox="0 0 1 1"
+	>
+		<circle fill="white" cx="0.5" cy="0.5" r="0.5"></circle>
+		<rect
+			fill="black"
+			x="0.59375"
+			y="0.4375"
+			width="0.5"
+			height="0.65625"
+			rx="0.13125"
+			ry="0.13125"
+		></rect>
+	</mask>
+	<mask
+		id="svg-mask-status-online"
+		maskContentUnits="objectBoundingBox"
+		viewBox="0 0 1 1"
+	>
+		<circle fill="white" cx="0.5" cy="0.5" r="0.5"></circle>
+	</mask>
+	<mask
+		id="svg-mask-status-offline"
 		maskContentUnits="objectBoundingBox"
 		viewBox="0 0 1 1"
 	>
 		<circle fill="white" cx="0.5" cy="0.5" r="0.5"></circle>
 		<circle fill="black" cx="0.5" cy="0.5" r="0.25"></circle>
 	</mask>
+	<mask
+		id="svg-mask-status-online-mobile"
+		maskContentUnits="objectBoundingBox"
+		viewBox="0 0 1 1"
+	>
+		<rect
+			fill="white"
+			x="0"
+			y="0"
+			width="1"
+			height="1"
+			rx="0.1875"
+			ry="0.125"
+		></rect>
+		<rect
+			fill="black"
+			x="0.125"
+			y="0.16666666666666666"
+			width="0.75"
+			height="0.5"
+		></rect>
+		<ellipse
+			fill="black"
+			cx="0.5"
+			cy="0.8333333333333334"
+			rx="0.125"
+			ry="0.08333333333333333"
+		></ellipse>
+	</mask>
+
 	<image
-		mask="url(#user-image-mask)"
+		*ngIf="!(online && mobile)"
+		mask="url(#svg-mask-avatar-status-round-32)"
 		[attr.href]="url"
 		height="32"
 		width="32"
 		preserveAspectRatio="xMaxYMin slice"
 	/>
-	<circle
-		*ngIf="online"
-		fill="rgb(67, 181, 129)"
-		cx="27"
-		cy="27"
-		r="5"
-	></circle>
-	<circle
-		*ngIf="!online"
-		fill="rgb(116, 127, 141)"
-		mask="url(#user-image-offline-mask)"
-		cx="27"
-		cy="27"
-		r="5"
-	></circle>
+	<image
+		*ngIf="online && mobile"
+		mask="url(#svg-mask-avatar-status-mobile-32)"
+		[attr.href]="url"
+		height="32"
+		width="32"
+		preserveAspectRatio="xMaxYMin slice"
+	/>
+
+	<rect
+		*ngIf="!(online && mobile) && online"
+		width="10"
+		height="10"
+		x="22"
+		y="22"
+		fill="hsl(139, calc(var(--saturation-factor, 1) * 47.3%), 43.9%)"
+		mask="url(#svg-mask-status-online)"
+	></rect>
+	<rect
+		*ngIf="!(online && mobile) && !online"
+		width="10"
+		height="10"
+		x="22"
+		y="22"
+		fill="hsl(214, calc(var(--saturation-factor, 1) * 9.9%), 50.4%)"
+		mask="url(#svg-mask-status-offline)"
+	></rect>
+	<rect
+		*ngIf="online && mobile"
+		width="10"
+		height="15"
+		x="22"
+		y="17"
+		fill="hsl(139, calc(var(--saturation-factor, 1) * 47.3%), 43.9%)"
+		mask="url(#svg-mask-status-online-mobile)"
+		class="pointerEvents-2zdfdO"
+	></rect>
 </svg>

@@ -8,7 +8,9 @@ import { Component, Input } from "@angular/core";
 export class UserImageComponent {
 	@Input() size = 32;
 	@Input() url = "";
+
 	@Input() online = false;
+	@Input() mobile = false;
 
 	constructor() {}
 }
