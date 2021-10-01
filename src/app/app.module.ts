@@ -16,6 +16,7 @@ import { CardComponent } from "./ui/card/card.component";
 import { DancingLettersComponent } from "./ui/dancing-letters/dancing-letters.component";
 import { EmojiComponent } from "./ui/emoji/emoji.component";
 import { LogoComponent } from "./ui/logo/logo.component";
+import { MaterialIconComponent } from "./ui/material-icon/material-icon.component";
 import { SpinnerComponent } from "./ui/spinner/spinner.component";
 import { UserImageComponent } from "./ui/user-image/user-image.component";
 import { WhereComponent } from "./where/where.component";
@@ -51,6 +52,7 @@ const routes: Routes = [
 		SocialComponent,
 		SkebComponent,
 		GamesComponent,
+		MaterialIconComponent,
 	],
 	imports: [
 		BrowserModule.withServerTransition({ appId: "serverApp" }),
