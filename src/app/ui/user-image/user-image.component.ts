@@ -9,7 +9,7 @@ export class UserImageComponent {
 	@Input() size = 32;
 	@Input() url = "";
 
-	@Input() online = false;
+	@Input() status: "online" | "idle" | "dnd" | "offline" = "online";
 	@Input() mobile = false;
 
 	constructor() {}

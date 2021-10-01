@@ -14,8 +14,8 @@
 						data.discord_user.avatar +
 						'.webp?size=128'
 					"
-					[online]="data.discord_status == 'online'"
 					[mobile]="data.active_on_discord_mobile"
+					[status]="data.discord_status"
 					[size]="48"
 				></app-user-image>
 				<h2 style="margin-left: 12px; opacity: 0.8; line-height: 0.8em">
@@ -30,7 +30,7 @@
 			</hstack>
 		</a>
 		<h1 style="opacity: 0.4; font-weight: 200; flex: 1; text-align: center">
-			{{ data.discord_status == "online" ? "online" : "offline" }}
+			{{ data.discord_status }}
 		</h1>
 	</hstack>
 	<a

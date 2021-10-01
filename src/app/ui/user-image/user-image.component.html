@@ -36,6 +36,30 @@
 		<circle fill="white" cx="0.5" cy="0.5" r="0.5"></circle>
 	</mask>
 	<mask
+		id="svg-mask-status-idle"
+		maskContentUnits="objectBoundingBox"
+		viewBox="0 0 1 1"
+	>
+		<circle fill="white" cx="0.5" cy="0.5" r="0.5"></circle>
+		<circle fill="black" cx="0.25" cy="0.25" r="0.375"></circle>
+	</mask>
+	<mask
+		id="svg-mask-status-dnd"
+		maskContentUnits="objectBoundingBox"
+		viewBox="0 0 1 1"
+	>
+		<circle fill="white" cx="0.5" cy="0.5" r="0.5"></circle>
+		<rect
+			fill="black"
+			x="0.125"
+			y="0.375"
+			width="0.75"
+			height="0.25"
+			rx="0.125"
+			ry="0.125"
+		></rect>
+	</mask>
+	<mask
 		id="svg-mask-status-offline"
 		maskContentUnits="objectBoundingBox"
 		viewBox="0 0 1 1"
@@ -73,8 +97,10 @@
 		></ellipse>
 	</mask>
 
+	<!-- images -->
+
 	<image
-		*ngIf="!(online && mobile)"
+		*ngIf="!mobile"
 		mask="url(#svg-mask-avatar-status-round-32)"
 		[attr.href]="url"
 		height="32"
@@ -82,7 +108,7 @@
 		preserveAspectRatio="xMaxYMin slice"
 	/>
 	<image
-		*ngIf="online && mobile"
+		*ngIf="mobile"
 		mask="url(#svg-mask-avatar-status-mobile-32)"
 		[attr.href]="url"
 		height="32"
@@ -90,8 +116,10 @@
 		preserveAspectRatio="xMaxYMin slice"
 	/>
 
+	<!-- status -->
+
 	<rect
-		*ngIf="!(online && mobile) && online"
+		*ngIf="!mobile && status == 'online'"
 		width="10"
 		height="10"
 		x="22"
@@ -100,7 +128,25 @@
 		mask="url(#svg-mask-status-online)"
 	></rect>
 	<rect
-		*ngIf="!(online && mobile) && !online"
+		*ngIf="!mobile && status == 'idle'"
+		width="10"
+		height="10"
+		x="22"
+		y="22"
+		fill="hsl(38, calc(var(--saturation-factor, 1) * 95.7%), 54.1%)"
+		mask="url(#svg-mask-status-idle)"
+	></rect>
+	<rect
+		*ngIf="!mobile && status == 'dnd'"
+		width="10"
+		height="10"
+		x="22"
+		y="22"
+		fill="hsl(359, calc(var(--saturation-factor, 1) * 82.6%), 59.4%)"
+		mask="url(#svg-mask-status-dnd)"
+	></rect>
+	<rect
+		*ngIf="!mobile && status == 'offline'"
 		width="10"
 		height="10"
 		x="22"
@@ -109,7 +155,7 @@
 		mask="url(#svg-mask-status-offline)"
 	></rect>
 	<rect
-		*ngIf="online && mobile"
+		*ngIf="mobile"
 		width="10"
 		height="15"
 		x="22"
