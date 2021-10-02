@@ -44,16 +44,16 @@ $wished: material-color("deep-orange", "300");
 
 	&.owned {
 		border: 2px solid white;
-		outline: 2px solid $owned;
+		box-shadow: 0 0 0 2px $owned;
 	}
 
 	&.ordered {
 		border: 2px solid white;
-		outline: 2px solid $ordered;
+		box-shadow: 0 0 0 2px $ordered;
 	}
 
 	&.wished {
 		border: 2px solid white;
-		outline: 2px solid $wished;
+		box-shadow: 0 0 0 2px $wished;
 	}
 }
