@@ -1,0 +1,53 @@
+@import "../../../styles/scale-on-hover.scss";
+
+$owned: #8bc34a; // light green 500
+$ordered: #ffc107; // amber 500
+$wished: #ff8a65; // deep orange 300
+
+.circle {
+	width: 12px;
+	height: 12px;
+	border-radius: 50%;
+	margin-right: 6px;
+	margin-bottom: -2px; // text is lower case
+
+	&.owned {
+		background-color: $owned;
+	}
+	&.ordered {
+		background-color: $ordered;
+	}
+	&.wished {
+		background-color: $wished;
+	}
+}
+
+.owned {
+	color: $owned;
+}
+.ordered {
+	color: $ordered;
+}
+.wished {
+	color: $wished;
+}
+
+.figure {
+	aspect-ratio: 1 / 1;
+	@include scaleOnHover(1.05);
+
+	&.owned {
+		border: 2px solid white;
+		outline: 2px solid $owned;
+	}
+
+	&.ordered {
+		border: 2px solid white;
+		outline: 2px solid $ordered;
+	}
+
+	&.wished {
+		border: 2px solid white;
+		outline: 2px solid $wished;
+	}
+}

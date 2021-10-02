@@ -1,7 +1,10 @@
-const sharp = require("sharp");
-const fs = require("fs");
-const path = require("path");
-const fetch = require("isomorphic-fetch");
+import * as fs from "fs";
+import * as path from "path";
+import nodeFetch from "node-fetch";
+import fetchCookie from "fetch-cookie";
+import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
+
+const fetch = fetchCookie(nodeFetch);
 
 // steamgriddb uses 920x430
 // steam uses 460x215 which is 0.5
@@ -37,7 +40,7 @@ const imagePaths = [
 ];
 
 (async () => {
-	const bannerBuffers = await Promise.all(
+	const bannerInputs = await Promise.all(
 		[...steamIds, ...imagePaths].map(async (steamIdOrPath, i) => {
 			let buffer;
 			if (/^[0-9]/.test(steamIdOrPath)) {
@@ -48,46 +51,23 @@ const imagePaths = [
 				);
 				buffer = await res.buffer();
 			} else {
-				buffer = fs.readFileSync(
-					path.resolve(__dirname, steamIdOrPath),
-				);
+				buffer = fs.readFileSync(path.resolve(steamIdOrPath));
 			}
-
-			const x = i % sheetWidth;
-			const y = Math.floor(i / sheetWidth);
-
-			const input = await sharp(buffer)
-				.resize(bannerWidth, bannerHeight, {
-					fit: "cover",
-					kernel: "lanczos3",
-				})
-				.toBuffer();
-
-			return {
-				input,
-				gravity: "northwest",
-				left: x * bannerWidth,
-				top: y * bannerHeight,
-			};
+			return buffer;
 		}),
 	);
 
-	sharp({
-		create: {
-			width: bannerWidth * sheetWidth,
-			height: bannerHeight * sheetHeight,
-			channels: 3,
-			background: { r: 0, g: 0, b: 0 },
-		},
-	})
-		.composite(bannerBuffers)
-		.jpeg({
-			quality: 90,
-		})
-		.toFile(path.resolve(__dirname, "src/assets/steam-spritesheet.jpg"));
+	await makeSpriteSheet(
+		bannerWidth,
+		bannerHeight,
+		sheetWidth,
+		sheetHeight,
+		bannerInputs,
+		path.resolve("src/assets/steam-spritesheet.jpg"),
+	);
 
 	fs.writeFileSync(
-		path.resolve(__dirname, "src/app/cards/games/steam-ids.ts"),
+		path.resolve("src/app/cards/games/steam-ids.ts"),
 		"export const steamIds = " + JSON.stringify(steamIds),
 	);
 })();

@@ -5,6 +5,7 @@ import { UiModule } from "../ui/ui.module";
 import { DiscordComponent } from "./discord/discord.component";
 import { GamesComponent } from "./games/games.component";
 import { InstagramComponent } from "./instagram/instagram.component";
+import { MfcComponent } from "./mfc/mfc.component";
 import { SkebComponent } from "./skeb/skeb.component";
 import { TwitterComponent } from "./twitter/twitter.component";
 import { WhereComponent } from "./where/where.component";
@@ -20,6 +21,7 @@ const components = [
 	DiscordComponent,
 	GamesComponent,
 	InstagramComponent,
+	MfcComponent,
 	SkebComponent,
 	TwitterComponent,
 	WhereComponent,

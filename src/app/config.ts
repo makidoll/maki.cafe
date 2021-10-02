@@ -12,5 +12,6 @@ export const config = {
 		psnProfiles: "https://psnprofiles.com/MakiXx_",
 		matrix: "https://matrix.to/#/@maki:cutelab.space",
 		osu: "https://osu.ppy.sh/users/3286216",
+		mfc: "https://myfigurecollection.net/MakiXx_",
 	},
 };

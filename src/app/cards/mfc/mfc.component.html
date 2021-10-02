@@ -1,0 +1,42 @@
+<app-card-title socialIcon="mfc" [href]="config.socialLinks.mfc">
+	my figure collection
+</app-card-title>
+<hstack>
+	<div class="circle owned"></div>
+	<p class="owned">owned</p>
+	<div style="margin: 0 16px"></div>
+	<div class="circle ordered"></div>
+	<p class="ordered">ordered</p>
+	<div style="margin: 0 16px"></div>
+	<div class="circle wished"></div>
+	<p class="wished">wished</p>
+</hstack>
+<div
+	style="
+		display: grid;
+		grid-template-columns: repeat(7, 1fr);
+		row-gap: 6px;
+		width: 360px;
+		max-width: 360px;
+		margin-top: 16px;
+	"
+>
+	<a
+		*ngFor="let figure of mfcData"
+		[href]="figure.link"
+		style="display: block"
+	>
+		<div
+			class="figure {{ figure.type }}"
+			style="
+				border-radius: 4px;
+				width: 40px;
+				height: 40px;
+				image-rendering: optimizeQuality;
+				background-size: 700% 500%;
+			"
+			[style.background-image]="'url(/assets/mfc-spritesheet.jpg)'"
+			[style.background-position]="figure.position"
+		></div>
+	</a>
+</div>

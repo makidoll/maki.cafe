@@ -1,3 +1,3 @@
--   add my figure collection
 -   add gitlab
 -   dancing letters get out of sync lol
+-   add material design colors in with scss
