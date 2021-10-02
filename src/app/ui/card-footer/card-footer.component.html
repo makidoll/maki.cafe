@@ -11,7 +11,8 @@
 		justify-content: center;
 		font-weight: 500;
 	"
-	[style.marginBottom]="lowerMarginBottom ? '-16px' : '-8px'"
+	[style.marginTop]="marginTop ? marginTop : '8px'"
+	[style.marginBottom]="marginBottom ? marginBottom : '-8px'"
 >
 	<ng-content></ng-content>
 	<app-material-icon *ngIf="href" style="margin-left: 4px; opacity: 0.6">

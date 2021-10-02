@@ -7,7 +7,8 @@ import { Component, Input, OnInit } from "@angular/core";
 })
 export class CardFooterComponent implements OnInit {
 	@Input() href: string;
-	@Input() lowerMarginBottom = false;
+	@Input() marginTop = null;
+	@Input() marginBottom = null;
 
 	constructor() {}
 

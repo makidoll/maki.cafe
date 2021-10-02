@@ -1,13 +1,10 @@
-<hstack>
-	<app-spinner *ngIf="posts.length == 0"></app-spinner>
+<app-card-title [href]="config.socialLinks.instagram" socialIcon="instagram">
+	instagram
+</app-card-title>
+<hstack *ngIf="posts.length == 0" style="margin: 32px">
+	<app-spinner></app-spinner>
 </hstack>
 <ng-container *ngIf="posts.length != 0">
-	<app-card-title
-		[href]="config.socialLinks.instagram"
-		socialIcon="instagram"
-	>
-		instagram
-	</app-card-title>
 	<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px">
 		<a
 			class="post"
@@ -18,7 +15,7 @@
 			<img [src]="post.imageUrl" [alt]="post.alt" style="width: 96px" />
 		</a>
 	</div>
-	<app-card-footer href="https://bibliogram.cutelab.space/">
-		Powered by Bibliogram
-	</app-card-footer>
 </ng-container>
+<app-card-footer href="https://bibliogram.cutelab.space/">
+	Powered by Bibliogram
+</app-card-footer>

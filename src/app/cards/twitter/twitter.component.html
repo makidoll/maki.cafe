@@ -1,9 +1,10 @@
-<app-spinner *ngIf="tweets.length == 0"></app-spinner>
+<app-card-title [href]="config.socialLinks.twitter" socialIcon="twitter">
+	my tweets
+</app-card-title>
+<hstack *ngIf="tweets.length == 0" style="margin: 16px 0">
+	<app-spinner></app-spinner>
+</hstack>
 <ng-container *ngIf="tweets.length != 0">
-	<app-card-title [href]="config.socialLinks.twitter" socialIcon="twitter">
-		my tweets
-	</app-card-title>
-
 	<a
 		*ngFor="let tweet of tweets; let i = index"
 		[href]="tweet.link"
@@ -83,6 +84,5 @@
 			style="margin: 8px 0; border-top: solid 1px rgba(0, 0, 0, 0.075)"
 		></div>
 	</a>
-
-	<app-card-footer [href]="nitterUrl">Powered by Nitter</app-card-footer>
 </ng-container>
+<app-card-footer [href]="nitterUrl">Powered by Nitter</app-card-footer>
