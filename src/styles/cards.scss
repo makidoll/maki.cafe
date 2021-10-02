@@ -1,0 +1,19 @@
+$cardWidth: 450px;
+
+@mixin cards-max-3 {
+	@media (max-width: $cardWidth * 4) {
+		@content;
+	}
+}
+
+@mixin cards-max-2 {
+	@media (max-width: $cardWidth * 3) {
+		@content;
+	}
+}
+
+@mixin cards-max-1 {
+	@media (max-width: $cardWidth * 2) {
+		@content;
+	}
+}

@@ -1,3 +1,5 @@
+@import "../../styles/cards.scss";
+
 @mixin only($current, $total) {
 	@for $i from 1 through $total {
 		.only-#{$i} {
@@ -60,15 +62,15 @@
 	.art-0 {
 		position: absolute;
 		width: 210px;
-		top: -380px;
-		left: 0px;
+		top: -320px;
+		left: 40px;
 	}
 
 	.art-1 {
 		position: absolute;
 		width: 330px;
 		top: -375px;
-		right: 0px;
+		right: 50px;
 	}
 
 	&.fade-in {
@@ -84,21 +86,20 @@
 		}
 	}
 
-	$cardWidth: 450px;
-
 	.cards {
 		grid-template-columns: repeat(4, $cardWidth);
 	}
 
 	@include only(4, 4);
 
-	@media (max-width: $cardWidth * 4) {
+	@include cards-max-3 {
 		.cards {
 			grid-template-columns: repeat(3, $cardWidth);
 		}
 		@include only(3, 4);
 	}
-	@media (max-width: $cardWidth * 3) {
+
+	@include cards-max-2 {
 		.cards {
 			grid-template-columns: repeat(2, $cardWidth);
 		}
@@ -106,15 +107,16 @@
 
 		.art-0 {
 			width: 180px;
-			top: -320px;
+			top: -280px;
 		}
 		.art-1 {
 			width: 290px;
 			top: -330px;
-			right: -120px;
+			right: -60px;
 		}
 	}
-	@media (max-width: $cardWidth * 2) {
+
+	@include cards-max-1 {
 		.logo {
 			width: 350px;
 			margin-top: 32px;
@@ -151,10 +153,15 @@
 			align-items: center;
 			justify-content: center;
 			// background-color: red;
-			margin-bottom: 64px;
 
 			> app-card {
 				display: inline-block;
+			}
+		}
+
+		&.with-margin {
+			> div {
+				margin-bottom: 64px;
 			}
 		}
 
