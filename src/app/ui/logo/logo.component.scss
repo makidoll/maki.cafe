@@ -39,21 +39,34 @@
 		stroke-miterlimit: 1.5;
 	}
 
+	.path {
+		// default should be last frame
+		stroke-width: $letter-width;
+		stroke-dashoffset: 0;
+
+		// properties
+		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		animation-fill-mode: both;
+		animation-duration: 1000ms * $letter-speed;
+	}
+
+	&.animate-hide .path {
+		// first frame
+		stroke-width: 0;
+	}
+
+	&.animate-backward .path {
+		animation-duration: 1000ms * $letter-speed * $letter-backwards-speed;
+	}
+
 	@each $class, $letter-total-length in $letters {
 		$i: index(($letters), ($class, $letter-total-length)) - 1;
 
-		&.animate-hide {
-			.#{$class} {
-				// first frame
-				stroke-width: 0;
-				stroke-dashoffset: $letter-total-length;
-			}
+		&.animate-hide .#{$class} {
+			// first frame
+			stroke-dashoffset: $letter-total-length;
 		}
 		.#{$class} {
-			// default should be last frame
-			stroke-width: $letter-width;
-			stroke-dashoffset: 0;
-
 			@keyframes logo-#{$class} {
 				0% {
 					stroke-width: 0;
@@ -67,38 +80,47 @@
 
 			stroke-dasharray: $letter-total-length;
 			transform: translateX($i * $letter-spacing);
-
-			animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-			animation-fill-mode: both;
-
-			animation-duration: 1000ms * $letter-speed;
-			animation-delay: ($i) * $letter-delay;
+			animation-delay: $i * $letter-delay;
 		}
-		&.animate-backward {
-			.#{$class} {
-				animation-duration: 1000ms *
-					$letter-speed *
-					$letter-backwards-speed;
-				animation-delay: ($letters-length - $i - 1) *
-					$letter-delay *
-					$letter-backwards-speed;
-			}
+		&.animate-backward .#{$class} {
+			animation-delay: ($letters-length - $i - 1) *
+				$letter-delay *
+				$letter-backwards-speed;
 		}
+	}
 
-		// next part is similar to the first
+	// next part is similar to the first
 
-		&.animate-hide {
-			.#{$class}-shadow {
-				// first frame
-				stroke-width: 0;
-				opacity: 0;
-				transform: translate($i * $letter-spacing, 0);
-			}
+	.path-shadow {
+		// default should be last frame
+		stroke-width: $letter-width;
+		opacity: 0.2;
+
+		// properties
+		stroke: mix($letter-color, #000, 80%);
+		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+		animation-fill-mode: both;
+		animation-duration: 1000ms * $letter-speed;
+	}
+
+	&.animate-hide .path-shadow {
+		// first frame
+		stroke-width: 0;
+		opacity: 0;
+	}
+
+	&.animate-backward .path-shadow {
+		animation-duration: 1000ms * $letter-speed * $letter-backwards-speed;
+	}
+
+	@each $class, $letter-total-length in $letters {
+		$i: index(($letters), ($class, $letter-total-length)) - 1;
+
+		&.animate-hide .path-shadow {
+			// first frame
+			transform: translate($i * $letter-spacing, 0);
 		}
 		.#{$class}-shadow {
-			// default should be last frame
-			stroke-width: $letter-width;
-			opacity: 0.2;
 			transform: translate(
 				($i * $letter-spacing) + $letter-shadow-distance,
 				$letter-shadow-distance
@@ -121,28 +143,28 @@
 				}
 			}
 
-			stroke: mix($letter-color, #000, 80%);
 			stroke-dasharray: $letter-total-length;
-
-			animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-			animation-fill-mode: both;
-
-			animation-duration: 1000ms * $letter-speed;
-			animation-delay: ($i) * $letter-delay + math.div($letter-delay, 3);
+			animation-delay: ($i) * $letter-delay + $letter-delay/ 3;
 		}
-		&.animate-backward {
-			.#{$class}-shadow {
-				animation-duration: 1000ms *
-					$letter-speed *
-					$letter-backwards-speed;
-				animation-delay: ($letters-length - $i - 1) *
-					$letter-delay *
-					$letter-backwards-speed;
-			}
+		&.animate-backward .#{$class}-shadow {
+			animation-delay: ($letters-length - $i - 1) *
+				$letter-delay *
+				$letter-backwards-speed;
 		}
+	}
 
-		// final classes for javascript
+	// final classes for javascript
 
+	&.animate-backward {
+		.path {
+			animation-direction: reverse;
+		}
+		.path-shadow {
+			animation-direction: reverse;
+		}
+	}
+
+	@each $class, $letter-total-length in $letters {
 		&.animate-forward {
 			.#{$class} {
 				animation-name: logo-#{$class};
@@ -155,11 +177,9 @@
 		&.animate-backward {
 			.#{$class} {
 				animation-name: logo-#{$class};
-				animation-direction: reverse;
 			}
 			.#{$class}-shadow {
 				animation-name: logo-#{$class}-shadow;
-				animation-direction: reverse;
 			}
 		}
 	}
