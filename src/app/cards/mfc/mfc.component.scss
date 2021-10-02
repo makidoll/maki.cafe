@@ -1,8 +1,9 @@
 @import "../../../styles/scale-on-hover.scss";
+@import "../../../styles/material-colors.scss";
 
-$owned: #8bc34a; // light green 500
-$ordered: #ffc107; // amber 500
-$wished: #ff8a65; // deep orange 300
+$owned: material-color("light-green", "500");
+$ordered: material-color("amber", "500");
+$wished: material-color("deep-orange", "300");
 
 .legend {
 	font-size: 0.8em;

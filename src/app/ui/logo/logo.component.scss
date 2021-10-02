@@ -1,4 +1,5 @@
 @use "sass:math";
+@import "../../../styles/material-colors.scss";
 
 .logo {
 	width: 100%;
@@ -21,7 +22,7 @@
 	);
 	$letters-length: length($letters);
 
-	$letter-color: #e91e63;
+	$letter-color: material-color("pink", "500");
 	$letter-delay: 400ms;
 
 	$letter-width: 30px;
