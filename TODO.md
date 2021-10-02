@@ -1,3 +1,4 @@
 -   add gitlab
 -   dancing letters get out of sync lol
 -   keep titles for instagram and twitter when js is disabled
+-   im really unhappy with the fixed values in home component min-width and min-height for the art pieces. maybe make another cards el that has no elements, but just for the art pieces

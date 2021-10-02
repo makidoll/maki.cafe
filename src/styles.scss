@@ -6,8 +6,13 @@
 	margin: 0;
 }
 
+html,
 body {
+	// for mobile
 	overflow-x: hidden;
+}
+
+body {
 	font-family: "Inter", sans-serif;
 }
 @supports (font-variation-settings: normal) {
