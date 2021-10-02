@@ -1,5 +1,3 @@
--   animate pins on dot-map
 -   add my figure collection
--   add twitter feed from nitter
 -   add gitlab
 -   dancing letters get out of sync lol
