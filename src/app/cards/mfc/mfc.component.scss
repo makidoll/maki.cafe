@@ -4,32 +4,37 @@ $owned: #8bc34a; // light green 500
 $ordered: #ffc107; // amber 500
 $wished: #ff8a65; // deep orange 300
 
-.circle {
-	width: 12px;
-	height: 12px;
-	border-radius: 50%;
-	margin-right: 6px;
-	margin-bottom: -2px; // text is lower case
+.legend {
+	font-size: 0.8em;
+	font-weight: 500;
 
-	&.owned {
-		background-color: $owned;
-	}
-	&.ordered {
-		background-color: $ordered;
-	}
-	&.wished {
-		background-color: $wished;
-	}
-}
+	.circle {
+		width: 10px;
+		height: 10px;
+		border-radius: 50%;
+		margin-right: 6px;
+		margin-bottom: -2px; // text is lower case
 
-.owned {
-	color: $owned;
-}
-.ordered {
-	color: $ordered;
-}
-.wished {
-	color: $wished;
+		&.owned {
+			background-color: $owned;
+		}
+		&.ordered {
+			background-color: $ordered;
+		}
+		&.wished {
+			background-color: $wished;
+		}
+	}
+
+	.owned {
+		color: $owned;
+	}
+	.ordered {
+		color: $ordered;
+	}
+	.wished {
+		color: $wished;
+	}
 }
 
 .figure {
