@@ -16,8 +16,8 @@ import puppeteer from "puppeteer";
 const username = "MakiXx_";
 const mfcUrl = "https://myfigurecollection.net";
 
-const sheetWidth = 7;
-const sheetHeight = 5;
+const sheetWidth = 6;
+const sheetHeight = 4;
 
 // mfc resolution
 const imageWidth = 60;
