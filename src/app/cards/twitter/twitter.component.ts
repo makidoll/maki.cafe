@@ -20,7 +20,7 @@ interface Tweet {
 export class TwitterComponent implements OnInit {
 	config = config;
 
-	nitterUrl = "https://nitter.cutelab.space";
+	nitterUrl = config.api.nitter;
 
 	username = "@MakiXx_";
 	tweets: Tweet[] = [];

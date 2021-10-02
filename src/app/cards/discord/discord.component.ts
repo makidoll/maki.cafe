@@ -89,7 +89,7 @@ export class DiscordComponent implements OnInit, OnDestroy {
 	ngOnInit() {
 		if (isScullyRunning()) return;
 
-		this.socket = new WebSocket("wss://api.lanyard.rest/socket");
+		this.socket = new WebSocket(config.api.lanyard);
 		this.socket.addEventListener("message", this.onMessage);
 	}
 

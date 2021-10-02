@@ -15,7 +15,7 @@ interface Post {
 	styleUrls: ["./instagram.component.scss"],
 })
 export class InstagramComponent implements OnInit {
-	readonly bibliogramUrl = "https://bibliogram.cutelab.space";
+	readonly bibliogramUrl = config.api.bibliogram;
 
 	config = config;
 
