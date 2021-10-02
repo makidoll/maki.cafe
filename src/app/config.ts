@@ -2,7 +2,7 @@ const discordId = "72139729285427200";
 
 export const config = {
 	api: {
-		lanyard: "wss://api.lanyard.rest/socket",
+		lanyard: "wss://lanyard.cutelab.space/socket",
 		bibliogram: "https://bibliogram.cutelab.space",
 		nitter: "https://nitter.cutelab.space",
 	},
