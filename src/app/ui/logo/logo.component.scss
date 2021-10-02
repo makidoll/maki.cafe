@@ -145,7 +145,7 @@
 			}
 
 			stroke-dasharray: $letter-total-length;
-			animation-delay: ($i) * $letter-delay + $letter-delay/ 3;
+			animation-delay: ($i) * $letter-delay + math.div($letter-delay, 3);
 		}
 		&.animate-backward .#{$class}-shadow {
 			animation-delay: ($letters-length - $i - 1) *
