@@ -26,5 +26,6 @@
 		}
 	}
 
-	animation: stroke 1.5s ease 0s infinite, rotate 2s linear 0s infinite;
+	animation: spinner-stroke 1.5s ease 0s infinite,
+		spinner-rotate 2s linear 0s infinite;
 }
