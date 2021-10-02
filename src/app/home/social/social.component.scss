@@ -16,6 +16,8 @@
 	margin-top: 16px;
 	width: 220px;
 
+	@include scaleOnHover(1.05);
+
 	svg {
 		height: 16px;
 		margin-right: 8px;
