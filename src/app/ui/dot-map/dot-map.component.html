@@ -14,7 +14,7 @@
 		style="border-radius: 0; image-rendering: pixelated"
 	/>
 	<div
-		class="pin"
+		class="pin pin-{{ i }}"
 		*ngFor="let pin of pins; let i = index"
 		[style.left]="pin[0] + '%'"
 		[style.top]="pin[1] + '%'"
