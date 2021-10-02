@@ -10,6 +10,7 @@ import { HstackComponent } from "./hstack/hstack.component";
 import { LogoIconDirective } from "./logo-icon/logo-icon.directive";
 import { LogoComponent } from "./logo/logo.component";
 import { MaterialIconComponent } from "./material-icon/material-icon.component";
+import { PopupBoxComponent } from "./popup-box/popup-box.component";
 import { SocialIconDirective } from "./social-icon/social-icon.directive";
 import { SpinnerComponent } from "./spinner/spinner.component";
 import { UserImageComponent } from "./user-image/user-image.component";
@@ -25,6 +26,7 @@ const components = [
 	HstackComponent,
 	LogoComponent,
 	MaterialIconComponent,
+	PopupBoxComponent,
 	SpinnerComponent,
 	UserImageComponent,
 	VstackComponent,

@@ -1,0 +1,10 @@
+@import "../../../styles/scale-on-hover.scss";
+
+ul {
+	margin-left: -24px;
+}
+
+.clickable-image {
+	@include scaleOnHover(1.05);
+	cursor: pointer;
+}

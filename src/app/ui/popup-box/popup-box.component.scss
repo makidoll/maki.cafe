@@ -1,0 +1,37 @@
+@import "../../../styles/scale-on-hover.scss";
+
+.popup-box {
+	position: fixed;
+	margin: auto;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background-color: rgba(#1d1f21, 0.9);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	cursor: pointer;
+
+	transition: opacity 150ms linear;
+
+	.content-wrapper {
+		display: flex;
+		align-items: flex-start;
+		flex-direction: row;
+		cursor: initial;
+
+		.close-button {
+			color: #fff;
+			font-size: 32px;
+			width: 32px;
+			height: 32px;
+			opacity: 0.4;
+			margin-left: 16px;
+			cursor: pointer;
+			user-select: none;
+
+			@include scaleOnHover(1.2);
+		}
+	}
+}

@@ -1,6 +1,7 @@
 @import url(fonts/inter/inter.css);
 @import url(fonts/kg-always-a-good-time/kg-always-a-good-time.css);
 @import url(fonts/material-icons/material-icons.css);
+@import "styles/material-colors.scss";
 
 * {
 	margin: 0;
@@ -36,4 +37,9 @@ h3 {
 
 img {
 	border-radius: 8px;
+}
+
+a {
+	text-decoration: none;
+	color: material-color("pink", "500");
 }

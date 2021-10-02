@@ -1,0 +1,152 @@
+<hstack style="font-size: 0.6em">
+	<vstack style="width: 100px">
+		<span
+			class="cursive"
+			style="font-size: 2.6em; margin-top: -12px; margin-bottom: 4px"
+		>
+			homelab
+		</span>
+		<span style="font-size: 1em">
+			Everything on this site is hosted on our server rack!
+			<br /><br />
+			Last updated:
+			<br />
+			Oct 2, 2021
+		</span>
+		<img
+			class="clickable-image"
+			src="/assets/images/server-rack.jpg"
+			style="width: 100px; margin-top: 16px; border-radius: 4px"
+			(click)="serverRackPopupBox.open()"
+		/>
+		<app-popup-box #serverRackPopupBox>
+			<img src="/assets/images/server-rack.jpg" style="width: 500px" />
+		</app-popup-box>
+		<img
+			class="clickable-image"
+			src="/assets/images/yeti-ram.jpg"
+			style="width: 100px; margin-top: 8px; border-radius: 4px"
+			(click)="yetiRamPopupBox.open()"
+		/>
+		<app-popup-box #yetiRamPopupBox>
+			<img src="/assets/images/yeti-ram.jpg" style="width: 600px" />
+		</app-popup-box>
+	</vstack>
+	<div style="width: 240px; margin-left: 16px">
+		From top to bottom...
+		<ul>
+			<li>
+				Protectli Vault 6 Port, i7 quad core
+				<ul>
+					<li>
+						Hosting our
+						<a href="http://toastgenie.com/index.html">
+							OpenAI Toaster
+						</a>
+					</li>
+					<li>
+						<i>
+							Used to be our PfSense server before we switched to
+							Ubiquiti
+						</i>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Ubiquiti Dream Machine Pro
+				<ul>
+					<li>Network router and IPS</li>
+					<li>NVR for 3 x G4 Pro cameras</li>
+				</ul>
+			</li>
+			<li>Ubiquiti Switch 16 PoE</li>
+			<li>
+				Intel NUC i7-10710U, 12 cores(6 physical), 24 GB
+				<i>(cutenuc)</i>
+				<ul>
+					<li>
+						Hosting
+						<a href="http://tivolicloud.com/explore">
+							Tivoli worlds
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Intel NUC i7-10710U, 12 cores (6 physical), 24 GB
+				<ul>
+					<li>
+						Windows
+						<a href="http://git.tivolicloud.com/tivolicloud">
+							Tivoli build server
+						</a>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Mac Mini M1, 16 GB
+				<ul>
+					<li>
+						<a href="http://say.tivolicloud.com/">Say server</a> for
+						<a href="http://tivolicloud.com/">Tivoli</a>
+					</li>
+					<li>
+						<i>
+							Used to be the macOS build server before Apple
+							deprecated OpenGL
+						</i>
+					</li>
+				</ul>
+			</li>
+			<li>
+				Supermicro H8QG6-F, 64 cores (4 x 16),
+				<br />
+				128 GB <i>(Yeti)</i>
+				<ul>
+					<li>
+						Tivoli servers:
+						<ul>
+							<li>
+								<a href="http://tivolicloud.com/">
+									Website and API
+								</a>
+							</li>
+							<li>
+								<a href="http://blog.tivolicloud.com/">
+									Ghost blog
+								</a>
+							</li>
+							<li>
+								<a
+									href="http://git.tivolicloud.com/tivolicloud"
+								>
+									GitLab and runner
+								</a>
+							</li>
+						</ul>
+					</li>
+					<li>
+						Personal servers:
+						<ul>
+							<li>
+								<ng-container
+									*ngFor="
+										let service of personalYeti;
+										let i = index
+									"
+								>
+									<a [href]="service[1]">{{ service[0] }}</a
+									><ng-container
+										*ngIf="i != personalYeti.length - 1"
+										>,
+									</ng-container>
+								</ng-container>
+							</li>
+						</ul>
+					</li>
+				</ul>
+			</li>
+			<li>CyberPower OR1500LCDRM1U UPS, 1500VA/900W</li>
+		</ul>
+	</div>
+</hstack>

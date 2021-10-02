@@ -1,0 +1,16 @@
+<div
+	*ngIf="isOpen"
+	#popupBox
+	class="popup-box"
+	[style.opacity]="opacity"
+	(click)="close($event)"
+>
+	<div class="content-wrapper">
+		<div class="content">
+			<ng-content></ng-content>
+		</div>
+		<div #closeButton>
+			<app-material-icon class="close-button">close</app-material-icon>
+		</div>
+	</div>
+</div>
