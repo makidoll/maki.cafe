@@ -1,2 +1,3 @@
 -   add gitlab
 -   dancing letters get out of sync lol
+-   keep titles for instagram and twitter when js is disabled

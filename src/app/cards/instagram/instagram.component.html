@@ -1,4 +1,6 @@
-<app-spinner *ngIf="posts.length == 0"></app-spinner>
+<hstack>
+	<app-spinner *ngIf="posts.length == 0"></app-spinner>
+</hstack>
 <ng-container *ngIf="posts.length != 0">
 	<app-card-title
 		[href]="config.socialLinks.instagram"
