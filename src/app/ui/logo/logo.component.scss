@@ -54,7 +54,7 @@
 			stroke-width: $letter-width;
 			stroke-dashoffset: 0;
 
-			@keyframes #{$class} {
+			@keyframes logo-#{$class} {
 				0% {
 					stroke-width: 0;
 					stroke-dashoffset: $letter-total-length;
@@ -104,7 +104,7 @@
 				$letter-shadow-distance
 			);
 
-			@keyframes #{$class}-shadow {
+			@keyframes logo-#{$class}-shadow {
 				0% {
 					stroke-width: 0;
 					opacity: 0;
@@ -145,20 +145,20 @@
 
 		&.animate-forward {
 			.#{$class} {
-				animation-name: #{$class};
+				animation-name: logo-#{$class};
 			}
 			.#{$class}-shadow {
-				animation-name: #{$class}-shadow;
+				animation-name: logo-#{$class}-shadow;
 			}
 		}
 
 		&.animate-backward {
 			.#{$class} {
-				animation-name: #{$class};
+				animation-name: logo-#{$class};
 				animation-direction: reverse;
 			}
 			.#{$class}-shadow {
-				animation-name: #{$class}-shadow;
+				animation-name: logo-#{$class}-shadow;
 				animation-direction: reverse;
 			}
 		}

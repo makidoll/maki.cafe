@@ -7,7 +7,7 @@
 .song {
 	$deg: 2deg;
 
-	@keyframes listening {
+	@keyframes discord-listening {
 		0% {
 			transform: rotate(-$deg);
 		}
@@ -19,7 +19,7 @@
 		}
 	}
 
-	animation-name: listening;
+	animation-name: discord-listening;
 	animation-duration: 2 * 1s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: infinite;
