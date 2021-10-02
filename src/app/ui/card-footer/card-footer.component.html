@@ -9,9 +9,9 @@
 		display: flex;
 		align-items: center;
 		justify-content: center;
-		margin-bottom: -8px;
 		font-weight: 500;
 	"
+	[style.marginBottom]="lowerMarginBottom ? '-16px' : '-8px'"
 >
 	<ng-content></ng-content>
 	<app-material-icon *ngIf="href" style="margin-left: 4px; opacity: 0.6">

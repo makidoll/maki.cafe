@@ -1,3 +1,15 @@
+@mixin only($current, $total) {
+	@for $i from 1 through $total {
+		.only-#{$i} {
+			@if $i == $current {
+				display: initial;
+			} @else {
+				display: none;
+			}
+		}
+	}
+}
+
 .home {
 	display: flex;
 	align-items: center;
@@ -23,21 +35,91 @@
 		}
 	}
 
+	.logo {
+		width: 400px;
+		max-width: 400px;
+		margin-top: 64px;
+	}
+
+	.social {
+		margin-bottom: 64px;
+		margin-top: 32px;
+	}
+
+	$cardWidth: 450px;
+
+	.art-0 {
+		position: absolute;
+		transform: scaleX(-1);
+		width: 210px;
+		top: -380px;
+		left: 0px;
+	}
+
+	.art-1 {
+		position: absolute;
+		width: 330px;
+		top: -375px;
+		right: 0px;
+	}
+
 	.cards {
-		display: grid;
-
-		$cardWidth: 450px;
-
 		grid-template-columns: repeat(4, $cardWidth);
-		@media (max-width: $cardWidth * 4) {
+	}
+
+	@include only(4, 4);
+
+	@media (max-width: $cardWidth * 4) {
+		.cards {
 			grid-template-columns: repeat(3, $cardWidth);
 		}
-		@media (max-width: $cardWidth * 3) {
+		@include only(3, 4);
+	}
+	@media (max-width: $cardWidth * 3) {
+		.cards {
 			grid-template-columns: repeat(2, $cardWidth);
 		}
-		@media (max-width: $cardWidth * 2) {
+		@include only(2, 4);
+
+		.art-0 {
+			width: 180px;
+			top: -320px;
+		}
+		.art-1 {
+			width: 290px;
+			top: -330px;
+			right: -120px;
+		}
+	}
+	@media (max-width: $cardWidth * 2) {
+		.logo {
+			width: 350px;
+			margin-top: 32px;
+		}
+		.cards {
 			grid-template-columns: repeat(1, $cardWidth);
 		}
+		@include only(1, 4);
+
+		.art-0 {
+			width: 110px;
+			top: -190px;
+			left: -20px;
+		}
+		.art-1 {
+			width: 170px;
+			top: -185px;
+			right: -70px;
+		}
+		.social {
+			width: 140px;
+			text-align: center;
+			line-height: 2em;
+		}
+	}
+
+	.cards {
+		display: grid;
 
 		> div {
 			width: $cardWidth;

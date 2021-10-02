@@ -1,36 +1,104 @@
 <div class="home" [class.fade-in]="environment.production">
-	<app-logo
-		style="width: 400px; max-width: 400px; margin-top: 64px"
-	></app-logo>
-	<div style="margin-bottom: 64px; margin-top: 32px">
+	<app-logo class="logo"></app-logo>
+	<div class="social">
 		<app-social></app-social>
 	</div>
 	<div class="cards">
 		<div>
-			<app-card>
-				<app-discord [discordId]="config.discordId"></app-discord>
-			</app-card>
+			<div style="position: relative">
+				<a
+					href="https://skeb.jp/@mokarooru_0x0"
+					(contextmenu)="preventDefault($event)"
+				>
+					<img class="art-0" src="/assets/art/mokarooru_0x0.png" />
+				</a>
+				<a
+					href="https://skeb.jp/@MyugummyCandy"
+					(contextmenu)="preventDefault($event)"
+				>
+					<img
+						class="art-1 only-1"
+						src="/assets/art/MyugummyCandy.png"
+					/>
+				</a>
+				<app-card>
+					<app-discord [discordId]="config.discordId"></app-discord>
+				</app-card>
+			</div>
 		</div>
 		<div>
-			<app-card>
-				<app-where></app-where>
-			</app-card>
+			<div style="position: relative">
+				<a
+					href="https://skeb.jp/@MyugummyCandy"
+					(contextmenu)="preventDefault($event)"
+				>
+					<img
+						class="art-1 only-2"
+						src="/assets/art/MyugummyCandy.png"
+					/>
+				</a>
+				<app-card>
+					<app-where></app-where>
+				</app-card>
+			</div>
 		</div>
 		<div>
-			<app-card>
-				<app-work></app-work>
-			</app-card>
+			<div style="position: relative">
+				<a
+					href="https://skeb.jp/@MyugummyCandy"
+					(contextmenu)="preventDefault($event)"
+				>
+					<img
+						class="art-1 only-3"
+						src="/assets/art/MyugummyCandy.png"
+					/>
+				</a>
+				<app-card>
+					<app-work></app-work>
+				</app-card>
+			</div>
 		</div>
 		<div>
-			<app-card>
-				<app-instagram username="makixx_"></app-instagram>
-			</app-card>
+			<div style="position: relative">
+				<a
+					href="https://skeb.jp/@MyugummyCandy"
+					(contextmenu)="preventDefault($event)"
+				>
+					<img
+						class="art-1 only-4"
+						src="/assets/art/MyugummyCandy.png"
+					/>
+				</a>
+				<app-card>
+					<app-instagram username="makixx_"></app-instagram>
+				</app-card>
+			</div>
 		</div>
 		<div>
 			<app-card>
 				<app-skeb></app-skeb>
 			</app-card>
 		</div>
+		<div>
+			<app-card>
+				<a
+					href="https://skeb.jp/@amehakoniwa"
+					(contextmenu)="preventDefault($event)"
+				>
+					<img
+						style="width: 400px; margin: -16px; margin-bottom: -8px"
+						src="/assets/art/amehakoniwa.jpg"
+					/>
+				</a>
+				<app-card-footer
+					href="https://skeb.jp/@amehakoniwa"
+					[lowerMarginBottom]="true"
+				>
+					<span>Artwork by @amehakoniwa</span>
+				</app-card-footer>
+			</app-card>
+		</div>
+
 		<div>
 			<app-card>
 				<app-games></app-games>

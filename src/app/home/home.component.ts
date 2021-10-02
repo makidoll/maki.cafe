@@ -14,4 +14,8 @@ export class HomeComponent implements OnInit {
 	constructor() {}
 
 	ngOnInit(): void {}
+
+	preventDefault(e: Event) {
+		e.preventDefault();
+	}
 }
