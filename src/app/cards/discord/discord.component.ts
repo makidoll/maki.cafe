@@ -1,5 +1,6 @@
 import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { isScullyRunning } from "@scullyio/ng-lib";
+import { BehaviorSubject, interval, Subscription } from "rxjs";
 import { config } from "../../config";
 
 enum Op {
@@ -80,9 +81,15 @@ export class DiscordComponent implements OnInit, OnDestroy {
 	@Input() discordId: string = null;
 
 	socket: WebSocket;
-	interval: any;
+	heartbeatInterval: Subscription;
 
 	data: DataEvent;
+
+	songInterval: Subscription;
+	song: {
+		length: number;
+		current: BehaviorSubject<number>;
+	} = null;
 
 	constructor() {}
 
@@ -98,8 +105,47 @@ export class DiscordComponent implements OnInit, OnDestroy {
 			this.socket.removeEventListener("message", this.onMessage);
 			this.socket.close();
 		}
-		if (this.interval) {
-			clearInterval(this.interval);
+		if (this.heartbeatInterval) {
+			this.heartbeatInterval.unsubscribe();
+		}
+		if (this.songInterval) {
+			this.songInterval.unsubscribe();
+		}
+	}
+
+	msToTime(ms: number) {
+		let s = Math.floor(ms / 1000);
+		const m = Math.floor(s / 60);
+		s -= m * 60;
+		return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+	}
+
+	onData() {
+		if (this.data.spotify == null) {
+			// clean up
+			if (this.songInterval) this.songInterval.unsubscribe();
+			this.song = null;
+		} else {
+			const length =
+				this.data.spotify.timestamps.end -
+				this.data.spotify.timestamps.start;
+
+			const updateCurrent = () => {
+				if (this.song) {
+					const current =
+						Date.now() - this.data.spotify.timestamps.start;
+					if (current > this.data.spotify.timestamps.end) return;
+					this.song.current.next(current);
+				}
+			};
+
+			this.song = { length, current: new BehaviorSubject(0) };
+			updateCurrent();
+
+			if (this.songInterval) this.songInterval.unsubscribe();
+			this.songInterval = interval(1000).subscribe(() => {
+				updateCurrent();
+			});
 		}
 	}
 
@@ -122,11 +168,13 @@ export class DiscordComponent implements OnInit, OnDestroy {
 					} as Message),
 				);
 				// start the heart beat interval
-				this.interval = setInterval(() => {
+				this.heartbeatInterval = interval(
+					message.d.heartbeat_interval,
+				).subscribe(() => {
 					this.socket.send(
 						JSON.stringify({ op: Op.Heartbeat } as Message),
 					);
-				}, message.d.heartbeat_interval);
+				});
 				break;
 
 			case Op.Event:
@@ -136,6 +184,7 @@ export class DiscordComponent implements OnInit, OnDestroy {
 					data = data[this.discordId];
 				}
 				this.data = data;
+				this.onData();
 				break;
 		}
 	};

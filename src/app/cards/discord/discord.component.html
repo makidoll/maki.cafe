@@ -48,82 +48,121 @@
 			display: flex;
 			flex-direction: row;
 			align-items: center;
-			width: 300px;
-			max-width: 300px;
 			padding: 8px;
 			text-decoration: none;
+			color: #fff;
 		"
 		[style.background]="data.spotify ? '#1db954' : 'rgba(0,0,0,0.5)'"
 	>
-		<ng-container>
-			<img
-				*ngIf="data.spotify"
-				class="song"
-				[src]="data.spotify.album_art_url"
-				[alt]="data.spotify.album"
-				style="width: 64px; height: 64px; border-radius: 6px"
-			/>
-			<hstack
-				*ngIf="!data.spotify"
-				style="
-					width: 64px;
-					height: 64px;
-					border-radius: 6px;
-					background: rgba(255, 255, 255, 0.5);
-					font-size: 32px;
-					color: rgba(255, 255, 255, 0.5);
-				"
-			>
-				#!
-			</hstack>
-			<h4
-				style="
-					color: #fff;
-					margin: 0 8px;
-					white-space: nowrap;
-					text-overflow: ellipsis;
-					overflow: hidden;
-					margin-top: -4px;
-				"
-			>
-				<span
+		<vstack>
+			<hstack>
+				<img
+					*ngIf="data.spotify"
+					class="song"
+					[src]="data.spotify.album_art_url"
+					[alt]="data.spotify.album"
+					style="width: 64px; height: 64px; border-radius: 6px"
+				/>
+				<hstack
+					*ngIf="!data.spotify"
 					style="
-						font-weight: 300;
-						font-size: 0.8em;
-						opacity: 0.8;
-						display: inline-flex;
-						flex-direction: row;
-						align-items: center;
+						width: 64px;
+						height: 64px;
+						border-radius: 6px;
+						background: rgba(255, 255, 255, 0.5);
+						font-size: 32px;
+						color: rgba(255, 255, 255, 0.5);
 					"
 				>
-					<svg
-						socialIcon="spotify-light"
+					#!
+				</hstack>
+				<h4
+					style="
+						margin: 0 8px;
+						white-space: nowrap;
+						overflow: hidden;
+						margin-top: -4px;
+						width: 225px;
+						max-width: 225px;
+					"
+				>
+					<span
 						style="
-							width: 12px;
-							height: 12px;
-							margin-right: 4px;
-							margin-top: 2px;
+							font-weight: 300;
+							font-size: 0.8em;
+							opacity: 0.8;
+							display: inline-flex;
+							flex-direction: row;
+							align-items: center;
 						"
-					></svg>
-					Spotify
-				</span>
-				<br />
-				<ng-container *ngIf="data.spotify">
-					<app-dancing-letters
-						[text]="data.spotify.song"
-					></app-dancing-letters>
-					<br />
-					<span style="font-weight: 400">
-						by {{ data.spotify.artist }}
+					>
+						<svg
+							socialIcon="spotify-light"
+							style="
+								width: 12px;
+								height: 12px;
+								margin-right: 4px;
+								margin-top: 2px;
+							"
+						></svg>
+						Spotify
 					</span>
-				</ng-container>
-				<ng-container *ngIf="!data.spotify">
-					Not listening
 					<br />
-					<span style="font-weight: 400">to anything</span>
-				</ng-container>
-			</h4>
-		</ng-container>
+					<ng-container *ngIf="data.spotify">
+						<app-dancing-letters
+							[text]="data.spotify.song"
+						></app-dancing-letters>
+						<br />
+						<span style="font-weight: 400">
+							by {{ data.spotify.artist }}
+						</span>
+					</ng-container>
+					<ng-container *ngIf="!data.spotify">
+						Not listening
+						<br />
+						<span style="font-weight: 400">to anything</span>
+					</ng-container>
+				</h4>
+			</hstack>
+			<hstack
+				*ngIf="song"
+				style="
+					font-size: 0.8em;
+					width: calc(100% - 4px);
+					margin-top: 6px;
+					margin-bottom: -2px;
+				"
+			>
+				<p style="width: 56px">
+					{{ msToTime(song.current | async) }}
+				</p>
+				<div
+					*ngIf="data.spotify"
+					style="
+						width: 100%;
+						height: 6px;
+						background-color: rgba(255, 255, 255, 0.4);
+						border-radius: 3px;
+						flex-grow: 1;
+					"
+				>
+					<div
+						[style.width]="
+							((song.current | async) / song.length) * 100 + '%'
+						"
+						style="
+							height: 6px;
+
+							background-color: #fff;
+							border-radius: 3px;
+						"
+					></div>
+				</div>
+				<p style="width: 56px; text-align: right">
+					{{ msToTime(song.length) }}
+				</p>
+			</hstack>
+		</vstack>
 	</a>
 	<app-card-footer>
 		<span style="font-size: 0.55em">
