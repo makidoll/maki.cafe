@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
+import * as os from "os";
 import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
 
 const scale = 2;
@@ -9,11 +10,22 @@ const skebHeight = 96 * scale;
 const sheetWidth = 4;
 const sheetHeight = 3;
 
+const possibleFilesDirs = [
+	"C:\\Files", // windows
+	path.resolve(os.homedir(), "Files"), // mac os
+	path.resolve(os.homedir(), "files"), // linux
+];
+
 (async () => {
 	let files = null;
-	if (fs.existsSync("C:\\Files")) files = "C:\\Files";
-	else if (fs.existsSync("~/Files")) files = "~/Files";
-	else if (fs.existsSync("~/files")) files = "~/files";
+	for (const possibleFilesDir of possibleFilesDirs) {
+		if (fs.existsSync(possibleFilesDir)) {
+			files = possibleFilesDir;
+			break;
+		}
+	}
+	if (files == null) throw new Error("Files not found");
+
 	const skebExport = path.resolve(files, "Projects/Skeb/export");
 
 	const skebInputs = fs
