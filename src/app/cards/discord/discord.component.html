@@ -35,25 +35,7 @@
 			{{ data.discord_status }}
 		</h1>
 	</hstack>
-	<a
-		class="spotify"
-		[attr.href]="
-			data.spotify
-				? 'https://open.spotify.com/track/' + data.spotify.track_id
-				: ''
-		"
-		style="
-			border-radius: 8px;
-			margin-top: 16px;
-			display: flex;
-			flex-direction: row;
-			align-items: center;
-			padding: 8px;
-			text-decoration: none;
-			color: #fff;
-		"
-		[style.background]="data.spotify ? '#1db954' : 'rgba(0,0,0,0.5)'"
-	>
+	<ng-template #spotify>
 		<vstack>
 			<hstack>
 				<img
@@ -163,7 +145,22 @@
 				</p>
 			</hstack>
 		</vstack>
+	</ng-template>
+	<a
+		*ngIf="data.spotify"
+		class="spotify"
+		[href]="'https://open.spotify.com/track/' + data.spotify.track_id"
+		[style.background]="'#1db954'"
+	>
+		<ng-template [ngTemplateOutlet]="spotify"></ng-template>
 	</a>
+	<div
+		*ngIf="!data.spotify"
+		class="spotify"
+		[style.background]="'rgba(0,0,0,0.5)'"
+	>
+		<ng-template [ngTemplateOutlet]="spotify"></ng-template>
+	</div>
 	<app-card-footer style="font-size: 0.55em">
 		i made my account 66 days after launch and nobody gets a badge for it
 	</app-card-footer>
