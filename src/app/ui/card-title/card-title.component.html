@@ -1,14 +1,20 @@
+<ng-template #content>
+	<ng-content></ng-content>
+	<svg
+		*ngIf="socialIcon"
+		[socialIcon]="socialIcon"
+		style="vertical-align: middle; margin-left: 4px; height: 24px"
+	></svg>
+</ng-template>
 <h2
 	class="cursive"
 	[class.card-title-href]="href"
 	style="text-align: center; margin-bottom: 12px; margin-top: -12px"
 >
-	<a [attr.href]="href" style="color: #000; text-decoration: none">
-		<ng-content></ng-content>
-		<svg
-			*ngIf="socialIcon"
-			[socialIcon]="socialIcon"
-			style="vertical-align: middle; margin-left: 4px; height: 24px"
-		></svg>
+	<a *ngIf="href" [href]="href" style="color: #000; text-decoration: none">
+		<ng-template [ngTemplateOutlet]="content"></ng-template>
 	</a>
+	<ng-container *ngIf="!href">
+		<ng-template [ngTemplateOutlet]="content"></ng-template>
+	</ng-container>
 </h2>

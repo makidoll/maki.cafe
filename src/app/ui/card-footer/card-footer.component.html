@@ -9,15 +9,15 @@
 	[style.marginBottom]="marginBottom ? marginBottom : '-8px'"
 >
 	<ng-template [ngTemplateOutlet]="content"></ng-template>
-	<app-material-icon *ngIf="href" style="margin-left: 4px; opacity: 0.6">
+	<app-material-icon style="margin-left: 4px; opacity: 0.6">
 		open_in_new
 	</app-material-icon>
 </a>
-<a
+<span
 	*ngIf="!href"
 	class="card-footer"
 	[style.marginTop]="marginTop ? marginTop : '8px'"
 	[style.marginBottom]="marginBottom ? marginBottom : '-8px'"
 >
 	<ng-template [ngTemplateOutlet]="content"></ng-template>
-</a>
+</span>
