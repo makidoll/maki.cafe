@@ -13,6 +13,8 @@ import puppeteer from "puppeteer";
 
 // this is my attempt to pull data from the slowest site ever lol
 
+const __dirname = path.dirname(import.meta.url.replace("file:///", ""));
+
 const username = "MakiXx_";
 const mfcUrl = "https://myfigurecollection.net";
 
@@ -164,7 +166,7 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 		sheetWidth,
 		sheetHeight,
 		mfcData.map(figure => figure.imageBuffer),
-		path.resolve("src/assets/mfc-spritesheet.jpg"),
+		path.resolve(__dirname, "../src/assets/mfc-spritesheet.jpg"),
 	);
 
 	// merge css positions with mfcData
@@ -174,7 +176,7 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 	}
 
 	fs.writeFileSync(
-		path.resolve("src/app/cards/mfc/mfc.ts"),
+		path.resolve(__dirname, "../src/app/cards/mfc/mfc.ts"),
 		"export const mfcData = " + JSON.stringify(mfcData),
 	);
 

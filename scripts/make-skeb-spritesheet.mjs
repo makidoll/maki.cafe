@@ -3,6 +3,8 @@ import * as path from "path";
 import * as os from "os";
 import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
 
+const __dirname = path.dirname(import.meta.url.replace("file:///", ""));
+
 const scale = 2;
 const skebWidth = 80 * scale;
 const skebHeight = 96 * scale;
@@ -41,6 +43,6 @@ const possibleFilesDirs = [
 		sheetWidth,
 		sheetHeight,
 		skebInputs,
-		path.resolve("src/assets/skeb-spritesheet.jpg"),
+		path.resolve(__dirname, "../src/assets/skeb-spritesheet.jpg"),
 	);
 })();

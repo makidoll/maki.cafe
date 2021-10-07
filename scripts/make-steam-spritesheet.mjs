@@ -4,6 +4,8 @@ import nodeFetch from "node-fetch";
 import fetchCookie from "fetch-cookie";
 import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
 
+const __dirname = path.dirname(import.meta.url.replace("file:///", ""));
+
 const fetch = fetchCookie(nodeFetch);
 
 // steamgriddb uses 920x430
@@ -63,11 +65,11 @@ const imagePaths = [
 		sheetWidth,
 		sheetHeight,
 		bannerInputs,
-		path.resolve("src/assets/steam-spritesheet.jpg"),
+		path.resolve(__dirname, "../src/assets/steam-spritesheet.jpg"),
 	);
 
 	fs.writeFileSync(
-		path.resolve("src/app/cards/games/steam-ids.ts"),
+		path.resolve(__dirname, "../src/app/cards/games/steam-ids.ts"),
 		"export const steamIds = " + JSON.stringify(steamIds),
 	);
 })();
