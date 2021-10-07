@@ -1,10 +1,16 @@
 import * as fs from "fs";
+import * as os from "os";
 import * as path from "path";
 import nodeFetch from "node-fetch";
 import fetchCookie from "fetch-cookie";
 import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
 
-const __dirname = path.dirname(import.meta.url.replace("file:///", ""));
+const __dirname = path.dirname(
+	import.meta.url.replace(
+		"file://" + (os.platform() == "win32" ? "/" : ""),
+		"",
+	),
+);
 
 const fetch = fetchCookie(nodeFetch);
 

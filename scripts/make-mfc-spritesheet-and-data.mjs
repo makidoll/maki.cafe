@@ -1,5 +1,6 @@
 import * as fs from "fs";
 import * as path from "path";
+import * as os from "os";
 // import nodeFetch from "node-fetch";
 // import fetchCookie from "fetch-cookie";
 // import cheerio from "cheerio";
@@ -13,7 +14,12 @@ import puppeteer from "puppeteer";
 
 // this is my attempt to pull data from the slowest site ever lol
 
-const __dirname = path.dirname(import.meta.url.replace("file:///", ""));
+const __dirname = path.dirname(
+	import.meta.url.replace(
+		"file://" + (os.platform() == "win32" ? "/" : ""),
+		"",
+	),
+);
 
 const username = "MakiXx_";
 const mfcUrl = "https://myfigurecollection.net";

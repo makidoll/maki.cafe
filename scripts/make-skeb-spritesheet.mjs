@@ -3,7 +3,12 @@ import * as path from "path";
 import * as os from "os";
 import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
 
-const __dirname = path.dirname(import.meta.url.replace("file:///", ""));
+const __dirname = path.dirname(
+	import.meta.url.replace(
+		"file://" + (os.platform() == "win32" ? "/" : ""),
+		"",
+	),
+);
 
 const scale = 2;
 const skebWidth = 80 * scale;
