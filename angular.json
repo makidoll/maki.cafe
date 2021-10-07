@@ -54,7 +54,8 @@
 						"assets": [
 							"src/favicon.ico",
 							"src/assets",
-							"src/66c2e6a0f3149850fd26.js"
+							"src/66c2e6a0f3149850fd26.js",
+							"src/robots.txt"
 						],
 						"styles": ["src/styles.scss"],
 						"scripts": []
