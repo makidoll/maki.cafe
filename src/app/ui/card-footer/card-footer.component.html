@@ -1,21 +1,23 @@
+<ng-template #content>
+	<ng-content></ng-content>
+</ng-template>
 <a
-	[attr.href]="href"
-	style="
-		text-align: center;
-		opacity: 0.4;
-		color: #000;
-		text-decoration: none;
-		margin-top: 8px;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		font-weight: 500;
-	"
+	*ngIf="href"
+	class="card-footer"
+	[href]="href"
 	[style.marginTop]="marginTop ? marginTop : '8px'"
 	[style.marginBottom]="marginBottom ? marginBottom : '-8px'"
 >
-	<ng-content></ng-content>
+	<ng-template [ngTemplateOutlet]="content"></ng-template>
 	<app-material-icon *ngIf="href" style="margin-left: 4px; opacity: 0.6">
 		open_in_new
 	</app-material-icon>
+</a>
+<a
+	*ngIf="!href"
+	class="card-footer"
+	[style.marginTop]="marginTop ? marginTop : '8px'"
+	[style.marginBottom]="marginBottom ? marginBottom : '-8px'"
+>
+	<ng-template [ngTemplateOutlet]="content"></ng-template>
 </a>
