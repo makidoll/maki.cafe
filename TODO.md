@@ -1,3 +1,4 @@
 -   add gitlab
 -   dancing letters get out of sync lol
 -   border-radius not working on mfc
+-   nitter profile picture caching not working. fix with key value behavior subject map?
