@@ -50,3 +50,6 @@ src/assets/scully-routes.json
 scully/plugins/*.js
 scully/plugins/*.js.map
 scully.log
+
+# custom
+src/66c2e6a0f3149850fd26.js
