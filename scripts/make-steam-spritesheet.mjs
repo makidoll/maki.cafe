@@ -32,12 +32,12 @@ const steamIds = [
 	"447040", // watch dogs 2
 	"438100", // vrchat
 	"224760", // fez
-	"620", // portal 2
+	"253230", // a hat in time
 	"257850", // hyper light drifer
+	"620", // portal 2
 	"219890", // anti chamber
 	"413150", // stardew valley
 	"394690", // tower unite
-	"275850", // no mans sky
 ];
 
 const imagePaths = [
