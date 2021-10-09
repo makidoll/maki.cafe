@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { isScullyRunning } from "@scullyio/ng-lib";
+import { ReplaySubject } from "rxjs";
+import { take } from "rxjs/operators";
 import { config } from "../../config";
 
 interface Tweet {
@@ -33,23 +35,38 @@ export class TwitterComponent implements OnInit {
 		this.getTweets();
 	}
 
-	userImageUrlCache = {};
-	async getUserImage(username: string) {
-		username = username.replace(/@/g, "").toLowerCase();
+	getUserImageFromDocument(xml: Document) {
+		return xml.querySelector("rss > channel > image > url").textContent;
+	}
 
-		if (this.userImageUrlCache[username] != null) {
-			return this.userImageUrlCache[username];
+	userImages: { [username: string]: ReplaySubject<string> } = {};
+
+	async getUserImage(username: string, initialXml: Document) {
+		// dont fetch anything if its not necessary
+		if (username == this.username) {
+			return this.getUserImageFromDocument(initialXml);
 		}
+
+		// if replay subject is available, wait it out
+		if (this.userImages[username]) {
+			return new Promise<string>(resolve => {
+				this.userImages[username].pipe(take(1)).subscribe(userImage => {
+					resolve(userImage);
+				});
+			});
+		}
+
+		// make replay subject and fetch the image!
+		this.userImages[username] = new ReplaySubject();
 
 		const res = await fetch(this.nitterUrl + "/" + username + "/rss");
 		const xmlStr = await res.text();
 		const xml = new DOMParser().parseFromString(xmlStr, "application/xml");
 
-		const userImageUrl = xml.querySelector(
-			"rss > channel > image > url",
-		).textContent;
+		const userImageUrl = this.getUserImageFromDocument(xml);
 
-		this.userImageUrlCache[username] = userImageUrl;
+		this.userImages[username].next(userImageUrl);
+
 		return userImageUrl;
 	}
 
@@ -108,7 +125,7 @@ export class TwitterComponent implements OnInit {
 				};
 
 				// dont await this
-				this.getUserImage(username).then(userImageUrl => {
+				this.getUserImage(username, xml).then(userImageUrl => {
 					tweet.userImageUrl = userImageUrl;
 				});
 
