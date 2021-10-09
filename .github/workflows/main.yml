@@ -6,25 +6,26 @@ on:
             - main
 jobs:
     build:
-        runs-on: [self-hosted, linux, x64]
-        container: node:bullseye
+        # runs-on: [self-hosted, linux, x64]
+        # container: node:bullseye
+        runs-on: ubuntu-latest
         steps:
-            # https://github.com/actions/checkout/issues/211#issuecomment-801043540
-            - name: Cleaning up the $GITHUB_WORKSPACE as root from a Docker image
-              run: find /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}/. -name . -o -prune -exec rm -rf -- {} + || true
+            # # https://github.com/actions/checkout/issues/211#issuecomment-801043540
+            # - name: Cleaning up the $GITHUB_WORKSPACE as root from a Docker image
+            #   run: find /__w/${{ github.event.repository.name }}/${{ github.event.repository.name }}/. -name . -o -prune -exec rm -rf -- {} + || true
 
-            # https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#running-puppeteer-in-docker
-            - name: Puppeteer dependencies
-              run: |
-                  apt-get update
-                  apt-get install -y wget gnupg
-                  wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
-                  sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
-                  apt-get update
-                  apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 --no-install-recommends
-                  # rm -rf /var/lib/apt/lists/*
-                  groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser
-                  su pptruser
+            # # https://github.com/puppeteer/puppeteer/blob/main/docs/troubleshooting.md#running-puppeteer-in-docker
+            # - name: Puppeteer dependencies
+            #   run: |
+            #       apt-get update
+            #       apt-get install -y wget gnupg
+            #       wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add -
+            #       sh -c 'echo "deb [arch=amd64] http://dl.google.com/linux/chrome/deb/ stable main" >> /etc/apt/sources.list.d/google.list'
+            #       apt-get update
+            #       apt-get install -y google-chrome-stable fonts-ipafont-gothic fonts-wqy-zenhei fonts-thai-tlwg fonts-kacst fonts-freefont-ttf libxss1 --no-install-recommends
+            #       # rm -rf /var/lib/apt/lists/*
+            #       groupadd -r pptruser && useradd -r -g pptruser -G audio,video pptruser
+            #       su pptruser
 
             - uses: actions/checkout@v1
 
