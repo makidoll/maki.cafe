@@ -9,7 +9,9 @@
 <h2
 	class="cursive"
 	[class.card-title-href]="href"
-	style="text-align: center; margin-bottom: 12px; margin-top: -12px"
+	style="text-align: center"
+	[style.marginTop]="marginTop ? marginTop : '-12px'"
+	[style.marginBottom]="marginBottom ? marginBottom : '12px'"
 >
 	<a *ngIf="href" [href]="href" style="color: #000; text-decoration: none">
 		<ng-template [ngTemplateOutlet]="content"></ng-template>

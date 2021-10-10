@@ -1,0 +1,39 @@
+<app-card-title
+	socialIcon="github-octicon-squirrel"
+	href="https://squirrels.cutelab.space"
+	marginTop="-16px"
+	marginBottom="8px"
+>
+	our squirrel camera
+</app-card-title>
+<div class="iframe-wrapper" [class.bigger]="bigger">
+	<iframe
+		#iframe
+		frameborder="0"
+		src="https://squirrels.cutelab.space"
+	></iframe>
+	<app-material-icon
+		*ngIf="bigger"
+		class="close-button"
+		(click)="toggleBigger()"
+	>
+		fullscreen_exit
+	</app-material-icon>
+</div>
+<p
+	(click)="toggleBigger()"
+	style="
+		font-weight: 500;
+		opacity: 0.5;
+		margin-top: 4px;
+		margin-bottom: -16px;
+		display: flex;
+		align-items: center;
+		justify-content: center;
+		cursor: pointer;
+		user-select: none;
+	"
+>
+	<app-material-icon style="margin-right: 4px">fullscreen</app-material-icon>
+	Click here to make bigger
+</p>

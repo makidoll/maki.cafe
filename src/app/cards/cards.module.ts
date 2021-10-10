@@ -8,6 +8,7 @@ import { HomelabComponent } from "./homelab/homelab.component";
 import { InstagramComponent } from "./instagram/instagram.component";
 import { MfcComponent } from "./mfc/mfc.component";
 import { SkebComponent } from "./skeb/skeb.component";
+import { SquirrelsComponent } from "./squirrels/squirrels.component";
 import { TwitterComponent } from "./twitter/twitter.component";
 import { WhereComponent } from "./where/where.component";
 import { WorkComponent } from "./work/work.component";
@@ -25,6 +26,7 @@ const components = [
 	InstagramComponent,
 	MfcComponent,
 	SkebComponent,
+	SquirrelsComponent,
 	TwitterComponent,
 	WhereComponent,
 	WorkComponent,

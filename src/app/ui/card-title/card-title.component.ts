@@ -9,6 +9,9 @@ export class CardTitleComponent implements OnInit {
 	@Input() href = null;
 	@Input() socialIcon = null;
 
+	@Input() marginTop = null;
+	@Input() marginBottom = null;
+
 	constructor() {}
 
 	ngOnInit(): void {}

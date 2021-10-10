@@ -1,0 +1,58 @@
+@import "../../../styles/scale-on-hover.scss";
+
+.iframe-wrapper {
+	$width: 640px;
+	$height: 360px;
+	$scale: 0.6;
+
+	width: $width * $scale;
+	height: $height * $scale;
+	overflow: hidden;
+	border-radius: 8px;
+	margin: 0 -16px;
+
+	iframe {
+		transform: scale($scale);
+		transform-origin: 0 0;
+		width: $width;
+		height: $height;
+	}
+
+	&.bigger {
+		position: fixed;
+		margin: auto;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		z-index: 1000;
+		width: 100%;
+		height: 100%;
+		border-radius: 0;
+
+		.close-button {
+			position: fixed;
+			margin: auto;
+			top: 16px;
+			right: 16px;
+			z-index: 1001;
+
+			color: #fff;
+			font-size: 64px;
+			width: 64px;
+			height: 64px;
+			opacity: 0.4;
+			margin-left: 16px;
+			cursor: pointer;
+			user-select: none;
+
+			@include scaleOnHover(1.2);
+		}
+
+		iframe {
+			transform: initial;
+			width: 100%;
+			height: 100%;
+		}
+	}
+}
