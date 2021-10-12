@@ -14,6 +14,7 @@ const __dirname = path.dirname(
 
 const fetch = fetchCookie(nodeFetch);
 
+// https://www.steamgriddb.com/
 // steamgriddb uses 920x430
 // steam uses 460x215 which is 0.5
 const scale = 0.5;
@@ -45,6 +46,7 @@ const imagePaths = [
 	"assets/games/earthbound.png",
 	"assets/games/catherine-full-body.png",
 	"assets/games/super-mario-odyssey.png",
+	"assets/games/drakengard-3.png",
 ];
 
 (async () => {
