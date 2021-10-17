@@ -23,6 +23,7 @@
 		"lottie-web": "^5.7.13",
 		"ngx-lottie": "^7.0.4",
 		"rxjs": "~6.6.0",
+		"timeago.js": "^4.0.2",
 		"tslib": "^2.3.0",
 		"zone.js": "~0.11.4"
 	},

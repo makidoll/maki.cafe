@@ -1,0 +1,87 @@
+<hstack *ngIf="currentMetrics == null">
+	<app-spinner></app-spinner>
+</hstack>
+<table class="table" *ngIf="currentMetrics != null">
+	<tr>
+		<td style="vertical-align: bottom">
+			<vstack style="align-items: flex-end">
+				<hstack>
+					<app-material-icon
+						style="
+							color: #f44336;
+							font-size: 32px;
+							margin-right: 4px;
+						"
+					>
+						favorite
+					</app-material-icon>
+					<h2 style="font-weight: 600">
+						{{ currentMetrics.currentHeartRate.amount }}
+						<span style="font-size: 0.8em">bpm</span>
+					</h2>
+				</hstack>
+				<span style="font-size: 0.7em">{{
+					currentMetrics.currentHeartRate.since | timeAgo
+				}}</span>
+			</vstack>
+		</td>
+		<td>
+			<vstack style="align-items: flex-end">
+				<h3 style="font-weight: 500; font-size: 0.9em">avg. resting</h3>
+				<hstack>
+					<app-material-icon
+						style="color: #000; font-size: 32px; margin-right: 4px"
+					>
+						self_improvement
+					</app-material-icon>
+					<h2 style="font-weight: 600">
+						{{ currentMetrics.restingHeartRate.amount }}
+						<span style="font-size: 0.8em">bpm</span>
+					</h2>
+				</hstack>
+				<span style="font-size: 0.7em">{{
+					currentMetrics.restingHeartRate.since | date
+				}}</span>
+			</vstack>
+		</td>
+	</tr>
+	<tr>
+		<td style="vertical-align: top">
+			<vstack style="align-items: flex-end">
+				<hstack>
+					<app-material-icon
+						style="color: #000; font-size: 32px; margin-right: 4px"
+					>
+						directions_walk
+					</app-material-icon>
+					<h2 style="font-weight: 600">
+						{{ currentMetrics.stepCount.amount }}
+						<span style="font-size: 0.8em">steps</span>
+					</h2>
+				</hstack>
+				<span style="font-size: 0.7em">{{
+					currentMetrics.stepCount.since | timeAgo
+				}}</span>
+			</vstack>
+		</td>
+		<td>
+			<vstack style="align-items: flex-end">
+				<h3 style="font-weight: 500; font-size: 0.9em">avg. walking</h3>
+				<hstack>
+					<app-material-icon
+						style="color: #000; font-size: 32px; margin-right: 4px"
+					>
+						directions_run
+					</app-material-icon>
+					<h2 style="font-weight: 600">
+						{{ currentMetrics.walkingHeartRate.amount }}
+						<span style="font-size: 0.8em">bpm</span>
+					</h2>
+				</hstack>
+				<span style="font-size: 0.7em">{{
+					currentMetrics.walkingHeartRate.since | date
+				}}</span>
+			</vstack>
+		</td>
+	</tr>
+</table>

@@ -4,6 +4,7 @@ import { LottieModule } from "ngx-lottie";
 import { UiModule } from "../ui/ui.module";
 import { DiscordComponent } from "./discord/discord.component";
 import { GamesComponent } from "./games/games.component";
+import { HeartrateComponent } from "./heartrate/heartrate.component";
 import { HomelabComponent } from "./homelab/homelab.component";
 import { InstagramComponent } from "./instagram/instagram.component";
 import { MfcComponent } from "./mfc/mfc.component";
@@ -22,6 +23,7 @@ export function playerFactory() {
 const components = [
 	DiscordComponent,
 	GamesComponent,
+	HeartrateComponent,
 	HomelabComponent,
 	InstagramComponent,
 	MfcComponent,

@@ -13,6 +13,7 @@ import { MaterialIconComponent } from "./material-icon/material-icon.component";
 import { PopupBoxComponent } from "./popup-box/popup-box.component";
 import { SocialIconDirective } from "./social-icon/social-icon.directive";
 import { SpinnerComponent } from "./spinner/spinner.component";
+import { TimeAgoPipe } from "./time-ago.pipe";
 import { UserImageComponent } from "./user-image/user-image.component";
 import { VstackComponent } from "./vstack/vstack.component";
 
@@ -34,9 +35,11 @@ const components = [
 
 const directives = [LogoIconDirective, SocialIconDirective];
 
+const pipes = [TimeAgoPipe];
+
 @NgModule({
-	declarations: [...components, ...directives],
+	declarations: [...components, ...directives, ...pipes],
 	imports: [CommonModule],
-	exports: [...components, ...directives],
+	exports: [...components, ...directives, ...pipes],
 })
 export class UiModule {}

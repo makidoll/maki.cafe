@@ -1,0 +1,9 @@
+.table {
+	border-collapse: collapse;
+	border-style: hidden;
+
+	td {
+		border: solid 1px mix(#000, #fff, 10%);
+		padding: 12px;
+	}
+}
