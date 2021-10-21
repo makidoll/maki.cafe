@@ -1,6 +1,13 @@
 @import "../../../styles/scale-on-hover.scss";
 @import "../../../styles/cards.scss";
 
+.description {
+	margin-bottom: 32px;
+	font-weight: 500;
+	width: 400px;
+	text-align: center;
+}
+
 .social {
 	> a > svg {
 		opacity: 0.3;
@@ -32,5 +39,9 @@
 			height: 12px;
 			margin-right: 4px;
 		}
+	}
+
+	.description {
+		margin-bottom: 48px;
 	}
 }

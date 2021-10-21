@@ -4,7 +4,7 @@
 	[src]="'https://twemoji.maxcdn.com/svg/' + code + '.svg'"
 /> -->
 <img
-	*ngIf="code"
+	*ngIf="imageUrl"
 	style="
 		display: inline;
 		width: 1em;
@@ -13,6 +13,6 @@
 		margin-bottom: -0.15em;
 		border-radius: 0;
 	"
-	[src]="'https://twemoji.maxcdn.com/2/svg/' + code + '.svg'"
+	[src]="imageUrl"
 	[alt]="emoji"
 />

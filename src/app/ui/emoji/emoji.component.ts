@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from "@angular/core";
+import { DomSanitizer, SafeResourceUrl } from "@angular/platform-browser";
 
 @Component({
 	selector: "app-emoji",
@@ -8,12 +9,27 @@ import { Component, Input, OnInit } from "@angular/core";
 export class EmojiComponent implements OnInit {
 	@Input() emoji: string = "";
 
-	code: string = "";
+	imageUrl: SafeResourceUrl = "";
 
-	constructor() {}
+	customEmojis = ["lesbian-flag"];
+
+	constructor(private readonly domSanitizer: DomSanitizer) {}
 
 	ngOnInit() {
-		this.code = this.toCodePoint(this.emoji, "-");
+		if (this.customEmojis.includes(this.emoji)) {
+			const emojiModule = require("./custom-emojis/" +
+				this.emoji.toLowerCase() +
+				".svg");
+
+			this.imageUrl = this.domSanitizer.bypassSecurityTrustResourceUrl(
+				"data:image/svg+xml;base64," + btoa(emojiModule.default),
+			);
+		} else {
+			this.imageUrl =
+				"https://twemoji.maxcdn.com/2/svg/" +
+				this.toCodePoint(this.emoji, "-") +
+				".svg";
+		}
 	}
 
 	// https://twemoji.maxcdn.com/v/latest/twemoji.js
