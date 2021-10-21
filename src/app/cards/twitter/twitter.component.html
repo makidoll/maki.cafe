@@ -40,7 +40,7 @@
 					padding: 0 8px;
 				"
 			>
-				<div
+				<p
 					*ngIf="tweet.retweet || tweet.reply"
 					style="font-weight: 600; opacity: 0.4"
 				>
@@ -50,7 +50,7 @@
 					<ng-container *ngIf="tweet.reply">
 						Reply to {{ tweet.reply }}
 					</ng-container>
-				</div>
+				</p>
 				<p style="font-weight: 600">{{ tweet.username }}</p>
 				<div
 					style="
@@ -62,6 +62,16 @@
 						text-overflow: ellipsis;
 					"
 				>
+					<span
+						*ngIf="tweet.title == ''"
+						style="
+							font-style: italic;
+							opacity: 0.2;
+							margin-left: 12px;
+						"
+					>
+						no text
+					</span>
 					{{ tweet.title }}
 				</div>
 			</vstack>
