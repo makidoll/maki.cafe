@@ -1,3 +1,2 @@
 -   add gitlab
 -   dancing letters get out of sync lol
--   border-radius not working on mfc
