@@ -39,6 +39,7 @@ const steamIds = [
 	"219890", // anti chamber
 	"413150", // stardew valley
 	"394690", // tower unite
+	"963000", // frog detective 1
 	"650700", // yume nikki
 ];
 
