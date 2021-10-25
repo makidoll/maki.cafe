@@ -165,17 +165,36 @@ export class DiscordComponent implements OnInit, OnDestroy {
 		}
 
 		try {
+			const limit = 5;
 			const res = await fetch(
-				"https://musicbrainz.org/ws/2/release?fmt=json&limit=1&dismax=true&query=release:" +
+				"https://musicbrainz.org/ws/2/release?fmt=json&limit=" +
+					limit +
+					"&dismax=false&query=release:" +
 					encodeURIComponent(search),
 			);
 			const data = await res.json();
 			if (data.releases.length == 0) return null;
 
-			const id = data.releases[0].id;
+			let idsToQuery = data.releases.map(release => release.id);
+
+			let id = null;
+			let imageUrl = null;
+
+			for (const currentId of idsToQuery) {
+				const currentImageUrl =
+					"http://coverartarchive.org/release/" +
+					currentId +
+					"/front-250";
+				try {
+					await getImage(currentImageUrl);
+					id = currentId;
+					imageUrl = currentImageUrl;
+					break;
+				} catch (error) {}
+			}
+
 			const out = {
-				imageUrl:
-					"http://coverartarchive.org/release/" + id + "/front-250",
+				imageUrl,
 				trackUrl: "https://musicbrainz.org/release/" + id,
 			};
 
