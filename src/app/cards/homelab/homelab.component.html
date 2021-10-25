@@ -11,7 +11,7 @@
 			<br /><br />
 			Last updated:
 			<br />
-			Oct 2, 2021
+			Oct 25, 2021
 		</span>
 		<img
 			class="clickable-image"
@@ -46,6 +46,30 @@
 		From top to bottom...
 		<ul>
 			<li>
+				Ubiquiti Dream Machine Pro
+				<ul>
+					<li>Network router and IPS</li>
+					<li>NVR for 3 x G4 Pro cameras</li>
+				</ul>
+			</li>
+			<li>Ubiquiti Switch 16 PoE</li>
+			<li>
+				MSI GS66 Stealth i7-10750H, 12 cores (6 physical), 32 GB
+				<i>(flopstje)</i>
+				<ul>
+					<li>
+						Hosting GPU related things:
+						<br />
+						<a href="https://shared-desktop.tivolicloud.com"
+							>Tivoli Shared Desktop</a
+						>,
+						<a href="https://squirrels.cutelab.space"
+							>Cutelab Squirrels</a
+						>
+					</li>
+				</ul>
+			</li>
+			<li>
 				Protectli Vault 6 Port, i7 quad core
 				<ul>
 					<li>
@@ -63,15 +87,7 @@
 				</ul>
 			</li>
 			<li>
-				Ubiquiti Dream Machine Pro
-				<ul>
-					<li>Network router and IPS</li>
-					<li>NVR for 3 x G4 Pro cameras</li>
-				</ul>
-			</li>
-			<li>Ubiquiti Switch 16 PoE</li>
-			<li>
-				Intel NUC i7-10710U, 12 cores(6 physical), 24 GB
+				Intel NUC i7-10710U, 12 cores (6 physical), 24 GB
 				<i>(cutenuc)</i>
 				<ul>
 					<li>
@@ -101,6 +117,12 @@
 						<a href="http://tivolicloud.com/">Tivoli</a>
 					</li>
 					<li>
+						Linux arm64
+						<a href="http://git.tivolicloud.com/tivolicloud">
+							Tivoli build server
+						</a>
+					</li>
+					<li>
 						<i>
 							Used to be the macOS build server before Apple
 							deprecated OpenGL
@@ -117,21 +139,18 @@
 						Tivoli servers:
 						<ul>
 							<li>
-								<a href="http://tivolicloud.com/">
-									Website and API
-								</a>
-							</li>
-							<li>
-								<a href="http://blog.tivolicloud.com/">
-									Ghost blog
-								</a>
-							</li>
-							<li>
-								<a
-									href="http://git.tivolicloud.com/tivolicloud"
+								<ng-container
+									*ngFor="
+										let service of tivoliYeti;
+										let i = index
+									"
 								>
-									GitLab and runner
-								</a>
+									<a [href]="service[1]">{{ service[0] }}</a
+									><ng-container
+										*ngIf="i != tivoliYeti.length - 1"
+										>,
+									</ng-container>
+								</ng-container>
 							</li>
 						</ul>
 					</li>
