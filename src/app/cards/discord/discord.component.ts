@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from "@angular/core";
 import { isScullyRunning } from "@scullyio/ng-lib";
 import { BehaviorSubject, interval, Subscription } from "rxjs";
 import { config } from "../../config";
+import { getImage } from "../../utils";
 
 enum Op {
 	Event = 0,
@@ -21,6 +22,18 @@ interface Message {
 	d: Partial<DataEvent & DataHello & DataInitialize>;
 }
 
+interface CurrentSong {
+	album: string;
+	album_art_url: string;
+	artist: string;
+	song: string;
+	timestamps: { start: number; end: number };
+	track_id?: string; // only for spotify
+	// my fields
+	track_url: string; // lets provide this as we're not just using spotify
+	player: string;
+}
+
 interface DataEvent {
 	active_on_discord_desktop: boolean;
 	active_on_discord_mobile: boolean;
@@ -36,12 +49,15 @@ interface DataEvent {
 		name: string;
 		party: {
 			id: string;
+			size: number[];
 		};
 		session_id: string;
 		state: string;
 		sync_id: string;
 		timestamps: { start: number; end: number };
 		type: number;
+		application_id: string;
+		details: string;
 	}[];
 	discord_status: "online" | "idle" | "dnd" | "offline";
 	discord_user: {
@@ -52,14 +68,7 @@ interface DataEvent {
 		username: string;
 	};
 	listening_to_spotify: boolean;
-	spotify: {
-		album: string;
-		album_art_url: string;
-		artist: string;
-		song: string;
-		timestamps: { start: number; end: number };
-		track_id: string;
-	};
+	spotify: CurrentSong;
 }
 
 interface DataHello {
@@ -85,8 +94,9 @@ export class DiscordComponent implements OnInit, OnDestroy {
 
 	data: DataEvent;
 
-	songInterval: Subscription;
-	song: {
+	song: CurrentSong;
+	songTimeInterval: Subscription;
+	songTime: {
 		length: number;
 		current: BehaviorSubject<number>;
 	} = null;
@@ -108,8 +118,8 @@ export class DiscordComponent implements OnInit, OnDestroy {
 		if (this.heartbeatInterval) {
 			this.heartbeatInterval.unsubscribe();
 		}
-		if (this.songInterval) {
-			this.songInterval.unsubscribe();
+		if (this.songTimeInterval) {
+			this.songTimeInterval.unsubscribe();
 		}
 	}
 
@@ -120,33 +130,147 @@ export class DiscordComponent implements OnInit, OnDestroy {
 		return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
 	}
 
-	onData() {
-		if (this.data.spotify == null) {
-			// clean up
-			if (this.songInterval) this.songInterval.unsubscribe();
-			this.song = null;
+	canShowAlbumCover = false;
+
+	async updateCanShowAlbumCover() {
+		if (this.song != null && this.song.album_art_url != "") {
+			try {
+				await getImage(this.song.album_art_url);
+				this.canShowAlbumCover = true;
+			} catch (error) {
+				this.canShowAlbumCover = false;
+			}
 		} else {
-			const length =
-				this.data.spotify.timestamps.end -
-				this.data.spotify.timestamps.start;
+			this.canShowAlbumCover = false;
+		}
+	}
+
+	processSpotifySong(): CurrentSong {
+		const song: CurrentSong = this.data.spotify;
+		if (song == null) return null;
+		song.track_url = "https://open.spotify.com/track/" + song.track_id;
+		song.player = "Spotify";
+		return song;
+	}
+
+	dataFromMusicSearchCache: {
+		[search: string]: { imageUrl: string; trackUrl: string };
+	} = {};
+
+	async getDataFromMusicSearch(
+		search: string,
+	): Promise<{ imageUrl: string; trackUrl: string }> {
+		if (this.dataFromMusicSearchCache[search]) {
+			return this.dataFromMusicSearchCache[search];
+		}
+
+		try {
+			const res = await fetch(
+				"https://musicbrainz.org/ws/2/release?fmt=json&limit=1&dismax=true&query=release:" +
+					encodeURIComponent(search),
+			);
+			const data = await res.json();
+			if (data.releases.length == 0) return null;
+
+			const id = data.releases[0].id;
+			const out = {
+				imageUrl:
+					"http://coverartarchive.org/release/" + id + "/front-250",
+				trackUrl: "https://musicbrainz.org/release/" + id,
+			};
+
+			this.dataFromMusicSearchCache[search] = out;
+
+			return out;
+		} catch (error) {
+			return null;
+		}
+	}
+
+	processDeadBeefSong(): CurrentSong {
+		const activity = (this.data.activities ?? []).find(
+			activity => activity.name == "DeaDBeeF",
+		);
+		if (activity == null) return null;
+
+		const song: CurrentSong = {
+			// i could try to regex this, but im not using it in the ui
+			// album: activity.assets.large_text
+			album: "",
+			album_art_url: "",
+			artist: activity.state.trim(),
+			song: activity.details.trim(),
+			timestamps: {
+				start: activity.timestamps.start,
+				end: activity.timestamps.end,
+			},
+			track_url: "",
+			player: "DeaDBeeF",
+		};
+
+		// lets not await this so we can add art when its available
+		setTimeout(() => {
+			this.getDataFromMusicSearch(activity.assets.large_text).then(
+				data => {
+					if (data == null) return;
+					this.song.album_art_url = data.imageUrl;
+					this.song.track_url = data.trackUrl;
+					this.updateCanShowAlbumCover();
+				},
+			);
+		}, 10);
+
+		return song;
+	}
+
+	processMusic() {
+		let song: CurrentSong = this.processDeadBeefSong();
+
+		if (song == null) {
+			song = this.processSpotifySong();
+		}
+
+		if (song == null) {
+			// clean up
+			if (this.songTimeInterval) this.songTimeInterval.unsubscribe();
+			this.songTime = null;
+			this.song = null;
+			this.updateCanShowAlbumCover();
+			return;
+		}
+
+		// set this.song for ui
+		this.song = song;
+		this.updateCanShowAlbumCover();
+
+		// if timestamps.end doesnt exist, clean up
+		if (song.timestamps.end == null) {
+			if (this.songTimeInterval) this.songTimeInterval.unsubscribe();
+			this.songTime = null;
+		} else {
+			const length = song.timestamps.end - song.timestamps.start;
 
 			const updateCurrent = () => {
-				if (this.song) {
-					const current =
-						Date.now() - this.data.spotify.timestamps.start;
-					if (current > this.data.spotify.timestamps.end) return;
-					this.song.current.next(current);
+				if (this.songTime) {
+					const current = Date.now() - song.timestamps.start;
+					if (current > song.timestamps.end) return;
+					this.songTime.current.next(current);
 				}
 			};
 
-			this.song = { length, current: new BehaviorSubject(0) };
+			this.songTime = { length, current: new BehaviorSubject(0) };
+
 			updateCurrent();
 
-			if (this.songInterval) this.songInterval.unsubscribe();
-			this.songInterval = interval(1000).subscribe(() => {
+			if (this.songTimeInterval) this.songTimeInterval.unsubscribe();
+			this.songTimeInterval = interval(1000).subscribe(() => {
 				updateCurrent();
 			});
 		}
+	}
+
+	onData() {
+		this.processMusic();
 	}
 
 	private onMessage = (event: MessageEvent) => {

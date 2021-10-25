@@ -15,3 +15,16 @@ export function getBackgroundPositionsForSpritesheet(
 	}
 	return positions;
 }
+
+export function getImage(url: string) {
+	return new Promise<HTMLImageElement>((resolve, reject) => {
+		const img = document.createElement("img");
+		img.addEventListener("load", () => {
+			resolve(img);
+		});
+		img.addEventListener("error", error => {
+			reject(error);
+		});
+		img.src = url;
+	});
+}

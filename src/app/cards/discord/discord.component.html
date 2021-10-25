@@ -39,14 +39,14 @@
 		<vstack>
 			<hstack>
 				<img
-					*ngIf="data.spotify"
+					*ngIf="canShowAlbumCover"
 					class="song"
-					[src]="data.spotify.album_art_url"
-					[alt]="data.spotify.album"
+					[src]="song.album_art_url"
+					[alt]="song.album"
 					style="width: 64px; height: 64px; border-radius: 6px"
 				/>
 				<hstack
-					*ngIf="!data.spotify"
+					*ngIf="!canShowAlbumCover"
 					style="
 						width: 64px;
 						height: 64px;
@@ -70,16 +70,23 @@
 				>
 					<span
 						style="
-							font-weight: 300;
+							font-weight: 600;
 							font-size: 0.8em;
-							opacity: 0.8;
+							opacity: 0.6;
 							display: inline-flex;
 							flex-direction: row;
 							align-items: center;
 						"
 					>
 						<svg
-							socialIcon="spotify-light"
+							*ngIf="song != null"
+							[socialIcon]="
+								song.player == 'Spotify'
+									? 'spotify-light'
+									: song.player == 'DeaDBeeF'
+									? 'deadbeef-icon-light'
+									: ''
+							"
 							style="
 								width: 12px;
 								height: 12px;
@@ -87,19 +94,31 @@
 								margin-top: 2px;
 							"
 						></svg>
-						Spotify
+						<app-material-icon
+							*ngIf="song == null"
+							style="
+								width: 12px;
+								height: 12px;
+								font-size: 12px;
+								margin-right: 4px;
+								margin-top: 2px;
+							"
+						>
+							help
+						</app-material-icon>
+						{{ song != null ? song.player : "No player" }}
 					</span>
 					<br />
-					<ng-container *ngIf="data.spotify">
+					<ng-container *ngIf="song">
 						<app-dancing-letters
-							[text]="data.spotify.song"
+							[text]="song.song"
 						></app-dancing-letters>
 						<br />
 						<span style="font-weight: 400">
-							by {{ data.spotify.artist }}
+							by {{ song.artist }}
 						</span>
 					</ng-container>
-					<ng-container *ngIf="!data.spotify">
+					<ng-container *ngIf="!song">
 						Not listening
 						<br />
 						<span style="font-weight: 400">to anything</span>
@@ -107,7 +126,7 @@
 				</h4>
 			</hstack>
 			<hstack
-				*ngIf="song"
+				*ngIf="songTime"
 				style="
 					font-size: 0.8em;
 					width: calc(100% - 4px);
@@ -116,10 +135,10 @@
 				"
 			>
 				<p style="width: 56px">
-					{{ msToTime(song.current | async) }}
+					{{ msToTime(songTime.current | async) }}
 				</p>
 				<div
-					*ngIf="data.spotify"
+					*ngIf="song"
 					style="
 						width: 100%;
 						height: 6px;
@@ -130,7 +149,9 @@
 				>
 					<div
 						[style.width]="
-							((song.current | async) / song.length) * 100 + '%'
+							((songTime.current | async) / songTime.length) *
+								100 +
+							'%'
 						"
 						style="
 							height: 6px;
@@ -141,24 +162,33 @@
 					></div>
 				</div>
 				<p style="width: 56px; text-align: right">
-					{{ msToTime(song.length) }}
+					{{ msToTime(songTime.length) }}
 				</p>
 			</hstack>
+			<p
+				style="font-size: 0.55em; margin-top: 6px"
+				*ngIf="song != null && song.player == 'DeaDBeeF'"
+			>
+				album art might be inaccurate because of a bad musicbrainz
+				search
+			</p>
 		</vstack>
 	</ng-template>
 	<a
-		*ngIf="data.spotify"
+		*ngIf="song"
 		class="spotify"
-		[href]="'https://open.spotify.com/track/' + data.spotify.track_id"
-		[style.background]="'#1db954'"
+		[href]="song.track_url"
+		[style.background]="
+			song.player == 'Spotify'
+				? '#1db954'
+				: song.player == 'DeaDBeeF'
+				? '#80c040'
+				: 'rgba(0,0,0,0.5)'
+		"
 	>
 		<ng-template [ngTemplateOutlet]="spotify"></ng-template>
 	</a>
-	<div
-		*ngIf="!data.spotify"
-		class="spotify"
-		[style.background]="'rgba(0,0,0,0.5)'"
-	>
+	<div *ngIf="!song" class="spotify" [style.background]="'rgba(0,0,0,0.5)'">
 		<ng-template [ngTemplateOutlet]="spotify"></ng-template>
 	</div>
 	<app-card-footer style="font-size: 0.55em">
