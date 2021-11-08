@@ -4,8 +4,8 @@
 <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 4px">
 	<a
 		class="skeb"
-		[href]="config.socialLinks.skeb"
-		*ngFor="let skeb of skebs"
+		*ngFor="let skeb of skebs; let i = index"
+		[href]="skebUrls[i]"
 		style="display: block"
 	>
 		<div

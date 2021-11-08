@@ -1,6 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { config } from "../../config";
 import { getBackgroundPositionsForSpritesheet } from "../../utils";
+import { skebUrls } from "./skeb-urls";
 
 @Component({
 	selector: "app-skeb",
@@ -10,6 +11,7 @@ import { getBackgroundPositionsForSpritesheet } from "../../utils";
 export class SkebComponent implements OnInit {
 	config = config;
 	encodeURIComponent = encodeURIComponent;
+	skebUrls = skebUrls;
 
 	sheetWidth = 4;
 	sheetHeight = 3;
