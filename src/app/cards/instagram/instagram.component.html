@@ -5,7 +5,14 @@
 	<app-spinner></app-spinner>
 </hstack>
 <ng-container *ngIf="posts.length != 0">
-	<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px">
+	<div
+		style="
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			column-gap: 6px;
+			row-gap: 2px;
+		"
+	>
 		<a
 			class="post"
 			*ngFor="let post of posts"
@@ -15,7 +22,7 @@
 			<img
 				[src]="post.imageUrl"
 				[alt]="post.alt"
-				style="width: 96px; height: 96px"
+				style="width: 100px; height: 100px"
 			/>
 		</a>
 	</div>
