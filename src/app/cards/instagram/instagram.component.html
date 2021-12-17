@@ -7,6 +7,26 @@
 <ng-container *ngIf="posts.length != 0">
 	<div
 		style="
+			display: flex;
+			width: 100%;
+			justify-content: space-between;
+			align-items: center;
+			margin-top: -8px;
+			margin-bottom: 8px;
+		"
+	>
+		<p>
+			<b>{{ this.totalPosts }}</b> posts
+		</p>
+		<p>
+			<b>{{ this.followers }}</b> followers
+		</p>
+		<p>
+			<b>{{ this.following }}</b> following
+		</p>
+	</div>
+	<div
+		style="
 			display: grid;
 			grid-template-columns: repeat(3, 1fr);
 			column-gap: 6px;
