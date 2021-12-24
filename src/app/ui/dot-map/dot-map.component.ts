@@ -20,7 +20,8 @@ export class DotMapComponent implements OnInit {
 	pins = [
 		[47.5, 37], // belgium
 		[43.5, 46], // tenerife
-		[12.5, 49], // california
+		// [12.5, 49], // california
+		[20.5, 49], // houston
 	];
 
 	constructor() {}
