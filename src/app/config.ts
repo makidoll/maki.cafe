@@ -12,6 +12,7 @@ export const config = {
 		twitter: "https://twitter.com/MakiXx_",
 		github: "https://github.com/makitsune",
 		instagram: "https://instagram.com/MakiXx_",
+		soundcloud: "https://soundcloud.com/makitsune",
 		steam: "https://steamcommunity.com/id/MakiXx",
 		skeb: "https://skeb.jp/@Maki",
 		psnProfiles: "https://psnprofiles.com/MakiXx_",
