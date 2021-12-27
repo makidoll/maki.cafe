@@ -11,7 +11,12 @@
 			<br /><br />
 			Last updated:
 			<br />
-			Oct 25, 2021
+			Dec 26, 2021
+			<br /><br />
+			<div class="status" [innerHtml]="status"></div>
+			<div class="status a" style="background-color: #e91e63">
+				<a href="https://status.cutelab.space">See more here</a>
+			</div>
 		</span>
 		<img
 			class="clickable-image"
@@ -49,7 +54,7 @@
 				Ubiquiti Dream Machine Pro
 				<ul>
 					<li>Network router and IPS</li>
-					<li>NVR for 3 x G4 Pro cameras</li>
+					<li>NVR for 2 x G4 Pro cameras</li>
 				</ul>
 			</li>
 			<li>Ubiquiti Switch 16 PoE</li>
@@ -58,14 +63,17 @@
 				<i>(flopstje)</i>
 				<ul>
 					<li>
-						Hosting GPU related things:
+						Hosting high CPU/GPU related things:
 						<br />
-						<a href="https://shared-desktop.tivolicloud.com"
-							>Tivoli Shared Desktop</a
-						>,
-						<a href="https://squirrels.cutelab.space"
-							>Cutelab Squirrels</a
+
+						<ng-container
+							*ngFor="let service of flopstje; let i = index"
 						>
+							<a [href]="service[1]">{{ service[0] }}</a
+							><ng-container *ngIf="i != flopstje.length - 1"
+								>,
+							</ng-container>
+						</ng-container>
 					</li>
 				</ul>
 			</li>
@@ -117,16 +125,10 @@
 						<a href="http://tivolicloud.com/">Tivoli</a>
 					</li>
 					<li>
-						Linux arm64
+						macOS and Docker arm64
 						<a href="http://git.tivolicloud.com/tivolicloud">
 							Tivoli build server
 						</a>
-					</li>
-					<li>
-						<i>
-							Used to be the macOS build server before Apple
-							deprecated OpenGL
-						</i>
 					</li>
 				</ul>
 			</li>
