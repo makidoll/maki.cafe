@@ -1,58 +1,117 @@
-@import "../../../styles/scale-on-hover.scss";
+// @import "../../../styles/scale-on-hover.scss";
 
-.iframe-wrapper {
-	$width: 640px;
-	$height: 360px;
-	$scale: 0.6;
+// .iframe-wrapper {
+// 	$width: 640px;
+// 	$height: 360px;
+// 	$scale: 0.6;
 
-	width: $width * $scale;
-	height: $height * $scale;
-	overflow: hidden;
-	border-radius: 8px;
-	margin: 0 -16px;
+// 	width: $width * $scale;
+// 	height: $height * $scale;
+// 	overflow: hidden;
+// 	border-radius: 8px;
+// 	margin: 0 -16px;
 
-	iframe {
-		transform: scale($scale);
-		transform-origin: 0 0;
-		width: $width;
-		height: $height;
+// 	iframe {
+// 		transform: scale($scale);
+// 		transform-origin: 0 0;
+// 		width: $width;
+// 		height: $height;
+// 	}
+
+// 	&.bigger {
+// 		position: fixed;
+// 		margin: auto;
+// 		top: 0;
+// 		right: 0;
+// 		bottom: 0;
+// 		left: 0;
+// 		z-index: 1000;
+// 		width: 100%;
+// 		height: 100%;
+// 		border-radius: 0;
+
+// 		.close-button {
+// 			position: fixed;
+// 			margin: auto;
+// 			top: 16px;
+// 			right: 16px;
+// 			z-index: 1001;
+
+// 			color: #fff;
+// 			font-size: 64px;
+// 			width: 64px;
+// 			height: 64px;
+// 			opacity: 0.4;
+// 			margin-left: 16px;
+// 			cursor: pointer;
+// 			user-select: none;
+
+// 			@include scaleOnHover(1.2);
+// 		}
+
+// 		iframe {
+// 			transform: initial;
+// 			width: 100%;
+// 			height: 100%;
+// 		}
+// 	}
+// }
+
+// .squirrels {
+// 	margin: 0;
+// 	background: #000;
+// 	overflow: hidden;
+// 	font-family: "Roboto", sans-serif;
+// }
+
+*:focus {
+	outline: none;
+}
+
+.get-user-input {
+	$size: 0.7;
+
+	width: 350px;
+	height: 250px;
+	background-color: rgba(29, 31, 33, 0.9);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+	color: #fff;
+	cursor: pointer;
+
+	font-size: 1em * $size;
+	border-radius: 16px;
+
+	.logo {
+		width: 196px * $size;
 	}
-
-	&.bigger {
-		position: fixed;
-		margin: auto;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
-		z-index: 1000;
-		width: 100%;
-		height: 100%;
-		border-radius: 0;
-
-		.close-button {
-			position: fixed;
-			margin: auto;
-			top: 16px;
-			right: 16px;
-			z-index: 1001;
-
-			color: #fff;
-			font-size: 64px;
-			width: 64px;
-			height: 64px;
-			opacity: 0.4;
-			margin-left: 16px;
-			cursor: pointer;
-			user-select: none;
-
-			@include scaleOnHover(1.2);
-		}
-
-		iframe {
-			transform: initial;
-			width: 100%;
-			height: 100%;
-		}
+	.title {
+		font-size: 32px * $size;
+		font-weight: 300;
+		margin-top: 8px * $size;
+		margin-bottom: 22px * $size;
+	}
+	.continue {
+		font-weight: 400;
+		margin-bottom: 0;
+		margin-top: 16px * $size;
+	}
+	.play-button {
+		border-radius: 50%;
+		width: 112px * $size;
+		height: 112px * $size;
+		background-image: linear-gradient(
+				0deg,
+				rgba(255, 255, 255, 0.3),
+				rgba(255, 255, 255, 0.3)
+			),
+			url(https://squirrels.cutelab.space/squirrel.jpg);
+		background-size: 140%;
+		background-position: 50% 60%;
+		display: flex;
+		align-items: center;
+		justify-content: center;
 	}
 }
