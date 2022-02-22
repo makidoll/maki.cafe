@@ -11,7 +11,7 @@
 			<br /><br />
 			Last updated:
 			<br />
-			Dec 26, 2021
+			Feb 21, 2022
 			<br /><br />
 			<div class="status" [innerHtml]="status"></div>
 			<div class="status a" style="background-color: #e91e63">
@@ -81,15 +81,9 @@
 				Protectli Vault 6 Port, i7 quad core
 				<ul>
 					<li>
-						Hosting our
-						<a href="http://toastgenie.com/index.html">
-							OpenAI Toaster
-						</a>
-					</li>
-					<li>
 						<i>
-							Used to be our PfSense server before we switched to
-							Ubiquiti
+							Currently nothing, used to be our PfSense server
+							before we switched to Ubiquiti
 						</i>
 					</li>
 				</ul>
@@ -98,38 +92,23 @@
 				Intel NUC i7-10710U, 12 cores (6 physical), 24 GB
 				<i>(cutenuc)</i>
 				<ul>
-					<li>
-						Hosting
-						<a href="http://tivolicloud.com/explore">
-							Tivoli worlds
-						</a>
-					</li>
+					<li>Currently nothing, used to host Tivoli worlds</li>
 				</ul>
 			</li>
 			<li>
 				Intel NUC i7-10710U, 12 cores (6 physical), 24 GB
 				<ul>
-					<li>
-						Windows
-						<a href="http://git.tivolicloud.com/tivolicloud">
-							Tivoli build server
-						</a>
-					</li>
+					<li>Currently nothing, used to be Tivoli build server</li>
 				</ul>
 			</li>
 			<li>
 				Mac Mini M1, 16 GB
 				<ul>
 					<li>
-						<a href="http://say.tivolicloud.com/">Say server</a> for
-						<a href="http://tivolicloud.com/">Tivoli</a>
+						Currently nothing, used to host Tivoli say and build
+						server
 					</li>
-					<li>
-						macOS and Docker arm64
-						<a href="http://git.tivolicloud.com/tivolicloud">
-							Tivoli build server
-						</a>
-					</li>
+					<li>Otherwise personal use as remote machine</li>
 				</ul>
 			</li>
 			<li>
@@ -137,25 +116,6 @@
 				<br />
 				128 GB <i>(Yeti)</i>
 				<ul>
-					<li>
-						Tivoli servers:
-						<ul>
-							<li>
-								<ng-container
-									*ngFor="
-										let service of tivoliYeti;
-										let i = index
-									"
-								>
-									<a [href]="service[1]">{{ service[0] }}</a
-									><ng-container
-										*ngIf="i != tivoliYeti.length - 1"
-										>,
-									</ng-container>
-								</ng-container>
-							</li>
-						</ul>
-					</li>
 					<li>
 						Personal servers:
 						<ul>

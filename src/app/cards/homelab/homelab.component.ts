@@ -9,7 +9,10 @@ import { shuffleArray } from "../../utils";
 })
 export class HomelabComponent implements OnInit {
 	flopstje = [
-		["Tivoli Shared Desktop", "https://shared-desktop.tivolicloud.com"],
+		[
+			"Tivoli/Cutelab Shared Desktop",
+			"https://shared-desktop.tivolicloud.com",
+		],
 		["Cutelab Squirrels", "https://squirrels.tivolicloud.com"],
 		["Emby", "https://emby.media"],
 		["Deluge", "https://deluge-torrent.org"],
@@ -24,7 +27,7 @@ export class HomelabComponent implements OnInit {
 		["RSS Bridge", "https://github.com/RSS-Bridge/rss-bridge"],
 		["Mastodon", "https://mastodon.cutelab.space"],
 		["FreshRSS", "https://freshrss.org"],
-		["Synapse", "https://github.com/matrix-org/synapse"],
+		// ["Synapse", "https://github.com/matrix-org/synapse"],
 		[
 			"Speedtest Tracker",
 			"https://github.com/henrywhitaker3/Speedtest-Tracker",
@@ -39,15 +42,14 @@ export class HomelabComponent implements OnInit {
 			"Speedtest Tracker",
 			"https://github.com/henrywhitaker3/Speedtest-Tracker",
 		],
-		["Lego Universe", "https://www.darkflameuniverse.org/"],
 	];
 
-	tivoliYeti = [
-		["Website and API", "https://tivolicloud.com"],
-		["Ghost blog", "https://blog.tivolicloud.com"],
-		["GitLab and runner", "https://git.tivolicloud.com/tivolicloud"],
-		["Plausible analytics", "https://plausible.io"],
-	];
+	// tivoliYeti = [
+	// 	["Website and API", "https://tivolicloud.com"],
+	// 	["Ghost blog", "https://blog.tivolicloud.com"],
+	// 	["GitLab and runner", "https://git.tivolicloud.com/tivolicloud"],
+	// 	["Plausible analytics", "https://plausible.io"],
+	// ];
 
 	constructor(private readonly http: HttpClient) {}
 

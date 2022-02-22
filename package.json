@@ -2,7 +2,7 @@
 	"name": "maki",
 	"version": "0.0.0",
 	"scripts": {
-		"pre": "node scripts/download-plausible.mjs",
+		"pre": "echo Building...",
 		"start": "npm run pre && ng serve --host 127.0.0.1",
 		"build": "npm run pre && ng build --configuration production && scully --noPrompt",
 		"build:analyze": "npm run pre && ng build --stats-json && webpack-bundle-analyzer dist/maki/stats.json"
