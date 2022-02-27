@@ -85,6 +85,8 @@
 									? 'spotify-light'
 									: song.player == 'DeaDBeeF'
 									? 'deadbeef-icon-light'
+									: song.player == 'Apple Music'
+									? 'apple-music-icon-light'
 									: ''
 							"
 							style="
@@ -183,6 +185,8 @@
 				? '#1db954'
 				: song.player == 'DeaDBeeF'
 				? '#80c040'
+				: song.player == 'Apple Music'
+				? 'linear-gradient(180deg, #FB5C74, #FA233B)'
 				: 'rgba(0,0,0,0.5)'
 		"
 	>

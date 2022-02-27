@@ -242,12 +242,56 @@ export class DiscordComponent implements OnInit, OnDestroy {
 		return song;
 	}
 
+	processCiderAppleMusicSong(): CurrentSong {
+		const activity = (this.data.activities ?? []).find(
+			activity =>
+				activity.name == "Cider" || activity.name == "Apple Music",
+		);
+		if (activity == null) return null;
+
+		let album_art_url = "";
+		const albumArtMatches =
+			activity.assets.large_image.match(/(https?[^]+?$)/);
+		if (albumArtMatches != null) {
+			album_art_url = albumArtMatches[1]
+				.replace(/^(https?)\//, "$1://")
+				.trim();
+		}
+
+		const song: CurrentSong = {
+			album: activity.assets.large_text,
+			album_art_url,
+			artist: activity.state.replace(/^by /i, "").trim(),
+			song: activity.details.trim(),
+			timestamps: {
+				start: activity.timestamps.start,
+				end: activity.timestamps.end,
+			},
+			track_url: "",
+			player: "Apple Music",
+		};
+
+		// lets not await this so we can add art when its available
+		setTimeout(() => {
+			// this will get the album art too but i think its okay
+			this.getDataFromMusicSearch(activity.assets.large_text).then(
+				data => {
+					if (data == null) return;
+					this.song.track_url = data.trackUrl;
+					// dont need the album art url but maybe i should if empty
+					// this.song.album_art_url = data.imageUrl;
+					// this.updateCanShowAlbumCover();
+				},
+			);
+		}, 10);
+
+		return song;
+	}
+
 	processMusic() {
 		let song: CurrentSong = this.processDeadBeefSong();
-
-		if (song == null) {
-			song = this.processSpotifySong();
-		}
+		if (song == null) song = this.processCiderAppleMusicSong();
+		if (song == null) song = this.processSpotifySong();
 
 		if (song == null) {
 			// clean up
