@@ -21,7 +21,7 @@ const scale = 0.5;
 const bannerWidth = 920 * scale;
 const bannerHeight = 430 * scale;
 
-const sheetWidth = 4;
+const sheetWidth = 5;
 const sheetHeight = 5;
 
 const steamIds = [
@@ -48,6 +48,7 @@ const imagePaths = [
 	"assets/games/earthbound.png",
 	"assets/games/catherine-full-body.png",
 	"assets/games/super-mario-odyssey.png",
+	"assets/games/mother-3.png",
 	"assets/games/drakengard-3.png",
 ];
 

@@ -17,7 +17,7 @@ export class GamesComponent implements OnInit {
 		["osu", "Osu!", config.socialLinks.osu],
 	];
 
-	sheetWidth = 4;
+	sheetWidth = 5;
 	sheetHeight = 5;
 
 	games: { steamId: string; position: string }[] = [];
