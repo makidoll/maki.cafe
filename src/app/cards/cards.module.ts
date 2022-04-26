@@ -13,6 +13,8 @@ import { SquirrelsComponent } from "./squirrels/squirrels.component";
 import { TwitterComponent } from "./twitter/twitter.component";
 import { WhereComponent } from "./where/where.component";
 import { WorkComponent } from "./work/work.component";
+import { PhotosComponent } from "./photos/photos.component";
+import { HttpClientJsonpModule } from "@angular/common/http";
 
 export function playerFactory() {
 	return import(
@@ -32,6 +34,7 @@ const components = [
 	TwitterComponent,
 	WhereComponent,
 	WorkComponent,
+	PhotosComponent,
 ];
 
 @NgModule({

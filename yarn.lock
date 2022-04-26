@@ -1734,6 +1734,13 @@
   resolved "https://registry.yarnpkg.com/@types/estree/-/estree-0.0.50.tgz#1e0caa9364d3fccd2931c3ed96fdbeaa5d4cca83"
   integrity sha512-C6N5s2ZFtuZRj54k2/zyRhNDjJwwcViAM3Nbm8zjBpbqAdZ00mr0CFxvSKeO8Y/e03WVFLpQMdHYVfUd6SB+Hw==
 
+"@types/fetch-jsonp@^1.1.0":
+  version "1.1.0"
+  resolved "https://registry.yarnpkg.com/@types/fetch-jsonp/-/fetch-jsonp-1.1.0.tgz#752f8d2919abd54435652bfad90b156371dcbdd1"
+  integrity sha512-rjsPjXViZ5EYrNeg7rtSqAsu53fP8KBatl6aN3vV+kHnlYxC4RH5rYbCwtw+XZKOI3mdVGSVmKPLfG4T9IulTA==
+  dependencies:
+    fetch-jsonp "*"
+
 "@types/glob@^7.1.1":
   version "7.1.4"
   resolved "https://registry.yarnpkg.com/@types/glob/-/glob-7.1.4.tgz#ea59e21d2ee5c517914cb4bc8e4153b99e566672"
@@ -3975,6 +3982,11 @@ fetch-cookie@^1.0.0:
   integrity sha512-SWcAhkDe4yVBFtwRqJNmot6k1XjjzI7tw3aRHepxXrK6FQp6obBhqcnsdm2aNUzrtE71607crNAYodtKMq3TjA==
   dependencies:
     tough-cookie "^2.3.3 || ^3.0.1 || ^4.0.0"
+
+fetch-jsonp@*, fetch-jsonp@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/fetch-jsonp/-/fetch-jsonp-1.2.1.tgz#a3ea630a992ae594cfbf5676e7f5fe4d2f8f03aa"
+  integrity sha512-5UwejksxssYwlwl/9OhEQU+OrVaxdChOQntpJO/GUw6NpfPS6fd08fPvbNOq0Ym6hxfLWD6cGN0Ln/V/hWcluw==
 
 figures@^3.0.0:
   version "3.2.0"

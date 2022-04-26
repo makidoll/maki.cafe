@@ -1,4 +1,5 @@
 const discordId = "72139729285427200";
+const flickrId = "125408076@N04";
 
 export const config = {
 	api: {
@@ -7,6 +8,7 @@ export const config = {
 		nitter: "https://nitter.cutelab.space",
 	},
 	discordId,
+	flickrId,
 	socialLinks: {
 		discord: "https://discord.com/users/" + discordId,
 		twitter: "https://twitter.com/MakiXx_",
@@ -19,5 +21,6 @@ export const config = {
 		matrix: "https://matrix.to/#/@maki:cutelab.space",
 		osu: "https://osu.ppy.sh/users/3286216",
 		mfc: "https://myfigurecollection.net/MakiXx_",
+		flickr: "https://www.flickr.com/photos/" + flickrId,
 	},
 };

@@ -1,0 +1,38 @@
+<app-card-title [href]="config.socialLinks.flickr" socialIcon="flickr">
+	flickr
+</app-card-title>
+<hstack *ngIf="posts.length == 0" style="margin: 32px">
+	<app-spinner></app-spinner>
+</hstack>
+<ng-container *ngIf="posts.length != 0">
+	<div
+		style="
+			display: grid;
+			grid-template-columns: repeat(4, 1fr);
+			column-gap: 4px;
+			row-gap: 4px;
+		"
+	>
+		<a
+			class="post"
+			*ngFor="let post of posts"
+			[href]="post.link"
+			style="display: block"
+		>
+			<div
+				style="
+					width: 80px;
+					height: calc(80px * 3 / 4);
+					background-position: center;
+					background-repeat: no-repeat;
+					background-size: cover;
+					border-radius: 4px;
+				"
+				[style.backgroundImage]="'url(' + post.media.m"
+			></div>
+		</a>
+	</div>
+	<app-card-footer [href]="config.socialLinks.flickr">
+		Click here to see more
+	</app-card-footer>
+</ng-container>
