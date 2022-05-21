@@ -11,11 +11,9 @@ export class SocialComponent implements OnInit {
 		{ name: "discord", url: config.socialLinks.discord },
 		{ name: "twitter", url: config.socialLinks.twitter },
 		{ name: "github", url: config.socialLinks.github },
-		{ name: "instagram", url: config.socialLinks.instagram },
 		{ name: "steam", url: config.socialLinks.steam },
 		{ name: "element-alt", url: config.socialLinks.matrix },
 		{ name: "flickr", url: config.socialLinks.flickr },
-		{ name: "skeb", url: config.socialLinks.skeb },
 		{ name: "soundcloud", url: config.socialLinks.soundcloud },
 	];
 

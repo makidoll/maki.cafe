@@ -11,7 +11,7 @@ export class EmojiComponent implements OnInit {
 
 	imageUrl: SafeResourceUrl = "";
 
-	customEmojis = ["lesbian-flag"];
+	customEmojis = ["lesbian-flag", "t4t-flag", "t4t-flag-better"];
 
 	constructor(private readonly domSanitizer: DomSanitizer) {}
 
@@ -26,7 +26,7 @@ export class EmojiComponent implements OnInit {
 			);
 		} else {
 			this.imageUrl =
-				"https://twemoji.maxcdn.com/2/svg/" +
+				"https://twemoji.maxcdn.com/v/latest/svg/" +
 				this.toCodePoint(this.emoji, "-") +
 				".svg";
 		}
