@@ -1,4 +1,4 @@
-<app-card-title [href]="config.socialLinks.twitter" socialIcon="twitter">
+<app-card-title [href]="'https://twitter.com/' + username" socialIcon="twitter">
 	my tweets
 </app-card-title>
 <hstack *ngIf="tweets.length == 0" style="margin: 16px 0">
@@ -95,6 +95,6 @@
 		></div>
 	</a>
 </ng-container>
-<app-card-footer [href]="config.socialLinks.twitter">
+<app-card-footer [href]="'https://twitter.com/' + username">
 	Click here to see more
 </app-card-footer>

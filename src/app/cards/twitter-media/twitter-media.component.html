@@ -1,0 +1,28 @@
+<app-card-title [href]="config.socialLinks.instagram" socialIcon="twitter">
+	my twitter media
+</app-card-title>
+<hstack *ngIf="mediaTweets.length == 0" style="margin: 32px">
+	<app-spinner></app-spinner>
+</hstack>
+<ng-container *ngIf="mediaTweets.length != 0">
+	<div
+		style="
+			display: grid;
+			grid-template-columns: repeat(3, 1fr);
+			column-gap: 6px;
+			row-gap: 6px;
+		"
+	>
+		<a
+			class="tweet"
+			*ngFor="let tweet of mediaTweets"
+			[href]="tweet.link"
+			style="display: block"
+		>
+			<div [style.backgroundImage]="'url(' + tweet.imageUrl + ')'"></div>
+		</a>
+	</div>
+</ng-container>
+<app-card-footer [href]="'https://twitter.com/' + username + '/media'">
+	Click here to see more
+</app-card-footer>

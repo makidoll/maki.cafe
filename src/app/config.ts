@@ -1,5 +1,17 @@
-const discordId = "72139729285427200";
-const flickrId = "125408076@N04";
+const socialHandles = {
+	discord: "72139729285427200",
+	twitter: "makifoxgirl",
+	github: "makitsune",
+	instagram: "MakiXx_",
+	soundcloud: "makitsune",
+	steam: "MakiXx",
+	skeb: "@Maki",
+	psnProfiles: "MakiXx_",
+	matrix: "@maki:cutelab.space",
+	osu: "3286216",
+	mfc: "MakiXx_",
+	flickr: "125408076@N04",
+};
 
 export const config = {
 	api: {
@@ -7,20 +19,19 @@ export const config = {
 		bibliogram: "https://bibliogram.cutelab.space",
 		nitter: "https://nitter.cutelab.space",
 	},
-	discordId,
-	flickrId,
+	socialHandles,
 	socialLinks: {
-		discord: "https://discord.com/users/" + discordId,
-		twitter: "https://twitter.com/MakiXx_",
-		github: "https://github.com/makitsune",
-		instagram: "https://instagram.com/MakiXx_",
-		soundcloud: "https://soundcloud.com/makitsune",
-		steam: "https://steamcommunity.com/id/MakiXx",
-		skeb: "https://skeb.jp/@Maki",
-		psnProfiles: "https://psnprofiles.com/MakiXx_",
-		matrix: "https://matrix.to/#/@maki:cutelab.space",
-		osu: "https://osu.ppy.sh/users/3286216",
-		mfc: "https://myfigurecollection.net/MakiXx_",
-		flickr: "https://www.flickr.com/photos/" + flickrId,
+		discord: "https://discord.com/users/" + socialHandles.discord,
+		twitter: "https://twitter.com/" + socialHandles.twitter,
+		github: "https://github.com/" + socialHandles.github,
+		instagram: "https://instagram.com/" + socialHandles.instagram,
+		soundcloud: "https://soundcloud.com/" + socialHandles.soundcloud,
+		steam: "https://steamcommunity.com/id/" + socialHandles.steam,
+		skeb: "https://skeb.jp/" + socialHandles.skeb,
+		psnProfiles: "https://psnprofiles.com/" + +socialHandles.psnProfiles,
+		matrix: "https://matrix.to/#/" + socialHandles.matrix,
+		osu: "https://osu.ppy.sh/users/" + socialHandles.osu,
+		mfc: "https://myfigurecollection.net/" + socialHandles.mfc,
+		flickr: "https://www.flickr.com/photos/" + socialHandles.flickr,
 	},
 };

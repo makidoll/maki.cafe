@@ -14,7 +14,7 @@ import { TwitterComponent } from "./twitter/twitter.component";
 import { WhereComponent } from "./where/where.component";
 import { WorkComponent } from "./work/work.component";
 import { PhotosComponent } from "./photos/photos.component";
-import { HttpClientJsonpModule } from "@angular/common/http";
+import { TwitterMediaComponent } from "./twitter-media/twitter-media.component";
 
 export function playerFactory() {
 	return import(
@@ -35,6 +35,7 @@ const components = [
 	WhereComponent,
 	WorkComponent,
 	PhotosComponent,
+	TwitterMediaComponent,
 ];
 
 @NgModule({

@@ -24,7 +24,7 @@ export class PhotosComponent implements OnInit {
 	readonly config = config;
 	readonly feedUrl =
 		"https://www.flickr.com/services/feeds/photos_public.gne?id=" +
-		config.flickrId +
+		config.socialHandles.flickr +
 		"&format=json&lang=en-us";
 
 	posts: Post[] = [];

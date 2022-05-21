@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, Input, OnInit } from "@angular/core";
 import { isScullyRunning } from "@scullyio/ng-lib";
 import { ReplaySubject } from "rxjs";
 import { take } from "rxjs/operators";
@@ -20,11 +20,9 @@ interface Tweet {
 	styleUrls: ["./twitter.component.scss"],
 })
 export class TwitterComponent implements OnInit {
-	config = config;
-
 	nitterUrl = config.api.nitter;
 
-	username = "@MakiXx_";
+	@Input() username = "";
 	tweets: Tweet[] = [];
 
 	constructor() {}
@@ -82,7 +80,7 @@ export class TwitterComponent implements OnInit {
 		const xml = new DOMParser().parseFromString(xmlStr, "application/xml");
 
 		this.tweets = Array.from(xml.querySelectorAll("rss > channel > item"))
-			.slice(0, 4)
+			.slice(0, 5)
 			.map(item => {
 				const username = item.querySelector("creator").textContent;
 				let title: string = item.querySelector("title").textContent;
