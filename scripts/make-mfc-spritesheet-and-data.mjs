@@ -42,8 +42,7 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 
 (async () => {
 	const browser = await puppeteer.launch({
-		// headless: false
-		headless: true,
+		headless: false,
 	});
 
 	// const addFromUrl = async (url, type) => {
@@ -76,17 +75,12 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 		const data = [];
 
 		const page = await browser.newPage();
-		await page.setRequestInterception(true);
-
-		page.on("request", request => {
-			request.continue();
-		});
 
 		// save image buffers as they load
 		const imageBuffers = {};
 		page.on("response", async response => {
 			const url = response.url();
-			if (!(url.includes(".jpg") && url.includes("/pics/figure/"))) {
+			if (!(url.includes(".jpg") && url.includes("/upload/items/"))) {
 				return;
 			}
 			imageBuffers[url] = await response.buffer();
