@@ -49,9 +49,9 @@ export class TwitterMediaComponent implements OnInit {
 
 				let title: string = item.querySelector("title").textContent;
 
-				// ignore retweets and replies
+				// ignore retweets and (replies, actually no because i could reply with more images to myself)
 				if (/^RT by @[^]+?: /.test(title)) return null;
-				if (/^R to (@[^]+?): /.test(title)) return null;
+				// if (/^R to (@[^]+?): /.test(title)) return null;
 
 				const imageUrlMatches = item
 					.querySelector("description")
