@@ -8,48 +8,57 @@ import { shuffleArray } from "../../utils";
 	styleUrls: ["./homelab.component.scss"],
 })
 export class HomelabComponent implements OnInit {
-	flopstje = [
-		[
-			"Tivoli/Cutelab Shared Desktop",
-			"https://shared-desktop.tivolicloud.com",
-		],
-		["Cutelab Squirrels", "https://squirrels.tivolicloud.com"],
+	showOlderYeti = false;
+
+	macMini = [["Say server", "https://say.cutelab.space"]];
+
+	blahajMedia = [
+		["qBittorrent", "https://www.qbittorrent.org"],
+		["Radarr", "https://radarr.video/"],
+		["Mullvad VPN", "https://mullvad.net/en"],
 		["Emby", "https://emby.media"],
-		["Deluge", "https://deluge-torrent.org"],
-		["Minecraft", "https://minecraft.net"],
 	];
 
-	personalYeti = [
-		["Lanyard", "https://lanyard.cutelab.space"],
+	blahajFiles = [
+		["Samba", "https://github.com/ServerContainers/samba"],
+		["Seafile", "https://seafile.com/"],
+		[
+			"Unity Accelerator",
+			"https://hub.docker.com/r/unitytechnologies/accelerator",
+		],
+	];
+
+	blahajSocial = [
+		["Synapse", "https://github.com/matrix-org/synapse"],
+		["Mastodon", "https://mastodon.cutelab.space"],
 		["Nitter", "https://nitter.cutelab.space"],
 		["Bibliogram", "https://bibliogram.cutelab.space"],
-		["Meli", "https://github.com/getmeli/meli"],
-		["RSS Bridge", "https://github.com/RSS-Bridge/rss-bridge"],
-		["Mastodon", "https://mastodon.cutelab.space"],
-		["FreshRSS", "https://freshrss.org"],
-		// ["Synapse", "https://github.com/matrix-org/synapse"],
-		[
-			"Speedtest Tracker",
-			"https://github.com/henrywhitaker3/Speedtest-Tracker",
-		],
-		["Home Assistant", "https://www.home-assistant.io"],
-		["Dashmachine", "https://github.com/rmountjoy92/DashMachine"],
-		["Seafile", "https://seafile.com/"],
-		["Traefik", "https://traefik.io/traefik"],
-		["Librespeed", "https://speedtest.cutelab.space"],
-		["InvoiceNinja", "https://www.invoiceninja.com"],
-		[
-			"Speedtest Tracker",
-			"https://github.com/henrywhitaker3/Speedtest-Tracker",
-		],
+		["Lanyard", "https://lanyard.cutelab.space"],
 	];
 
-	// tivoliYeti = [
-	// 	["Website and API", "https://tivolicloud.com"],
-	// 	["Ghost blog", "https://blog.tivolicloud.com"],
-	// 	["GitLab and runner", "https://git.tivolicloud.com/tivolicloud"],
-	// 	["Plausible analytics", "https://plausible.io"],
-	// ];
+	blahajDev = [
+		["Gitea", "https://gitea.io"],
+		["Meli", "https://github.com/getmeli/meli"],
+		["Tileserver GL", "https://github.com/maptiler/tileserver-gl"],
+		["Traefik", "https://traefik.io/traefik"],
+	];
+
+	blahajHome = [
+		["Home Assistant", "https://www.home-assistant.io"],
+		["Scrypted", "https://www.scrypted.app"],
+		["Cutelab Squirrels", "https://squirrels.tivolicloud.com"],
+		["Librespeed", "https://speedtest.cutelab.space"],
+	];
+
+	blahajPersonal = [
+		["Homer", "https://github.com/bastienwirtz/homer"],
+		["FreshRSS", "https://freshrss.org"],
+		["RSS Bridge", "https://github.com/RSS-Bridge/rss-bridge"],
+		["Blåhaj Finder", "https://blahaj.quest"],
+		["Grafana + Prometheus", "https://grafana.com"],
+		["InvoiceNinja", "https://www.invoiceninja.com"],
+		["Maki Upload", "https://maki.cafe/u"],
+	];
 
 	constructor(private readonly http: HttpClient) {}
 

@@ -5,6 +5,7 @@ import { UiModule } from "../ui/ui.module";
 import { DiscordComponent } from "./discord/discord.component";
 import { GamesComponent } from "./games/games.component";
 import { HeartrateComponent } from "./heartrate/heartrate.component";
+import { HomelabOlderYetiComponent } from "./homelab-older-yeti/homelab-older-yeti.component";
 import { HomelabComponent } from "./homelab/homelab.component";
 import { InstagramComponent } from "./instagram/instagram.component";
 import { MfcComponent } from "./mfc/mfc.component";
@@ -26,6 +27,7 @@ const components = [
 	DiscordComponent,
 	GamesComponent,
 	HeartrateComponent,
+	HomelabOlderYetiComponent,
 	HomelabComponent,
 	InstagramComponent,
 	MfcComponent,

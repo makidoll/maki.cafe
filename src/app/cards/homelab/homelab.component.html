@@ -1,18 +1,12 @@
-<hstack style="font-size: 0.6em">
+<hstack style="font-size: 0.6em" *ngIf="!showOlderYeti">
 	<vstack style="width: 100px">
 		<span
 			class="cursive"
-			style="font-size: 2.6em; margin-top: -12px; margin-bottom: 4px"
+			style="font-size: 2.6em; margin-top: -12px; margin-bottom: 12px"
 		>
 			homelab
 		</span>
 		<span style="font-size: 1em">
-			Everything on this site is hosted on our server rack!
-			<br /><br />
-			Last updated:
-			<br />
-			Feb 21, 2022
-			<br /><br />
 			<div class="status" [innerHtml]="status"></div>
 			<div class="status a" style="background-color: #e91e63">
 				<a href="https://status.cutelab.space">See more here</a>
@@ -20,57 +14,75 @@
 		</span>
 		<img
 			class="clickable-image"
-			src="/assets/images/server-rack.jpg"
+			src="/assets/images/blahaj-rack.jpg"
 			alt="Server rack"
 			style="width: 100px; margin-top: 16px; border-radius: 4px"
 			(click)="serverRackPopupBox.open()"
 		/>
 		<app-popup-box #serverRackPopupBox>
 			<img
-				src="/assets/images/server-rack.jpg"
+				src="/assets/images/blahaj-rack.jpg"
 				alt="Server rack"
 				style="width: 500px"
 			/>
 		</app-popup-box>
 		<img
 			class="clickable-image"
-			src="/assets/images/yeti-ram.jpg"
-			alt="Yeti's ram"
+			src="/assets/images/blahaj-inside.jpg"
+			alt="Blahaj's inside"
 			style="width: 100px; margin-top: 8px; border-radius: 4px"
-			(click)="yetiRamPopupBox.open()"
+			(click)="blahajInsidePopupBox.open()"
 		/>
-		<app-popup-box #yetiRamPopupBox>
+		<app-popup-box #blahajInsidePopupBox>
 			<img
-				src="/assets/images/yeti-ram.jpg"
-				alt="Yeti's ram"
+				src="/assets/images/blahaj-inside.jpg"
+				alt="Blahaj's inside"
 				style="width: 600px"
 			/>
 		</app-popup-box>
 	</vstack>
-	<div style="width: 240px; margin-left: 16px">
+	<div style="width: 280px; margin-left: 16px; font-size: 1.05em">
+		<span style="font-weight: 600">
+			Everything on this site is hosted here!
+			<br />
+			Last updated: <span style="font-weight: 800">May 30, 2022</span>
+			<br /><br />
+		</span>
+		<a href="javascript:" (click)="showOlderYeti = true">
+			Click here to see older setup
+		</a>
+		<br /><br />
 		From top to bottom...
 		<ul>
+			<li>
+				Protectli Vault 6 Port, i7 quad core
+				<ul>
+					<li>
+						<i>
+							Currently turned off. I've been playing with
+							OPNsense every once in a while
+						</i>
+					</li>
+				</ul>
+			</li>
 			<li>
 				Ubiquiti Dream Machine Pro
 				<ul>
 					<li>Network router and IPS</li>
-					<li>NVR for 2 x G4 Pro cameras</li>
+					<li>NVR for 3 x G4 Pro cameras and a G3 Instant</li>
 				</ul>
 			</li>
 			<li>Ubiquiti Switch 16 PoE</li>
 			<li>
-				MSI GS66 Stealth i7-10750H, 12 cores (6 physical), 32 GB
-				<i>(flopstje)</i>
+				Mac Mini M1, 16 GB
 				<ul>
+					<li>Personal build server</li>
 					<li>
-						Hosting high CPU/GPU related things:
-						<br />
-
 						<ng-container
-							*ngFor="let service of flopstje; let i = index"
+							*ngFor="let service of macMini; let i = index"
 						>
 							<a [href]="service[1]">{{ service[0] }}</a
-							><ng-container *ngIf="i != flopstje.length - 1"
+							><ng-container *ngIf="i != macMini.length - 1"
 								>,
 							</ng-container>
 						</ng-container>
@@ -78,62 +90,78 @@
 				</ul>
 			</li>
 			<li>
-				Protectli Vault 6 Port, i7 quad core
+				Blåhaj - Ryzen Threadripper 2970WX, 128 GB DDR4 3200MHz, RTX
+				3060 Ti and GTX 1060
 				<ul>
 					<li>
-						<i>
-							Currently nothing, used to be our PfSense server
-							before we switched to Ubiquiti
-						</i>
+						Social:
+						<ng-container
+							*ngFor="let service of blahajSocial; let i = index"
+						>
+							<a [href]="service[1]">{{ service[0] }}</a
+							><ng-container *ngIf="i != blahajSocial.length - 1"
+								>,
+							</ng-container>
+						</ng-container>
 					</li>
-				</ul>
-			</li>
-			<li>
-				Intel NUC i7-10710U, 12 cores (6 physical), 24 GB
-				<i>(cutenuc)</i>
-				<ul>
-					<li>Currently nothing, used to host Tivoli worlds</li>
-				</ul>
-			</li>
-			<li>
-				Intel NUC i7-10710U, 12 cores (6 physical), 24 GB
-				<ul>
-					<li>Currently nothing, used to be Tivoli build server</li>
-				</ul>
-			</li>
-			<li>
-				Mac Mini M1, 16 GB
-				<ul>
 					<li>
-						Currently nothing, used to host Tivoli say and build
-						server
+						Media:
+						<ng-container
+							*ngFor="let service of blahajMedia; let i = index"
+						>
+							<a [href]="service[1]">{{ service[0] }}</a
+							><ng-container *ngIf="i != blahajMedia.length - 1"
+								>,
+							</ng-container>
+						</ng-container>
 					</li>
-					<li>Otherwise personal use as remote machine</li>
-				</ul>
-			</li>
-			<li>
-				Supermicro H8QG6-F, 64 cores (4 x 16),
-				<br />
-				128 GB <i>(Yeti)</i>
-				<ul>
 					<li>
-						Personal servers:
-						<ul>
-							<li>
-								<ng-container
-									*ngFor="
-										let service of personalYeti;
-										let i = index
-									"
-								>
-									<a [href]="service[1]">{{ service[0] }}</a
-									><ng-container
-										*ngIf="i != personalYeti.length - 1"
-										>,
-									</ng-container>
-								</ng-container>
-							</li>
-						</ul>
+						Files:
+						<ng-container
+							*ngFor="let service of blahajFiles; let i = index"
+						>
+							<a [href]="service[1]">{{ service[0] }}</a
+							><ng-container *ngIf="i != blahajFiles.length - 1"
+								>,
+							</ng-container>
+						</ng-container>
+					</li>
+					<li>
+						Home:
+						<ng-container
+							*ngFor="let service of blahajHome; let i = index"
+						>
+							<a [href]="service[1]">{{ service[0] }}</a
+							><ng-container *ngIf="i != blahajHome.length - 1"
+								>,
+							</ng-container>
+						</ng-container>
+					</li>
+					<li>
+						Dev:
+						<ng-container
+							*ngFor="let service of blahajDev; let i = index"
+						>
+							<a [href]="service[1]">{{ service[0] }}</a
+							><ng-container *ngIf="i != blahajDev.length - 1"
+								>,
+							</ng-container>
+						</ng-container>
+					</li>
+					<li>
+						Personal:
+						<ng-container
+							*ngFor="
+								let service of blahajPersonal;
+								let i = index
+							"
+						>
+							<a [href]="service[1]">{{ service[0] }}</a
+							><ng-container
+								*ngIf="i != blahajPersonal.length - 1"
+								>,
+							</ng-container>
+						</ng-container>
 					</li>
 				</ul>
 			</li>
@@ -141,3 +169,7 @@
 		</ul>
 	</div>
 </hstack>
+<app-homelab-older-yeti
+	*ngIf="showOlderYeti"
+	(onSeeNewerSetup)="showOlderYeti = false"
+></app-homelab-older-yeti>

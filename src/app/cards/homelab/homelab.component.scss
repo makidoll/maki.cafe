@@ -4,6 +4,10 @@ ul {
 	margin-left: -24px;
 }
 
+.cursive {
+	line-height: 1em;
+}
+
 .clickable-image {
 	@include scaleOnHover(1.05);
 	cursor: pointer;
