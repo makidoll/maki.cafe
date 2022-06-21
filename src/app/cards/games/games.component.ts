@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
 import { config } from "../../config";
 import { getBackgroundPositionsForSpritesheet } from "../../utils";
-import { steamIds } from "./steam-ids";
+import { gamesInfo } from "./games-info";
 
 @Component({
 	selector: "app-games",
@@ -17,19 +17,17 @@ export class GamesComponent implements OnInit {
 		["osu", "Osu!", config.socialLinks.osu],
 	];
 
-	sheetWidth = 5;
-	sheetHeight = 5;
-
-	games: { steamId: string; position: string }[] = [];
+	gamesInfo = gamesInfo;
+	gamesWithPosition: { steamId: string; position: string }[] = [];
 
 	constructor() {}
 
 	ngOnInit(): void {
-		this.games = getBackgroundPositionsForSpritesheet(
-			this.sheetWidth,
-			this.sheetHeight,
+		this.gamesWithPosition = getBackgroundPositionsForSpritesheet(
+			gamesInfo.sheetWidth,
+			gamesInfo.sheetHeight,
 		).map((position, i) => ({
-			steamId: steamIds[i],
+			steamId: gamesInfo.steamIds[i],
 			position,
 		}));
 	}

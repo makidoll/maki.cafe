@@ -9,7 +9,7 @@
 	"
 >
 	<a
-		*ngFor="let game of games.slice(0, 6)"
+		*ngFor="let game of gamesWithPosition.slice(0, 6)"
 		class="game-link"
 		[href]="'https://store.steampowered.com/app/' + game.steamId"
 		style="display: block"
@@ -23,7 +23,9 @@
 				background-image: url(/assets/steam-spritesheet.jpg);
 				background-position: 66% 0%;
 			"
-			[style.background-size]="sheetWidth + '00% ' + sheetHeight + '00%'"
+			[style.background-size]="
+				gamesInfo.sheetWidth + '00% ' + gamesInfo.sheetWidth + '00%'
+			"
 			[style.background-position]="game.position"
 		></div>
 	</a>
@@ -39,7 +41,9 @@
 	"
 >
 	<a
-		*ngFor="let game of games.slice(6, 16)"
+		*ngFor="
+			let game of gamesWithPosition.slice(6, gamesInfo.steamIds.length)
+		"
 		class="game-link"
 		[href]="'https://store.steampowered.com/app/' + game.steamId"
 		style="display: block"
@@ -53,7 +57,9 @@
 				background-image: url(/assets/steam-spritesheet.jpg);
 				background-position: 66% 0%;
 			"
-			[style.background-size]="sheetWidth + '00% ' + sheetHeight + '00%'"
+			[style.background-size]="
+				gamesInfo.sheetWidth + '00% ' + gamesInfo.sheetWidth + '00%'
+			"
 			[style.background-position]="game.position"
 		></div>
 	</a>
@@ -69,7 +75,12 @@
 	"
 >
 	<div
-		*ngFor="let game of games.slice(16, 21)"
+		*ngFor="
+			let game of gamesWithPosition.slice(
+				gamesInfo.steamIds.length,
+				gamesInfo.steamIds.length + gamesInfo.nonSteamGames
+			)
+		"
 		class="game-image"
 		style="
 			border-radius: 4px;
@@ -78,7 +89,9 @@
 			background-image: url(/assets/steam-spritesheet.jpg);
 			background-position: 66% 0%;
 		"
-		[style.background-size]="sheetWidth + '00% ' + sheetHeight + '00%'"
+		[style.background-size]="
+			gamesInfo.sheetWidth + '00% ' + gamesInfo.sheetWidth + '00%'
+		"
 		[style.background-position]="game.position"
 	></div>
 </div>

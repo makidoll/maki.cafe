@@ -25,19 +25,21 @@ const sheetWidth = 5;
 const sheetHeight = 5;
 
 const steamIds = [
-	"972660", // spiritfarer
 	"210970", // the witness
-	"524220", // nier automata
-	"1113560", // nier replicant
-	"504230", // celeste
-	"447040", // watch dogs 2
-	"438100", // vrchat
 	"224760", // fez
-	"253230", // a hat in time
-	"257850", // hyper light drifer
+	"504230", // celeste
+	"972660", // spiritfarer
 	"620", // portal 2
+	"524220", // nier automata
+	// -- gets smaller
+	"438100", // vrchat
+	"257850", // hyper light drifer
 	"219890", // anti chamber
+	"253230", // a hat in time
+	"1003590", // tetris effect
+	"1113560", // nier replicant
 	"413150", // stardew valley
+	"447040", // watch dogs 2
 	"394690", // tower unite
 	"963000", // frog detective 1
 	"650700", // yume nikki
@@ -80,7 +82,13 @@ const imagePaths = [
 	);
 
 	fs.writeFileSync(
-		path.resolve(__dirname, "../src/app/cards/games/steam-ids.ts"),
-		"export const steamIds = " + JSON.stringify(steamIds),
+		path.resolve(__dirname, "../src/app/cards/games/games-info.ts"),
+		"export const gamesInfo = " +
+			JSON.stringify({
+				sheetWidth,
+				sheetHeight,
+				steamIds,
+				nonSteamGames: imagePaths.length,
+			}),
 	);
 })();
