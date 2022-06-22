@@ -15,11 +15,19 @@ const __dirname = path.dirname(
 const fetch = fetchCookie(nodeFetch);
 
 // https://www.steamgriddb.com/
+
 // steamgriddb uses 920x430
-// steam uses 460x215 which is 0.5
-const scale = 0.5;
-const bannerWidth = 920 * scale;
-const bannerHeight = 430 * scale;
+// steam uses 460x215 which is half the size
+
+// const scale = 0.5;
+// const bannerWidth = 920 * scale;
+// const bannerHeight = 430 * scale;
+
+// however steam capsule images are 231x87
+// they look nicer so lets rescale and crop the steamgriddb images
+
+const bannerWidth = 231;
+const bannerHeight = 87;
 
 const sheetWidth = 5;
 const sheetHeight = 5;
@@ -62,7 +70,8 @@ const imagePaths = [
 				const res = await fetch(
 					"https://cdn.cloudflare.steamstatic.com/steam/apps/" +
 						steamIdOrPath +
-						"/header.jpg",
+						// "/header.jpg",
+						"/capsule_184x69.jpg",
 				);
 				buffer = await res.buffer();
 			} else {
