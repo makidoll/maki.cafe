@@ -1,4 +1,4 @@
-<span class="letters">
+<span [class.letters]="animating">
 	<span
 		*ngFor="let letter of letters; let i = index"
 		[style.animationDelay]="(letters.length - i) * -100 + 'ms'"

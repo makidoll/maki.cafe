@@ -9,10 +9,15 @@ export class DancingLettersComponent implements OnChanges {
 	@Input() text = "";
 
 	letters: string[] = [];
+	animating = false;
 
 	constructor() {}
 
 	ngOnChanges() {
 		this.letters = this.text.split("");
+		this.animating = false;
+		setTimeout(() => {
+			this.animating = true;
+		}, 100);
 	}
 }
