@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>lifetime</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:300,400,700" rel="stylesheet">
+		<style type="text/css">
+			body {
+				margin: 0;
+				width: 100vw; height: 100vh;
+				text-align: left;
+				background: #1d1f21;
+				color: #fff;
+				font-family: "Roboto Mono", sans-serif;
+				overflow: hidden;
+			}
+
+			#numbers {
+				width: 100vw; height: 95vh;
+				margin-left: 2.5vh;
+				margin-top: 2.5vh;
+				opacity: 0;
+			}
+
+			#numbers th {
+				font-weight: 300;
+				font-size: 2vh;
+				height: 2vh;
+				padding-left: 10px;
+				opacity: 0.6;
+			}
+
+			#numbers td {
+				font-size: 14vh;
+				line-height: 12vh;
+				vertical-align: top;
+				font-weight: 300;
+			}
+
+			span {
+				font-weight: 700;
+			}
+
+			#intro {
+				position: fixed; margin: auto;
+				top: 0; left: 100px; bottom: 0;
+				height: 240px;
+				text-align: left;
+				z-index: 600;
+			}
+
+			h1 {
+				font-size: 96px;
+				line-height: 0;
+				font-weight: 700;
+				margin: 48px 0 48px 0 ;
+			}
+
+			input {
+    			background-color: #DEDEDE;
+    			border-radius: 0;
+    			border: none;
+    			padding: 4px 8px;
+    			font-size: 14px;
+    			margin: 4px 4px 4px 0;
+    			text-align: left;
+    			width: 100px;
+    			font-family: "Roboto Mono", sans-serif;
+    			font-weight: 400;
+			}
+
+			input[type=submit] {
+				background-color: #fff;
+				width: 116px;
+			}
+
+			input[type="number"]::-webkit-outer-spin-button, input[type="number"]::-webkit-inner-spin-button {
+    			-webkit-appearance: none;
+    			margin: 0;
+			}
+ 
+			input[type="number"] {
+			    -moz-appearance: textfield;
+			}
+
+			#intro-inner {
+				margin-left: 4px;
+			}
+
+			#intro-inner td {
+				vertical-align: top;
+			}
+
+			a,a:link,a:hover,a:visited {
+				margin-left: 4px;
+				color: #fff;
+				text-decoration: none;
+				font-weight: 300;
+				opacity: 0.6;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="intro">
+			<h1>lifetime</h1>
+			<table id="intro-inner">
+				<tr>
+					<td>
+						<form onsubmit="calculate(); return false;">
+							<input id="day" type="number" required placeholder="day" size="10"><br>
+							<input id="month" type="number" required placeholder="month" size="10"><br>
+							<input id="year" type="number" required placeholder="year" size="10"><br>
+							<input type="submit" value="submit">
+						</form>
+					<td>
+					<td><a href="https://maki.cat">> maki.cat</a><td>
+				</tr>
+			</table>
+		</div>
+	
+		<table id="numbers">
+			<tr><th>years<th></tr>
+			<tr><td id="years">000000000000000000000000000000000000000000000000000000000000000000000000</td></tr>
+			<tr><th>months<th></tr>
+			<tr><td id="months">000000000000000000000000</td></tr>
+			<tr><th>days<th></tr>
+			<tr><td id="days">000000000000000000000000</td></tr>
+			<tr><th>hours<th></tr>
+			<tr><td id="hours">000000000000000000000000</td></tr>
+			<tr><th>minutes<th></tr>
+			<tr><td id="minutes">000000000000000000000000</td></tr>
+			<tr><th>seconds<th></tr>
+			<tr><td id="seconds">000000000000000000000000</td></tr>
+		</table>
+
+		<script src="moment.js"></script>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+		<script type="text/javascript">
+			var zeros = "00000000000000000000000000000000"
+			var y=0,m=0,d=0;
+
+			function calculate() {
+				y = $("#year").val();
+				m = $("#month").val()-1;
+				d = $("#day").val();
+
+				$("#intro").animate({
+					opacity: 0
+				}, 400, function() {
+					$("#numbers").animate({opacity: 1}, 400);
+				});
+			}
+
+			function numBeautify(num) {
+				let floor = Math.floor(num);
+				let decimals = num.toFixed(20)-floor+zeros;
+				return "<span>" + floor + "</span>." + decimals.substring(2);
+			}
+
+			setInterval(function(){
+				let seconds = moment().diff(moment([y,m,d]), "seconds", true);
+				let minutes = moment().diff(moment([y,m,d]), "minutes", true);
+				let hours = moment().diff(moment([y,m,d]), "hours", true);
+				let days = moment().diff(moment([y,m,d]), "days", true);
+				let months = moment().diff(moment([y,m,d]), "months", true);
+				let years = moment().diff(moment([y,m,d]), "years", true);
+
+				$("#seconds").html(numBeautify(seconds));
+				$("#minutes").html(numBeautify(minutes));
+				$("#hours").html(numBeautify(hours));
+				$("#days").html(numBeautify(days));
+				$("#months").html(numBeautify(months));
+				$("#years").html(numBeautify(years));
+			}, 1);
+		</script>
+	</body>
+</html>

@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>maki's vrchat stuff</title>
+		<meta name="author" content="Maki">
+		<meta name="description" content="Stuff that I've made for VRChat including shaders, models and more!~">
+		<meta property="og:title" content="maki's vrchat stuff">
+		<meta property="og:locale" content="en_US">
+		<meta property="og:url" content="https://maki.cat/vrchat">
+		<meta property="og:image" content="https://maki.cat/vrchat/icon.png">
+		<meta property="og:description" content="Stuff that I've made for VRChat including shaders, models and more!~">
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400,700,900" rel="stylesheet">
+		<style type="text/css">
+			* {
+				margin:  0;
+				padding: 0;
+			}
+
+			body {
+				font-family: "Roboto", sans-serif;
+				color: #fff;
+			}
+
+			#background {
+				position: fixed; margin: auto;
+				top: 0; left: 0; bottom: 0; right: 0;
+				/* background: no-repeat center center fixed url(/bg); */
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+			    background-size: cover;
+			    image-rendering: pixelated;
+			    image-rendering: crisp-edges;
+			    image-rendering: optimize-contrast;
+			    image-rendering: optimizeSpeed;
+			    image-rendering: -moz-crisp-edges;
+			    image-rendering: -o-crisp-edges;
+			}
+
+			#background-cover {
+				position: fixed; margin: auto;
+				top: 0; left: 0; bottom: 0; right: 0;
+				background-color: rgba(29,31,33,0.9);
+			}
+
+			#content {
+				position: absolute; margin: auto;
+				top: 50px; left: 0; right: 0;
+				width: 700px;
+				padding: 10px;
+				background-color: rgba(255,255,255,0.1);
+				border-radius: 25px;
+			}
+
+			#content>div {
+				padding: 50px;
+				width: calc(100% - 100px);
+				background-color: #1d1f21;
+				border-radius: 20px;
+			}
+
+			h1 {
+				text-align: center;
+				font-weight: 900;
+			}
+
+			h2 {
+				font-weight: 400;
+			}
+
+			a,a:visited,a:active,a:hover,a:link {
+				text-decoration: inherit;
+				color: #E91E63;
+			}
+
+			.gallery {
+				width: 100%;
+			}
+
+			.gallery-item {
+				width: calc(600px / 2);
+				display: inline-block;
+				vertical-align: top;
+			}
+
+			.gallery-item div {
+				margin: 20px;
+				width: 260px;
+				height: 130px;
+				border-radius: 10px;
+				background-size: cover;
+				background-position: 50% 50%;
+				margin-bottom: 12px;
+			}
+
+			.gallery-item p {
+				text-align: center;
+				margin-bottom: 4px;
+			}
+
+			table {
+				width: 100%;
+				table-layout: fixed;
+			}
+
+			.gallery-item table {
+				width: 70%;
+				margin: 0 auto;
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="background"></div>
+		<script>
+			const backgrounds = [
+				"boat.gif", "busy_train.gif", "calm_train.gif", "deer.gif", "fish_pond.gif", "fish_shop.gif",
+				"girls_waiting.gif", "girls.gif", "home.gif", "pets.gif", "rainbow_dog.gif", "river.gif",
+				"sakura.gif", "shore.gif", "take_away.gif"
+			];
+			document.getElementById("background").style.backgroundImage = "url(\"../bg/" + backgrounds[Math.floor(Math.random() * backgrounds.length)] + "\")"
+		</script>
+		<div id="background-cover"></div>
+		<div id="content"><div>
+			<h1>maki's vrchat stuff</h1>
+			<p style="text-align: center;">Stuff that I've made for VRChat including shaders, models and more!~</p><br>
+			<div class="gallery">
+				<div class="gallery-item">
+					<a href="https://github.com/makifoxgirl/realtime-clock#readme"><div style="background-image: url(realtime_clock.jpg);"></div></a>
+					<p>Show the current time where<br>you live on an analogue clock.<br>(only works in worlds)</p>
+					<table><tr>
+						<td><a href="https://github.com/makifoxgirl/realtime-clock#readme">Source</a></td>
+						<td><a href="https://github.com/makifoxgirl/realtime-clock/releases">Download</a></td>
+					</tr></table>
+				</div><div class="gallery-item">
+					<a href="https://github.com/makifoxgirl/fun-frag-shaders#readme"><div style="background-image: url(lavalamp.gif);"></div></a>
+					<p>Fun fragment shaders you can use<br>in Unity. Includes: Lava Lamp, etc.</p>
+					<table><tr>
+						<td><a href="https://github.com/makifoxgirl/fun-frag-shaders#readme">List of all shaders</a></td>
+					</tr></table>
+				</div><div class="gallery-item">
+					<a href="../mgf"><div style="background-image: url(mgf.png);"></div></a>
+					<p>Ripped player models from<br>the PSVita game!~ Which<br>includes the tomato...</p>
+					<table><tr>
+						<td><a href="../mgf">See here</a></td>
+					</tr></table>
+				</div>
+			</div>
+			<br><br><br>
+			<h2>other things that i like</h2><br>
+			<table><tr>
+				<!-- <td><ul>
+					<li><a href="https://theepicsnail.github.io/rocks/"><p>Snail's Stuff</p></a></li>
+				</ul></td>
+				<td><ul>
+					<li><a href="https://github.com/cubedparadox/Cubeds-Unity-Shaders"><p>Cubed's Shaders</p></a></li>
+				</ul></td>
+				<td><ul>
+
+				</ul></td>
+				<td><ul>
+
+				</ul></td> -->
+				<td>
+					<a href="https://theepicsnail.github.io/rocks/"><p>Snail's Stuff</p></a></td>
+				<td>
+					<a href="https://github.com/cubedparadox/Cubeds-Unity-Shaders"><p>Cubed's Shaders</p></a>
+				</td>
+				<td>
+					
+				</td>
+				<td>
+					
+				</td>
+			</tr></table>
+		</div></div>
+	</body>
+</html>

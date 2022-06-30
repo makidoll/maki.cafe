@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Maki</title>
+		<link rel="icon" sizes="192x192" href="https://maki.cat/cc/guidelines-icon-192x192.png">
+		<link rel="shortcut icon" href="https://maki.cat/cc/guidelines-icon-72x72.png">
+		<link href="https://fonts.googleapis.com/css?family=Roboto+Mono:400,700" rel="stylesheet">
+		<style type="text/css">
+			body {
+				margin: 0;
+				width: 100%; height: 100%;
+				background-color: #000;
+				font-family: "Roboto Mono";
+				overflow-x: hidden;
+			}
+
+			#color {
+				width: 50%;
+				float: left;
+				height: 200px;
+				cursor: pointer;
+				position: relative;
+			}
+
+			.center {
+				display: table;
+				text-align: center;
+				width: 100%; height: 100%;
+			}
+
+			.center>div {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			p {
+				font-weight: 400;
+				font-size: 12px;
+			}
+
+			.l { color: #FFF; }
+			.d { color: #000; }
+
+			.cc {
+				font-weight: 700;
+				font-size: 24px;
+				line-height: 28px;
+				transition: all 300ms;
+				transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+			}
+
+			#header {
+				height: 16px;
+				background-color: #FFF;
+				padding: 8px;
+				text-align: left;
+			}
+
+			h1 {
+				line-height: 16px;
+				font-size: 16px;
+				margin: 0;
+				opacity: 0.4;
+			}
+
+			a, a:link, a:active, a:hover {
+				color: #000;
+				text-decoration: underline;
+			}
+
+			#color:hover .cc {
+				font-size: 32px;
+				line-height: 32px;
+			}
+
+			::selection { opacity: 0; }
+			::-moz-selection { opacity: 0; }
+
+			@keyframes copied {
+				0% { opacity: 0.8 }
+				100% { opacity: 0 }
+			}
+
+			#copied {
+				position: absolute; margin: auto;
+				bottom: 24px; left: 0; right: 0;
+				opacity: 0.8;
+				animation-name: copied;
+				animation-delay: 300ms;
+				animation-duration: 300ms;
+				animation-fill-mode: forwards;
+			}
+
+			#copyText {
+				position: absolute;
+				height: 0;
+				width: 0;
+				border: none;
+				padding: 1px;
+				line-height: 0;
+				margin: 0;
+				opacity: 0;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="header">
+			<h1>
+				Material Design:
+				<a href="https://material.io/tools/color">Colours</a>,
+				<a href="https://material.io/design/motion/speed.html#easing">Easing</a>,
+				<a href="https://material.io/tools/icons">Icons</a>,
+				<a href="https://fonts.google.com">Fonts</a>,
+				<a href="https://developers.google.com/speed/libraries/">Libraries</a>
+			</h1>
+		</div>
+		<div id="color" style="background-color: #ACDACD"><div class="center"><div><p class="l">Light Aquamarine<br><span class="cc">#ACDACD</span></p></div></div></div>
+		<div id="color" style="background-color: #8CC8CC"><div class="center"><div><p class="l">Playful Blue<br><span class="cc">#8CC8CC</span></p></div></div></div>
+		<div id="color" style="background-color: #F0B4B4"><div class="center"><div><p class="l">Pastel Pink<br><span class="cc">#F0B4B4</span></p></div></div></div>
+		<div id="color" style="background-color: #FF8C8C"><div class="center"><div><p class="l">Cute Salmon<br><span class="cc">#FF8C8C</span></p></div></div></div>
+		<div id="color" style="background-color: #E91E63"><div class="center"><div><p class="l">Material Pink<br><span class="cc">#E91E63</span></p></div></div></div>
+		<div id="color" style="background-color: #1D1F21"><div class="center"><div><p class="l">Tomorrow Grey<br><span class="cc">#1D1F21</span></p></div></div></div>
+		<textarea id="copyText"></textarea>
+		<script type="text/javascript">
+			var colors = document.querySelectorAll("#color");
+
+			function copyText(text) {
+				document.querySelector("#copyText").value = text;
+				document.querySelector("#copyText").select();
+				document.execCommand("copy");
+				console.log("Copied: "+text);
+			}
+
+			for (var i=0; i<colors.length; i++) {
+				colors[i].onclick = function() {
+					copyText(this.querySelector(".cc").innerHTML.substring(1));
+			    	if (this.querySelectorAll("#copied").length>=1) {
+			    		for (var j=0; j<this.querySelectorAll(".cc").length; j++) {
+			    			this.querySelector("#copied").remove(0);
+			    		}
+			    	}
+					this.querySelector("p").innerHTML += '<span id="copied">Copied!</span>';
+				};
+			}
+		</script>
+	</body>
+</html>

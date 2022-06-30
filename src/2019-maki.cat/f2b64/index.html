@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>File to Base64</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:400" rel="stylesheet">
+		<style type="text/css">
+			* {
+				margin: 0;
+				padding: 0;
+				transition: all 300ms cubic-bezier(0.4, 0.0, 0.2, 1);
+			}
+
+			html {
+				cursor: pointer;
+			}
+
+			body {
+				font-family: "Roboto", sans-serif;
+				text-align: center;
+			}
+
+			.fixed {
+				position: fixed; margin: auto;
+				top: 0; left: 0; right: 0; bottom: 0;
+			}
+
+			#intro {
+				width: 400px;
+				height: 230px;
+				opacity: 0.3;
+			}
+
+			h1 {
+				font-weight: 400;
+				font-size: 32px;
+			}
+
+			h2 {
+				font-weight: 400;
+			}
+
+			#intro svg {
+				width: 150px;
+				height: 150px;
+			}
+
+			::selection {
+				color: none;
+				background: none;
+			}
+
+			#output {
+				width: 400px;
+				height: 250px;
+				cursor: initial;
+			}
+
+			#output>h2 {
+				text-overflow: ellipsis;
+				white-space: nowrap;
+				overflow: hidden;
+				opacity: 0.6;
+			}
+
+			#output>textarea {
+				width: 250px;
+				height: 150px;
+				padding: 10px 15px;
+				border: solid 1px rgba(0,0,0,0.3);
+				border-radius: 10px;
+				font-family: "Roboto";
+				font-size: 12px;
+				background-color: transparent;
+				resize: none;
+				overflow: hidden;
+				transition: all 150ms cubic-bezier(0.4, 0.0, 0.2, 1);
+			}
+
+			.selected {
+				opacity: 0.6;
+				transform: scale(0.94);
+			}
+
+			#output>p{
+				margin-bottom: 20px;
+				opacity: 0.6;
+			}
+
+			textarea:focus {
+				outline: none;
+			}
+
+			#loading {
+				height: 36px;
+				top: initial;
+				bottom: 60px;
+				opacity: 0.6;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="intro" class="fixed">
+			<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M6 2c-1.1 0-1.99.9-1.99 2L4 20c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6H6zm7 7V3.5L18.5 9H13z"/></svg>
+			<h1>drag and drop<br>your file here</h1>
+		</div>
+		<div id="output" class="fixed" style="display: none; opacity: 1;"></div>
+		<div id="loading" class="fixed" style="opacity: 0;"><h1>loading...</h1></div>
+		<script type="text/javascript">
+			var loading = document.getElementById("loading");
+			function setLoading(bool) {
+				if (bool) {
+					loading.style.opacity = "0.6";
+				} else {
+					loading.style.opacity = "0";
+				}
+			} 
+
+			var FileSelector = function(callback) {
+				document.body.style.backgroundColor = "rgba(0,0,0,0)";
+
+				// aesthetics
+				this.dragover = false;
+				this.setDragover = (bool)=>{
+					this.dragover = bool;
+					if (bool) {
+						document.body.style.backgroundColor = "rgba(0,0,0,0.2)";
+					} else {
+						document.body.style.backgroundColor = "rgba(0,0,0,0)";
+					}
+				}
+
+				document.addEventListener("dragover", e=>{
+					e.preventDefault();
+					e.stopPropagation();
+					if (this.dragover) return;
+					this.setDragover(true);
+				});
+
+				document.addEventListener("dragleave", e=>{
+					e.preventDefault();
+					e.stopPropagation();
+					if (!this.dragover) return;
+					this.setDragover(false);
+				});
+
+
+				// actual events yay
+				this.loadFiles = files=>{
+					if (files.length <= 0)
+						return this.setDragover(false);
+
+					setLoading(true);
+					this.setDragover(false);
+					setTimeout(()=>{
+						callback(files);
+						//this.element.remove();
+					}, 300);
+				}
+
+				document.addEventListener("click", e=>{
+					let allow = true;
+					Array.from(output.children).forEach(element=>{
+						if (element == e.target) allow = false;
+					});
+					if (output == e.target) allow = false;
+					if (!allow) return;
+
+					let input = document.createElement("input");
+					input.type = "file"; input.click();
+					input.addEventListener("change", e=>{
+						this.loadFiles(input.files);
+					})
+
+				});
+
+				document.addEventListener("paste", e=>{
+					e.stopPropagation(); e.preventDefault();
+					this.loadFiles(e.clipboardData.files);
+				});
+
+				document.addEventListener("drop", e=>{
+					e.stopPropagation(); e.preventDefault();	
+					this.loadFiles(e.dataTransfer.files);
+				});
+
+				//document.body.appendChild(this.element);
+			}
+
+			var intro = document.getElementById("intro");
+			var output = document.getElementById("output");
+			new FileSelector(files=>{
+				let file = files[0];
+				output.style.display = "block";
+
+				let textarea = document.createElement("textarea");
+				textarea.addEventListener("click", ()=>{
+					textarea.select();
+					document.execCommand("copy");
+					textarea.className = "selected";
+					setTimeout(()=>{
+						textarea.className = "";
+					}, 150);
+				});
+
+				let reader = new FileReader();
+				reader.onload = e=>{
+					textarea.value = e.target.result;
+
+					let outSize = "";
+					let size = file.size/1024/1024;
+					if (size < 1) {
+						outSize = (size*1024).toFixed(2)+" KB";
+					} else {
+						outSize = size.toFixed(2)+" MB";
+					}
+
+					output.innerHTML = `<h2>${file.name}</h2><p>${outSize}</p>`
+					output.appendChild(textarea);
+					
+
+					intro.style.opacity = "0";
+					output.style.opacity = "1";
+					setLoading(false);
+				}
+
+				reader.readAsDataURL(file);
+			});
+
+		</script>
+	</body>
+</html>

@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Maki</title>
+		<meta name="author" content="Maki">
+		<meta name="description" content="I'm not very good at writing so I'm not going to write a description for my site.">
+		<meta property="og:title" content="Maki">
+		<meta property="og:locale" content="en_US">
+		<meta property="og:url" content="https://maki.cat">
+		<meta property="og:image" content="https://maki.cat/icon.png">
+		<meta property="og:description" content="I'm not very good at writing so I'm not going to write a description for my site.">
+		<meta name="p:domain_verify" content="d2c855573b0640a5bfecd17168f590e0"/>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:300,400|Roboto+Mono" rel="stylesheet">
+		<a rel="me" href="https://mastodon.social/@Makitsune" style="display: none;"></a>
+		<script type="text/javascript" src="maki-logo.js"></script>
+		<style type="text/css">
+			body {
+				margin: 0; padding: 0;
+				width: 100%; height: 100%;
+				overflow-x: hidden;
+				font-family: "Roboto", sans-serif;
+			}
+
+			::selection {
+				background: rgba(29,31,33,0.2);
+			}
+
+			body::-webkit-scrollbar {
+			    width: 12px;
+			}
+			 
+			body::-webkit-scrollbar-track {
+			    background-color: #1d1f21;
+			}
+			 
+			body::-webkit-scrollbar-thumb {
+			  	background-color: rgba(255,255,255,0.2);
+			}
+
+			img {
+				border-radius: 8px;
+			}
+
+			#logo, #screen-cover, #who, #starter, #kyouko-desu, a img, a svg, #starter h1 {
+				animation-delay: 0.8s;
+				animation-duration: 1.8s;
+				animation-fill-mode: forwards;
+				animation-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+				transition-timing-function: cubic-bezier(0.0, 0.0, 0.2, 1);
+			}
+
+			#screen-cover {
+				position: fixed; margin: auto;
+				top: 0; left: 0; right: 0; bottom: 0;
+				background-color: #1d1f21;
+				z-index: 1000;
+  				animation-name: intro-cover;
+			}
+
+			@keyframes intro-cover {
+				70% {opacity: 1;}
+				100% {opacity: 0;}
+			}
+
+			#logo {
+				position: fixed; margin: auto;
+				top: 0; left: 0; bottom: 0; right: 0;
+				height: 255px;
+				fill: #fff;
+				opacity: 1;
+  				animation-name: intro-logo;
+  				z-index: 2000;
+			}
+
+			#logo svg {
+				display: block;
+				margin: auto;
+				transition: transform 0.2s;
+				height: 100%;
+				stroke: #ffffff;
+			}
+
+			@keyframes intro-logo {
+			  	70% {
+			  		height: 255px;
+			  		top: 0; left: 0; bottom: 0; right: 0;
+			  		z-index: 2000;
+			  	}
+			  	100% {
+			  		transform: rotate(0deg);
+			  		height: 100px;
+			  		top: calc(100vh - 200px);
+			  		left: calc(100vw - 350px); 
+			  		bottom: 50px; right: 50px;
+			  		z-index: 1000;
+			  	}
+			}
+
+			#who {
+				position: absolute; margin: auto;
+				top: 100vh; left: 100px;
+				width: 510px;
+				animation-name: intro;
+				z-index: 1500;
+				opacity: 0;
+				transform-origin: top left;
+				background-color: #fff;
+				padding: 50px;
+				border-radius: 50px;
+				text-align: center;
+			}
+			
+			#starter {
+				position: absolute; margin: auto;
+				bottom: 100px; left: 100px;
+				text-align: left;
+				width: 320px;
+				animation-name: intro;
+				z-index: 1500;
+				opacity: 0;
+				transform-origin: bottom left;
+				padding: 0;
+				color: #FFF;
+			}
+			
+			#starter h1 {
+				line-height: 28px;
+				transition: all 0.2s;
+				width: auto;
+			}
+			
+			#starter h1:hover {
+				padding-left: 12px;
+			}
+
+			@keyframes intro {
+				70% {opacity: 0; transform: rotate(5deg); }
+				100% {opacity: 1; transform: rotate(0deg); }
+			}
+
+			p {
+				font-size: 16px;
+				line-height: 20px;
+				margin: 0;
+				font-family: "Roboto", sans-serif;
+				font-weight: 400;
+			}
+
+			h1 {
+				font-size: 32px;
+				line-height: 36px;
+				margin: 0;
+				font-family: "Roboto", monospace;
+				font-weight: 300;
+				letter-spacing: 0;
+				margin-bottom: 16px;
+				text-transform: lowercase;		
+			}
+			
+			h2 {
+				font-size: 24px;
+				font-family: "Roboto", sans-serif;
+				font-weight: 400;
+				letter-spacing: 0;
+				line-height: 12px;
+			}
+
+			.space { margin-top: 100px; }
+			.half-space { margin-top: 50px; }
+
+			a,a:link,a:visited,a:hover {
+				color: #E91E63; /* #ffd1dc */
+				text-decoration: none;
+			}
+
+			#social {
+				display: block;
+				margin: auto;
+				text-align: left;
+			}
+
+			#social svg, #social img {
+				margin: 0 8px;
+				fill: #FFF;
+				height: 32px;
+			}
+
+			#kyouko-desu { transition: transform 0.2s; }
+			#kyouko-desu:hover { transform: rotate(5deg); }
+
+			#projects-table div { transition: transform 0.2s; }
+			#projects-table div:hover { transform: scale(1.1); }
+
+			#fav-albums img { transition: transform 0.2s; }
+			#fav-albums img:hover { transform: scale(1.05); }
+
+			#steam-games img { transition: transform 0.2s; }
+			#steam-games img:hover { transform: scale(1.05); }
+
+			#insta-posts td { transition: transform 0.2s; }
+			#insta-posts td:hover { transform: scale(1.1); }
+
+			#git-projects-div div { transition: transform 0.2s; }
+			#git-projects-div div:hover { transform: scale(1.05); }
+
+			#projects-table td {
+				width: 234px;
+				height: 117px;
+				vertical-align: middle;
+			}
+
+			#projects-table div, #projects-table img {
+				border-radius: 16px;
+				width: 234px;
+				height: 117px;
+			}
+
+			#social a svg { transition: transform 0.2s; }
+			#social a svg:hover { transform: scale(1.2); }
+			#social a img { transition: transform 0.2s; }
+			#social a img:hover { transform: scale(1.2); }
+
+			.cringe {
+				font-size: 20px;
+			}
+
+			#browser-too-small {
+				position: fixed; margin: auto;
+				top: 0; left: 0; right: 0; bottom: 0;
+				background-color: #1d1f21;
+				z-index: 9999;
+				width: 100%; height: 100%;
+				text-align: center;
+				color: #fff;
+				display: none;
+			}
+
+			@media (max-width: 620px) {
+				#browser-too-small { display: block; }
+			}
+			
+			#quote p {
+				opacity: 0.6;
+				cursor: pointer;
+				font-style: italic;
+				text-align: center;
+			}
+			
+			#page-views {
+				width: 100%;
+				height: 20px;
+				border: none;
+				overflow: hidden;
+				opacity: 0.6;
+			}
+			
+			#icon-space {
+				margin-top: 8px;
+			}
+
+			#background, #background-cover {
+				margin: auto; position: fixed;
+				top: 0; left: 0; right: 0; bottom: 0;
+			}
+
+			#background {
+				/* background: no-repeat center center fixed url("/bg");  */
+				background-repeat: no-repeat;
+				background-position: center;
+				background-size: cover;
+				image-rendering: pixelated;
+				image-rendering: crisp-edges;
+				image-rendering: optimize-contrast;
+				image-rendering: optimizeSpeed;
+				image-rendering: -moz-crisp-edges;
+                image-rendering: -o-crisp-edges;
+			}
+
+			#background-cover { background-color: #1d1f21; opacity: 0.8; }
+
+			#chrome_actually_allows_margin-bottom_on_absolutely_positioned_divs {
+				margin-bottom: -150px;
+				height: 150px;
+			}
+			
+			#starter a, #starter a:link, #starter a:visited, #starter a:hover { color: #FFF; /* #ffd1dc */ }
+			#quote, #quote:link, #quote:visited, #quote:hover { color: #000; }
+
+			table {
+				width: 100%;
+			}
+
+			#insta-posts div {
+				width: 100%;
+				height: 150px;
+				border-radius: 8px;
+				background-size: cover;
+				background-position: center center;
+			}
+			
+			#insta-posts td {
+				padding-bottom: 4px;
+			}
+
+			.center {
+				width: 100%; height: 100%;
+				text-align: center;
+				display: table;
+			}
+
+			.center>div {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			#warning {
+				position: fixed; margin: auto;
+				top: 0; left: 0; right: 0;
+				min-height: 32px;
+				background-color: #F44336;
+				z-index: 9999999;
+			}
+
+			#warning p {
+				font-size: 16px;
+				line-height: 18px;
+				color: #FFF;
+				text-align: center;
+				margin: 6px;
+			}
+
+			.center {
+				text-align: center;
+			}
+
+			#term {
+				position: fixed; margin: auto;
+				top: 80px; right: 80px; left: 55vw;
+
+				width: 40vw;
+				height: 45vh;
+				min-width: 550px;
+				min-height: 350px;
+
+				border-radius: 8px;
+				z-index: 99999999;
+				background-color: rgba(0,0,0,0.5);
+			}
+
+			#term-rel {
+				width: 100%; height: 100%;
+				position: relative;
+			}
+
+			#term p {
+				font-family: "Roboto Mono";
+				color: #fff;
+				width: 100%;
+				height: calc(100% - 70px);
+				padding: 15px 20px;
+				padding-bottom: 55px;
+				text-transform: lowercase;
+			}
+
+			#term p::-webkit-scrollbar { width: 0; }
+
+			#term input {
+				font-family: "Roboto Mono";
+				position: absolute; margin: auto;
+				left: 0; right: 0; bottom: 0;
+				width: calc(100% - 40px);
+				height: 40px;
+				background-color: rgba(0,0,0,0.4);
+				border: none;
+				border-radius: 0 0 8px 8px;
+				color: #fff;
+				font-size: 16px;
+				padding: 0 20px;
+			}
+
+			#term input::selection {
+				background: rgba(255,255,255,0.2);
+			}
+
+			input {
+				outline: none;
+			}
+
+			.term-hide {
+				right: 0 !important;
+				left: calc(100vw - 50px) !important;
+				opacity: 0.4 !important;
+				transition: opacity 200ms cubic-bezier(0.4, 0.0, 0.2, 1);
+			}
+
+			.term-hide:hover {
+				opacity: 1 !important;
+			}
+
+			.git-repo {
+				display: inline-block;
+				width: 64px;
+				height: 64px;
+				background-size: 100% 100%;
+				margin: 2px;
+				border-radius: 8px;
+			}
+
+			.cute-input {
+				padding: 8px 16px;
+				text-align: center;
+				border-radius: 100px;
+				font-size: 16px;
+				font-family: "Roboto", sans-serif;
+				border: none;
+				background-color: #E91E63;
+				color: #fff;
+			}
+
+			.cute-input::selection  {
+				background-color: rgba(0,0,0,0.4);
+			}
+		</style>
+	</head>
+	<body onload="window.scrollTo(0,0);">
+		<!-- <div id="warning"><p>I really really love this site that I've made but I think it's about time I change it.</p></div> -->
+		<div id="background"></div>
+		<script>
+			const backgrounds = [
+				"boat.gif", "busy_train.gif", "calm_train.gif", "deer.gif", "fish_pond.gif", "fish_shop.gif",
+				"girls_waiting.gif", "girls.gif", "home.gif", "pets.gif", "rainbow_dog.gif", "river.gif",
+				"sakura.gif", "shore.gif", "take_away.gif"
+			];
+			document.getElementById("background").style.backgroundImage = "url(\"bg/" + backgrounds[Math.floor(Math.random() * backgrounds.length)] + "\")"
+		</script>
+		<div id="background-cover"></div>
+		<div id="browser-too-small">
+			<div class="center"><div><p>Your browser width<br>is too small.</p></div></div>
+		</div>
+		<div id="screen-cover"></div>
+		<div id="logo"></div>
+		<script type="text/javascript">
+			new MakiLogo(document.getElementById("logo")).intro();
+			const logoEl = document.getElementById("logo")
+			setInterval(()=>{
+				logoEl.style.opacity = logoEl.style.opacity == "2" ? "1" : "2";
+			}, 100)
+		</script>
+		<div id="starter">
+			<a href="#who"><h1>who</h1></a>
+			<a href="#projects"><h1>projects</h1></a>
+			<a href="#git-projects"><h1>git projects</h1></a>
+			<a href="#dumb-things"><h1>dumb things</h1></a>
+			<a href="#my-interests"><h1>my interests</h1></a>
+			<div class="space" style="margin-top: 48px;"></div>
+			<div id="social">
+				<a target="_blank" href="https://discord.com/users/72139729285427200"><svg viewBox="0 -10 116.8 104"><path d="M102.4,10.5C88-0.3,74.3,0,74.3,0l-1.4,1.6c17,5.2,24.9,12.7,24.9,12.7C87.4,8.6,77.2,5.8,67.7,4.7c-7.2-0.8-14.1-0.6-20.2,0.2c-0.6,0-1.1,0.1-1.7,0.2c-3.5,0.3-12,1.6-22.7,6.3c-3.7,1.7-5.9,2.9-5.9,2.9s8.3-7.9,26.3-13.1l-1-1.2c0,0-13.7-0.3-28.1,10.5c0,0-14.4,26.1-14.4,58.3c0,0,8.4,14.5,30.5,15.2c0,0,3.7-4.5,6.7-8.3c-12.7-3.8-17.5-11.8-17.5-11.8s1,0.7,2.8,1.7c0.1,0.1,0.2,0.2,0.4,0.3c0.3,0.2,0.6,0.3,0.9,0.5c2.5,1.4,5,2.5,7.3,3.4c4.1,1.6,9,3.2,14.7,4.3c7.5,1.4,16.3,1.9,25.9,0.1c4.7-0.8,9.5-2.2,14.5-4.3c3.5-1.3,7.4-3.2,11.5-5.9c0,0-5,8.2-18.1,11.9c3,3.8,6.6,8.1,6.6,8.1c22.1-0.7,30.6-15.2,30.6-15.2C116.8,36.6,102.4,10.5,102.4,10.5z M39.7,59.5c-5.6,0-10.2-5-10.2-11.1S34,37.3,39.7,37.3c5.7,0,10.3,5,10.2,11.1C49.9,54.5,45.4,59.5,39.7,59.5z M76.2,59.5c-5.6,0-10.2-5-10.2-11.1s4.5-11.1,10.2-11.1c5.7,0,10.2,5,10.2,11.1S81.9,59.5,76.2,59.5z"></path></svg></a>
+				<a target="_blank" href="https://github.com/makifoxgirl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 120.7754 117.7934"><path d="M60.6088.4311a60.3942,60.3942,0,0,0-19.0908,117.69c3.0176.5586,4.126-1.31,4.126-2.9053,0-1.4394-.0557-6.1972-.082-11.2431-16.8,3.6533-20.3448-7.125-20.3448-7.125-2.747-6.98-6.705-8.836-6.705-8.836-5.4795-3.748.413-3.6709.413-3.6709,6.0635.4258,9.2569,6.2237,9.2569,6.2237,5.3857,9.2314,14.1269,6.5625,17.5732,5.02.542-3.9024,2.1065-6.5674,3.834-8.0752-13.4131-1.5264-27.5137-6.7051-27.5137-29.8438a23.37,23.37,0,0,1,6.2227-16.2089c-.627-1.5215-2.6943-7.6631.585-15.9815,0,0,5.0712-1.6221,16.61,6.1909a57.2624,57.2624,0,0,1,30.2432,0c11.5263-7.813,16.59-6.1909,16.59-6.1909,3.2871,8.3184,1.22,14.46.5928,15.9815a23.3244,23.3244,0,0,1,6.2148,16.2089c0,23.1944-14.1269,28.3008-27.5742,29.7959,2.166,1.8741,4.0957,5.5489,4.0957,11.1827,0,8.08-.0693,14.583-.0693,16.5722,0,1.6074,1.0869,3.49,4.1474,2.8975A60.3963,60.3963,0,0,0,60.6088.4311Z" transform="translate(-0.2211 -0.4311)" fill-rule="evenodd"/></svg></a>
+				<!-- <a target="_blank" href="https://maki.cat/gitlab"><svg viewBox="0 0 500 500"><path d="M250,0C111.9,0,0,111.9,0,250s111.9,250,250,250s250-111.9,250-250S388.1,0,250,0z M443.7,308.5L250,449.2H250L56.3,308.5c-5.4-3.9-7.6-10.8-5.5-17.1L117.5,86c2.4-7,12.3-7,14.5,0l44.3,136.5h147.2L368,86c2.3-7,12.2-7,14.5,0l66.8,205.4C451.3,297.7,449.1,304.6,443.7,308.5z"/></svg></a> -->
+				<a target="_blank" href="https://twitter.com/makifoxgirl"><svg viewBox="0 0 24 24"><path d="M24 4.557c-.883.392-1.832.656-2.828.775 1.017-.609 1.798-1.574 2.165-2.724-.951.564-2.005.974-3.127 1.195-.897-.957-2.178-1.555-3.594-1.555-3.179 0-5.515 2.966-4.797 6.045-4.091-.205-7.719-2.165-10.148-5.144-1.29 2.213-.669 5.108 1.523 6.574-.806-.026-1.566-.247-2.229-.616-.054 2.281 1.581 4.415 3.949 4.89-.693.188-1.452.232-2.224.084.626 1.956 2.444 3.379 4.6 3.419-2.07 1.623-4.678 2.348-7.29 2.04 2.179 1.397 4.768 2.212 7.548 2.212 9.142 0 14.307-7.721 13.995-14.646.962-.695 1.797-1.562 2.457-2.549z"/></svg></a>
+				<a href="javascript:xmppPopup()"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 176.5 181.4"><path d="M46.3 151.7v1.6c4.8-.6 9.5-1.5 14.1-2.6 9.3-2.1 18.7-5.4 27.8-9.8 3 1.5 5.9 2.8 8.9 4.1 10.9 5 22.7 8.3 35.2 9.3V151.9c-12.1-3-23.1-9-32.8-16.8 40.7-23.5 74.2-66.3 75.3-107.9L152 36l-7.1 2.4-22.9 6.7c.1 1.3.1 2.6.1 4 0 24.6-12.5 54.7-33.3 76.2-20.3-21.4-32.4-51-32.4-75.2 0-1.3 0-2.6.1-4L34 39.5l-7.5-2.7-24.7-9.7c1.1 41.3 35 84.2 75.8 108.2-9.3 7.2-19.8 12.7-31.3 15.6v.8z"/></svg></a>
+				<script type="text/javascript">
+					var Popup = function(html, w, h) {
+						w = w || 400;
+						h = h || 250;
+
+						this.setStyles = (el,styles)=>
+							Object.keys(styles).forEach(key=>
+								el.style[key] = styles[key]);
+
+						this.close = ()=>{
+							this.element.style.opacity = "0";
+							setTimeout(()=>{
+								this.element.remove();
+								//this = undefined;
+							}, 200);
+						}
+						
+						// main element
+						this.element = document.createElement("div");
+						this.setStyles(this.element, {
+							position: "fixed", margin: "auto",
+							top: "0", left: "0", bottom: "0", right: "0",
+							backgroundColor: "rgba(0,0,0,0.8)",
+							transition: "200ms all cubic-bezier(0.0, 0.0, 0.2, 1)",
+							zIndex: "99999999999"
+						});
+
+						this.element.addEventListener("click", e=>{
+							if (e.target != this.element) return;
+							this.close();
+						});
+
+						// content table
+						this.content = document.createElement("div");
+						this.setStyles(this.content, {
+							position: "fixed", margin: "auto",
+							top: "0", left: "0", bottom: "0", right: "0",
+							backgroundColor: "#ffffff",
+							width: w+"px", height: h+"px",
+							borderRadius: "8px", textAlign: "center",
+							display: "table",
+						});
+
+						// content inner (table-cell)
+						this.contentInner = document.createElement("div");
+						this.setStyles(this.contentInner, {
+							display: "table-cell",
+							verticalAlign: "middle",
+						});
+						this.contentInner.innerHTML = html;
+
+						// close button
+						this.closeButton = document.createElement("div");
+						this.setStyles(this.closeButton, {
+							position: "fixed", margin: "auto",
+							top: "0", left: (w-36)+"px",
+							bottom: (h+48)+"px", right: "0",
+							width: "36px", height: "36px", fill: "#fff",
+							opacity: "0.4", cursor: "pointer",
+						});
+						this.closeButton.innerHTML = '<svg width="36" height="36" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>';
+						this.closeButton.addEventListener("click", ()=>this.close());
+
+						// spawning the element
+						this.content.appendChild(this.contentInner);
+						this.element.appendChild(this.content);
+						this.element.appendChild(this.closeButton);
+						
+						this.element.style.opacity = "0";
+						document.body.appendChild(this.element);
+						setTimeout(()=>{this.element.style.opacity="1"}, 10);
+					}
+
+					function xmppPopup() {
+						//prompt('Talk to me over XMPP.\nUse OTR and SSL please!\nLearn more: https://cock.li/xmpp','maki@maki.cat')
+						new Popup("<h2>Talk to me over XMPP!</h2><p>Please use OTR and SSL<br>Get started with <a target='_blank' href='https://cock.li/xmpp'>cock.li</a></p><br><input class='cute-input' type='text' value='maki@maki.cat' disabled/>");
+					}
+				</script>
+				<!-- <a href="javascript:prompt('Use OTR and SSL please. Thank you!','maki@maki.cat')"><svg viewBox="-1 -1 13 13"><path fill-rule="evenodd" d="M0,0L1,0L1,1L2,1L2,2L3,2L3,1L4,1L4,0L5,0L5,1L4,1L4,2L3,2L3,3L4,3L4,4L5,4L5,5L4,5L4,4L3,4L3,3L2,3L2,4L1,4L1,5L0,5L0,4L1,4L1,3L2,3L2,2L1,2L1,1L0,1ZM6,5L6,0L7,0L7,1L8,1L8,2L9,2L9,1L10,1L10,0L11,0L11,5L10,5L10,2L9,2L9,3L8,3L8,2L7,2L7,5ZM0,6L5,6L5,9L1,9L1,11L0,11ZM1,7L4,7L4,8L1,8ZM6,6L11,6L11,9L7,9L7,11L6,11ZM7,7L10,7L10,8L7,8Z"/></svg></a>-->
+				<a target="_blank" href="https://soundcloud.com/makifoxgirl"><svg viewBox="0 0 24 24"><path d="M7 17.939h-1v-8.068c.308-.231.639-.429 1-.566v8.634zm3 0h1v-9.224c-.229.265-.443.548-.621.857l-.379-.184v8.551zm-2 0h1v-8.848c-.508-.079-.623-.05-1-.01v8.858zm-4 0h1v-7.02c-.312.458-.555.971-.692 1.535l-.308-.182v5.667zm-3-5.25c-.606.547-1 1.354-1 2.268 0 .914.394 1.721 1 2.268v-4.536zm18.879-.671c-.204-2.837-2.404-5.079-5.117-5.079-1.022 0-1.964.328-2.762.877v10.123h9.089c1.607 0 2.911-1.393 2.911-3.106 0-2.233-2.168-3.772-4.121-2.815zm-16.879-.027c-.302-.024-.526-.03-1 .122v5.689c.446.143.636.138 1 .138v-5.949z"/></svg></a>
+				<div id="icon-space"></div>
+				<a target="_blank" href="https://sketchfab.com/makifoxgirl"><svg viewBox="0 0 2000 2000"><path d="M999.92,0C447.6442,0,0,447.72418,0,1000S447.6442,2000,999.92,2000s999.92-447.72424,999.92-1000C1999.92,447.72418,1552.27588,0,999.92,0Zm-86.873,1595.07239L481.96146,1346.21228V844.17242l431.08548,232.86139Zm76.79388-636.189L479.80161,688.50494,989.84082,393.96848,1499.96,688.50494Zm510.43921,388.289-429.4856,247.98023V1079.03381L1500.28,846.97235Z"/></svg></a>
+				<a target="_blank" href="https://github.com/makifoxgirl"><svg viewBox="0 0 27 24"><path d="M24 12c0 6.627-5.373 12-12 12-5.782 0-10.608-4.091-11.744-9.537l4.764 2.003c.285 1.441 1.56 2.547 3.115 2.534 1.723-.017 3.105-1.414 3.116-3.129l.007-.003 3.602-2.684c2.304.024 4.14-1.833 4.14-4.091 0-2.26-1.834-4.093-4.093-4.093-2.234 0-4.048 1.791-4.09 4.015l-2.64 3.693c-.668-.014-1.269.169-1.791.51l-6.294-2.646c.708-5.953 5.765-10.572 11.908-10.572 6.627 0 12 5.373 12 12zm-16.577 5.477l-1.544-.649c.38.858 1.236 1.461 2.249 1.457 1.346-.012 2.422-1.11 2.41-2.455-.012-1.329-1.104-2.41-2.432-2.41-.287.001-.57.05-.86.16l1.542.648c.898.378 1.319 1.411.941 2.308-.376.896-1.409 1.318-2.306.941zm7.484-5.602c-1.533 0-2.781-1.249-2.781-2.782 0-1.534 1.248-2.782 2.781-2.782 1.534 0 2.781 1.248 2.781 2.782 0 1.533-1.247 2.782-2.781 2.782zm0-.682c1.159 0 2.1-.942 2.1-2.101 0-1.158-.94-2.102-2.1-2.102s-2.102.943-2.102 2.102c.001 1.159.943 2.101 2.102 2.101z"/></svg></a>
+				<a target="_blank" href="https://www.instagram.com/makifoxgirl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -3 28 28"><path d="M11.984 16.815c2.596 0 4.706-2.111 4.706-4.707 0-1.409-.623-2.674-1.606-3.538-.346-.303-.735-.556-1.158-.748-.593-.27-1.249-.421-1.941-.421s-1.349.151-1.941.421c-.424.194-.814.447-1.158.749-.985.864-1.608 2.129-1.608 3.538 0 2.595 2.112 4.706 4.706 4.706zm.016-8.184c1.921 0 3.479 1.557 3.479 3.478 0 1.921-1.558 3.479-3.479 3.479s-3.479-1.557-3.479-3.479c0-1.921 1.558-3.478 3.479-3.478zm5.223.369h6.777v10.278c0 2.608-2.114 4.722-4.722 4.722h-14.493c-2.608 0-4.785-2.114-4.785-4.722v-10.278h6.747c-.544.913-.872 1.969-.872 3.109 0 3.374 2.735 6.109 6.109 6.109s6.109-2.735 6.109-6.109c.001-1.14-.327-2.196-.87-3.109zm2.055-9h-12.278v5h-1v-5h-1v5h-1v-4.923c-.346.057-.682.143-1 .27v4.653h-1v-4.102c-1.202.857-2 2.246-2 3.824v3.278h7.473c1.167-1.282 2.798-2 4.511-2 1.722 0 3.351.725 4.511 2h7.505v-3.278c0-2.608-2.114-4.722-4.722-4.722zm2.722 5.265c0 .406-.333.735-.745.735h-2.511c-.411 0-.744-.329-.744-.735v-2.53c0-.406.333-.735.744-.735h2.511c.412 0 .745.329.745.735v2.53z"/></svg></a>
+				<a target="_blank" href="https://www.youtube.com/channel/UCF6nhcVn_1aKT3GsNRwnBKg"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96"><path d="M94.98,28.84c0,0-0.94-6.6-3.81-9.5c-3.64-3.81-7.72-3.83-9.59-4.05c-13.4-0.97-33.52-0.85-33.52-0.85s-20.12-0.12-33.52,0.85c-1.87,0.22-5.95,0.24-9.59,4.05c-2.87,2.9-3.81,9.5-3.81,9.5S0.18,36.58,0,44.33v7.26c0.18,7.75,1.14,15.49,1.14,15.49s0.93,6.6,3.81,9.5c3.64,3.81,8.43,3.69,10.56,4.09c7.53,0.72,31.7,0.89,32.54,0.9c0.01,0,20.14,0.03,33.54-0.94c1.87-0.22,5.95-0.24,9.59-4.05c2.87-2.9,3.81-9.5,3.81-9.5s0.96-7.75,1.02-15.49v-7.26C95.94,36.58,94.98,28.84,94.98,28.84z M38.28,61.41v-27l25.74,13.5L38.28,61.41z"/></svg></a>
+				<a target="_blank" href="mailto:mxmcube@gmail.com?subject=Hey Maki!"><svg viewBox="0 -1 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/><path d="M0 0h24v24H0z" fill="none"/></svg></path></svg></a>
+				<!-- <a target="_blank" href="https://maki.cat/reddit"><svg viewBox="0 0 24 24"><path d="M24 11.779c0-1.459-1.192-2.645-2.657-2.645-.715 0-1.363.286-1.84.746-1.81-1.191-4.259-1.949-6.971-2.046l1.483-4.669 4.016.941-.006.058c0 1.193.975 2.163 2.174 2.163 1.198 0 2.172-.97 2.172-2.163s-.975-2.164-2.172-2.164c-.92 0-1.704.574-2.021 1.379l-4.329-1.015c-.189-.046-.381.063-.44.249l-1.654 5.207c-2.838.034-5.409.798-7.3 2.025-.474-.438-1.103-.712-1.799-.712-1.465 0-2.656 1.187-2.656 2.646 0 .97.533 1.811 1.317 2.271-.052.282-.086.567-.086.857 0 3.911 4.808 7.093 10.719 7.093s10.72-3.182 10.72-7.093c0-.274-.029-.544-.075-.81.832-.447 1.405-1.312 1.405-2.318zm-17.224 1.816c0-.868.71-1.575 1.582-1.575.872 0 1.581.707 1.581 1.575s-.709 1.574-1.581 1.574-1.582-.706-1.582-1.574zm9.061 4.669c-.797.793-2.048 1.179-3.824 1.179l-.013-.003-.013.003c-1.777 0-3.028-.386-3.824-1.179-.145-.144-.145-.379 0-.523.145-.145.381-.145.526 0 .65.647 1.729.961 3.298.961l.013.003.013-.003c1.569 0 2.648-.315 3.298-.962.145-.145.381-.144.526 0 .145.145.145.379 0 .524zm-.189-3.095c-.872 0-1.581-.706-1.581-1.574 0-.868.709-1.575 1.581-1.575s1.581.707 1.581 1.575-.709 1.574-1.581 1.574z"/></svg></a> -->
+				<!-- <a target="_blank" href="https://maki.cat/tumblr"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024"><path class="cls-1" d="M702.77,799.58C680.56,823.3,629.09,839.4,583,840.16l-5.06,0c-154.84,0-188.47-113.84-188.47-180.29V475.26h-61a12.79,12.79,0,0,1-12.79-12.79V375.29a21.72,21.72,0,0,1,14.47-20.46c79.49-28,104.42-97.37,108.11-150.1,1-14.09,8.37-20.92,20.6-20.92h90.92a12.79,12.79,0,0,1,12.79,12.79V344.25H669A12.79,12.79,0,0,1,681.8,357V461.77A12.79,12.79,0,0,1,669,474.55H562.08V645.28c0,42.87,28.25,54.7,45.7,54.7,16.74-.4,33.22-5.5,41.48-8.82,6.13-2.46,11.52-4.09,16.34-2.88,4.49,1.12,7.44,4.3,9.43,10.1l28.21,82.4C705.53,787.38,707.5,794.53,702.77,799.58Z"/></svg></a> -->
+				<!-- <a target="_blank" href="https://maki.cat/github"><svg viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg></a> -->
+			</div>
+		</div>
+		<div id="who">
+			<!-- <h1><a href="#who">who</a> | <a href="#projects">projects</a> | <a href="#contact">contact</a></h1>
+
+			<div id="who" class="space"></div> -->
+			<table style="table-layout: fixed;" cellpadding="8px">
+				<tr><td width="50%">
+					<h1>who</h1>
+					<p>Hiya, I'm Maki and I make stuff.<br><br>I love everything technological, web-related, mathematical and artsy. I'm always learning new things that I have too many skills to explain briefly here.<br><br>I don't mind meeting new people! <i>Tho I can be pretty shy... aaaa!!</i></p>
+				</td><td width="50%" style="vertical-align: bottom;">
+					<img id="kyouko-desu" src="profile.gif" width="100%" style="border-radius: 50%;">
+				</td></tr>
+			</table>
+
+			<div class="space" id="projects"></div>
+			<h1>projects</h1>
+			<p style="text-align: center; margin-top: -12px;">I dont like this section of my site because<br>these aren't very impressive things.</p><br>
+			<table style="table-layout: fixed;" cellpadding="8px" id="projects-table">
+				<tr>
+					<td><a href="vrchat"><div><img src="makis-vrchat-stuff.png" width="100%"></div></a></td>
+					<td><a href="place"><div><img src="place.png" width="100%"></div></a></td>
+				</tr>
+				<tr>
+					<td><a href="splatoon-art"><div><img src="splatoon-art.png" width="100%"></div></a></td>
+				</tr>
+				<tr>
+					<!-- <td><a href="https://makixx.github.io/game-of-life"><div><img src="game-of-life.png" width="100%"></div></a></td> -->
+					<!-- <td><a href="https://vidmeme.cf"><div><img src="vidmeme.png" width="100%"></div></a></td> -->
+				</tr>
+			</table>
+
+			<div class="space" id="git-projects"></div>
+			<h1>git projects</h1>
+			<p style="text-align: center; margin-top: -12px;"><span style="text-decoration: line-through;">GitLab has project icons! Beat that GitHub!</span></p>
+			<p>okay, i stoped using gitlab...<br>everyone uses github ew...<br>ill fix this section someday...</p><br>
+			<!-- <div style="width: 100%" id="git-projects-div">
+				
+			</div><br> -->
+			<a href="https://github.com/makifoxgirl"><p class="center">view my github</p></a>
+			
+			<div class="space" id="dumb-things"></div>
+			<h1>dumb things</h1>
+			<table style="table-layout: fixed; margin: auto; margin-top: -6px; width: auto;" cellpadding="2px">
+				<tr>
+					<td width="50%" style="padding-right: 8px; text-align: right; vertical-align: top;">
+						<a href="https://itsmakixx.tumblr.com"><h2>lolita tumblr theme</h2></a>
+						<a href="https://github.com/makifoxgirl/new-tab"><h2>maki's new tab</h2></a>
+						<a href="savethebaby"><h2>save the baby</h2></a>
+						<a href="f2b64"><h2>file to base64</h2></a>
+						<a href="portfolio"><h2>wip portfolio</h2></a>
+					</td>
+					<td width="50%" style="padding-left: 8px; text-align: left; vertical-align: top;">
+						<a href="cc"><h2>colour codes</h2></a>
+						<a href="chat"><h2>maki chat</h2></a>
+						<a href="lifetime"><h2>lifetime</h2></a>
+						<a href="new"><h2>wip site</h2></a>
+					</td>
+				</tr>
+			</table>
+
+			<div class="space" id="my-interests"></div>
+			<h1>my interests </h1>
+			<p style="text-align: center; margin-top: -12px;">This is kinda cringy... ¯\_(ツ)_/¯</p><br>
+			<div style="text-align: left;">
+				<!-- <h1>fashion</h1>
+				<p>I really love fashion. Generally I'm interested in J-fashion and lolita but I tend to wear simple and cutesy type of clothes.<br><br>I'm also really obsessed with shoes! Ballet flats and wedges are my two most favourite.<br><br>If you want to know what my style is like, I recommend you check out my <a target="_blank" href="https://instagram.com/MakiXx_">Instagram</a>, <a target="_blank" href="https://storenvy.com/MakiXx">Storenvy</a> and <a target="_blank" href="https://makixx.tumblr.com">Tumblr</a>.</p><br> -->
+				
+				<h1>programming</h1>
+				<p>I can't be bothered to write information about myself. I'll fill this section out <i>someday...</i></p><br>
+	
+				<h1>art</h1>
+				<p>I love writing HTML and CSS, I'm so fluent at it too. I hate using libraries/framework and try to be as vanilla as possible. I've done lots of things like creating websites, dashboards, web apps, etc.<br><br>I also really enjoy doing vector art. Writing SVG or desiging in Illustrator is a thing I do often. I've also done lots of realism on paper (generally because of the stupid school curriculum).<br><br>I wish I was better at designing art for video games and cartoon drawing like anime. My favourite game artist is <a target="_blank" href="http://polytroncorporation.com">Phil Fish</a>! <3</p><br>
+				
+				<h1>music</h1>
+				<p>Making music isn't something I'm amazing at, however I think it's really fun to make my own sounds and <i>try</i> to compose stuff.<br><br>Some of my work is over at my <a target="_blank" href="https://soundcloud.com/makifoxgirl">Soundcloud</a> and <a target="_blank" href="https://clyp.it/user/qvtwu1m1">Clyp.it</a>. Some of my favourite artists are <a target="_blank" href="https://disasterpeace.com">Disasterpeace</a> and <a target="_blank" href="https://boen.bandcamp.com">bo en</a>.<br><br>Here are a few of my favourite albums:</p><br>
+				<div id="fav-albums">
+					<table style="table-layout: fixed;" cellpadding="2px">
+						<tr>
+							<td><a target="_blank" href="http://music.disasterpeace.com/album/fez-ost"><img width="100%" src="/albums/fez-ost.jpg"></a></td>
+							<td><a target="_blank" href="https://www.youtube.com/playlist?list=PLhNmXFGZxwl0uqMw5mgpqWKZtF7jpnYIz"><img width="100%" src="/albums/porter-worlds.jpg"></a></td>
+							<td><a target="_blank" href="http://music.disasterpeace.com/album/hyper-light-drifter"><img width="100%" src="/albums/hyper-light-drifter.jpg"></a></td>
+							<td><a target="_blank" href="https://boen.bandcamp.com/album/pale-machine-maru-123"><img width="100%" src="/albums/bo-en-pale-machine.jpg"></a></td>
+						</tr>
+					</table>
+					<table style="table-layout: fixed; margin: auto; margin-top: -6px;" cellpadding="2px">
+						<tr>
+							<td><a target="_blank" href="https://inlovewithaghost.bandcamp.com/album/healing"><img width="100%" src="/albums/ghost-healing.jpg"></a></td>
+							<td><a target="_blank" href="http://music.disasterpeace.com/album/disasters-for-piano"><img width="100%" src="/albums/disasters-for-piano.jpg"></a></td>
+							<td><a target="_blank" href="https://0101.bandcamp.com/album/ordinary-songs-4"><img width="100%" src="/albums/ordinary-songs-4.jpg"></a></td>
+							<td><a target="_blank" href="http://tsubu.ath.cx/~ssry/24effects/"><img width="100%" src="/albums/24effects.jpg"></a></td>
+						</tr>
+					</table>
+				</div><br>
+				
+				<h1>games</h1>
+				<p>Video games are awesome, especially puzzle and exploration games. I wouldn't say I'm obsessed with them though, but I'll always enjoy a good Indie game.<br><br>Here's a list of my 6 most favourite games:</p><br>
+
+				<div id="steam-games">
+					<table style="table-layout: fixed;" cellpadding="2px">
+						<tr>
+							<td><a target="_blank" href="https://store.steampowered.com/app/210970/The_Witness"><img width="100%" src="http://cdn.edgecast.steamstatic.com/steam/apps/210970/header.jpg"></a></td>
+							<td><a target="_blank" href="https://store.steampowered.com/app/224760/FEZ"><img width="100%" src="http://cdn.edgecast.steamstatic.com/steam/apps/224760/header.jpg"></a></td>
+							<td><a target="_blank" href="https://store.steampowered.com/app/504230/Celeste/"><img width="100%" src="http://cdn.edgecast.steamstatic.com/steam/apps/504230/header.jpg"></a></td>
+						</tr>
+					</table>
+					<table style="table-layout: fixed; margin: auto; margin-top: -6px;" cellpadding="2px">
+						<tr>
+							<td><a target="_blank" href="https://store.steampowered.com/app/257850/Hyper_Light_Drifter"><img width="100%" src="http://cdn.edgecast.steamstatic.com/steam/apps/257850/header.jpg"></a></td>
+							<td><a target="_blank" href="https://store.steampowered.com/app/420530/OneShot"><img width="100%" src="http://cdn.edgecast.steamstatic.com/steam/apps/420530/header.jpg"></a></td>
+							<td><a target="_blank" href="https://store.steampowered.com/app/26800/Braid"><img width="100%" src="http://cdn.edgecast.steamstatic.com/steam/apps/26800/header.jpg"></a>
+							</td>
+						</tr>
+					</table>
+				</div><br>
+
+				<h1>being cute</h1>
+				<table style="table-layout: fixed;" cellpadding="8px" id="insta-posts">
+					[instagram_posts]
+				</table><br>
+				<a href="https://instagram.com/makifoxgirl"><p class="center">view more</p></a>
+			</div>
+			
+			<div class="space"></div>
+			<a href="javascript:nextQuote();" id="quote"><p></p></a><br>
+			<p style="opacity: 0.4;" class="center">[page_refreshes] page refreshes</p>
+			<div class="half-space"></div>
+			<div id="chrome_actually_allows_margin-bottom_on_absolutely_positioned_divs"></div>
+		</div>
+		<div id="term" class="term-hide"><div id="term-rel"></div></div>
+		<script src="zenscroll.min.js"></script>
+		<script src="gayify.js"></script>
+		<script src="term.js"></script>
+		<script type="text/javascript">
+
+			zenscroll.setup(400, 50);
+
+			// Quote
+			var currentQuote = 0;
+			var quotes = [
+				"I was born in Ostend from the Flanders.",
+				"I've lived the majority of my life in Tenerife.",
+				"I have a cat which but I'm alergic to it.",
+				"Javascript is my favourite scripting language.",
+				"C is so freaking awesome.",
+				"Mathematics is my best school subject.",
+				"I speak British English, not American.",
+				"I'm fluent in both English and Dutch.",
+				"My dog is white and she's cute.",
+				"I tend to only drink Coca Cola.",
+				"I lied, I drink <s>pea</s> tea now.",
+				"I've loved Nintendo since I was a child.",
+				"Kirby is my favourite Nintendo character.",
+				"Toshinou Kyouko is my favourite anime character.",
+				"I'm an autodidact like my grandpa."
+			];
+			
+			function randomQuote() {
+				currentQuote = Math.floor(Math.random()*quotes.length);
+				document.querySelector("#quote p").innerHTML = '"'+quotes[currentQuote]+'"';
+			}
+    		
+    		setTimeout(function() {
+    			window.scrollTo(0,0);
+				randomQuote();
+			}, 250);
+    		
+			function nextQuote() {
+				if (quotes.length-1 == currentQuote) {
+					document.querySelector("#quote p").innerHTML = '"'+quotes[0]+'"';
+					currentQuote = 0;
+				} else {
+					document.querySelector("#quote p").innerHTML = '"'+quotes[currentQuote+1]+'"';
+					currentQuote += 1;
+				}
+			};
+
+			// :3c
+			var gay = new Gayify();
+
+			var cookie = {
+				get: function(key) {
+					let c = document.cookie.split("; ");
+					for (var i=0; i<c.length; i++) {
+						let s = c[i].split("=");
+						if (s[0] == key) return s[1];
+					}
+				},
+				set: function(key, value) {
+					document.cookie = key+"="+value+"; expires="+(new Date((Math.pow(2, 31)-1)*1000).toUTCString());
+				},
+				clear: function() {
+					let c = document.cookie.split("; ");
+					for (var i=0; i<c.length; i++) {
+						let s = c[i].split("=");
+						document.cookie = s[0]+"=; expires="+(new Date().toUTCString());
+					}
+				}
+			};
+
+			// terminal meow its shit
+			var termDiv = document.getElementById("term");
+			function toggleTerm() {
+				termDiv.style.transition = "all 200ms cubic-bezier(0.4, 0.0, 0.2, 1)"
+				setTimeout(function() { 
+					termDiv.className = (termDiv.className)? "": "term-hide";
+					if (termDiv.className) {
+						term.child.input.blur(); 
+					} else {
+						term.child.input.focus(); 
+					}; term.exec("clear");
+					setTimeout(function() { termDiv.style.transition = ""; }, 200);
+				}, 40);
+			}
+
+			window.addEventListener("keydown", function(e) {
+				switch(e.keyCode) {
+					case 192: case 27: toggleTerm(); break;
+				}
+			});
+
+			termDiv.addEventListener("click", function(e) {
+				if (e.button != 0) return;
+
+				termDiv.style.transition = "all 200ms cubic-bezier(0.4, 0.0, 0.2, 1)";
+				term.child.input.focus(); 
+				setTimeout(function() { 
+					if (termDiv.className) {
+						term.exec("clear");
+						setTimeout(function() { termDiv.style.transition = ""; }, 200);
+					}
+					termDiv.className = "";
+				}, 40);
+			});
+
+			document.body.addEventListener("click", function(e) {
+				console.log();
+				if (e.button != 0) return;
+				if (termDiv.className) return;
+				if (e.target.parentElement == termDiv) return;
+
+				termDiv.style.transition = "all 200ms cubic-bezier(0.4, 0.0, 0.2, 1)";
+				setTimeout(function() { 
+					term.child.input.blur(); 
+					termDiv.className = "term-hide";
+					setTimeout(function() { termDiv.style.transition = ""; }, 200);
+				}, 40);
+			});
+
+			function termValue(val) {
+				setTimeout(function() {
+					term.child.input.value = val;
+				}, 40);
+			} 
+
+			var commands = {
+				"help": {
+					alias: ["ls"],
+					desc: "Show this",
+					action: function(c) {
+						c.print("Here are the commands you can use:");
+						for (var i=0; i<Object.keys(commands).length; i++) {
+							let key = Object.keys(commands)[i];
+							if (commands[key].hidden) continue;
+							let usage = (commands[key].usage)? " "+commands[key].usage.trim(): "";
+							let desc = (commands[key].desc)? commands[key].desc.trim(): "";
+							c.print("    "+c.bold(key+usage)+": "+commands[key].desc);
+						}
+					}
+				},
+				"gay": {
+					desc: "Totally not finished yet",
+					action: function(c) {
+						gay.start();
+						c.print("It's not finished yet...");
+					}
+				},
+				"clear": {
+					desc: "Clear the terminal",
+					action: function(c) {
+						c.clear(); c.motd();
+					}
+				},
+				"name": {
+					desc: "Save your name",
+					usage: "(name)",
+					action: function(c) {
+						let iName = c.msg.trim();
+						console.log(c.msg);
+						if (!iName) { 
+							let cName = cookie.get("name");
+							if (cName) {
+								c.print("Your name is "+c.bold(cName)+". Try "+c.bold("name (name)"));
+							} else {
+								c.print("What's your name?"); 
+								termValue("name "); 
+							};
+							return;
+						}
+						
+						cookie.set("name", iName);
+						c.print("New name set to "+c.bold(iName));
+					}
+				},
+				"msg": {
+					alias: ["message"],
+					usage: "(message)",
+					desc: "Message Maki",
+					action: function(c) {
+						let cName = cookie.get("name");
+						if (!cName) { setTimeout(function() { c.exec("name") }.bind(c), 10); return; }
+						if (!c.msg) { 
+							c.print("What's your message?") 
+							termValue("msg ");
+							return;
+						}
+
+						let img = document.createElement("div");
+						img.style.backgroundImage = "url(https://maki.cat/discord-message?to=maki&name="+escape(cName)+"&message="+escape(c.msg)+")";
+						document.body.appendChild(img);
+						setTimeout(function() { document.body.removeChild(img) }.bind(img), 8000);
+						c.print("Your message might have been sent!");
+					}
+				},
+				"close": {
+					alias: ["exit"],
+					desc: "Close the window",
+					action: function(c) {
+						document.location="";
+						window.close();
+					}
+				},
+				// hidden
+				"reset": {
+					hidden: true,
+					action: function(c) {
+						cookie.clear();
+						c.print("Your cookies have been cleared");
+					}
+				},
+			};
+
+			var term = new Term({
+				id: "term-rel",
+				motd: [
+					"                __    _ ",
+					"    __ _  ___ _/ /__ (_)",
+					"   /  ' \\/ _ `/  '_// / ",
+					"  /_/_/_/\\_,_/_/\\_\\/_/  ",
+					"             terminal", "",
+				],
+				error: "Command not found! Try <b>help</b>",
+				cmds: (function() {
+					let obj = {};
+					for (var i=0; i<Object.keys(commands).length; i++) {
+						let key = Object.keys(commands)[i];
+
+						// let block happen
+						let block = false;
+						if (commands[key].block) {
+							let blocks = commands[key].block;
+							if (blocks.includes("opera")) if ((!!window.opr && !!opr.addons) || !!window.opera || navigator.userAgent.indexOf(' OPR/') >= 0) block = true;
+							if (blocks.includes("firefox")) if (typeof InstallTrigger !== 'undefined') block = true;
+							if (blocks.includes("safari")) if (/constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && safari.pushNotification))) block = true;
+							if (blocks.includes("ie")) if (/*@cc_on!@*/false || !!document.documentMode) block = true;
+							if (blocks.includes("edge")) if (!isIE && !!window.StyleMedia) block = true;
+							if (blocks.includes("chrome")) if (!!window.chrome && !!window.chrome.webstore) block = true;
+							if (blocks.includes("blink")) if ((isChrome || isOpera) && !!window.CSS) block = true;
+						}
+
+						// set allias
+						if (commands[key].alias) {
+							for (var j=0; j<commands[key].alias.length; j++) {
+								obj[commands[key].alias[j]] = commands[key].action;
+							}
+						}
+
+						// set action
+						if (block) {
+							obj[key] = commands[key].block_action;
+							continue;}
+
+						obj[key] = commands[key].action;
+					}; return obj;	
+				})()
+			});
+
+			term.spawn();
+		</script>
+	</body>
+</html>
+

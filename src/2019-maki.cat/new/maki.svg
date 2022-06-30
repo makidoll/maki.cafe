@@ -1,0 +1,18 @@
+<svg viewBox="0 0 100 100" width="400" height="400" xmlns="http://www.w3.org/2000/svg">
+
+	<defs>
+		<linearGradient id="maki-bg" r="100%"
+			spreadMethod="reflect" gradientTransform="rotate(-90)">
+			<stop stop-color="#F44336" offset="0%"/>
+			<stop stop-color="#FFEB3B" offset="50%"/>
+			<stop stop-color="#00BCD4" offset="100%"/>
+			<animate attributeName="x1" from="0" to="-4" dur="2s" repeatCount="indefinite"/>
+			<animate attributeName="x2" from="-2" to="-6" dur="2s" repeatCount="indefinite"/>
+		</linearGradient>
+	</defs>
+
+	<circle r="50" cx="50" cy="50" fill="#fff"/>
+	<circle r="35" cx="50" cy="50" fill="#000"/>
+	<circle r="30" cx="50" cy="50" fill="url(#maki-bg)"/>
+
+</svg>

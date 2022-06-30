@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Maki</title>
+		<link href="https://fonts.googleapis.com/css?family=Roboto:700,400" rel="stylesheet">
+		<meta name="viewport" content="width=device-width, initial-scale=0.5">
+		<script src="/maki-logo.js"></script>
+		<style type="text/css">
+			body {
+				overflow: hidden;
+				overflow-y: scroll;
+				background-color: #000;
+				color: #fff;
+				font-family: "Roboto", sans-serif;
+			}
+
+			* {
+				transition: all 300ms;
+				transition-timing-function: cubic-bezier(0.4, 0.0, 0.2, 1);
+			}
+
+			#logo svg {
+				stroke: #ffffff;
+			}
+
+			#bg {
+				position: fixed; margin: auto;
+				top: 0; left: 0; right: 0; bottom: 0;
+				background-color: #000;
+				overflow: hidden;
+			}
+
+			#bgC {
+				position: fixed; margin: auto;
+				top: 0; left: 0; right: 0; bottom: 0;
+				image-rendering: crisp-edges;
+				image-rendering: -moz-crisp-edges;
+				image-rendering: -webkit-optimize-contrast;
+				image-rendering: -o-crisp-edges;
+				image-rendering: pixelated;
+				-ms-interpolation-mode: nearest-neighbor;
+				transition: none;
+			}
+
+			#bgO {
+				position: fixed; margin: auto;
+				top: 0; left: 0; right: 0; bottom: 0;
+				background-color: rgba(0,0,0,0.2);
+			}
+
+			#intro {
+				position: absolute; margin: auto;
+				top: 0; left: 0; right: 0; bottom: 0;
+				text-shadow: 0 0 16px rgba(0,0,0,0.6);
+			}
+
+			.center {
+				display: table;
+				width: 100%; height: 100%;
+				text-align: center;
+			}
+
+			.center>div {
+				display: table-cell;
+				vertical-align: middle;
+			}
+
+			p, h1, h2, h3 {
+				margin: 0;
+			}
+
+			.icons svg {
+				fill: #fff;
+				width: 32px;
+				height: 32px;
+				display: inline-block;
+				margin: 0 2px;
+			}
+
+			.icons svg:hover {
+				transform: scale(1.2);
+			}
+
+			a, a:link, a:hover, a:active {
+				text-decoration: #E91E63;
+				color: #E91E63;
+				font-weight: 700;
+			}
+
+			#content-arrow {
+				position: absolute; margin: auto;
+				top: calc(100vh - 50px - 64px);
+				left: 0; right: 0;
+				width: 48px;
+				height: 48px;
+			}
+
+			#content-arrow svg {
+				width: 48px; height: 48px;
+				opacity: 0.6;
+				fill: #fff;
+			}
+
+			#content-arrow svg * {
+				transition: none;
+			}
+
+			#bg-buttons {
+				position: fixed; margin: auto;
+				bottom: 24px; left: 24px;
+				opacity: 0.4;
+			}
+
+			#bg-buttons svg {
+				display: inline-block;
+				margin-bottom: -6px;
+				margin-top: 4px;
+				width: 24px; height: 24px;
+				fill: #fff;
+			}
+
+			#bg-buttons a {
+				color: #fff;
+				font-weight: 400;
+			}
+
+			#bg-buttons a:hover {
+				padding-left: 8px; 
+			}
+
+			#content {
+				position: absolute; margin: auto;
+				top: calc(100vh - 50px);
+				right: 0; left: 0;
+				width: 600px;
+				background-color: #fff;
+				height: 3000px;
+				border-radius: 50px;
+				color: #000;
+				padding: 100px 50px;
+				margin-bottom: 100px;
+			}
+
+			#content h1, #content h2 {
+				text-align: center;
+			}
+		</style>
+		<style type="text/css" id="oh-jeez">#logo svg { width: 550px; }</style>
+	</head>
+	<body>
+		<div id="bg"></div><canvas id="bgC"></canvas><div id="bgO"></div>
+		<div id="intro" class="center"><div>
+			<div id="logo"></div>
+			<div id="intro-text" style="margin-bottom: -300px; opacity: 0; margin-top: 40px;">
+				<h1><span style="font-weight: 400;">Hi, I'm </span>Maki</h1>
+				<h2 style="font-weight: 400;">and I make things!</h2><br><br>
+				<p>Here's a bit about myself and my<br>curated list of things I've made<br>that I can publicly present.</p><br><br>
+				<div class="icons">
+					<a target="_blank" href="https://github.com/makifoxgirl"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"></path></svg></a>
+					<!-- <a target="_blank" href="https://maki.cat/sketchfab"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 2000 2000"><path d="M999.92,0C447.644,0,0,447.724,0,1000S447.644,2000,999.92,2000s999.92-447.724,999.92-1000C1999.92,447.724,1552.276,0,999.92,0ZM913.047,1595.072l-431.085-248.86V844.172l431.085,232.861Zm76.794-636.189L479.8,688.5,989.841,393.968,1499.96,688.5Zm510.439,388.289-429.486,247.98V1079.034L1500.28,846.972Z"/></svg></a>
+					<a target="_blank" href="https://maki.cat/deviantart"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 4.364v-4.364h-4.364l-.435.439-2.179 4.124-.647.437h-7.375v6h4.103l.359.404-4.462 8.232v4.364h4.509l.435-.439 2.174-4.124.648-.437h7.234v-6h-3.938l-.359-.438z"/></svg></a> -->
+					<!-- <a target="_blank" href="https://maki.cat"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10 20v-6h4v6h5v-8h3L12 3 2 12h3v8z"/></svg></a> -->
+					<a target="_blank" href="mailto:mxmcube@gmail.com?subject=Hey Maki!"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -1 24 24"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"></path><path d="M0 0h24v24H0z" fill="none"></path></svg></a>
+				</div>
+			</div>
+			<script>
+				var logo = document.getElementById("logo");
+				logo.style.display = "none";
+				var makiLogo = new MakiLogo(logo);
+				setTimeout(function(){
+					logo.style.display = "block";
+					makiLogo.intro();
+					makiLogo.loaded = false;
+					makiLogo.playingEvent = function(e) {
+						if (makiLogo.loaded) return;
+						if (e.false) makiLogo.loaded = true;
+						document.getElementById("oh-jeez").innerHTML = "#logo svg { width: 300px; }";
+						document.getElementById("intro-text").style.opacity = "1";
+						document.getElementById("intro-text").style.marginBottom = "0px";
+						document.getElementById("content").style.opacity = "0.2";
+						document.getElementById("content-arrow").style.opacity = "1";
+						makiLogo.loaded = true;
+					}
+				},100);
+			</script>
+		</div></div>
+		<div id="content-arrow" style="opacity: 0;">
+			<svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg">
+				<path transform="translate(0 -4)" d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z">
+					<animate attributeName="opacity"
+						dur="2s" repeatCount="indefinite"
+						values="0; 0; 1;"/>
+				</path>
+				<path transform="translate(0 -4)" d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z">
+					<animateTransform id="arrows-down-0" attributeName="transform"
+						dur="2s" repeatCount="indefinite"
+						values="0 -4; 0 4; 0 4"
+						type="translate"/>
+					<animate id="arrows-down-0" attributeName="opacity"
+						dur="2s" repeatCount="indefinite"
+						values="1; 0; 0;"/>
+				</path>
+				<path transform="translate(0 -4)" d="M7.41 7.84L12 12.42l4.59-4.58L18 9.25l-6 6-6-6z">
+					<animateTransform attributeName="transform"
+						dur="2s" repeatCount="indefinite"
+						values="0 -4; 0 -4; 0 4;"
+						type="translate"/>
+					<animate attributeName="opacity"
+						dur="2s" repeatCount="indefinite"
+						values="0; 1; 0;"/>
+				</path>
+			</svg>
+		</div>
+		<div id="bg-buttons">
+			<a href="javascript:bg.togglePause();"><svg height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg> Pause background</a><br>
+			<a href="javascript:toggleContent();"><svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 7c2.76 0 5 2.24 5 5 0 .65-.13 1.26-.36 1.83l2.92 2.92c1.51-1.26 2.7-2.89 3.43-4.75-1.73-4.39-6-7.5-11-7.5-1.4 0-2.74.25-3.98.7l2.16 2.16C10.74 7.13 11.35 7 12 7zM2 4.27l2.28 2.28.46.46C3.08 8.3 1.78 10.02 1 12c1.73 4.39 6 7.5 11 7.5 1.55 0 3.03-.3 4.38-.84l.42.42L19.73 22 21 20.73 3.27 3 2 4.27zM7.53 9.8l1.55 1.55c-.05.21-.08.43-.08.65 0 1.66 1.34 3 3 3 .22 0 .44-.03.65-.08l1.55 1.55c-.67.33-1.41.53-2.2.53-2.76 0-5-2.24-5-5 0-.79.2-1.53.53-2.2zm4.31-.78l3.15 3.15.02-.16c0-1.66-1.34-3-3-3l-.17.01z"/></svg> Hide content</a>
+		</div>
+		<div id="content" style="opacity: 0;">
+			<h2>This page is currently unfinished.</h2>
+			<br>
+			<p style="text-align: center;">More content will eventually appear here,<br>but for now you can always <a target="_blank" href="mailto:mxmcube@gmail.com?subject=Hey Maki!">email me!</a></p>
+		</div>
+		<script id="vertex" type="x-shader/x-vertex">
+			attribute vec4 coords;
+			void main() {
+				gl_Position = coords;
+				gl_PointSize = 10.0;
+			}
+		</script>
+		<script id="fragment" type="x-shader/x-fragment">
+			precision mediump float;
+			uniform vec2 u_resolution;
+			uniform float u_time;
+			uniform int u_scroll;
+
+			//	Simplex 4D Noise 
+			//	by Ian McEwan, Ashima Arts
+			//
+			// vec4 permute(vec4 x){return mod(((x*34.0)+1.0)*x, 289.0);} float permute(float x){return floor(mod(((x*34.0)+1.0)*x, 289.0));} vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;} float taylorInvSqrt(float r){return 1.79284291400159 - 0.85373472095314 * r;} vec4 grad4(float j, vec4 ip){ const vec4 ones = vec4(1.0, 1.0, 1.0, -1.0); vec4 p,s;  p.xyz = floor( fract (vec3(j) * ip.xyz) * 7.0) * ip.z - 1.0; p.w = 1.5 - dot(abs(p.xyz), ones.xyz); s = vec4(lessThan(p, vec4(0.0))); p.xyz = p.xyz + (s.xyz*2.0 - 1.0) * s.www;  return p; } float snoise(vec4 v){ const vec2  C = vec2( 0.138196601125010504, 0.309016994374947451); vec4 i  = floor(v + dot(v, C.yyyy) ); vec4 x0 = v -   i + dot(i, C.xxxx); vec4 i0; vec3 isX = step( x0.yzw, x0.xxx ); vec3 isYZ = step( x0.zww, x0.yyz ); i0.x = isX.x + isX.y + isX.z; i0.yzw = 1.0 - isX; i0.y += isYZ.x + isYZ.y; i0.zw += 1.0 - isYZ.xy; i0.z += isYZ.z; i0.w += 1.0 - isYZ.z; vec4 i3 = clamp( i0, 0.0, 1.0 ); vec4 i2 = clamp( i0-1.0, 0.0, 1.0 ); vec4 i1 = clamp( i0-2.0, 0.0, 1.0 ); vec4 x1 = x0 - i1 + 1.0 * C.xxxx; vec4 x2 = x0 - i2 + 2.0 * C.xxxx; vec4 x3 = x0 - i3 + 3.0 * C.xxxx; vec4 x4 = x0 - 1.0 + 4.0 * C.xxxx; i = mod(i, 289.0);  float j0 = permute( permute( permute( permute(i.w) + i.z) + i.y) + i.x); vec4 j1 = permute( permute( permute( permute (  i.w + vec4(i1.w, i2.w, i3.w, 1.0 ))+ i.z + vec4(i1.z, i2.z, i3.z, 1.0 ))+ i.y + vec4(i1.y, i2.y, i3.y, 1.0 ))+ i.x + vec4(i1.x, i2.x, i3.x, 1.0 ));vec4 ip = vec4(1.0/294.0, 1.0/49.0, 1.0/7.0, 0.0) ; vec4 p0 = grad4(j0,   ip); vec4 p1 = grad4(j1.x, ip); vec4 p2 = grad4(j1.y, ip); vec4 p3 = grad4(j1.z, ip); vec4 p4 = grad4(j1.w, ip); vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3))); p0 *= norm.x; p1 *= norm.y; p2 *= norm.z; p3 *= norm.w; p4 *= taylorInvSqrt(dot(p4,p4)); vec3 m0 = max(0.6 - vec3(dot(x0,x0), dot(x1,x1), dot(x2,x2)), 0.0); vec2 m1 = max(0.6 - vec2(dot(x3,x3), dot(x4,x4)            ), 0.0); m0 = m0 * m0; m1 = m1 * m1; return 49.0 * ( dot(m0*m0, vec3( dot( p0, x0 ), dot( p1, x1 ), dot( p2, x2 )))+ dot(m1*m1, vec2( dot( p3, x3 ), dot( p4, x4 ) ) ) ) ; }
+			vec3 mod289(vec3 x) {return x - floor(x * (1.0 / 289.0)) * 289.0;}vec4 mod289(vec4 x) {return x - floor(x * (1.0 / 289.0)) * 289.0;}vec4 permute(vec4 x) { return mod289(((x*34.0)+1.0)*x);}vec4 taylorInvSqrt(vec4 r){return 1.79284291400159 - 0.85373472095314 * r;}float snoise(vec3 v){ const vec2  C = vec2(1.0/6.0, 1.0/3.0) ;const vec4  D = vec4(0.0, 0.5, 1.0, 2.0);vec3 i  = floor(v + dot(v, C.yyy) );vec3 x0 =   v - i + dot(i, C.xxx) ;vec3 g = step(x0.yzx, x0.xyz);vec3 l = 1.0 - g;vec3 i1 = min( g.xyz, l.zxy );vec3 i2 = max( g.xyz, l.zxy );vec3 x1 = x0 - i1 + C.xxx;vec3 x2 = x0 - i2 + C.yyy; vec3 x3 = x0 - D.yyy;      i = mod289(i); vec4 p = permute( permute( permute(  i.z + vec4(0.0, i1.z, i2.z, 1.0 )) + i.y + vec4(0.0, i1.y, i2.y, 1.0 ))  + i.x + vec4(0.0, i1.x, i2.x, 1.0 ));float n_ = 0.142857142857; vec3  ns = n_ * D.wyz - D.xzx;vec4 j = p - 49.0 * floor(p * ns.z * ns.z);  vec4 x_ = floor(j * ns.z);vec4 y_ = floor(j - 7.0 * x_ );    vec4 x = x_ *ns.x + ns.yyyy;vec4 y = y_ *ns.x + ns.yyyy;vec4 h = 1.0 - abs(x) - abs(y);vec4 b0 = vec4( x.xy, y.xy );vec4 b1 = vec4( x.zw, y.zw );vec4 s0 = floor(b0)*2.0 + 1.0;vec4 s1 = floor(b1)*2.0 + 1.0;vec4 sh = -step(h, vec4(0.0));vec4 a0 = b0.xzyw + s0.xzyw*sh.xxyy ;vec4 a1 = b1.xzyw + s1.xzyw*sh.zzww ;vec3 p0 = vec3(a0.xy,h.x);vec3 p1 = vec3(a0.zw,h.y);vec3 p2 = vec3(a1.xy,h.z);vec3 p3 = vec3(a1.zw,h.w);vec4 norm = taylorInvSqrt(vec4(dot(p0,p0), dot(p1,p1), dot(p2, p2), dot(p3,p3)));p0 *= norm.x;p1 *= norm.y;p2 *= norm.z;p3 *= norm.w;vec4 m = max(0.6 - vec4(dot(x0,x0), dot(x1,x1), dot(x2,x2), dot(x3,x3)), 0.0);m = m * m;return 42.0 * dot( m*m, vec4( dot(p0,x0), dot(p1,x1), dot(p2,x2), dot(p3,x3) ) );}
+
+			vec3 rgb2hsv(vec3 c){vec4 K = vec4(0.0, -1.0 / 3.0, 2.0 / 3.0, -1.0);vec4 p = mix(vec4(c.bg, K.wz), vec4(c.gb, K.xy), step(c.b, c.g));vec4 q = mix(vec4(p.xyw, c.r), vec4(c.r, p.yzx), step(p.x, c.r));float d = q.x - min(q.w, q.y);float e = 1.0e-10;return vec3(abs(q.z + (q.w - q.y) / (6.0 * d + e)), d / (q.x + e), q.x);}vec3 hsv2rgb(vec3 c){vec4 K = vec4(1.0, 2.0 / 3.0, 1.0 / 3.0, 3.0);vec3 p = abs(fract(c.xxx + K.xyz) * 6.0 - K.www);return c.z * mix(K.xxx, clamp(p - K.xxx, 0.0, 1.0), c.y);}
+						 
+			vec3 orange = vec3(1.0,0.1,0);
+			vec3 black = vec3(0,0,0); // Tomorrow Grey
+
+			vec3 red = vec3(0xF4,0x43,0x36)/256.0; // Material Red
+			vec3 purple = vec3(0x9C,0x27,0xB0)/256.0; // Material Purple
+			vec3 pink = vec3(0xE9,0x1E,0x63)/256.0; // Material Pink
+			vec3 cyan = vec3(0x00,0xBC,0xD4)/256.0; // Material Cyan
+
+			vec3 cute = vec3(0xFF,0x8C,0x8C)/256.0; // Cute Salmon
+
+			void main() {
+				vec2 uv = -1.0+2.0*gl_FragCoord.xy/u_resolution.xy;
+				uv.x *= u_resolution.x/u_resolution.y;
+				
+				//vec3 cam = vec3(0,u_time*0.4,0);
+				vec3 cam = vec3(0,-float(u_scroll)*0.0008,u_time*0.08);
+					
+				vec3 ro = vec3(0,0,0);
+				vec3 rd = normalize(vec3(uv.xy, 1));
+				
+				float c = 4.0;
+				
+				for (float step=0.0; step<64.0; step+=1.0) {
+					vec3 p = cam+ro+((rd*0.08)*step);
+					//float d = snoise(vec4(p,u_time*0.02));
+					float d = snoise(p);
+					c = length(cam-p);
+					if (d>0.5 && c>1.0) {
+						break;
+					}
+				}
+
+				//gl_FragColor = vec4(orange*(4.0-c),1);
+
+				c = (c>4.0)? 0.0: (4.0-c)*0.25;
+			    gl_FragColor = vec4(mix(purple, orange, c)*c, 1);
+
+				//vec3 color = rgb2hsv(mix(purple, orange, c));
+				// vec3 color = vec3((c*1.0)+0.4,1.0,1.0);
+				// color.x += mod(u_time, 30.0)/30.0;
+				// gl_FragColor = vec4(hsv2rgb(color)*c, 1);
+
+			}
+		</script>
+		<script type="text/javascript">
+			var SnoiseBg = function(id) {
+				this.time;
+				this.scroll;
+				this.canvas;
+				this.program;
+				this.gl;
+				this.id;
+
+				this.scale;
+				this.visible;
+
+				this.init = function() {
+					this.scale = 4;
+					this.visible = true;
+					this.id = id;
+
+					this.canvas = document.getElementById(this.id);
+					this.canvas.width = window.innerWidth/this.scale;
+					this.canvas.height = window.innerHeight/this.scale;
+					this.canvas.style.transform = "scale("+this.scale+"."+this.scale+")";
+
+					this.gl = this.canvas.getContext("webgl") || this.canvas.getContext("experimental-webgl");
+					this.gl.viewport(0, 0, this.gl.drawingBufferWidth, this.gl.drawingBufferHeight);
+
+					let vertex_shader = this.gl.createShader(this.gl.VERTEX_SHADER);
+					this.gl.shaderSource(vertex_shader, document.getElementById("vertex").text);
+					this.gl.compileShader(vertex_shader);
+
+					let fragment_shader = this.gl.createShader(this.gl.FRAGMENT_SHADER);
+					this.gl.shaderSource(fragment_shader, document.getElementById("fragment").text);
+					this.gl.compileShader(fragment_shader);
+	  
+					if (!this.gl.getShaderParameter(fragment_shader, this.gl.COMPILE_STATUS)) {
+						alert(this.gl.getShaderInfoLog(fragment_shader)); return null;
+					}
+
+					this.program = this.gl.createProgram();
+					this.gl.attachShader(this.program, vertex_shader);
+					this.gl.attachShader(this.program, fragment_shader);
+					this.gl.linkProgram(this.program);
+					this.gl.useProgram(this.program);
+
+					let buffer = this.gl.createBuffer(); 
+					this.gl.bindBuffer(this.gl.ARRAY_BUFFER, buffer);
+					this.gl.bufferData(this.gl.ARRAY_BUFFER, new Float32Array([
+						 1, -1, 0,
+						-1, -1, 0,
+						 1,  1, 0,
+						-1,  1, 0
+					]), this.gl.STATIC_DRAW);
+
+					let coords = this.gl.getAttribLocation(this.program,"coords");
+					this.gl.vertexAttribPointer(coords, 3, this.gl.FLOAT, false, 0,0);
+					this.gl.enableVertexAttribArray(coords);
+
+					this.time = this.gl.getUniformLocation(this.program, "u_time");
+					this.scroll = this.gl.getUniformLocation(this.program, "u_scroll");
+					let resolution = this.gl.getUniformLocation(this.program, "u_resolution");
+					//let mouse = this.gl.getUniformLocation(this.program, "mouse");
+
+					this.gl.uniform1i(this.scroll, 0);
+					//this.gl.uniform2f(mouse, 0.5, 0.5);
+					this.gl.uniform2f(resolution, this.canvas.width, this.canvas.height);
+					this.render(this);
+
+					window.addEventListener("resize", this.resize.bind(this));
+
+					// window.addEventListener("mousemove", function(e) {
+					// 	this.gl.uniform2f(mouse,
+					// 		(e.clientX/canvas.clientWidth),
+					// 		(e.clientY/canvas.clientHeight)
+					// 	);
+					// });
+				}
+
+				this.resize = function() {
+					this.canvas.width = window.innerWidth/this.scale;
+					this.canvas.height = window.innerHeight/this.scale;
+					this.gl.viewport(0, 0, this.gl.drawingBufferWidth, this.gl.drawingBufferHeight);
+					let resolution = this.gl.getUniformLocation(this.program, "u_resolution");
+					this.gl.uniform2f(resolution, this.canvas.width, this.canvas.height);
+				}
+
+				this.rescale = function(scale) {
+					this.scale = scale;
+					this.canvas.style.transform = "scale("+this.scale+"."+this.scale+")";
+					this.resize();
+				}
+
+				this.rescaleLower = function() {
+					if (this.scale>1) {
+						this.scale--;
+						this.rescale(this.scale);
+					}
+				}
+
+				this.rescaleHigher = function() {
+					if (this.scale<8) {
+						this.scale++;
+						this.rescale(this.scale);
+						console.log("Downscaling by "+this.scale+" due to lag!");
+					}
+				}
+
+				this.frameSkips = 0;
+				this.framesPassed = 0;
+				this.framesGood = true;
+				this.lastFrame = window.performance.now();
+				this.render = function() {
+					if (this.framesPassed<180) {
+						let fps = 1000/(window.performance.now()-this.lastFrame)
+						if (fps < 45) {
+							this.frameSkips++
+							if (this.frameSkips>12) {
+								this.rescaleHigher();
+								this.frameSkips = 0;
+								this.framesPassed = 0;
+								this.framesGood = false;
+							}
+						} else {
+							this.framesPassed++;
+						}
+
+						if (makiLogo.loaded && this.framesGood) {
+							this.rescale(1);
+						}
+					}
+
+					if (this.visible) {
+						// lag
+						this.lastFrame = window.performance.now();
+
+						// time
+						//let now = new Date();
+						//this.gl.uniform1f(this.time, (now.getTime()-now.setHours(0,0,0,0))*0.001);
+						this.gl.uniform1f(this.time, this.lastFrame*0.001);
+
+						// gl draw
+						this.gl.drawArrays(this.gl.TRIANGLE_STRIP, 0,4);
+						this.gl.flush();
+						window.requestAnimationFrame(this.render.bind(this));
+					}
+				}
+
+				this.togglePause = function() {
+					if (!this.visible) {
+						window.requestAnimationFrame(this.render.bind(this));
+					}
+
+					this.visible = !this.visible;
+				}
+			}
+
+			var bg = new SnoiseBg("bgC");
+			window.onload = function() {
+				bg.init();
+				setTimeout(function() { window.scrollTo(0,0); }, 50);
+			}
+
+			var content_changed = false;
+			window.addEventListener("scroll", function() {
+				if (makiLogo.loaded)
+					if (!content_changed && window.scrollY>200) { document.getElementById("content").style.opacity="1"; content_changed=true; }
+				bg.gl.uniform1i(bg.scroll, window.scrollY);
+			});
+
+			function toggleContent() {
+				content_changed = true;
+				if (parseFloat(document.getElementById("content").style.opacity) > 0) {
+					document.getElementById("content").style.opacity = "0"
+				} else {
+					document.getElementById("content").style.opacity = "1"
+				}
+			}
+		</script>
+	</body>
+</html>

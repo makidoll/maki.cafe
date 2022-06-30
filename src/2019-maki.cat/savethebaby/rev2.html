@@ -1,0 +1,158 @@
+<html>
+	<head>
+		<title>Game</title>
+		<style>
+			body {
+				margin: 0;
+				background-color: #FFF;
+			}
+			
+			#view {
+				position: fixed; margin: auto;
+				top: 0; left: 0; right: 0; bottom: 0;
+				width: 853px;
+				height: 480px;
+				border-radius: 8px;
+				z-index: 1000;
+			}
+			
+			p, form {
+				margin: 0;
+			}
+			
+			#extra {
+				position: fixed; margin: auto;
+				right: 20px; top: 20px;
+				width: 200px; height: 600px;
+				z-index: 100;
+				font-family: "Roboto";
+				text-align: right;
+			}
+			
+			#under-view {
+				position: fixed; margin: auto;
+				top: 548px; left: 0; right: 0; bottom: 0;
+				height: 34px;
+				text-align: center;
+			}
+			
+			h1 {
+				font-size: 32px;
+				line-height: 34px;
+				margin: 0;
+				font-weight: 400;
+				font-family: "Roboto";
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="view"></canvas>
+		<div id="under-view">
+			<h1>Press <span style="font-weight: 700;">SPACE</span> to save the <span id="thing">baby</span>!</h1>
+		</div>
+		<div id="extra">
+			<form id="select">
+				Minecraft <input type="radio" name="theme" onclick="changeTheme('minecraft')" checked><br>
+				CS:GO <input type="radio" name="theme" onclick="changeTheme('csgo')"><br>	
+				Shopping Centre <input type="radio" name="theme" onclick="changeTheme('shopping_centre')"><br>	
+			</form><br>
+			<p></p>
+		</div>
+		<div style="display: none;">
+  		<img id="player" src="baby.jpg">
+  		<img id="bg" src="minecraft.png">
+			<!--<img id="obj" src="fire.png">-->
+		</div>
+		<script>
+			let death = new Audio("swamp.mp3")
+		
+			window.onload = function() {
+				canv = document.getElementById("view");
+				canv.width = 1280;
+				canv.height = 720;
+				ctx = canv.getContext("2d");
+				
+				isDed = false;
+				
+				themes = {
+					minecraft: {
+						bg: "minecraft.png",
+						player: "baby.png",
+						thing: "baby",
+						death: death
+					},
+					csgo: {
+						bg: "dust2.png",
+						player: "csgo-dude.png",
+						thing: "dude",
+						death: death
+					},
+					shopping_centre: {
+						bg: "centre.jpg",
+						player: "athlete.png",
+						thing: "athlete",
+						death: death
+					}
+				}
+				
+				p = {
+					y: canv.height-400,
+					x: canv.width-260,
+					xi: canv.width-260,
+					s: 8,
+					w: 500,
+					h: 300
+				}
+				
+				document.addEventListener("keyup", keyUp);
+				setInterval(update, 1000/60);
+			}
+			
+			function version() {
+				
+			}
+			
+			function keyUp(e) {
+				switch(e.keyCode) {
+					case 32:
+						p.x=p.xi;
+						break;
+				}
+			}
+			
+			function update() {
+				if (isDed) {
+					ctx.fillStyle = "#000";
+					ctx.fillRect(0, 0, canv.width, canv.height);
+					themes[theme].death.play();
+				} else {
+					ctx.drawImage(document.getElementById("bg"), 0, 0, canv.width, canv.height);
+					ctx.drawImage(document.getElementById("player"), p.x, p.y, p.w, p.h);
+				}
+				
+				p.x-=p.s
+				
+				if (p.x <= -100) {
+					isDed = true;
+				} else {
+					isDed = false;
+				}
+				
+				
+			}
+			
+			
+			function changeTheme(theme) {
+				document.getElementById("bg").src = themes[theme].bg;
+				document.getElementById("player").src = themes[theme].player;
+				document.getElementById("thing").innerHTML = themes[theme].thing
+				document.getElementById("death").innerHTML = themes[theme].death
+			}
+		</script>
+		<div>
+			Version 0.1.2
+		</div>
+		<a class="e-widget no-button" href="https://gleam.io/r02Rd/win-a-falchion-knife" rel="nofollow">Win a Falchion Knife</a>
+		<script type="text/javascript" src="https://js.gleam.io/e.js" async="true"></script>
+	</body>
+</html>
