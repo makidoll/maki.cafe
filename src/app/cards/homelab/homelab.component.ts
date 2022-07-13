@@ -62,43 +62,44 @@ export class HomelabComponent implements OnInit {
 
 	constructor(private readonly http: HttpClient) {}
 
-	status = "Checking...";
+	// status = "Checking...";
+	status = "Only link works for now";
 
 	ngOnInit(): void {
-		this.updateStatus();
+		// this.updateStatus();
 	}
 
-	updateStatus() {
-		this.http
-			.get<
-				{
-					name: string;
-					icon: string;
-					status: "up" | "down";
-					uptime: string;
-				}[]
-			>(
-				"https://raw.githubusercontent.com/makitsune/status/master/history/summary.json",
-			)
-			.subscribe(data => {
-				const down = data.filter(
-					service => service.status == "down",
-				).length;
+	// updateStatus() {
+	// 	this.http
+	// 		.get<
+	// 			{
+	// 				name: string;
+	// 				icon: string;
+	// 				status: "up" | "down";
+	// 				uptime: string;
+	// 			}[]
+	// 		>(
+	// 			"https://raw.githubusercontent.com/makitsune/status/master/history/summary.json",
+	// 		)
+	// 		.subscribe(data => {
+	// 			const down = data.filter(
+	// 				service => service.status == "down",
+	// 			).length;
 
-				const up = data.length - down;
+	// 			const up = data.length - down;
 
-				const uptime =
-					data
-						.map(service =>
-							parseFloat(service.uptime.replace(/%/g, "")),
-						)
-						.reduce((a, b) => a + b) / data.length;
+	// 			const uptime =
+	// 				data
+	// 					.map(service =>
+	// 						parseFloat(service.uptime.replace(/%/g, "")),
+	// 					)
+	// 					.reduce((a, b) => a + b) / data.length;
 
-				this.status = [
-					`<b>${uptime == 100 ? 100 : uptime.toFixed(2)}%</b> uptime`,
-					`> <b>${up} up</b>`,
-					`> <b>${down} down</b>`,
-				].join("<br/>");
-			});
-	}
+	// 			this.status = [
+	// 				`<b>${uptime == 100 ? 100 : uptime.toFixed(2)}%</b> uptime`,
+	// 				`> <b>${up} up</b>`,
+	// 				`> <b>${down} down</b>`,
+	// 			].join("<br/>");
+	// 		});
+	// }
 }
