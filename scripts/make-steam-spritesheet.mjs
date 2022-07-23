@@ -35,15 +35,16 @@ const sheetHeight = 5;
 const steamIds = [
 	"210970", // the witness
 	"224760", // fez
+	"1055540", // a short hike
 	"504230", // celeste
-	"972660", // spiritfarer
-	"620", // portal 2
+	"1332010", // stray
 	"524220", // nier automata
 	// -- gets smaller
+	"620", // portal 2
 	"438100", // vrchat
+	"972660", // spiritfarer
 	"257850", // hyper light drifer
 	"219890", // anti chamber
-	"253230", // a hat in time
 	"1003590", // tetris effect
 	"1113560", // nier replicant
 	"413150", // stardew valley
