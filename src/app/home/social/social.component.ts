@@ -14,7 +14,7 @@ export class SocialComponent implements OnInit {
 		{ name: "steam", url: config.socialLinks.steam },
 		{ name: "element-alt", url: config.socialLinks.matrix },
 		// { name: "flickr", url: config.socialLinks.flickr },
-		{ name: "soundcloud", url: config.socialLinks.soundcloud },
+		// { name: "soundcloud", url: config.socialLinks.soundcloud },
 	];
 
 	constructor() {}
