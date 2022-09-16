@@ -98,6 +98,10 @@
 			grid-template-columns: repeat(3, $cardWidth);
 		}
 		@include only(3, 4);
+
+		.art-0 {
+			top: -360px;
+		}
 	}
 
 	@include cards-max-2 {
@@ -108,11 +112,11 @@
 
 		.art-0 {
 			width: 180px;
-			top: -300px;
+			top: -330px;
 		}
 		.art-1 {
 			width: 290px;
-			top: -330px;
+			top: -300px;
 			right: -60px;
 		}
 	}
@@ -129,13 +133,13 @@
 
 		.art-0 {
 			width: 110px;
-			top: -200px;
-			left: 20px;
+			top: -165px;
+			left: 0px;
 		}
 		.art-1 {
 			width: 170px;
-			top: -193px;
-			right: -30px;
+			top: -165px;
+			right: -40px;
 		}
 		.social {
 			width: 140px;
