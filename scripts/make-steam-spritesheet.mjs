@@ -56,6 +56,7 @@ const steamIds = [
 
 const imagePaths = [
 	// from https://www.steamgriddb.com
+	"assets/games/overwatch-2.png",
 	"assets/games/earthbound.png",
 	"assets/games/catherine-full-body.png",
 	"assets/games/super-mario-odyssey.png",
