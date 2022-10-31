@@ -1,27 +1,32 @@
-import { Center, HStack, Link, Text, VStack } from "@chakra-ui/react";
+import { chakra, Flex, HStack, Text } from "@chakra-ui/react";
 import Emoji from "./ui/Emoji";
-import { AppleMusicIcon } from "./ui/social-icons/AppleMusicIcon";
-import { DeadbeefIcon } from "./ui/social-icons/DeadbeefIcocn";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";
-import { ElementIcon } from "./ui/social-icons/ElementIcon";
-import { FaSquirrelIcon } from "./ui/social-icons/FaSquirrelIcon";
-import { FlickrIcon } from "./ui/social-icons/FlickrIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
-import { GitHubOcticonSquirrelIcon } from "./ui/social-icons/GitHubOcticonSquirrelIcon";
-import { InstagramIcon } from "./ui/social-icons/InstagramIcon";
-import { MfcIcon } from "./ui/social-icons/MfcIcon";
-import { OsuIcon } from "./ui/social-icons/OsuIcon";
-import { PlaystationIcon } from "./ui/social-icons/PlaystationIcon";
-import { SkebIcon } from "./ui/social-icons/SkebIcon";
-import { SoundCloudIcon } from "./ui/social-icons/SoundcloudIcon";
-import { SpotifyIcon } from "./ui/social-icons/SpotifyIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
-import { TwitterIcon } from "./ui/social-icons/TwitterIcon";
 
 export default function Social() {
+	var socials = [
+		{
+			icon: DiscordIcon,
+			href: "https://discord.com/users/72139729285427200",
+		},
+		{
+			icon: GitHubIcon,
+			href: "https://github.com/makifoxgirl",
+		},
+		{
+			icon: SteamIcon,
+			href: "https://steamcommunity.com/id/makifoxgirl",
+		},
+		{
+			icon: ElementAltIcon,
+			href: "https://matrix.to/#/@maki:cutelab.space",
+		},
+	];
+
 	return (
-		<VStack spacing={1}>
+		<Flex flexDir="column" alignItems="center" justifyContent="center">
 			<HStack spacing={1}>
 				{/* <Emoji>🌺</Emoji>
 				<Emoji>🦊</Emoji>
@@ -52,12 +57,14 @@ export default function Social() {
 				<Emoji>lesbian-flag</Emoji>
 				{/* <Emoji>t4t-flag-better</Emoji>  */}
 			</HStack>
-			<Link
+			<chakra.a
 				href="https://xn--3h8h64hda.ws"
-				textDecor="none"
-				color="#000"
+				transformOrigin="center"
+				transition="transform .15s ease-in-out"
+				_hover={{ transform: "scale(1.05)" }}
 				fontSize="xs"
 				fontFamily='"Minecraft"'
+				marginTop={1}
 			>
 				<HStack spacing={0.5} justifyContent="center">
 					<Text opacity={0.3}>now available at www.</Text>
@@ -72,30 +79,31 @@ export default function Social() {
 					</Emoji>
 					<Text opacity={0.3}>.ws!</Text>
 				</HStack>
-			</Link>
-			<HStack spacing={2} opacity={0.3} paddingTop={6}>
-				<Link href="https://discord.com/users/72139729285427200">
-					<DiscordIcon width={"auto"} height={24} />
-				</Link>
-				<Link href="https://github.com/makifoxgirl">
-					<GitHubIcon size={24} />
-				</Link>
-				<Link href="https://steamcommunity.com/id/makifoxgirl">
-					<SteamIcon size={24} />
-				</Link>
-				<Link href="https://matrix.to/#/@maki:cutelab.space">
-					<ElementAltIcon size={24} />
-				</Link>
+			</chakra.a>
+			<HStack spacing={2} opacity={0.3} marginTop={8}>
+				{socials.map((social, i) => (
+					<chakra.a
+						href={social.href}
+						transition="transform .15s ease-in-out"
+						transformOrigin="center"
+						_hover={{ transform: "scale(1.1)" }}
+					>
+						<social.icon width={"auto"} height={24} />
+					</chakra.a>
+				))}
 			</HStack>
-			<Link
-				paddingTop={4}
+			<chakra.a
 				href="https://github.com/makifoxgirl/maki.cafe"
+				transformOrigin="center"
+				transition="transform .15s ease-in-out"
+				_hover={{ transform: "scale(1.05)" }}
+				marginTop={4}
 			>
 				<HStack spacing={2} opacity={0.2}>
 					<GitHubIcon size={16} />
 					<Text fontWeight={700}>See site's code</Text>
 				</HStack>
-			</Link>
-		</VStack>
+			</chakra.a>
+		</Flex>
 	);
 }

@@ -1,6 +1,7 @@
 import { Box } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import Social from "../components/Social";
+import Card from "../components/ui/Card";
 import Logo from "../components/ui/Logo";
 
 const Home: NextPage = () => {
@@ -18,6 +19,7 @@ const Home: NextPage = () => {
 			<Box marginTop={6}>
 				<Social />
 			</Box>
+			<Card>hi</Card>
 		</Box>
 	);
 };
