@@ -87,7 +87,10 @@ export default function Social() {
 					<ElementAltIcon size={24} />
 				</Link>
 			</HStack>
-			<Link paddingTop={4}>
+			<Link
+				paddingTop={4}
+				href="https://github.com/makifoxgirl/maki.cafe"
+			>
 				<HStack spacing={2} opacity={0.2}>
 					<GitHubIcon size={16} />
 					<Text fontWeight={700}>See site's code</Text>
