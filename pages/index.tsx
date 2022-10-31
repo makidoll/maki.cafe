@@ -15,7 +15,7 @@ const Home: NextPage = () => {
 			<Box width={400} marginTop={16}>
 				<Logo />
 			</Box>
-			<Box marginTop={8}>
+			<Box marginTop={6}>
 				<Social />
 			</Box>
 		</Box>
