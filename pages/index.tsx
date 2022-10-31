@@ -1,5 +1,6 @@
-import { Box, Grid, GridItem } from "@chakra-ui/react";
+import { Box, Grid } from "@chakra-ui/react";
 import type { NextPage } from "next";
+import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import Social from "../components/Social";
 import HomeCard from "../components/ui/HomeCard";
 import Logo from "../components/ui/Logo";
@@ -39,19 +40,7 @@ const Home: NextPage = () => {
 				justifyContent="center"
 				mt={8}
 			>
-				<HomeCard>hi</HomeCard>
-				<HomeCard>
-					bye
-					<br />
-					hi
-				</HomeCard>
-				<HomeCard>
-					hm
-					<br />
-					mmmm
-					<br />
-					ok
-				</HomeCard>
+				<DiscordHomeCard />
 			</Grid>
 		</>
 	);

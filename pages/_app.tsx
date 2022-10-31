@@ -14,6 +14,13 @@ import Script from "next/script";
 import "../fonts/minecraft/minecraft.css";
 
 const theme = extendTheme({
+	components: {
+		Heading: {
+			baseStyle: {
+				letterSpacing: "-0.05em",
+			},
+		},
+	},
 	colors: {
 		// material design pink
 		brand: {

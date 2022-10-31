@@ -1,4 +1,5 @@
-import { chakra, Flex, HStack, Text } from "@chakra-ui/react";
+import { chakra, Flex, Heading, HStack, Text } from "@chakra-ui/react";
+import { config } from "../config/config";
 import Emoji from "./ui/Emoji";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";
@@ -9,19 +10,19 @@ export default function Social() {
 	var socials = [
 		{
 			icon: DiscordIcon,
-			href: "https://discord.com/users/72139729285427200",
+			href: config.socialLinks.discord,
 		},
 		{
 			icon: GitHubIcon,
-			href: "https://github.com/makifoxgirl",
+			href: config.socialLinks.github,
 		},
 		{
 			icon: SteamIcon,
-			href: "https://steamcommunity.com/id/makifoxgirl",
+			href: config.socialLinks.steam,
 		},
 		{
 			icon: ElementAltIcon,
-			href: "https://matrix.to/#/@maki:cutelab.space",
+			href: config.socialLinks.matrix,
 		},
 	];
 
@@ -34,25 +35,23 @@ export default function Social() {
 				<Emoji>🦊</Emoji>
 				<Emoji>🍃</Emoji>
 				<Emoji>✨</Emoji>
-				<Text
+				<Heading
 					opacity={0.5}
 					fontWeight={600}
 					fontSize="2xl"
-					letterSpacing="-0.05em"
 					paddingLeft={2}
 					paddingRight={1}
 				>
 					game dev fox girl
-				</Text>
-				<Text
+				</Heading>
+				<Heading
 					opacity={0.4}
 					fontWeight={700}
 					fontSize="md"
-					letterSpacing="-0.05em"
 					paddingRight={2}
 				>
 					she/they
-				</Text>
+				</Heading>
 				<Emoji>🏳️‍⚧️</Emoji>
 				<Emoji>lesbian-flag</Emoji>
 				{/* <Emoji>t4t-flag-better</Emoji>  */}

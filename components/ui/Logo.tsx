@@ -1,5 +1,9 @@
 import { useEffect, useState } from "react";
+import { useLanyard } from "../../hooks/UseLanyard";
 import styles from "./Logo.module.scss";
+
+const animationForwardTime = 2800;
+const animationBackwardTime = 1400;
 
 export default function Logo() {
 	// true so it renders starting the animation without js
@@ -7,9 +11,6 @@ export default function Logo() {
 	const [animateBackward, setAnimateBackward] = useState(false);
 	const [animateHide, setAnimateHide] = useState(false);
 	const [animating, setAnimating] = useState(false);
-
-	const animationForwardTime = 2800;
-	const animationBackwardTime = 1400;
 
 	const playForward = (force = false) => {
 		if (animating && !force) return;
@@ -45,6 +46,7 @@ export default function Logo() {
 
 	useEffect(() => {
 		playForward();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
