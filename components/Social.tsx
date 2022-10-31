@@ -83,6 +83,7 @@ export default function Social() {
 			<HStack spacing={2} opacity={0.3} marginTop={8}>
 				{socials.map((social, i) => (
 					<chakra.a
+						key={i}
 						href={social.href}
 						transition="transform .15s ease-in-out"
 						transformOrigin="center"
@@ -101,7 +102,7 @@ export default function Social() {
 			>
 				<HStack spacing={2} opacity={0.2}>
 					<GitHubIcon size={16} />
-					<Text fontWeight={700}>See site's code</Text>
+					<Text fontWeight={700}>See site&apos;s code</Text>
 				</HStack>
 			</chakra.a>
 		</Flex>
