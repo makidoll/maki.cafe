@@ -9,6 +9,7 @@ import {
 	Text,
 	VStack,
 } from "@chakra-ui/react";
+import Link from "next/link";
 import { MdHelp } from "react-icons/md";
 import { config } from "../../config/config";
 import { useLanyard } from "../../hooks/UseLanyard";
@@ -18,6 +19,7 @@ import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { SpotifyIcon } from "../ui/social-icons/SpotifyIcon";
+import SubHeading from "../ui/SubHeading";
 import styles from "./DiscordHomeCard.module.scss";
 
 const clamp = (n: number, min: number, max: number) =>
@@ -87,20 +89,20 @@ export default function DiscordHomeCard() {
 						) : (
 							<SpotifyIcon color="#fff" size={12} />
 						)}
-						<Heading size={"xs"} fontWeight={500}>
+						<SubHeading size={"xs"} fontWeight={500}>
 							{song == null ? "No player" : "Spotify"}
-						</Heading>
+						</SubHeading>
 					</HStack>
-					<Heading size={"sm"}>
+					<SubHeading size={"sm"}>
 						{song == null ? (
 							"Not listening"
 						) : (
 							<DancingLetters>{song.song}</DancingLetters>
 						)}
-					</Heading>
-					<Heading size={"sm"} fontWeight={400}>
+					</SubHeading>
+					<SubHeading size={"sm"} fontWeight={400}>
 						{song == null ? "to anything" : "by " + song.artist}
-					</Heading>
+					</SubHeading>
 				</Flex>
 			</HStack>
 			{song == null ? (
@@ -154,7 +156,7 @@ export default function DiscordHomeCard() {
 	return (
 		<HomeCard>
 			<HStack>
-				<chakra.a href={config.socialLinks.discord}>
+				<Link href={config.socialLinks.discord} color="#000">
 					<HStack>
 						<DiscordUserImage
 							size={48}
@@ -169,20 +171,20 @@ export default function DiscordHomeCard() {
 							mobile={data?.active_on_discord_mobile}
 						/>
 						<VStack paddingLeft={2} spacing={-1}>
-							<Heading fontSize={"1.5em"}>
+							<SubHeading fontSize={"1.5em"}>
 								{data.discord_user.username}
-							</Heading>
-							<Heading
+							</SubHeading>
+							<SubHeading
 								opacity={0.6}
 								fontSize={"1em"}
 								fontWeight={600}
 							>
 								#{data.discord_user.discriminator}
-							</Heading>
+							</SubHeading>
 						</VStack>
 					</HStack>
-				</chakra.a>
-				<Heading
+				</Link>
+				<SubHeading
 					opacity={0.4}
 					fontWeight={200}
 					flex={1}
@@ -190,7 +192,7 @@ export default function DiscordHomeCard() {
 					fontSize="3xl"
 				>
 					{data.discord_status}
-				</Heading>
+				</SubHeading>
 			</HStack>
 			{spotify}
 			<HomeCardFooterLink href="https://github.com/Phineas/lanyard">

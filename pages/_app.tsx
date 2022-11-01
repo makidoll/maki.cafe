@@ -11,13 +11,23 @@ import "@fontsource/inter/900.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Script from "next/script";
+import "../fonts/kg-always-a-good-time/kg-always-a-good-time.css";
 import "../fonts/minecraft/minecraft.css";
 
 const theme = extendTheme({
 	components: {
-		Heading: {
+		// Heading: {
+		// 	baseStyle: {
+		// 		// letterSpacing: "-0.05em",
+		// 		fontWeight: "400",
+		// 	},
+		// },
+		Link: {
 			baseStyle: {
-				letterSpacing: "-0.05em",
+				color: "brand.500",
+				_hover: {
+					textDecoration: "none",
+				},
 			},
 		},
 	},
@@ -42,7 +52,7 @@ const theme = extendTheme({
 	},
 	fonts: {
 		// heading: `'Torus', sans-serif`,
-		heading: `'Inter', sans-serif`,
+		// heading: `'KG Always A Good Time', serif`,
 		body: `'Inter', sans-serif`,
 	},
 });

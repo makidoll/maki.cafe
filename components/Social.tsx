@@ -1,10 +1,11 @@
-import { chakra, Flex, Heading, HStack, Text } from "@chakra-ui/react";
+import { chakra, Flex, Heading, HStack, Link, Text } from "@chakra-ui/react";
 import { config } from "../config/config";
 import Emoji from "./ui/Emoji";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
+import SubHeading from "./ui/SubHeading";
 
 export default function Social() {
 	var socials = [
@@ -35,7 +36,7 @@ export default function Social() {
 				<Emoji>🦊</Emoji>
 				<Emoji>🍃</Emoji>
 				<Emoji>✨</Emoji>
-				<Heading
+				<SubHeading
 					opacity={0.5}
 					fontWeight={600}
 					fontSize="2xl"
@@ -43,20 +44,20 @@ export default function Social() {
 					paddingRight={1}
 				>
 					game dev fox girl
-				</Heading>
-				<Heading
+				</SubHeading>
+				<SubHeading
 					opacity={0.4}
 					fontWeight={700}
 					fontSize="md"
 					paddingRight={2}
 				>
 					she/they
-				</Heading>
+				</SubHeading>
 				<Emoji>🏳️‍⚧️</Emoji>
 				<Emoji>lesbian-flag</Emoji>
 				{/* <Emoji>t4t-flag-better</Emoji>  */}
 			</HStack>
-			<chakra.a
+			<Link
 				href="https://xn--3h8h64hda.ws"
 				transformOrigin="center"
 				transition="transform .15s ease-in-out"
@@ -64,6 +65,7 @@ export default function Social() {
 				fontSize="xs"
 				fontFamily='"Minecraft"'
 				marginTop={1}
+				color="#000"
 			>
 				<HStack spacing={0.5} justifyContent="center">
 					<Text opacity={0.3}>now available at www.</Text>
@@ -78,10 +80,10 @@ export default function Social() {
 					</Emoji>
 					<Text opacity={0.3}>.ws!</Text>
 				</HStack>
-			</chakra.a>
+			</Link>
 			<HStack spacing={2} opacity={0.3} marginTop={8}>
 				{socials.map((social, i) => (
-					<chakra.a
+					<Link
 						key={i}
 						href={social.href}
 						transition="transform .15s ease-in-out"
@@ -89,21 +91,22 @@ export default function Social() {
 						_hover={{ transform: "scale(1.1)" }}
 					>
 						<social.icon width={"auto"} height={24} />
-					</chakra.a>
+					</Link>
 				))}
 			</HStack>
-			<chakra.a
+			<Link
 				href="https://github.com/makifoxgirl/maki.cafe"
 				transformOrigin="center"
 				transition="transform .15s ease-in-out"
 				_hover={{ transform: "scale(1.05)" }}
 				marginTop={4}
+				color="#000"
 			>
 				<HStack spacing={2} opacity={0.2}>
 					<GitHubIcon size={16} />
 					<Text fontWeight={700}>See site&apos;s code</Text>
 				</HStack>
-			</chakra.a>
+			</Link>
 		</Flex>
 	);
 }

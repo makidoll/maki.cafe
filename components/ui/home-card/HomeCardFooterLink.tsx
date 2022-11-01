@@ -1,4 +1,4 @@
-import { chakra, Flex, Text } from "@chakra-ui/react";
+import { Flex, Text, Link } from "@chakra-ui/react";
 import { MdOpenInNew } from "react-icons/md";
 
 export default function HomeCardFooterLink(props: {
@@ -6,7 +6,7 @@ export default function HomeCardFooterLink(props: {
 	children?: string;
 }) {
 	return (
-		<chakra.a href={props.href} textDecor="none">
+		<Link href={props.href} textDecor="none" color="#000">
 			<Flex
 				width="100%"
 				alignItems="center"
@@ -20,6 +20,6 @@ export default function HomeCardFooterLink(props: {
 				</Text>
 				<MdOpenInNew size={24} />
 			</Flex>
-		</chakra.a>
+		</Link>
 	);
 }
