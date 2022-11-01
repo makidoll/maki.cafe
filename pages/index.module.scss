@@ -1,0 +1,17 @@
+.fade-in {
+	@keyframes home-fade-in {
+		0% {
+			opacity: 0;
+		}
+		100% {
+			opacity: 1;
+		}
+	}
+
+	> div {
+		animation-name: home-fade-in;
+		animation-duration: 0.5s;
+		animation-timing-function: linear;
+		transform-origin: 0 0;
+	}
+}

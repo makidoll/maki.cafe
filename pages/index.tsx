@@ -4,10 +4,15 @@ import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import WorkHomeCard from "../components/home-cards/WorkHomeCard";
 import Social from "../components/Social";
 import Logo from "../components/ui/Logo";
+import styles from "./index.module.scss";
 
 const Home: NextPage = () => {
 	return (
-		<>
+		<Box
+			className={
+				process.env.NODE_ENV == "development" ? "" : styles["fade-in"]
+			}
+		>
 			<Box
 				display="flex"
 				alignItems="center"
@@ -43,7 +48,7 @@ const Home: NextPage = () => {
 				<DiscordHomeCard />
 				<WorkHomeCard />
 			</Grid>
-		</>
+		</Box>
 	);
 };
 
