@@ -2,7 +2,7 @@ import { Box, Grid } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import Social from "../components/Social";
-import HomeCard from "../components/ui/HomeCard";
+import HomeCard from "../components/ui/home-card/HomeCard";
 import Logo from "../components/ui/Logo";
 
 const Home: NextPage = () => {

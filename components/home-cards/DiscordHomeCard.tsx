@@ -1,6 +1,7 @@
 import {
 	Box,
 	Center,
+	chakra,
 	Flex,
 	Heading,
 	HStack,
@@ -8,13 +9,16 @@ import {
 	Text,
 	VStack,
 } from "@chakra-ui/react";
+import { MdHelp } from "react-icons/md";
 import { config } from "../../config/config";
 import { useLanyard } from "../../hooks/UseLanyard";
+import DancingLetters from "../ui/DancingLetters";
 import DiscordUserImage from "../ui/DiscordUserImage";
-import HomeCard from "../ui/HomeCard";
-import { chakra } from "@chakra-ui/react";
+import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
+import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { SpotifyIcon } from "../ui/social-icons/SpotifyIcon";
-import { MdHelp } from "react-icons/md";
+import styles from "./DiscordHomeCard.module.scss";
 
 const clamp = (n: number, min: number, max: number) =>
 	Math.min(Math.max(n, min), max);
@@ -29,7 +33,13 @@ const msToTime = (ms: number) => {
 export default function DiscordHomeCard() {
 	const { data, song, songTime } = useLanyard(config.socialIds.discord);
 
-	if (data == null) return <HomeCard>loading</HomeCard>;
+	if (data == null) {
+		return (
+			<HomeCard>
+				<HomeCardLoading />
+			</HomeCard>
+		);
+	}
 
 	const spotify = (
 		<VStack
@@ -59,6 +69,9 @@ export default function DiscordHomeCard() {
 						width={16}
 						height={16}
 						borderRadius={6}
+						className={
+							song == null ? "" : styles["animate-album-image"]
+						}
 					/>
 				)}
 				<Flex
@@ -79,10 +92,14 @@ export default function DiscordHomeCard() {
 						</Heading>
 					</HStack>
 					<Heading size={"sm"}>
-						{song == null ? "Not listening" : song.song}
+						{song == null ? (
+							"Not listening"
+						) : (
+							<DancingLetters>{song.song}</DancingLetters>
+						)}
 					</Heading>
 					<Heading size={"sm"} fontWeight={400}>
-						{song == null ? "to anything" : "by" + song.artist}
+						{song == null ? "to anything" : "by " + song.artist}
 					</Heading>
 				</Flex>
 			</HStack>
@@ -134,8 +151,8 @@ export default function DiscordHomeCard() {
 		</VStack>
 	);
 
-	const component = (
-		<>
+	return (
+		<HomeCard>
 			<HStack>
 				<chakra.a href={config.socialLinks.discord}>
 					<HStack>
@@ -176,8 +193,9 @@ export default function DiscordHomeCard() {
 				</Heading>
 			</HStack>
 			{spotify}
-		</>
+			<HomeCardFooterLink href="https://github.com/Phineas/lanyard">
+				Powered by Lanyard
+			</HomeCardFooterLink>
+		</HomeCard>
 	);
-
-	return <HomeCard>{component}</HomeCard>;
 }
