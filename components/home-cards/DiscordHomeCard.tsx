@@ -1,5 +1,6 @@
 import {
 	Box,
+	Center,
 	Flex,
 	Heading,
 	HStack,
@@ -13,6 +14,7 @@ import DiscordUserImage from "../ui/DiscordUserImage";
 import HomeCard from "../ui/HomeCard";
 import { chakra } from "@chakra-ui/react";
 import { SpotifyIcon } from "../ui/social-icons/SpotifyIcon";
+import { MdHelp } from "react-icons/md";
 
 const clamp = (n: number, min: number, max: number) =>
 	Math.min(Math.max(n, min), max);
@@ -29,20 +31,28 @@ export default function DiscordHomeCard() {
 
 	if (data == null) return <HomeCard>loading</HomeCard>;
 
-	const spotify =
-		song == null ? (
-			<></>
-		) : (
-			<VStack
-				backgroundColor={"#1db954"}
-				color="white"
-				padding={2}
-				paddingBottom={1}
-				borderRadius={12}
-				spacing={1}
-				mt={4}
-			>
-				<HStack>
+	const spotify = (
+		<VStack
+			backgroundColor={song == null ? "rgba(0,0,0,0.5)" : "#1db954"}
+			color="white"
+			padding={2}
+			borderRadius={12}
+			spacing={1}
+			mt={4}
+		>
+			<HStack>
+				{song == null ? (
+					<Center
+						width={16}
+						height={16}
+						borderRadius={6}
+						background="rgba(255, 255, 255, 0.5)"
+					>
+						<Text fontSize="32px" color="rgba(255, 255, 255, 0.5)">
+							#!
+						</Text>
+					</Center>
+				) : (
 					<Image
 						src={song.album_art_url}
 						alt={song.album}
@@ -50,26 +60,40 @@ export default function DiscordHomeCard() {
 						height={16}
 						borderRadius={6}
 					/>
-					<Flex
-						flexDir="column"
-						width="225px"
-						maxWidth="225px"
-						whiteSpace="nowrap"
-						overflow="hidden"
-					>
-						<HStack opacity={0.6} spacing={1}>
+				)}
+				<Flex
+					flexDir="column"
+					width="225px"
+					maxWidth="225px"
+					whiteSpace="nowrap"
+					overflow="hidden"
+				>
+					<HStack opacity={0.6} spacing={1} pb={0.5}>
+						{song == null ? (
+							<MdHelp color="#fff" size={14} />
+						) : (
 							<SpotifyIcon color="#fff" size={12} />
-							<Heading size={"xs"} fontWeight={500} pb={0.5}>
-								Spotify
-							</Heading>
-						</HStack>
-						<Heading size={"sm"}>{song.song}</Heading>
-						<Heading size={"sm"} fontWeight={400}>
-							by {song.artist}
+						)}
+						<Heading size={"xs"} fontWeight={500}>
+							{song == null ? "No player" : "Spotify"}
 						</Heading>
-					</Flex>
-				</HStack>
-				<HStack width="100%" spacing={0}>
+					</HStack>
+					<Heading size={"sm"}>
+						{song == null ? "Not listening" : song.song}
+					</Heading>
+					<Heading size={"sm"} fontWeight={400}>
+						{song == null ? "to anything" : "by" + song.artist}
+					</Heading>
+				</Flex>
+			</HStack>
+			{song == null ? (
+				<></>
+			) : (
+				<HStack
+					width="100%"
+					spacing={0}
+					style={{ marginBottom: "-3px" }}
+				>
 					<Text fontSize="13px" width="42px" overflow={"hidden"}>
 						{msToTime(songTime.current)}
 					</Text>
@@ -106,8 +130,9 @@ export default function DiscordHomeCard() {
 						{msToTime(songTime.length)}
 					</Text>
 				</HStack>
-			</VStack>
-		);
+			)}
+		</VStack>
+	);
 
 	const component = (
 		<>

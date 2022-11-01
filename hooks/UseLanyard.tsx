@@ -101,6 +101,13 @@ export function useLanyard(discordId: string) {
 		// and they'd use musicbrainz to guess cover images
 		// TODO: link branch where source code is available
 
+		const clearSongTimeInterval = () => {
+			if (songTimeInterval) {
+				clearInterval(songTimeInterval);
+				songTimeInterval = null;
+			}
+		};
+
 		const processMusic = (data: DataEvent) => {
 			// let song: CurrentSong = this.processDeadBeefSong();
 			// if (song == null) song = this.processCiderAppleMusicSong();
@@ -109,10 +116,7 @@ export function useLanyard(discordId: string) {
 
 			if (song == null) {
 				// clean up
-				if (songTimeInterval) {
-					clearInterval(songTimeInterval);
-					songTimeInterval = null;
-				}
+				clearSongTimeInterval();
 				setSongTime(null);
 				setSong(null);
 				return;
@@ -122,10 +126,7 @@ export function useLanyard(discordId: string) {
 
 			// if timestamps.end doesnt exist, clean up
 			if (song.timestamps.end == null) {
-				if (songTimeInterval) {
-					clearInterval(songTimeInterval);
-					songTimeInterval = null;
-				}
+				clearSongTimeInterval();
 				setSongTime(null);
 			} else {
 				const length = song.timestamps.end - song.timestamps.start;
@@ -138,9 +139,8 @@ export function useLanyard(discordId: string) {
 
 				updateCurrent();
 
-				if (songTimeInterval == null) {
-					songTimeInterval = setInterval(updateCurrent, 1000);
-				}
+				clearSongTimeInterval();
+				songTimeInterval = setInterval(updateCurrent, 1000);
 			}
 		};
 
@@ -191,6 +191,7 @@ export function useLanyard(discordId: string) {
 
 			if (heartbeatInterval) {
 				clearInterval(heartbeatInterval);
+				heartbeatInterval = null;
 			}
 		};
 	}, []);
