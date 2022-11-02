@@ -1,0 +1,92 @@
+// @import "../../../styles/material-colors.scss";
+
+.dot-map {
+	position: relative;
+
+	// lol no
+
+	// .rows {
+	// 	display: flex;
+	// 	flex-direction: column;
+
+	// 	.row {
+	// 		display: flex;
+	// 		flex-direction: row;
+
+	// 		.dot {
+	// 			width: 2px;
+	// 			height: 2px;
+	// 			background-color: material-color("light-blue", "100");
+	// 			// border-radius: 50%;
+	// 			margin: 0.5px;
+	// 			opacity: 1;
+
+	// 			&.on {
+	// 				opacity: 0.8;
+	// 				background-color: material-color("light-green", "400");
+	// 			}
+	// 		}
+	// 	}
+	// }
+
+	.pin {
+		position: absolute;
+		top: 0;
+		left: 0;
+
+		&:before {
+			content: "";
+			position: absolute;
+			bottom: 0;
+			$scale: 0.04;
+			left: -128px * $scale;
+			width: 256px * $scale;
+			height: 640px * $scale;
+			// background-image: url("/assets/dot-map/pin.svg");
+			background-image: url("data:image/svg+xml;base64,PHN2ZyB2aWV3Qm94PSIwIDAgMjU2IDY0MCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWw6c3BhY2U9InByZXNlcnZlIiBzdHlsZT0iZmlsbC1ydWxlOmV2ZW5vZGQ7Y2xpcC1ydWxlOmV2ZW5vZGQ7c3Ryb2tlLWxpbmVqb2luOnJvdW5kO3N0cm9rZS1taXRlcmxpbWl0OjIiPjxwYXRoIGQ9Im02NTAuNjI4IDMzNy4yMzIgMjkuMTUzIDI4NS40MjFoLTU4LjMwNWwyOS4xNTItMjg1LjQyMXoiIHN0eWxlPSJmaWxsOnNpbHZlciIgdHJhbnNmb3JtPSJtYXRyaXgoLTEuNjQ2NTMgMCAwIC0xLjc5Mzg0IDExOTkuMjggMTI0NC45NCkiLz48Y2lyY2xlIGN4PSI3MTUuMzY2IiBjeT0iNDAwLjYzNCIgcj0iMTgwLjQxNCIgc3R5bGU9ImZpbGw6I2Y0NDMzNiIgdHJhbnNmb3JtPSJ0cmFuc2xhdGUoLTM3OS41MzggLTE1Ni4yNDIpIHNjYWxlKC43MDk0OCkiLz48L3N2Zz4=");
+			background-repeat: no-repeat;
+
+			@keyframes dot-map-pin-dance {
+				0% {
+					transform: rotate(10deg);
+				}
+				50% {
+					transform: rotate(-10deg);
+				}
+				100% {
+					transform: rotate(10deg);
+				}
+			}
+
+			transform-origin: 50% 100%;
+
+			animation-name: dot-map-pin-dance;
+			animation-duration: 2s;
+			animation-timing-function: ease-in-out;
+			animation-iteration-count: infinite;
+			animation-fill-mode: both;
+		}
+		// skip 0. no delay needed
+		@for $i from 1 through 3 {
+			&.pin-#{$i}:before {
+				animation-delay: 250ms * $i;
+			}
+		}
+
+		@keyframes dot-map-pin-drop-down {
+			0% {
+				opacity: 0;
+				transform: translateY(-30px);
+			}
+			100% {
+				opacity: 1;
+				transform: translateY(0);
+			}
+		}
+
+		animation-name: dot-map-pin-drop-down;
+		animation-duration: 1s;
+		animation-timing-function: ease-out;
+		animation-fill-mode: both;
+	}
+}

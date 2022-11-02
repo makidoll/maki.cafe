@@ -69,13 +69,13 @@ export default function Social() {
 			>
 				<HStack spacing={0.5} justifyContent="center">
 					<Text opacity={0.3}>now available at www.</Text>
-					<Emoji width={14} height={14} opacity={0.6}>
+					<Emoji size={14} opacity={0.6}>
 						🌺
 					</Emoji>
-					<Emoji width={14} height={14} opacity={0.6}>
+					<Emoji size={14} opacity={0.6}>
 						🦊
 					</Emoji>
-					<Emoji width={14} height={14} opacity={0.6}>
+					<Emoji size={14} opacity={0.6}>
 						🦋
 					</Emoji>
 					<Text opacity={0.3}>.ws!</Text>

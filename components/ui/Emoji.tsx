@@ -1,4 +1,4 @@
-import { chakra } from "@chakra-ui/react";
+import { chakra, ChakraProps } from "@chakra-ui/react";
 import lesbianFlag from "./custom-emojis/lesbian-flag.svg";
 import t4tFlagBetter from "./custom-emojis/t4t-flag-better.svg";
 import t4tFlag from "./custom-emojis/t4t-flag.svg";
@@ -31,21 +31,25 @@ function toCodePoint(unicodeSurrogates: string, sep: string = "-") {
 	return r.join(sep);
 }
 
-export default function Emoji(props: {
-	children?: string;
-	width?: number;
-	height?: number;
-	opacity?: number;
-}) {
+export default function Emoji(
+	props: {
+		children?: string;
+		size?: number;
+		opacity?: number;
+	} & ChakraProps,
+) {
 	const emoji = props.children ?? "";
+
+	props = { ...props };
+	delete props.children;
 
 	const customEmoji = customEmojis[emoji];
 
 	return (
 		<chakra.img
 			display="inline"
-			width={props.width ? props.width + "px" : "24px"}
-			height={props.height ? props.height + "px" : "24px"}
+			width={props.size ? props.size + "px" : "24px"}
+			height={props.size ? props.size + "px" : "24px"}
 			opacity={props.opacity ? props.opacity : 1}
 			marginX="0.1em"
 			marginBottom="-0.15em"
@@ -57,6 +61,7 @@ export default function Emoji(props: {
 					  ".svg"
 			}
 			alt={emoji}
+			{...props}
 		/>
 	);
 }
