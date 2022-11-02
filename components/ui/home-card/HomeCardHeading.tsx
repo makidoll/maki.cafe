@@ -6,6 +6,7 @@ export default function HomeCardHeading(props: HeadingProps) {
 			fontFamily={`'KG Always A Good Time', cursive`}
 			fontWeight={400}
 			fontSize={"24px"}
+			mt={-2}
 			{...props}
 		/>
 	);
