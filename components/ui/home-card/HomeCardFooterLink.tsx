@@ -13,7 +13,7 @@ export default function HomeCardFooterLink(props: {
 				justifyContent="center"
 				opacity={0.4}
 				mt={3}
-				mb={-2}
+				mb={-3}
 			>
 				<Text mr={1} fontWeight={500}>
 					{props.children}

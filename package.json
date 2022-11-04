@@ -3,7 +3,8 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"start": "next dev",
+		"pre": "node config/scripts/make-steam-spritesheet.mjs",
+		"start": "npm run pre && next dev",
 		"build": "next build",
 		"serve": "next start",
 		"lint": "next lint"
@@ -27,6 +28,9 @@
 		"@types/react-dom": "18.0.6",
 		"eslint": "8.26.0",
 		"eslint-config-next": "^13.0.0",
+		"fetch-cookie": "^2.1.0",
+		"node-fetch": "^3.2.10",
+		"sharp": "^0.31.1",
 		"typescript": "4.8.4"
 	}
 }
