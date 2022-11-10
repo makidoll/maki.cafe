@@ -11,7 +11,7 @@ const customEmojis: { [key: string]: { src: string } } = {
 
 // https://twemoji.maxcdn.com/v/latest/twemoji.js
 function toCodePoint(unicodeSurrogates: string, sep: string = "-") {
-	let r = [],
+	let r: string[] = [],
 		c = 0,
 		p = 0,
 		i = 0;

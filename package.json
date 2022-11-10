@@ -3,7 +3,7 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"pre": "node config/scripts/make-steam-spritesheet.mjs",
+		"pre": "node utils/scripts/make-steam-spritesheet.mjs",
 		"start": "npm run pre && next dev",
 		"build": "next build",
 		"serve": "next start",
@@ -13,14 +13,22 @@
 		"@chakra-ui/react": "^2.3.6",
 		"@emotion/react": "^11",
 		"@emotion/styled": "^11",
+		"@fontsource/azeret-mono": "^4.5.11",
 		"@fontsource/inter": "^4.5.14",
+		"@tanstack/react-query": "^4.14.5",
+		"@trpc/client": "^10.0.0-rc.5",
+		"@trpc/next": "^10.0.0-rc.5",
+		"@trpc/react-query": "^10.0.0-rc.5",
+		"@trpc/server": "^10.0.0-rc.5",
+		"axios": "^1.1.3",
 		"framer-motion": "^6",
 		"next": "^13.0.0",
 		"raw-loader": "^4.0.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",
 		"react-icons": "^4.6.0",
-		"sass": "^1.55.0"
+		"sass": "^1.55.0",
+		"zod": "^3.19.1"
 	},
 	"devDependencies": {
 		"@types/node": "18.11.3",

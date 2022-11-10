@@ -11,7 +11,7 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 import { MdHelp } from "react-icons/md";
-import { config } from "../../config/config";
+import { config } from "../../utils/config";
 import { useLanyard } from "../../hooks/UseLanyard";
 import DancingLetters from "../ui/DancingLetters";
 import DiscordUserImage from "../ui/DiscordUserImage";
@@ -105,7 +105,7 @@ export default function DiscordHomeCard() {
 					</SubHeading>
 				</Flex>
 			</HStack>
-			{song == null ? (
+			{song == null || songTime == null ? (
 				<></>
 			) : (
 				<HStack

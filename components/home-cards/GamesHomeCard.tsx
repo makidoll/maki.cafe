@@ -9,8 +9,8 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import { MdOpenInNew } from "react-icons/md";
-import { config } from "../../config/config";
-import { getBackgroundPositionsForSpritesheet } from "../../config/utils";
+import { config } from "../../utils/config";
+import { getBackgroundPositionsForSpritesheet } from "../../utils/utils";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import { OsuIcon } from "../ui/social-icons/OsuIcon";

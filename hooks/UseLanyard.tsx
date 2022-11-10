@@ -78,18 +78,18 @@ interface DataInitialize {
 export function useLanyard(discordId: string) {
 	const [data, setData] = useState<DataEvent>();
 
-	const [song, setSong] = useState<CurrentSong>();
+	const [song, setSong] = useState<CurrentSong | null>();
 	const [songTime, setSongTime] = useState<{
 		length: number;
 		current: number;
-	}>();
+	} | null>();
 
 	useEffect(() => {
-		let heartbeatInterval: NodeJS.Timer;
+		let heartbeatInterval: NodeJS.Timer | null;
 
-		let songTimeInterval: NodeJS.Timer;
+		let songTimeInterval: NodeJS.Timer | null;
 
-		const processSpotifySong = (data: DataEvent): CurrentSong => {
+		const processSpotifySong = (data: DataEvent): CurrentSong | null => {
 			const song: CurrentSong = data.spotify;
 			if (song == null) return null;
 			song.track_url = "https://open.spotify.com/track/" + song.track_id;
@@ -145,7 +145,7 @@ export function useLanyard(discordId: string) {
 		};
 
 		const onMessage = (event: MessageEvent) => {
-			let message: Message;
+			let message: Message | null = null;
 			try {
 				message = JSON.parse(event.data);
 			} catch (error) {

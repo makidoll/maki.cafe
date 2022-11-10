@@ -1,5 +1,5 @@
 import { chakra, Flex, Heading, HStack, Link, Text } from "@chakra-ui/react";
-import { config } from "../config/config";
+import { config } from "../utils/config";
 import Emoji from "./ui/Emoji";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";

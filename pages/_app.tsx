@@ -1,4 +1,13 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
+import "@fontsource/azeret-mono/100.css";
+import "@fontsource/azeret-mono/200.css";
+import "@fontsource/azeret-mono/300.css";
+import "@fontsource/azeret-mono/400.css";
+import "@fontsource/azeret-mono/500.css";
+import "@fontsource/azeret-mono/600.css";
+import "@fontsource/azeret-mono/700.css";
+import "@fontsource/azeret-mono/800.css";
+import "@fontsource/azeret-mono/900.css";
 import "@fontsource/inter/100.css";
 import "@fontsource/inter/200.css";
 import "@fontsource/inter/300.css";
@@ -13,6 +22,7 @@ import Head from "next/head";
 import Script from "next/script";
 import "../fonts/kg-always-a-good-time/kg-always-a-good-time.css";
 import "../fonts/minecraft/minecraft.css";
+import { trpc } from "../utils/trpc";
 
 const theme = extendTheme({
 	components: {
@@ -137,4 +147,4 @@ function MyApp({ Component, pageProps }: AppProps) {
 	);
 }
 
-export default MyApp;
+export default trpc.withTRPC(MyApp);
