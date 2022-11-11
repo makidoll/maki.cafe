@@ -5,8 +5,8 @@ export default function SubHeading(props: HeadingProps) {
 		<Heading
 			fontFamily={`'Inter', sans-serif`}
 			fontWeight={700}
-			letterSpacing="-0.05em"
-			{...props}
+			letterSpacing={"-0.05em"}
+			{...(props as any)}
 		/>
 	);
 }
