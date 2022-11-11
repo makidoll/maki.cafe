@@ -6,6 +6,13 @@ export default function HomeCardHeading(
 ) {
 	const mt = -2;
 
+	const Icon = props.icon;
+	const href = props.href;
+
+	props = { ...props };
+	delete props.icon;
+	delete props.href;
+
 	let H = (
 		<Heading
 			fontFamily={`'KG Always A Good Time', cursive`}
@@ -13,26 +20,26 @@ export default function HomeCardHeading(
 			fontSize={"24px"}
 			textAlign={"center"}
 			textTransform={"lowercase"}
-			mt={props.icon ? 0 : mt}
-			mr={props.icon ? 2 : 0}
+			mt={Icon ? 0 : mt}
+			mr={Icon ? 2 : 0}
 			{...(props as any)}
 		/>
 	);
 
-	if (props.icon) {
+	if (Icon) {
 		H = (
 			<Flex flexDir={"row"} mt={mt}>
 				{H}
-				<props.icon size={24} />
+				<Icon size={24} />
 			</Flex>
 		);
 	}
 
-	if (props.href) {
+	if (href) {
 		H = (
 			<Link
 				color="#000"
-				href={props.href}
+				href={href}
 				transition="transform .15s ease-in-out"
 				transformOrigin="center"
 				_hover={{ transform: "scale(1.05)" }}

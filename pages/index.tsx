@@ -1,6 +1,7 @@
 import { Box, Grid } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
+import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
 import HomelabHomeCard from "../components/home-cards/HomelabHomeCard";
 import MfcHomeCard from "../components/home-cards/MfcHomeCard";
@@ -58,6 +59,7 @@ const Home: NextPage = () => {
 				<GamesHomeCard />
 				<HomelabHomeCard />
 				<MfcHomeCard />
+				<FlickrHomeCard />
 			</Grid>
 		</Box>
 	);
