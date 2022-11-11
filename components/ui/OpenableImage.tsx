@@ -21,7 +21,7 @@ export default function OpenableImage(
 	return (
 		<>
 			<Image
-				{...props}
+				{...(props as any)}
 				cursor="pointer"
 				onClick={onOpen}
 				src={src}
@@ -40,7 +40,7 @@ export default function OpenableImage(
 				>
 					{/* <ModalCloseButton color={"white"} /> */}
 					<Image
-						{...props}
+						{...(props as any)}
 						src={props.image.src}
 						alt={props.alt}
 						borderRadius={8}
