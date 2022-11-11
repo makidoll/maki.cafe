@@ -67,13 +67,19 @@ const theme = extendTheme({
 	},
 });
 
+const title = "Maki 🦊🍃";
+const description = "hi im Maki and i make thing ❤️";
+
+const domain = "maki.cafe";
+const url = "https://" + domain;
+const imageUrl = url + "/icon.png";
+
 function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ChakraProvider theme={theme}>
 			<Head>
 				{/* <meta charset="utf-8" /> */}
-				<title>Maki 🦊🍃</title>
-				<base href="/" />
+				<title>{title}</title>
 				<meta
 					name="viewport"
 					content="width=device-width, initial-scale=1"
@@ -81,54 +87,40 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<link
 					rel="apple-touch-icon"
 					sizes="180x180"
-					href="/assets/icons/apple-touch-icon.png"
+					href="/icons/apple-touch-icon.png"
 				/>
 				<link
 					rel="icon"
 					type="image/png"
 					sizes="32x32"
-					href="/assets/icons/favicon-32x32.png"
+					href="/icons/favicon-32x32.png"
 				/>
 				<link
 					rel="icon"
 					type="image/png"
 					sizes="16x16"
-					href="/assets/icons/favicon-16x16.png"
+					href="/icons/favicon-16x16.png"
 				/>
-				<link rel="manifest" href="/assets/icons/site.webmanifest" />
+				<link rel="manifest" href="/icons/site.webmanifest" />
 				<link rel="shortcut icon" href="/favicon.ico" />
 				<meta name="msapplication-TileColor" content="#e91e63" />
 				<meta
 					name="msapplication-config"
-					content="/assets/icons/browserconfig.xml"
+					content="/icons/browserconfig.xml"
 				/>
 				<meta name="theme-color" content="#ffffff" />
-				<meta
-					name="description"
-					content="hi im Maki and im a flower fox fairy who makes things ❤️"
-				/>
-				<meta property="og:url" content="https://maki.cafe/" />
+				<meta name="theme-color" content="#ffffff" />
+				<meta name="description" content={description} />
+				<meta property="og:url" content={url} />
 				<meta property="og:type" content="website" />
-				<meta property="og:title" content="Maki 🦊🍃" />
-				<meta
-					property="og:description"
-					content="hi im Maki and im a flower fox fairy who makes things ❤️"
-				/>
-				<meta
-					property="og:image"
-					content="https://maki.cafe/assets/icon.png"
-				/>
-				<meta property="twitter:domain" content="maki.cafe" />
-				<meta property="twitter:url" content="https://maki.cafe/" />
-				<meta name="twitter:title" content="Maki 🦊🍃" />
-				<meta
-					name="twitter:description"
-					content="hi im Maki and im a flower fox fairy who makes things ❤️"
-				/>
-				<meta
-					name="twitter:image"
-					content="https://maki.cafe/assets/icon.png"
-				/>
+				<meta property="og:title" content={title} />
+				<meta property="og:description" content={description} />
+				<meta property="og:image" content={imageUrl} />
+				<meta property="twitter:domain" content={domain} />
+				<meta property="twitter:url" content={url} />
+				<meta name="twitter:title" content={title} />
+				<meta name="twitter:description" content={description} />
+				<meta name="twitter:image" content={imageUrl} />
 			</Head>
 			<Script
 				id="ithelpsme"
