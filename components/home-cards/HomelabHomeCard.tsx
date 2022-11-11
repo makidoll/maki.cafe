@@ -20,51 +20,58 @@ import blahajRack from "./homelab/blahaj-rack.jpg";
 const macMini = [["Say server", "https://say.cutelab.space"]];
 
 const blahajMedia = [
+	["Plex", "https://plex.tv"],
+	["Mullvad VPN", "https://mullvad.net/en"],
 	["qBittorrent", "https://www.qbittorrent.org"],
 	["Radarr", "https://radarr.video/"],
-	["Mullvad VPN", "https://mullvad.net/en"],
-	["Emby", "https://emby.media"],
-];
-
-const blahajFiles = [
-	["Samba", "https://github.com/ServerContainers/samba"],
-	["Seafile", "https://seafile.com/"],
-	[
-		"Unity Accelerator",
-		"https://hub.docker.com/r/unitytechnologies/accelerator",
-	],
 ];
 
 const blahajSocial = [
 	["Synapse", "https://github.com/matrix-org/synapse"],
 	["Mastodon", "https://mastodon.cutelab.space"],
 	["Nitter", "https://nitter.cutelab.space"],
+	["The Lounge", "https://github.com/thelounge/thelounge"],
+	["Lanyard", "https://github.com/Phineas/lanyard"],
 	["Bibliogram", "https://bibliogram.cutelab.space"],
-	["Lanyard", "https://lanyard.cutelab.space"],
 ];
 
 const blahajDev = [
 	["Gitea", "https://gitea.io"],
-	["Meli", "https://github.com/getmeli/meli"],
 	["Tileserver GL", "https://github.com/maptiler/tileserver-gl"],
 	["Traefik", "https://traefik.io/traefik"],
+	["Sentry", "https://sentry.io"],
+	["Coolify", "https://coolify.io"],
+	["Plausible", "https://plausible.io"],
+	["Netdata", "https://www.netdata.cloud"],
 ];
 
 const blahajHome = [
 	["Home Assistant", "https://www.home-assistant.io"],
-	["Scrypted", "https://www.scrypted.app"],
-	["Cutelab Squirrels", "https://squirrels.tivolicloud.com"],
 	["Librespeed", "https://speedtest.cutelab.space"],
 ];
 
 const blahajPersonal = [
-	["Homer", "https://github.com/bastienwirtz/homer"],
+	["Maki Upload", "https://maki.cafe/u"],
+	["Blåhaj Finder", "https://blahaj.quest"],
+	["Seafile", "https://www.seafile.com"],
 	["FreshRSS", "https://freshrss.org"],
 	["RSS Bridge", "https://github.com/RSS-Bridge/rss-bridge"],
-	["Blåhaj Finder", "https://blahaj.quest"],
-	["Grafana + Prometheus", "https://grafana.com"],
+	["Storj", "https://storj.io"],
+	["Homer", "https://github.com/bastienwirtz/homer"],
 	["InvoiceNinja", "https://www.invoiceninja.com"],
-	["Maki Upload", "https://maki.cafe/u"],
+];
+
+const blahajGames = [["Minecraft", "https://minecraft.net"]];
+
+const blahajAi = [
+	[
+		"Maki's Stable Diffusion UI",
+		"https://github.com/makifoxgirl/stable-diffusion-ui",
+	],
+	[
+		"AUTOMATIC1111's Stable Diffusion UI",
+		"https://github.com/AUTOMATIC1111/stable-diffusion-webui",
+	],
 ];
 
 function linksToListItem(name: string, links: string[][]) {
@@ -175,7 +182,9 @@ export default function HomelabHomeCard() {
 						Everything on this site is hosted here!
 						<br />
 						Last updated:{" "}
-						<chakra.span fontWeight={800}>May 30, 2022</chakra.span>
+						<chakra.span fontWeight={800}>
+							November 11, 2022
+						</chakra.span>
 						<br />
 						<br />
 					</Text>
@@ -208,15 +217,18 @@ export default function HomelabHomeCard() {
 							</UnorderedList>
 						</ListItem>
 						<ListItem>
-							Blåhaj - Ryzen Threadripper 2970WX, 128 GB DDR4
-							3200MHz, RTX 3060 Ti and GTX 1060
+							Blåhaj - Ryzen Threadripper 2970WX,
+							<br />
+							128 GB DDR4 3200MHz, RTX 3090 Ti,
+							<br />4 TB SSD, 256 GB SSD, 14 TB HDD
 							<UnorderedList listStyleType={"circle"}>
 								{linksToListItem("Social", blahajSocial)}
 								{linksToListItem("Media", blahajMedia)}
-								{linksToListItem("Files", blahajFiles)}
 								{linksToListItem("Home", blahajHome)}
 								{linksToListItem("Dev", blahajDev)}
 								{linksToListItem("Personal", blahajPersonal)}
+								{linksToListItem("Games", blahajGames)}
+								{linksToListItem("AI", blahajAi)}
 							</UnorderedList>
 						</ListItem>
 						<ListItem>
