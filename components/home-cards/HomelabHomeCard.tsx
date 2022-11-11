@@ -183,44 +183,38 @@ export default function HomelabHomeCard() {
 					<UnorderedList listStyleType={"disc"}>
 						<ListItem>
 							Protectli Vault 6 Port, i7 quad core
-							<UnorderedList listStyleType={"circle"}>
-								<ListItem fontStyle={"italic"}>
-									Currently turned off. I&apos;ve been playing
-									with OPNsense every once in a while
-								</ListItem>
-							</UnorderedList>
 						</ListItem>
-						<ListItem>
-							Ubiquiti Dream Machine Pro
-							<UnorderedList listStyleType={"circle"}>
-								<ListItem>Network router and IPS</ListItem>
-								<ListItem>
-									NVR for 3 x G4 Pro cameras and a G3 Instant
-								</ListItem>
-							</UnorderedList>
-						</ListItem>
+						<UnorderedList listStyleType={"circle"}>
+							<ListItem fontStyle={"italic"}>
+								Currently turned off. I&apos;ve been playing
+								with OPNsense every once in a while
+							</ListItem>
+						</UnorderedList>
+						<ListItem>Ubiquiti Dream Machine Pro</ListItem>
+						<UnorderedList listStyleType={"circle"}>
+							<ListItem>Network router and IPS</ListItem>
+							<ListItem>
+								NVR for 3 x G4 Pro cameras and a G3 Instant
+							</ListItem>
+						</UnorderedList>
 						<ListItem>Ubiquiti Switch 16 PoE</ListItem>
-						<ListItem>
-							Mac Mini M1, 16 GB
-							<UnorderedList listStyleType={"circle"}>
-								<ListItem>Personal build server</ListItem>
-								<ListItem>
-									{linksToListItem("", macMini)}
-								</ListItem>
-							</UnorderedList>
-						</ListItem>
+						<ListItem>Mac Mini M1, 16 GB</ListItem>
+						<UnorderedList listStyleType={"circle"}>
+							<ListItem>Personal build server</ListItem>
+							<ListItem>{linksToListItem("", macMini)}</ListItem>
+						</UnorderedList>
 						<ListItem>
 							Blåhaj - Ryzen Threadripper 2970WX, 128 GB DDR4
 							3200MHz, RTX 3060 Ti and GTX 1060
-							<UnorderedList listStyleType={"circle"}>
-								{linksToListItem("Social", blahajSocial)}
-								{linksToListItem("Media", blahajMedia)}
-								{linksToListItem("Files", blahajFiles)}
-								{linksToListItem("Home", blahajHome)}
-								{linksToListItem("Dev", blahajDev)}
-								{linksToListItem("Personal", blahajPersonal)}
-							</UnorderedList>
 						</ListItem>
+						<UnorderedList listStyleType={"circle"}>
+							{linksToListItem("Social", blahajSocial)}
+							{linksToListItem("Media", blahajMedia)}
+							{linksToListItem("Files", blahajFiles)}
+							{linksToListItem("Home", blahajHome)}
+							{linksToListItem("Dev", blahajDev)}
+							{linksToListItem("Personal", blahajPersonal)}
+						</UnorderedList>
 						<ListItem>
 							CyberPower OR1500LCDRM1U UPS, 1500VA/900W
 						</ListItem>

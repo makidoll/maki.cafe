@@ -5,8 +5,8 @@ import { DoubleSide, Mesh, Vector3 } from "three";
 
 export default function IntroAvatarModel(props: {
 	position?: Vector3;
-	rotationY?: SpringValue;
-	scale?: number;
+	rotationY?: SpringValue<number>;
+	scale?: SpringValue<number>;
 	onLoaded?: () => any;
 }) {
 	const { nodes } = useGLTF("/intro-avatar/baked.glb");
@@ -24,6 +24,7 @@ export default function IntroAvatarModel(props: {
 
 	useEffect(() => {
 		if (props.onLoaded) props.onLoaded();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	return (
