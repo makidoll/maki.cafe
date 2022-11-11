@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
 import HomelabHomeCard from "../components/home-cards/HomelabHomeCard";
+import MfcHomeCard from "../components/home-cards/MfcHomeCard";
 import WhereHomeCard from "../components/home-cards/WhereHomeCard";
 import WorkHomeCard from "../components/home-cards/WorkHomeCard";
 import IntroAvatar from "../components/IntroAvatar";
@@ -56,6 +57,7 @@ const Home: NextPage = () => {
 				<WhereHomeCard />
 				<GamesHomeCard />
 				<HomelabHomeCard />
+				<MfcHomeCard />
 			</Grid>
 		</Box>
 	);

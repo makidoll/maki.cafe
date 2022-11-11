@@ -3,8 +3,8 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"pre": "node utils/scripts/make-steam-spritesheet.mjs",
-		"start": "npm run pre && next dev",
+		"make": "node utils/scripts/make-steam.mjs && node utils/scripts/make-mfc.mjs",
+		"start": "next dev",
 		"build": "next build",
 		"serve": "next start",
 		"lint": "next lint"
@@ -43,6 +43,7 @@
 		"eslint-config-next": "^13.0.0",
 		"fetch-cookie": "^2.1.0",
 		"node-fetch": "^3.2.10",
+		"puppeteer": "^19.2.2",
 		"sharp": "^0.31.1",
 		"typescript": "4.8.4"
 	}
