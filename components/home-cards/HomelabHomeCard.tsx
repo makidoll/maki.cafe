@@ -40,7 +40,7 @@ const blahajDev = [
 	["Tileserver GL", "https://github.com/maptiler/tileserver-gl"],
 	["Traefik", "https://traefik.io/traefik"],
 	["Sentry", "https://sentry.io"],
-	["Coolify", "https://coolify.io"],
+	// ["Coolify", "https://coolify.io"], // used meli in the past
 	["Plausible", "https://plausible.io"],
 	["Netdata", "https://www.netdata.cloud"],
 ];
