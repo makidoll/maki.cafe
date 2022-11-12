@@ -1,31 +1,32 @@
 import {
-	Image,
-	ImageProps,
 	Modal,
 	ModalContent,
 	ModalOverlay,
 	useDisclosure,
 } from "@chakra-ui/react";
-import { StaticImageData } from "next/image";
+import Image, { ImageProps } from "next/image";
 
 export default function OpenableImage(
 	props: ImageProps & {
-		image: StaticImageData;
+		imageWidth: number;
+		imageHeight: number;
 		modalW?: string;
 		modalH?: string;
 	},
 ) {
 	const { isOpen, onOpen, onClose } = useDisclosure();
-	const { src, width, height } = props.image;
 
 	return (
 		<>
 			<Image
 				{...(props as any)}
-				cursor="pointer"
+				style={{ cursor: "pointer" }}
 				onClick={onOpen}
-				src={src}
+				src={props.src}
 				alt={props.alt}
+				width={props.width}
+				height={props.height}
+				blurDataURL={props.blurDataURL}
 			/>
 			<Modal onClose={onClose} isOpen={isOpen} isCentered size={"4xl"}>
 				<ModalOverlay />
@@ -37,9 +38,26 @@ export default function OpenableImage(
 					pointerEvents="none"
 					alignItems="center"
 					justifyContent="center"
+					position={"relative"}
 				>
 					{/* <ModalCloseButton color={"white"} /> */}
 					<Image
+						alt={props.alt}
+						// fill={true}
+						src={props.src}
+						width={props.imageWidth}
+						height={props.imageHeight}
+						blurDataURL={props.blurDataURL}
+						style={{
+							aspectRatio: `${props.imageWidth} / ${props.imageHeight}`,
+							width: "auto",
+							height: "auto",
+							maxWidth: "100%",
+							maxHeight: "100%",
+							borderRadius: 8,
+						}}
+					/>
+					{/* <Image
 						{...(props as any)}
 						src={props.image.src}
 						alt={props.alt}
@@ -52,7 +70,7 @@ export default function OpenableImage(
 						h="auto"
 						maxW="100%"
 						maxH="100%"
-					></Image>
+					></Image> */}
 				</ModalContent>
 			</Modal>
 		</>

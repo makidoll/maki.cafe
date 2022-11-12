@@ -14,8 +14,8 @@ import { trpc } from "../../utils/trpc";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import OpenableImage from "../ui/OpenableImage";
-import blahajInside from "./homelab/blahaj-inside.jpg";
-import blahajRack from "./homelab/blahaj-rack.jpg";
+import imageBlahajInside from "./homelab/blahaj-inside.jpg";
+import imageBlahajRack from "./homelab/blahaj-rack.jpg";
 
 const macMini = [["Say server", "https://say.cutelab.space"]];
 
@@ -156,26 +156,49 @@ export default function HomelabHomeCard() {
 							</Box>
 						</Link>
 					</Box>
-					<OpenableImage
-						width={100}
-						image={blahajRack}
-						alt="Blahaj Rack"
+					<Box
 						borderRadius={4}
+						overflow="hidden"
 						transition={config.styles.hoverTransition}
 						_hover={{
 							transform: "scale(1.05)",
 						}}
-					></OpenableImage>
-					<OpenableImage
-						width={100}
-						image={blahajInside}
-						alt="Blahaj Inside"
+					>
+						<OpenableImage
+							src={imageBlahajRack.src}
+							imageWidth={imageBlahajRack.width}
+							imageHeight={imageBlahajRack.height}
+							blurDataURL={imageBlahajRack.blurDataURL}
+							alt="Blahaj Rack"
+							width={100}
+							height={
+								100 *
+								(imageBlahajRack.width / imageBlahajRack.height)
+							}
+						></OpenableImage>
+					</Box>
+					<Box
 						borderRadius={4}
+						overflow="hidden"
 						transition={config.styles.hoverTransition}
 						_hover={{
 							transform: "scale(1.05)",
 						}}
-					></OpenableImage>
+					>
+						<OpenableImage
+							src={imageBlahajInside.src}
+							imageWidth={imageBlahajInside.width}
+							imageHeight={imageBlahajInside.height}
+							blurDataURL={imageBlahajInside.blurDataURL}
+							alt="Blahaj Inside"
+							width={100}
+							height={
+								100 *
+								(imageBlahajInside.width /
+									imageBlahajInside.height)
+							}
+						></OpenableImage>
+					</Box>
 				</VStack>
 				<Box fontSize="0.65em" lineHeight={1.2} width="280px">
 					<Text fontWeight={600}>

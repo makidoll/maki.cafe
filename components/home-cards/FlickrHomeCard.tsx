@@ -1,4 +1,5 @@
 import { Box, Center, Grid, GridItem, Link } from "@chakra-ui/react";
+import Image from "next/image";
 import { config } from "../../utils/config";
 import { trpc } from "../../utils/trpc";
 import HomeCard from "../ui/home-card/HomeCard";
@@ -38,14 +39,21 @@ export default function FlickrHomeCard() {
 						>
 							<Link href={post.link}>
 								<Box
-									w={80 + "px"}
-									h={80 * (3 / 4) + "px"}
-									backgroundPosition="center"
-									backgroundImage={post.media.m}
-									backgroundSize="cover"
-									backgroundRepeat="no-repeat"
+									width={80 + "px"}
+									height={80 * (3 / 4) + "px"}
+									overflow="hidden"
 									borderRadius={4}
-								></Box>
+									position="relative"
+								>
+									<Image
+										alt={post.title}
+										src={post.media.m}
+										fill={true}
+										style={{
+											objectFit: "cover",
+										}}
+									/>
+								</Box>
 							</Link>
 						</GridItem>
 					))}
