@@ -63,7 +63,7 @@ export default function MfcHomeCard() {
 									backgroundSize={"600% 400%"}
 									backgroundImage={mfcSpritesheet.src}
 									backgroundPosition={figure.position}
-									transition="transform .15s ease-in-out"
+									transition={config.styles.hoverTransition}
 									_hover={{ transform: "scale(1.05)" }}
 								></Box>
 							</Link>

@@ -50,7 +50,13 @@ export default function GamesHomeCard(props) {
 			<HomeCardHeading mb={4}>my favorite games</HomeCardHeading>
 			<Grid templateColumns="repeat(3, 1fr)" gap={1} w={350} maxW={350}>
 				{gamesWithPositions.slice(0, 6).map((game, i) => (
-					<GridItem key={i}>
+					<GridItem
+						key={i}
+						transition={config.styles.hoverTransition}
+						_hover={{
+							transform: "scale(1.05)",
+						}}
+					>
 						<Link
 							href={
 								"https://store.steampowered.com/app/" +
@@ -86,7 +92,13 @@ export default function GamesHomeCard(props) {
 				{gamesWithPositions
 					.slice(6, gamesInfo.steamIds.length)
 					.map((game, i) => (
-						<GridItem key={i}>
+						<GridItem
+							key={i}
+							transition={config.styles.hoverTransition}
+							_hover={{
+								transform: "scale(1.05)",
+							}}
+						>
 							<Link
 								href={
 									"https://store.steampowered.com/app/" +

@@ -60,7 +60,7 @@ export default function Social() {
 			<Link
 				href="https://xn--3h8h64hda.ws"
 				transformOrigin="center"
-				transition="transform .15s ease-in-out"
+				transition={config.styles.hoverTransition}
 				_hover={{ transform: "scale(1.05)" }}
 				fontSize="xs"
 				fontFamily='"Minecraft"'
@@ -86,7 +86,7 @@ export default function Social() {
 					<Link
 						key={i}
 						href={social.href}
-						transition="transform .15s ease-in-out"
+						transition={config.styles.hoverTransition}
 						transformOrigin="center"
 						_hover={{ transform: "scale(1.1)" }}
 					>
@@ -97,7 +97,7 @@ export default function Social() {
 			<Link
 				href="https://github.com/makifoxgirl/maki.cafe"
 				transformOrigin="center"
-				transition="transform .15s ease-in-out"
+				transition={config.styles.hoverTransition}
 				_hover={{ transform: "scale(1.05)" }}
 				marginTop={4}
 				color="#000"

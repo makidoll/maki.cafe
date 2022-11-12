@@ -1,5 +1,6 @@
 import { Flex, Heading, HeadingProps, Link } from "@chakra-ui/react";
 import { IconType } from "react-icons";
+import { config } from "../../../utils/config";
 
 export default function HomeCardHeading(
 	props: HeadingProps & { icon?: IconType; href?: string },
@@ -40,7 +41,7 @@ export default function HomeCardHeading(
 			<Link
 				color="#000"
 				href={href}
-				transition="transform .15s ease-in-out"
+				transition={config.styles.hoverTransition}
 				transformOrigin="center"
 				_hover={{ transform: "scale(1.05)" }}
 			>

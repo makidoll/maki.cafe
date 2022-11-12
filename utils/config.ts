@@ -71,4 +71,7 @@ export const config = {
 		path.resolve(__dirname, "games/mother-3.png"),
 		path.resolve(__dirname, "games/drakengard-3.png"),
 	],
+	styles: {
+		hoverTransition: "transform .15s ease-in-out",
+	},
 };

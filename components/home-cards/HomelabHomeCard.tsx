@@ -161,7 +161,7 @@ export default function HomelabHomeCard() {
 						image={blahajRack}
 						alt="Blahaj Rack"
 						borderRadius={4}
-						transition={"transform .15s ease-in-out"}
+						transition={config.styles.hoverTransition}
 						_hover={{
 							transform: "scale(1.05)",
 						}}
@@ -171,7 +171,7 @@ export default function HomelabHomeCard() {
 						image={blahajInside}
 						alt="Blahaj Inside"
 						borderRadius={4}
-						transition={"transform .15s ease-in-out"}
+						transition={config.styles.hoverTransition}
 						_hover={{
 							transform: "scale(1.05)",
 						}}
