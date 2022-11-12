@@ -1,7 +1,7 @@
 import { a, SpringValue } from "@react-spring/three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useEffect, useMemo } from "react";
-import { DoubleSide, Mesh, Vector3 } from "three";
+import { DoubleSide, LinearFilter, Mesh, Vector3 } from "three";
 
 export default function IntroAvatarModel(props: {
 	position?: Vector3;
@@ -19,8 +19,11 @@ export default function IntroAvatarModel(props: {
 		}
 	}, [nodes]);
 
-	const texture = useTexture("/intro-avatar/baked.jpg");
-	texture.anisotropy = 4;
+	const texture = useTexture("/intro-avatar/baked.webp");
+	// texture.anisotropy = 4;
+	texture.magFilter = LinearFilter;
+	texture.minFilter = LinearFilter;
+	texture.generateMipmaps = true;
 
 	useEffect(() => {
 		if (props.onLoaded) props.onLoaded();
@@ -34,7 +37,11 @@ export default function IntroAvatarModel(props: {
 			rotation-y={props.rotationY}
 			scale={props.scale}
 		>
-			<meshBasicMaterial map={texture} side={DoubleSide} />
+			<meshBasicMaterial
+				map={texture}
+				transparent={true}
+				side={DoubleSide}
+			/>
 		</a.mesh>
 	);
 }

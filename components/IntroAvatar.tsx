@@ -3,7 +3,7 @@ import { config, useSpring } from "@react-spring/three";
 import { OrbitControls } from "@react-three/drei";
 import { Canvas, useThree } from "@react-three/fiber";
 import { lazy, useState } from "react";
-import { Euler, Vector3 } from "three";
+import { Vector3 } from "three";
 
 const Deg2Rad = 0.0174533;
 
@@ -35,7 +35,7 @@ function RotateInOrbitControls(props: { rotationY?: number }) {
 }
 
 const startDegrees = 180 * Deg2Rad;
-const endDegrees = -80 * Deg2Rad;
+const endDegrees = -30 * Deg2Rad;
 
 const scale = 0.08;
 const startScale = 0.5 * scale;
