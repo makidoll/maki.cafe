@@ -1,18 +1,9 @@
-import {
-	Box,
-	Center,
-	chakra,
-	Flex,
-	Heading,
-	HStack,
-	Image,
-	Text,
-	VStack,
-} from "@chakra-ui/react";
+import { Box, Center, Flex, HStack, Text, VStack } from "@chakra-ui/react";
+import Image from "next/image";
 import Link from "next/link";
 import { MdHelp } from "react-icons/md";
-import { config } from "../../utils/config";
 import { useLanyard } from "../../hooks/UseLanyard";
+import { config } from "../../utils/config";
 import DancingLetters from "../ui/DancingLetters";
 import DiscordUserImage from "../ui/DiscordUserImage";
 import HomeCard from "../ui/home-card/HomeCard";
@@ -68,9 +59,9 @@ export default function DiscordHomeCard() {
 					<Image
 						src={song.album_art_url}
 						alt={song.album}
-						width={16}
-						height={16}
-						borderRadius={6}
+						width={64}
+						height={64}
+						style={{ borderRadius: 6 }}
 						className={
 							song == null ? "" : styles["animate-album-image"]
 						}
