@@ -61,8 +61,8 @@ export default function IntroAvatar(props: BoxProps) {
 
 	return (
 		<Box
-			w={"100vw"}
-			h={"30vh"}
+			w={"100%"}
+			h={256}
 			{...props}
 			transition={"opacity 0.5s linear"}
 			opacity={opacity}

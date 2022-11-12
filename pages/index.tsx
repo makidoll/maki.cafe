@@ -26,7 +26,7 @@ const Home: NextPage = () => {
 				flexDirection="column"
 				width="100%"
 			>
-				<IntroAvatar h={"28vh"} mt={24} mb={16} />
+				<IntroAvatar h={350} mt={24} mb={16} />
 				<Box width={400} marginTop={0}>
 					<Logo />
 				</Box>
