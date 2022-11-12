@@ -19,11 +19,17 @@ export default function IntroAvatarModel(props: {
 		}
 	}, [nodes]);
 
-	const texture = useTexture("/intro-avatar/baked.webp");
+	const map = useTexture("/intro-avatar/baked.jpg");
 	// texture.anisotropy = 4;
-	texture.magFilter = LinearFilter;
-	texture.minFilter = LinearFilter;
-	texture.generateMipmaps = true;
+	map.magFilter = LinearFilter;
+	map.minFilter = LinearFilter;
+	map.generateMipmaps = true;
+
+	const alphaMap = useTexture("/intro-avatar/baked-alpha.jpg");
+	// texture.anisotropy = 4;
+	alphaMap.magFilter = LinearFilter;
+	alphaMap.minFilter = LinearFilter;
+	alphaMap.generateMipmaps = true;
 
 	useEffect(() => {
 		if (props.onLoaded) props.onLoaded();
@@ -38,8 +44,9 @@ export default function IntroAvatarModel(props: {
 			scale={props.scale}
 		>
 			<meshBasicMaterial
-				map={texture}
-				transparent={true}
+				map={map}
+				alphaMap={alphaMap}
+				alphaTest={0.5}
 				side={DoubleSide}
 			/>
 		</a.mesh>
