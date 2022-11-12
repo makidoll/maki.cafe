@@ -19,13 +19,13 @@ export default function IntroAvatarModel(props: {
 		}
 	}, [nodes]);
 
-	const map = useTexture("/intro-avatar/baked.jpg");
+	const map = useTexture("/intro-avatar/baked.webp");
 	// texture.anisotropy = 4;
 	map.magFilter = LinearFilter;
 	map.minFilter = LinearFilter;
 	map.generateMipmaps = true;
 
-	const alphaMap = useTexture("/intro-avatar/baked-alpha.jpg");
+	const alphaMap = useTexture("/intro-avatar/baked-alpha.webp");
 	// texture.anisotropy = 4;
 	alphaMap.magFilter = LinearFilter;
 	alphaMap.minFilter = LinearFilter;
