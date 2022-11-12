@@ -50,7 +50,7 @@ export default function MfcHomeCard() {
 				<Grid templateColumns={"repeat(7, 1fr)"} gap={2} mt={4}>
 					{mfcData.map((figure, i) => (
 						<GridItem key={i}>
-							<Link href={figure.link}>
+							<Link href={figure.link} aria-label="Anime Figure">
 								<Box
 									w={45}
 									h={45}

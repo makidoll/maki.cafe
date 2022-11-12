@@ -58,6 +58,7 @@ export default function GamesHomeCard(props) {
 						}}
 					>
 						<Link
+							aria-label="Steam Game"
 							href={
 								"https://store.steampowered.com/app/" +
 								game.steamId
@@ -100,6 +101,7 @@ export default function GamesHomeCard(props) {
 							}}
 						>
 							<Link
+								aria-label="Steam Game"
 								href={
 									"https://store.steampowered.com/app/" +
 									game.steamId

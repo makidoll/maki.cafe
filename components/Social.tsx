@@ -12,18 +12,22 @@ export default function Social() {
 		{
 			icon: DiscordIcon,
 			href: config.socialLinks.discord,
+			name: "Discord",
 		},
 		{
 			icon: GitHubIcon,
 			href: config.socialLinks.github,
+			name: "GitHub",
 		},
 		{
 			icon: SteamIcon,
 			href: config.socialLinks.steam,
+			name: "Steam",
 		},
 		{
 			icon: ElementAltIcon,
 			href: config.socialLinks.matrix,
+			name: "Element",
 		},
 	];
 
@@ -86,6 +90,7 @@ export default function Social() {
 					<Link
 						key={i}
 						href={social.href}
+						aria-label={social.name}
 						transition={config.styles.hoverTransition}
 						transformOrigin="center"
 						_hover={{ transform: "scale(1.1)" }}
