@@ -7,39 +7,14 @@ import { Vector3 } from "three";
 
 const Deg2Rad = 0.0174533;
 
-function RotateInOrbitControls(props: { rotationY?: number }) {
-	const { gl, camera } = useThree();
-
-	useSpring({
-		y: props.rotationY,
-		config: config.molasses,
-		onFrame: ({ y }) => {
-			console.log(y);
-			camera.rotation.y = y;
-		},
-	});
-
-	return (
-		<OrbitControls
-			makeDefault
-			enableZoom={false}
-			enablePan={false}
-			autoRotate={true}
-			autoRotateSpeed={-1}
-			args={[camera, gl.domElement]}
-			// height
-			minPolarAngle={Math.PI / 2.5}
-			maxPolarAngle={Math.PI / 2.5}
-		/>
-	);
-}
-
 const startDegrees = 180 * Deg2Rad;
 const endDegrees = -30 * Deg2Rad;
 
 const scale = 0.08;
 const startScale = 0.5 * scale;
 const endScale = 1 * scale;
+
+const polarAngle = 72 * Deg2Rad;
 
 export default function IntroAvatar(props: BoxProps) {
 	// const IntroAvatarModel = dynamic(() => import("./IntroAvatarModel"), {
@@ -80,8 +55,15 @@ export default function IntroAvatar(props: BoxProps) {
 					}}
 				/>
 				{/* </Bounds> */}
-				<RotateInOrbitControls
-					rotationY={opacity == 0 ? 180 * Deg2Rad : -80 * Deg2Rad}
+				<OrbitControls
+					makeDefault
+					enableZoom={false}
+					enablePan={false}
+					autoRotate={true}
+					autoRotateSpeed={-1}
+					// height
+					minPolarAngle={polarAngle}
+					maxPolarAngle={polarAngle}
 				/>
 				{/* <EffectComposer>
 					<ChromaticAberration
