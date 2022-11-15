@@ -32,13 +32,15 @@ const bannerHeight = 87;
 const sheetWidth = 5;
 const sheetHeight = 5;
 
+// TODO: move this into ../config.ts
+
 const steamIds = [
 	"210970", // the witness
 	"224760", // fez
-	"1055540", // a short hike
 	"504230", // celeste
-	"1332010", // stray
+	"782330", // doom eternal
 	"524220", // nier automata
+	"1055540", // a short hike
 	// -- gets smaller
 	"620", // portal 2
 	"438100", // vrchat
@@ -52,6 +54,7 @@ const steamIds = [
 	"394690", // tower unite
 	"963000", // frog detective 1
 	"650700", // yume nikki
+	"1332010", // stray
 ];
 
 const imagePaths = [
