@@ -1,7 +1,7 @@
 import { Box, BoxProps } from "@chakra-ui/react";
 import { config, useSpring } from "@react-spring/three";
 import { OrbitControls } from "@react-three/drei";
-import { Canvas, useThree } from "@react-three/fiber";
+import { Canvas } from "@react-three/fiber";
 import { lazy, useState } from "react";
 import { Vector3 } from "three";
 

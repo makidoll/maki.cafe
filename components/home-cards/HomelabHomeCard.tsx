@@ -102,8 +102,9 @@ export default function HomelabHomeCard() {
 						borderRadius={4}
 						overflow="hidden"
 						w="100%"
-						fontFamily={'"Azeret Mono", monospace'}
-						fontSize="0.65em"
+						fontFamily={'"JetBrains Mono", monospace'}
+						fontSize="0.7em"
+						fontWeight={500}
 					>
 						<Box
 							background="#1d1f21"
@@ -115,7 +116,7 @@ export default function HomelabHomeCard() {
 						>
 							{uptimeRobot.data ? (
 								<>
-									<chakra.span fontWeight={700}>
+									<chakra.span fontWeight={800}>
 										{(
 											(uptimeRobot.data?.uptime == 100
 												? 99.9999
@@ -125,11 +126,11 @@ export default function HomelabHomeCard() {
 									</chakra.span>{" "}
 									uptime
 									<br />
-									<chakra.span fontWeight={700}>
+									<chakra.span fontWeight={800}>
 										{uptimeRobot.data?.up}
 									</chakra.span>{" "}
 									up{" "}
-									<chakra.span fontWeight={700}>
+									<chakra.span fontWeight={800}>
 										{uptimeRobot.data?.down}
 									</chakra.span>{" "}
 									down
@@ -146,7 +147,7 @@ export default function HomelabHomeCard() {
 							<Box
 								background="brand.500"
 								color="white"
-								fontWeight={700}
+								fontWeight={800}
 								px={1.5}
 								pt={1}
 								pb={1.5}

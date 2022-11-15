@@ -977,15 +977,15 @@
     minimatch "^3.1.2"
     strip-json-comments "^3.1.1"
 
-"@fontsource/azeret-mono@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.yarnpkg.com/@fontsource/azeret-mono/-/azeret-mono-4.5.11.tgz#e0747ff14ffac0eea7c08b8d94d6d31f018953e9"
-  integrity sha512-KG6NKjzyuKx8ziMD/hZurUnSOjRuKuExb7DoTJLLc3KRa4B+NYuup+OJjxYmgZFHOp3G/v/7w/mhKIvSsKqQYQ==
-
 "@fontsource/inter@^4.5.14":
   version "4.5.14"
   resolved "https://registry.yarnpkg.com/@fontsource/inter/-/inter-4.5.14.tgz#3944b809aa7bf27dacd20bdc04a49fb738959724"
   integrity sha512-JDC9AocdPLuGsASkvWw9hS5gtHE7K9dOwL98XLrk5yjYqxy4uVnScG58NUvFMJDVJRl/7c8Wnap6PEs+7Zvj1Q==
+
+"@fontsource/jetbrains-mono@^4.5.11":
+  version "4.5.11"
+  resolved "https://registry.yarnpkg.com/@fontsource/jetbrains-mono/-/jetbrains-mono-4.5.11.tgz#e8055c18246576fbcbeddac4f0b7f8e4b8f45050"
+  integrity sha512-IW1qgWGkjlN1O6Jf+6LWF9DpcdXhyQEXhTlzfVKrWHX+ProuOT5FcrEAj34AR+19CgAb9Sheda2slORnybBsdw==
 
 "@humanwhocodes/config-array@^0.11.6":
   version "0.11.7"
