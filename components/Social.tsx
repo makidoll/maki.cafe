@@ -1,4 +1,5 @@
-import { chakra, Flex, Heading, HStack, Link, Text } from "@chakra-ui/react";
+import { Flex, HStack, Link, Text } from "@chakra-ui/react";
+import { minecraft } from "../fonts/fonts";
 import { config } from "../utils/config";
 import Emoji from "./ui/Emoji";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
@@ -67,7 +68,7 @@ export default function Social() {
 				transition={config.styles.hoverTransition}
 				_hover={{ transform: "scale(1.05)" }}
 				fontSize="xs"
-				fontFamily='"Minecraft"'
+				fontFamily={minecraft.style.fontFamily}
 				marginTop={1}
 				color="#000"
 			>

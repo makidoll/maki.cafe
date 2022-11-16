@@ -1,26 +1,8 @@
 import { ChakraProvider, extendTheme } from "@chakra-ui/react";
-import "@fontsource/jetbrains-mono/100.css";
-import "@fontsource/jetbrains-mono/200.css";
-import "@fontsource/jetbrains-mono/300.css";
-import "@fontsource/jetbrains-mono/400.css";
-import "@fontsource/jetbrains-mono/500.css";
-import "@fontsource/jetbrains-mono/600.css";
-import "@fontsource/jetbrains-mono/700.css";
-import "@fontsource/jetbrains-mono/800.css";
-import "@fontsource/inter/100.css";
-import "@fontsource/inter/200.css";
-import "@fontsource/inter/300.css";
-import "@fontsource/inter/400.css";
-import "@fontsource/inter/500.css";
-import "@fontsource/inter/600.css";
-import "@fontsource/inter/700.css";
-import "@fontsource/inter/800.css";
-import "@fontsource/inter/900.css";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Script from "next/script";
-import "../fonts/kg-always-a-good-time/kg-always-a-good-time.css";
-import "../fonts/minecraft/minecraft.css";
+import { inter } from "../fonts/fonts";
 import { trpc } from "../utils/trpc";
 
 const theme = extendTheme({
@@ -60,9 +42,8 @@ const theme = extendTheme({
 		},
 	},
 	fonts: {
-		// heading: `'Torus', sans-serif`,
-		// heading: `'KG Always A Good Time', serif`,
-		body: `'Inter', sans-serif`,
+		heading: inter.style.fontFamily,
+		body: inter.style.fontFamily,
 	},
 });
 

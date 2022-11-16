@@ -9,6 +9,7 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { Fragment } from "react";
+import { jetBrainsMono } from "../../fonts/fonts";
 import { config } from "../../utils/config";
 import { trpc } from "../../utils/trpc";
 import HomeCard from "../ui/home-card/HomeCard";
@@ -102,7 +103,7 @@ export default function HomelabHomeCard() {
 						borderRadius={4}
 						overflow="hidden"
 						w="100%"
-						fontFamily={'"JetBrains Mono", monospace'}
+						fontFamily={jetBrainsMono.style.fontFamily}
 						fontSize="0.7em"
 						fontWeight={500}
 					>

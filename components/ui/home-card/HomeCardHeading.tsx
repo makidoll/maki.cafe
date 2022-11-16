@@ -1,5 +1,6 @@
 import { Flex, Heading, HeadingProps, Link } from "@chakra-ui/react";
 import { IconType } from "react-icons";
+import { kgAlwaysAGoodTime } from "../../../fonts/fonts";
 import { config } from "../../../utils/config";
 
 export default function HomeCardHeading(
@@ -16,7 +17,7 @@ export default function HomeCardHeading(
 
 	let H = (
 		<Heading
-			fontFamily={`'KG Always A Good Time', cursive`}
+			fontFamily={kgAlwaysAGoodTime.style.fontFamily}
 			fontWeight={400}
 			fontSize={"24px"}
 			textAlign={"center"}
