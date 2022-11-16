@@ -7,34 +7,37 @@ import {
 import Image, { ImageProps } from "next/image";
 
 export default function OpenableImage(
-	props: ImageProps & {
-		imageWidth: number;
-		imageHeight: number;
+	_props: ImageProps & {
 		modalW?: string;
 		modalH?: string;
 	},
 ) {
 	const { isOpen, onOpen, onClose } = useDisclosure();
 
+	const { modalW, modalH } = _props;
+
+	// TODO: there has got to be a better way to do this
+	const imageProps = { ..._props } as ImageProps;
+	delete (imageProps as any).modalW;
+	delete (imageProps as any).modalH;
+
 	return (
 		<>
 			<Image
-				{...(props as any)}
-				style={{ cursor: "pointer" }}
+				{...imageProps}
+				style={{
+					cursor: "pointer",
+					height: "auto",
+				}}
 				onClick={onOpen}
-				src={props.src}
-				alt={props.alt}
-				width={props.width}
-				height={props.height}
-				blurDataURL={props.blurDataURL}
 			/>
 			<Modal onClose={onClose} isOpen={isOpen} isCentered size={"4xl"}>
 				<ModalOverlay />
 				<ModalContent
 					background="transparent"
 					shadow="none"
-					h={props.modalW ?? "60vh"}
-					w={props.modalH ?? "90vw"}
+					h={modalW ?? "60vh"}
+					w={modalH ?? "90vw"}
 					pointerEvents="none"
 					alignItems="center"
 					justifyContent="center"
@@ -42,14 +45,8 @@ export default function OpenableImage(
 				>
 					{/* <ModalCloseButton color={"white"} /> */}
 					<Image
-						alt={props.alt}
-						// fill={true}
-						src={props.src}
-						width={props.imageWidth}
-						height={props.imageHeight}
-						blurDataURL={props.blurDataURL}
+						{...imageProps}
 						style={{
-							aspectRatio: `${props.imageWidth} / ${props.imageHeight}`,
 							width: "auto",
 							height: "auto",
 							maxWidth: "100%",
@@ -57,20 +54,6 @@ export default function OpenableImage(
 							borderRadius: 8,
 						}}
 					/>
-					{/* <Image
-						{...(props as any)}
-						src={props.image.src}
-						alt={props.alt}
-						borderRadius={8}
-						_hover={{}}
-						sx={{
-							aspectRatio: `${width} / ${height}`,
-						}}
-						w="auto"
-						h="auto"
-						maxW="100%"
-						maxH="100%"
-					></Image> */}
 				</ModalContent>
 			</Modal>
 		</>

@@ -49,6 +49,7 @@ export default function FlickrHomeCard() {
 										alt={post.title}
 										src={post.media.m}
 										fill={true}
+										sizes={"80px"}
 										style={{
 											objectFit: "cover",
 										}}

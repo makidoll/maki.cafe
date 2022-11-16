@@ -166,16 +166,8 @@ export default function HomelabHomeCard() {
 						}}
 					>
 						<OpenableImage
-							src={imageBlahajRack.src}
-							imageWidth={imageBlahajRack.width}
-							imageHeight={imageBlahajRack.height}
-							blurDataURL={imageBlahajRack.blurDataURL}
+							src={imageBlahajRack}
 							alt="Blahaj Rack"
-							width={100}
-							height={
-								100 *
-								(imageBlahajRack.width / imageBlahajRack.height)
-							}
 						></OpenableImage>
 					</Box>
 					<Box
@@ -187,17 +179,8 @@ export default function HomelabHomeCard() {
 						}}
 					>
 						<OpenableImage
-							src={imageBlahajInside.src}
-							imageWidth={imageBlahajInside.width}
-							imageHeight={imageBlahajInside.height}
-							blurDataURL={imageBlahajInside.blurDataURL}
+							src={imageBlahajInside}
 							alt="Blahaj Inside"
-							width={100}
-							height={
-								100 *
-								(imageBlahajInside.width /
-									imageBlahajInside.height)
-							}
 						></OpenableImage>
 					</Box>
 				</VStack>
