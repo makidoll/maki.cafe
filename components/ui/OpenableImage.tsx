@@ -25,6 +25,7 @@ export default function OpenableImage(
 		<>
 			<Image
 				{...imageProps}
+				alt={imageProps.alt}
 				style={{
 					cursor: "pointer",
 					height: "auto",
@@ -46,6 +47,7 @@ export default function OpenableImage(
 					{/* <ModalCloseButton color={"white"} /> */}
 					<Image
 						{...imageProps}
+						alt={imageProps.alt}
 						style={{
 							width: "auto",
 							height: "auto",
