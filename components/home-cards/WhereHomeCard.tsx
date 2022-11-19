@@ -29,10 +29,10 @@ export default function WhereHomeCard() {
 			</Box>
 			<DotMap
 				pins={[
-					[47.5, 37], // belgium
-					[43.5, 46], // tenerife
-					// [12.5, 49], // california
-					[20.5, 49], // houston
+					[49.5, 37], // belgium
+					[45.5, 46], // tenerife
+					// [14.5, 49], // california
+					[22.5, 49], // houston
 				]}
 			/>
 		</HomeCard>
