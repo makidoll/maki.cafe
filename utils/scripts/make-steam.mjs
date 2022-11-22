@@ -1,8 +1,9 @@
+import axiosNoCookiejar from "axios";
+import * as axiosCookiejar from "axios-cookiejar-support";
 import * as fs from "fs";
 import * as os from "os";
 import * as path from "path";
-import nodeFetch from "node-fetch";
-import fetchCookie from "fetch-cookie";
+import { CookieJar } from "tough-cookie";
 import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
 
 const __dirname = path.dirname(
@@ -12,7 +13,8 @@ const __dirname = path.dirname(
 	),
 );
 
-const fetch = fetchCookie(nodeFetch);
+const jar = new CookieJar();
+const axios = axiosCookiejar.wrapper(axiosNoCookiejar.create({ jar }));
 
 // https://www.steamgriddb.com/
 
@@ -72,13 +74,14 @@ const imagePaths = [
 		[...steamIds, ...imagePaths].map(async (steamIdOrPath, i) => {
 			let buffer;
 			if (/^[0-9]/.test(steamIdOrPath)) {
-				const res = await fetch(
+				const res = await axios(
 					"https://cdn.cloudflare.steamstatic.com/steam/apps/" +
 						steamIdOrPath +
 						// "/header.jpg",
 						"/capsule_184x69.jpg",
+					{ responseType: "arraybuffer" },
 				);
-				buffer = await res.buffer();
+				buffer = res.data;
 			} else {
 				buffer = fs.readFileSync(path.resolve(steamIdOrPath));
 			}

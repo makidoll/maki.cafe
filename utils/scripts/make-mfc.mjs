@@ -1,11 +1,11 @@
 import * as fs from "fs";
-import * as path from "path";
 import * as os from "os";
+import * as path from "path";
 // import nodeFetch from "node-fetch";
 // import fetchCookie from "fetch-cookie";
 // import cheerio from "cheerio";
+import { firefox } from "playwright";
 import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
-import puppeteer from "puppeteer";
 
 // const cookieJar = new fetchCookie.toughCookie.CookieJar();
 // const fetch = fetchCookie(nodeFetch, cookieJar);
@@ -41,8 +41,12 @@ const imageHeight = 60;
 const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 
 (async () => {
-	const browser = await puppeteer.launch({
+	const browser = await firefox.launch({
 		headless: false,
+		firefoxUserPrefs: {
+			"network.trr.uri": "https://adblock.doh.mullvad.net/dns-query",
+			"network.trr.mode": 3, // only use doh
+		},
 	});
 
 	// const addFromUrl = async (url, type) => {
@@ -79,15 +83,20 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 		// save image buffers as they load
 		const imageBuffers = {};
 		page.on("response", async response => {
-			const url = response.url();
-			if (!(url.includes(".jpg") && url.includes("/upload/items/"))) {
+			const responseUrl = response.url();
+			if (
+				!(
+					responseUrl.includes(".jpg") &&
+					responseUrl.includes("/upload/items/")
+				)
+			) {
 				return;
 			}
-			imageBuffers[url] = await response.buffer();
+			imageBuffers[responseUrl] = await response.body();
 		});
 
 		await page.goto(url, {
-			waitUntil: "networkidle0",
+			waitUntil: "load",
 			timeout,
 		});
 
@@ -144,7 +153,11 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 		])
 	).flat();
 
-	browser.close();
+	try {
+		browser.close();
+	} catch (error) {
+		console.error(error);
+	}
 
 	// turn image urls into buffers for spritesheet
 
