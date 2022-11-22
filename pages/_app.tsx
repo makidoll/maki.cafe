@@ -4,6 +4,7 @@ import Head from "next/head";
 import Script from "next/script";
 import { inter } from "../fonts/fonts";
 import { trpc } from "../utils/trpc";
+import "./_app.scss";
 
 const theme = extendTheme({
 	components: {
@@ -62,7 +63,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 				<title>{title}</title>
 				<meta
 					name="viewport"
-					content="width=device-width, initial-scale=1"
+					content="width=device-width, initial-scale=0.85"
 				/>
 				<link
 					rel="apple-touch-icon"
