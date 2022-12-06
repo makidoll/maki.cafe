@@ -1,7 +1,7 @@
 import axios from "axios";
 import { config } from "../../utils/config";
 import { baseProcedure, router } from "../trpc";
-import { flickrMockData } from "./flickr-mock-data";
+import { RouterCache } from "../router-cache";
 
 interface Post {
 	title: string;
@@ -15,10 +15,7 @@ interface Post {
 	tags: string;
 }
 
-let cachedPosts: Post[];
-let cachedDate: number;
-
-const cacheTime = 5 * 60 * 1000; // 5 minutes in milliseconds
+const cache = new RouterCache<Post[]>("flickr");
 
 async function fetchFlickr() {
 	const res = await axios(
@@ -42,17 +39,6 @@ export const flickrRouter = router({
 		// 	}),
 		// )
 		.query(async ({ input }): Promise<Post[]> => {
-			if (process.env.NODE_ENV == "development") {
-				return flickrMockData;
-			}
-
-			const date = Date.now();
-
-			if (cachedPosts == null || date > cachedDate + cacheTime) {
-				cachedPosts = await fetchFlickr();
-				cachedDate = date;
-			}
-
-			return cachedPosts;
+			return await cache.get(fetchFlickr);
 		}),
 });

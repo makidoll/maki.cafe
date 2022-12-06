@@ -6,16 +6,17 @@ import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
-import { FlickrIcon } from "../ui/social-icons/FlickrIcon";
+import { SketchfabIcon } from "../ui/social-icons/SketchfabIcon";
 
-export default function FlickrHomeCard() {
-	// const [posts, setPosts] = useState<Post[]>([]);
-	const posts = trpc.flickr.all.useQuery();
+export default function SketchfabHomeCard() {
+	const models = trpc.sketchfab.all.useQuery();
 
-	if (!posts.data) {
+	if (models.data == null) {
 		return (
 			<HomeCard>
-				<HomeCardLoading />
+				<Center flexDir={"column"}>
+					<HomeCardLoading />
+				</Center>
 			</HomeCard>
 		);
 	}
@@ -28,25 +29,19 @@ export default function FlickrHomeCard() {
 		<HomeCard>
 			<Center flexDir={"column"}>
 				<HomeCardHeading
-					icon={FlickrIcon}
-					href={config.socialLinks.flickr}
+					icon={SketchfabIcon}
+					href={config.socialLinks.sketchfab}
 				>
-					flickr
+					sketchfab
 				</HomeCardHeading>
 				<Grid
 					templateColumns={"repeat(" + columns + ", 1fr)"}
 					gap={1}
 					mt={4}
 				>
-					{posts.data.map((post, i) => (
-						<GridItem
-							key={i}
-							transition={config.styles.hoverTransition}
-							_hover={{
-								transform: "scale(1.05)",
-							}}
-						>
-							<Link href={post.link}>
+					{models.data.map((model, i) => (
+						<GridItem key={i}>
+							<Link href={model.url}>
 								<Box
 									width={imageWidth + "px"}
 									height={
@@ -58,22 +53,20 @@ export default function FlickrHomeCard() {
 									position="relative"
 								>
 									<Image
-										alt={post.title}
-										src={post.media.m}
+										alt={model.alt}
+										src={model.src}
 										fill={true}
 										sizes={
 											imageWidth * imageAspectRatio + "px"
 										}
-										style={{
-											objectFit: "cover",
-										}}
+										style={{ objectFit: "cover" }}
 									/>
 								</Box>
 							</Link>
 						</GridItem>
 					))}
 				</Grid>
-				<HomeCardFooterLink href={config.socialLinks.flickr}>
+				<HomeCardFooterLink href={config.socialLinks.sketchfab}>
 					View more
 				</HomeCardFooterLink>
 			</Center>

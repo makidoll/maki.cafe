@@ -1,4 +1,4 @@
-import { httpBatchLink } from "@trpc/client";
+import { httpBatchLink, httpLink } from "@trpc/client";
 import { createTRPCNext } from "@trpc/next";
 import type { AppRouter } from "../api/routers/_app";
 
@@ -22,9 +22,8 @@ export const trpc = createTRPCNext<AppRouter>({
 	config() {
 		return {
 			links: [
-				httpBatchLink({
-					url: `${getBaseUrl()}/api/trpc`,
-				}),
+				httpLink({ url: `${getBaseUrl()}/api/trpc` }),
+				// httpBatchLink({ url: `${getBaseUrl()}/api/trpc` }),
 			],
 		};
 	},

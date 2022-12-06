@@ -5,6 +5,7 @@ import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
 import HomelabHomeCard from "../components/home-cards/HomelabHomeCard";
 import MfcHomeCard from "../components/home-cards/MfcHomeCard";
+import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import WhereHomeCard from "../components/home-cards/WhereHomeCard";
 import WorkHomeCard from "../components/home-cards/WorkHomeCard";
 import IntroAvatar from "../components/IntroAvatar";
@@ -60,6 +61,7 @@ const Home: NextPage = () => {
 				<HomelabHomeCard />
 				<MfcHomeCard />
 				<FlickrHomeCard />
+				<SketchfabHomeCard />
 			</Grid>
 		</Box>
 	);

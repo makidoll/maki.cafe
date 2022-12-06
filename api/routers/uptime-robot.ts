@@ -1,6 +1,7 @@
 import axios from "axios";
 import { config } from "../../utils/config";
 import { baseProcedure, router } from "../trpc";
+import { RouterCache } from "../router-cache";
 
 type Response = {
 	uptime: number;
@@ -8,10 +9,7 @@ type Response = {
 	down: number;
 };
 
-let cachedRes: Response;
-let cachedDate: number;
-
-const cacheTime = 5 * 60 * 1000; // 5 minutes in milliseconds
+const cache = new RouterCache<Response>("uptime-robot");
 
 async function fetchUptimeRobot() {
 	const uptimeRes = await axios(
@@ -50,17 +48,10 @@ export const uptimeRobotRouter = router({
 		// 	}),
 		// )
 		.query(async ({ input }): Promise<Response> => {
-			if (process.env.NODE_ENV == "development") {
-				return { uptime: 98.54321, up: 40, down: 20 };
-			}
+			// if (process.env.NODE_ENV == "development") {
+			// 	return { uptime: 98.54321, up: 40, down: 20 };
+			// }
 
-			const date = Date.now();
-
-			if (cachedRes == null || date > cachedDate + cacheTime) {
-				cachedRes = await fetchUptimeRobot();
-				cachedDate = date;
-			}
-
-			return cachedRes;
+			return await cache.get(fetchUptimeRobot);
 		}),
 });
