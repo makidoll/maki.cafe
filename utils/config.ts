@@ -14,6 +14,7 @@ const socialIds = {
 	mfc: "MakiXx_",
 	flickr: "125408076@N04",
 	homelabUptimeRobot: "GMWojUB9A8",
+	sketchfab: "makifoxgirl",
 };
 
 const socialLinks = {
@@ -31,6 +32,7 @@ const socialLinks = {
 	flickr: "https://www.flickr.com/photos/" + socialIds.flickr,
 	homelabUptimeRobot:
 		"https://stats.uptimerobot.com/" + socialIds.homelabUptimeRobot,
+	sketchfab: "https://sketchfab.com/" + socialIds.sketchfab,
 };
 
 export const config = {

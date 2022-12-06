@@ -7,6 +7,7 @@ import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import SubHeading from "./ui/SubHeading";
+import { SketchfabIcon } from "./ui/social-icons/SketchfabIcon";
 
 export default function Social() {
 	var socials = [
@@ -29,6 +30,11 @@ export default function Social() {
 			icon: ElementAltIcon,
 			href: config.socialLinks.matrix,
 			name: "Element",
+		},
+		{
+			icon: SketchfabIcon,
+			href: config.socialLinks.sketchfab,
+			name: "sketchfab",
 		},
 	];
 
