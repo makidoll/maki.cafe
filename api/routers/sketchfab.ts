@@ -51,6 +51,8 @@ async function fetchSketchfabPosts(): Promise<Model[]> {
 		models.push({ url, src, alt });
 	}
 
+	page.close();
+
 	return models.slice(0, 16);
 }
 
