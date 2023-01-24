@@ -48,7 +48,7 @@ const theme = extendTheme({
 	},
 });
 
-const title = "Maki 🦊🍃";
+const title = "Maki 🦊🍃✨";
 const description = "hi im Maki and i make things ❤️";
 
 const domain = "maki.cafe";
