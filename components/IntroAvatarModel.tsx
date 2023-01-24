@@ -1,7 +1,7 @@
 import { a, SpringValue } from "@react-spring/three";
 import { useGLTF, useTexture } from "@react-three/drei";
-import { useEffect, useMemo } from "react";
-import { DoubleSide, LinearFilter, Mesh, TextureFilter, Vector3 } from "three";
+import { useEffect } from "react";
+import { DoubleSide, LinearFilter, Mesh, Vector3 } from "three";
 
 export default function IntroAvatarModel(props: {
 	position?: Vector3;
@@ -10,20 +10,20 @@ export default function IntroAvatarModel(props: {
 	onLoaded?: () => any;
 }) {
 	const path = "/intro-avatar/";
-	const { nodes } = useGLTF(path + "Baked.glb");
+	const { nodes } = useGLTF(path + "baked.glb");
 
 	const Bastion_Baked = nodes.Bastion_Baked as Mesh;
 	const KeyboardGomez_Baked = nodes.KeyboardGomez_Baked as Mesh;
 	const Maki_Baked = nodes.Maki_Baked as Mesh;
 	const Rest_Baked = nodes.Rest_Baked as Mesh;
 
-	const Bastion_Baked_Map = useTexture(path + "Bastion_Baked.webp");
+	const Bastion_Baked_Map = useTexture(path + "bastion_baked.webp");
 	const KeyboardGomez_Baked_Map = useTexture(
-		path + "KeyboardGomez_Baked.webp",
+		path + "keyboardgomez_baked.webp",
 	);
-	const Maki_Baked_Map = useTexture(path + "Maki_Baked.webp");
-	const Rest_Baked_Map = useTexture(path + "Rest_Baked.webp");
-	const Rest_Baked_Alpha_Map = useTexture(path + "Rest_Baked_Alpha.webp");
+	const Maki_Baked_Map = useTexture(path + "maki_baked.webp");
+	const Rest_Baked_Map = useTexture(path + "rest_baked.webp");
+	const Rest_Baked_Alpha_Map = useTexture(path + "rest_baked_alpha.webp");
 
 	for (const map of [
 		Bastion_Baked_Map,
