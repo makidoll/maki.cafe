@@ -40,8 +40,6 @@ export default function Emoji(
 ) {
 	const emoji = props.children ?? "";
 
-	console.log(emoji, toCodePoint(emoji, "-"));
-
 	props = { ...props };
 	delete props.children;
 

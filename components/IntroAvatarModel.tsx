@@ -1,7 +1,7 @@
 import { a, SpringValue } from "@react-spring/three";
 import { useGLTF, useTexture } from "@react-three/drei";
 import { useEffect, useMemo } from "react";
-import { DoubleSide, LinearFilter, Mesh, Vector3 } from "three";
+import { DoubleSide, LinearFilter, Mesh, TextureFilter, Vector3 } from "three";
 
 export default function IntroAvatarModel(props: {
 	position?: Vector3;
@@ -9,27 +9,34 @@ export default function IntroAvatarModel(props: {
 	scale?: SpringValue<number>;
 	onLoaded?: () => any;
 }) {
-	const { nodes } = useGLTF("/intro-avatar/baked.glb");
+	const path = "/intro-avatar/";
+	const { nodes } = useGLTF(path + "Baked.glb");
 
-	const mesh = useMemo(() => {
-		for (const name of Object.keys(nodes)) {
-			if (nodes[name].type == "Mesh") {
-				return nodes[name] as Mesh;
-			}
-		}
-	}, [nodes]);
+	const Bastion_Baked = nodes.Bastion_Baked as Mesh;
+	const KeyboardGomez_Baked = nodes.KeyboardGomez_Baked as Mesh;
+	const Maki_Baked = nodes.Maki_Baked as Mesh;
+	const Rest_Baked = nodes.Rest_Baked as Mesh;
 
-	const map = useTexture("/intro-avatar/baked.webp");
-	// texture.anisotropy = 4;
-	map.magFilter = LinearFilter;
-	map.minFilter = LinearFilter;
-	map.generateMipmaps = true;
+	const Bastion_Baked_Map = useTexture(path + "Bastion_Baked.webp");
+	const KeyboardGomez_Baked_Map = useTexture(
+		path + "KeyboardGomez_Baked.webp",
+	);
+	const Maki_Baked_Map = useTexture(path + "Maki_Baked.webp");
+	const Rest_Baked_Map = useTexture(path + "Rest_Baked.webp");
+	const Rest_Baked_Alpha_Map = useTexture(path + "Rest_Baked_Alpha.webp");
 
-	const alphaMap = useTexture("/intro-avatar/baked-alpha.webp");
-	// texture.anisotropy = 4;
-	alphaMap.magFilter = LinearFilter;
-	alphaMap.minFilter = LinearFilter;
-	alphaMap.generateMipmaps = true;
+	for (const map of [
+		Bastion_Baked_Map,
+		KeyboardGomez_Baked_Map,
+		Maki_Baked_Map,
+		Rest_Baked_Map,
+		Rest_Baked_Alpha_Map,
+	]) {
+		// map.anisotropy = 4;
+		map.magFilter = LinearFilter;
+		map.minFilter = LinearFilter;
+		map.generateMipmaps = true;
+	}
 
 	useEffect(() => {
 		if (props.onLoaded) props.onLoaded();
@@ -37,19 +44,48 @@ export default function IntroAvatarModel(props: {
 	}, []);
 
 	return (
-		<a.mesh
-			geometry={mesh?.geometry}
-			position={props.position}
-			rotation-y={props.rotationY}
-			scale={props.scale}
-		>
-			<meshBasicMaterial
-				map={map}
-				alphaMap={alphaMap}
-				alphaTest={0.5}
-				side={DoubleSide}
-			/>
-		</a.mesh>
+		<>
+			<a.mesh
+				geometry={Bastion_Baked?.geometry}
+				position={props.position}
+				rotation-y={props.rotationY}
+				scale={props.scale}
+			>
+				<meshBasicMaterial map={Bastion_Baked_Map} side={DoubleSide} />
+			</a.mesh>
+			<a.mesh
+				geometry={KeyboardGomez_Baked?.geometry}
+				position={props.position}
+				rotation-y={props.rotationY}
+				scale={props.scale}
+			>
+				<meshBasicMaterial
+					map={KeyboardGomez_Baked_Map}
+					side={DoubleSide}
+				/>
+			</a.mesh>
+			<a.mesh
+				geometry={Maki_Baked?.geometry}
+				position={props.position}
+				rotation-y={props.rotationY}
+				scale={props.scale}
+			>
+				<meshBasicMaterial map={Maki_Baked_Map} side={DoubleSide} />
+			</a.mesh>
+			<a.mesh
+				geometry={Rest_Baked?.geometry}
+				position={props.position}
+				rotation-y={props.rotationY}
+				scale={props.scale}
+			>
+				<meshBasicMaterial
+					map={Rest_Baked_Map}
+					side={DoubleSide}
+					alphaMap={Rest_Baked_Alpha_Map}
+					alphaTest={0.5}
+				/>
+			</a.mesh>
+		</>
 	);
 }
 
