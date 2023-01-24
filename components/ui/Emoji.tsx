@@ -9,7 +9,7 @@ const customEmojis: { [key: string]: { src: string } } = {
 	"t4t-flag-better": t4tFlagBetter,
 };
 
-// https://twemoji.maxcdn.com/v/latest/twemoji.js
+// https://unpkg.com/twemoji/dist/twemoji.js
 function toCodePoint(unicodeSurrogates: string, sep: string = "-") {
 	let r: string[] = [],
 		c = 0,
@@ -28,7 +28,7 @@ function toCodePoint(unicodeSurrogates: string, sep: string = "-") {
 			r.push(c.toString(16));
 		}
 	}
-	return r.join(sep);
+	return r.join(sep || "-");
 }
 
 export default function Emoji(
@@ -39,6 +39,8 @@ export default function Emoji(
 	} & ChakraProps,
 ) {
 	const emoji = props.children ?? "";
+
+	console.log(emoji, toCodePoint(emoji, "-"));
 
 	props = { ...props };
 	delete props.children;
@@ -56,7 +58,7 @@ export default function Emoji(
 			src={
 				customEmoji != null
 					? customEmoji.src
-					: "https://twemoji.maxcdn.com/v/latest/svg/" +
+					: "https://twemoji.maxcdn.com/v/14.0.2/svg/" +
 					  toCodePoint(emoji, "-") +
 					  ".svg"
 			}
