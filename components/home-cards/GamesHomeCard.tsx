@@ -8,13 +8,11 @@ import {
 	Link,
 	Text,
 } from "@chakra-ui/react";
-import { MdOpenInNew } from "react-icons/md";
 import { config } from "../../utils/config";
 import { getBackgroundPositionsForSpritesheet } from "../../utils/utils";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import { OsuIcon } from "../ui/social-icons/OsuIcon";
-import { PlaystationIcon } from "../ui/social-icons/PlaystationIcon";
+import { PlayStationIcon } from "../ui/social-icons/PlayStationIcon";
 import { SteamIcon } from "../ui/social-icons/SteamIcon";
 import { gamesInfo } from "./games-info";
 import gamesSpritesheet from "./games-spritesheet.png";
@@ -32,17 +30,20 @@ export default function GamesHomeCard(props) {
 
 	const socials = [
 		{
+			name: "Steam",
 			url: config.socialLinks.steam,
 			icon: SteamIcon,
 		},
 		{
+			name: "PlayStation",
 			url: config.socialLinks.psnProfiles,
-			icon: PlaystationIcon,
+			icon: PlayStationIcon,
 		},
-		{
-			url: config.socialLinks.osu,
-			icon: OsuIcon,
-		},
+		// {
+		// 	name: "Osu",
+		// 	url: config.socialLinks.osu,
+		// 	icon: OsuIcon,
+		// },
 	];
 
 	return (
@@ -178,7 +179,7 @@ export default function GamesHomeCard(props) {
 						>
 							<social.icon size={18} />
 							<Text ml={1} fontWeight={500}>
-								Steam
+								{social.name}
 							</Text>
 						</Flex>
 					</Link>

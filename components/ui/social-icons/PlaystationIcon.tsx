@@ -1,6 +1,6 @@
 import { IconBaseProps, IconType } from "react-icons";
 
-export const PlaystationIcon: IconType = (props: IconBaseProps) => (
+export const PlayStationIcon: IconType = (props: IconBaseProps) => (
 	<svg
 		viewBox="0 0 200 154.819"
 		fill={props.color}
