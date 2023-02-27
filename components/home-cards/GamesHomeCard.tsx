@@ -139,25 +139,38 @@ export default function GamesHomeCard(props) {
 				{gamesWithPositions
 					.slice(
 						gamesInfo.steamIds.length,
-						gamesInfo.steamIds.length + gamesInfo.nonSteamGames,
+						gamesInfo.steamIds.length +
+							gamesInfo.nonSteamLinks.length,
 					)
 					.map((game, i) => (
-						<GridItem key={i}>
-							<Box
-								borderRadius={4}
-								sx={{
-									imageRendering: "optimizeQuality",
-									aspectRatio: steamHorizontalAspectRation,
-								}}
-								backgroundImage={gamesSpritesheet.src}
-								backgroundPosition={game.position}
-								backgroundSize={
-									gamesInfo.sheetWidth * 100 +
-									"% " +
-									gamesInfo.sheetHeight * 100 +
-									"%"
-								}
-							/>
+						<GridItem
+							key={i}
+							transition={config.styles.hoverTransition}
+							_hover={{
+								transform: "scale(1.05)",
+							}}
+						>
+							<Link
+								aria-label="Non-Steam Game"
+								href={gamesInfo.nonSteamLinks[i]}
+							>
+								<Box
+									borderRadius={4}
+									sx={{
+										imageRendering: "optimizeQuality",
+										aspectRatio:
+											steamHorizontalAspectRation,
+									}}
+									backgroundImage={gamesSpritesheet.src}
+									backgroundPosition={game.position}
+									backgroundSize={
+										gamesInfo.sheetWidth * 100 +
+										"% " +
+										gamesInfo.sheetHeight * 100 +
+										"%"
+									}
+								/>
+							</Link>
 						</GridItem>
 					))}
 			</Grid>
