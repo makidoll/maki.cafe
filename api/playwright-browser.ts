@@ -6,7 +6,11 @@ const browser = new GlobalRef<Browser>("playwright.browser");
 export async function getBrowser() {
 	if (browser.value == null) {
 		console.log("Launching Firefox for API fetching");
-		browser.value = await firefox.launch({ headless: true });
+		try {
+			browser.value = await firefox.launch({ headless: true });
+		} catch (error) {
+			console.error(error);
+		}
 	}
 	return browser.value;
 }
