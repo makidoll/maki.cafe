@@ -10,12 +10,15 @@ export default function IntroAvatarModel(props: {
 	onLoaded?: () => any;
 }) {
 	const path = "/intro-avatar/";
-	const { nodes } = useGLTF(path + "baked.glb");
+	const { scene } = useGLTF(path + "baked.glb");
 
-	const Bastion_Baked = nodes.Bastion_Baked as Mesh;
-	const KeyboardGomez_Baked = nodes.KeyboardGomez_Baked as Mesh;
-	const Maki_Baked = nodes.Maki_Baked as Mesh;
-	const Rest_Baked = nodes.Rest_Baked as Mesh;
+	const getMesh = (name: string) =>
+		scene.children.find(o => o.name == name) as Mesh;
+
+	const Bastion_Baked = getMesh("Bastion_Baked");
+	const KeyboardGomez_Baked = getMesh("KeyboardGomez_Baked");
+	const Maki_Baked = getMesh("Maki_Baked");
+	const Rest_Baked = getMesh("Rest_Baked");
 
 	const Bastion_Baked_Map = useTexture(path + "bastion_baked.webp");
 	const KeyboardGomez_Baked_Map = useTexture(
