@@ -17,6 +17,14 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "media.sketchfab.com",
 			},
+			{
+				protocol: "https",
+				hostname: "media.discordapp.net",
+			},
+			{
+				protocol: "https",
+				hostname: "static.wikia.nocookie.net",
+			},
 		],
 	},
 	i18n: {

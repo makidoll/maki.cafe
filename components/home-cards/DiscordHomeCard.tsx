@@ -1,6 +1,13 @@
-import { Box, Center, Flex, HStack, Text, VStack } from "@chakra-ui/react";
+import {
+	Box,
+	Center,
+	Flex,
+	HStack,
+	Link,
+	Text,
+	VStack,
+} from "@chakra-ui/react";
 import Image from "next/image";
-import Link from "next/link";
 import { MdHelp } from "react-icons/md";
 import { useLanyard } from "../../hooks/UseLanyard";
 import { config } from "../../utils/config";
@@ -9,7 +16,6 @@ import DiscordUserImage from "../ui/DiscordUserImage";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
-import { SpotifyIcon } from "../ui/social-icons/SpotifyIcon";
 import SubHeading from "../ui/SubHeading";
 import styles from "./DiscordHomeCard.module.scss";
 
@@ -24,7 +30,9 @@ const msToTime = (ms: number) => {
 };
 
 export default function DiscordHomeCard() {
-	const { data, song, songTime } = useLanyard(config.socialIds.discord);
+	const { data, activity, activityTime } = useLanyard(
+		config.socialIds.discord,
+	);
 
 	if (data == null) {
 		return (
@@ -34,9 +42,11 @@ export default function DiscordHomeCard() {
 		);
 	}
 
-	const spotify = (
+	const activityCard = (
 		<VStack
-			backgroundColor={song == null ? "rgba(0,0,0,0.5)" : "#1db954"}
+			backgroundColor={
+				activity == null ? "rgba(0,0,0,0.5)" : activity.backgroundColor
+			}
 			color="white"
 			padding={2}
 			borderRadius={12}
@@ -44,7 +54,7 @@ export default function DiscordHomeCard() {
 			mt={4}
 		>
 			<HStack>
-				{song == null ? (
+				{activity == null ? (
 					<Center
 						width={16}
 						height={16}
@@ -56,16 +66,26 @@ export default function DiscordHomeCard() {
 						</Text>
 					</Center>
 				) : (
-					<Image
-						src={song.album_art_url}
-						alt={song.album}
-						width={64}
-						height={64}
-						style={{ borderRadius: 6 }}
-						className={
-							song == null ? "" : styles["animate-album-image"]
-						}
-					/>
+					<Link
+						href={activity.activityUrl}
+						title={activity.imageAlt}
+						width={64 + "px"}
+						height={64 + "px"}
+						position={"relative"}
+						background="rgba(255, 255, 255, 0.5)"
+						borderRadius={6 + "px"}
+						overflow={"hidden"}
+						className={styles["animate-activity-image"]}
+					>
+						<Image
+							src={activity.imageUrl}
+							alt={activity.imageAlt}
+							fill={true}
+							// width={64}
+							// height={64}
+							style={{ objectFit: "cover" }}
+						/>
+					</Link>
 				)}
 				<Flex
 					flexDir="column"
@@ -75,28 +95,34 @@ export default function DiscordHomeCard() {
 					overflow="hidden"
 				>
 					<HStack opacity={0.6} spacing={1} pb={0.5}>
-						{song == null ? (
+						{activity == null ? (
 							<MdHelp color="#fff" size={14} />
 						) : (
-							<SpotifyIcon color="#fff" size={12} />
+							<activity.activityIcon color="#fff" size={12} />
 						)}
 						<SubHeading size={"xs"} fontWeight={500}>
-							{song == null ? "No player" : "Spotify"}
+							{activity == null
+								? "No activity"
+								: activity.activityName}
 						</SubHeading>
 					</HStack>
 					<SubHeading size={"sm"}>
-						{song == null ? (
-							"Not listening"
+						{activity == null ? (
+							"Not listening to anything"
 						) : (
-							<DancingLetters>{song.song}</DancingLetters>
+							<DancingLetters>
+								{activity.firstLine}
+							</DancingLetters>
 						)}
 					</SubHeading>
 					<SubHeading size={"sm"} fontWeight={400}>
-						{song == null ? "to anything" : "by " + song.artist}
+						{activity == null
+							? "or playing or watching"
+							: activity.secondLine}
 					</SubHeading>
 				</Flex>
 			</HStack>
-			{song == null || songTime == null ? (
+			{activity == null || activityTime == null ? (
 				<></>
 			) : (
 				<HStack
@@ -105,7 +131,7 @@ export default function DiscordHomeCard() {
 					style={{ marginBottom: "-3px" }}
 				>
 					<Text fontSize="13px" width="42px" overflow={"hidden"}>
-						{msToTime(songTime.current)}
+						{msToTime(activityTime.current)}
 					</Text>
 					<Box
 						flexGrow={1}
@@ -119,7 +145,8 @@ export default function DiscordHomeCard() {
 							style={{
 								width:
 									clamp(
-										songTime.current / songTime.length,
+										activityTime.current /
+											activityTime.length,
 										0,
 										1,
 									) *
@@ -137,7 +164,7 @@ export default function DiscordHomeCard() {
 						overflow={"hidden"}
 						textAlign="right"
 					>
-						{msToTime(songTime.length)}
+						{msToTime(activityTime.length)}
 					</Text>
 				</HStack>
 			)}
@@ -185,7 +212,7 @@ export default function DiscordHomeCard() {
 					{data.discord_status}
 				</SubHeading>
 			</HStack>
-			{spotify}
+			{activityCard}
 			<HomeCardFooterLink href="https://github.com/Phineas/lanyard">
 				Powered by Lanyard
 			</HomeCardFooterLink>

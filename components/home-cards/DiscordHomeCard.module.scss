@@ -1,7 +1,7 @@
-.animate-album-image {
+.animate-activity-image {
 	$deg: 2deg;
 
-	@keyframes tilting-album-image {
+	@keyframes tilting-activity-image {
 		0% {
 			transform: rotate(-$deg);
 		}
@@ -13,7 +13,7 @@
 		}
 	}
 
-	animation-name: tilting-album-image;
+	animation-name: tilting-activity-image;
 	animation-duration: 2 * 1s;
 	animation-timing-function: ease-in-out;
 	animation-iteration-count: infinite;

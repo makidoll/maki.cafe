@@ -1,4 +1,8 @@
 import { useEffect, useState } from "react";
+import { IconType } from "react-icons";
+import { CrunchyrollIcon } from "../components/ui/social-icons/CrunchyrollIcon";
+import { SpotifyIcon } from "../components/ui/social-icons/SpotifyIcon";
+import { TowerUniteIcon } from "../components/ui/social-icons/TowerUniteIcon";
 
 enum Op {
 	Event = 0,
@@ -18,16 +22,13 @@ interface Message {
 	d: Partial<DataEvent & DataHello & DataInitialize>;
 }
 
-interface CurrentSong {
+interface Spotify {
 	album: string;
 	album_art_url: string;
 	artist: string;
 	song: string;
 	timestamps: { start: number; end: number };
 	track_id?: string; // only for spotify
-	// my fields
-	track_url: string; // lets provide this as we're not just using spotify
-	player: string;
 }
 
 interface DataEvent {
@@ -64,7 +65,7 @@ interface DataEvent {
 		username: string;
 	};
 	listening_to_spotify: boolean;
-	spotify: CurrentSong;
+	spotify: Spotify;
 }
 
 interface DataHello {
@@ -75,11 +76,100 @@ interface DataInitialize {
 	subscribe_to_ids: string[];
 }
 
+interface CurrentActivity {
+	activityName: string;
+	activityIcon: IconType;
+	imageUrl: string;
+	imageAlt: string;
+	firstLine: string;
+	secondLine: string;
+	backgroundColor: string;
+	activityUrl: string;
+	timestampStart: number | null;
+	timestampEnd: number | null;
+}
+
+function discordImageToUrl(image: string) {
+	return image.replace(
+		/^mp:external\//i,
+		"https://media.discordapp.net/external/",
+	);
+}
+
+function processSpotify(data: DataEvent): CurrentActivity | null {
+	const song: Spotify = data.spotify;
+	if (song == null) return null;
+
+	return {
+		activityName: "Spotify",
+		activityIcon: SpotifyIcon,
+		imageUrl: song.album_art_url,
+		imageAlt: song.album,
+		firstLine: song.song,
+		secondLine: "by " + song.artist,
+		backgroundColor: "#1db954",
+		activityUrl: "https://open.spotify.com/track/" + song.track_id,
+		timestampStart: song.timestamps.start,
+		timestampEnd: song.timestamps.end,
+	};
+}
+
+function processCrunchyroll(data: DataEvent): CurrentActivity | null {
+	const crunchyroll = data.activities.find(
+		activity => activity.name == "Crunchyroll",
+	);
+	if (crunchyroll == null) return null;
+
+	return {
+		activityName: "Crunchyroll",
+		activityIcon: CrunchyrollIcon,
+		imageUrl: discordImageToUrl(crunchyroll.assets?.large_image),
+		imageAlt: crunchyroll.state,
+		firstLine: crunchyroll.details, // anime name
+		secondLine: crunchyroll.assets?.large_text, // season 1, episode 1
+		backgroundColor: "#f47521",
+		activityUrl:
+			"https://www.crunchyroll.com/search?q=" +
+			encodeURIComponent(crunchyroll.details),
+		timestampStart: crunchyroll.timestamps.start,
+		timestampEnd: crunchyroll.timestamps.end, // i think its null
+	};
+}
+
+function processTowerUnite(data: DataEvent): CurrentActivity | null {
+	const towerUnite = data.activities.find(
+		activity => activity.name == "Tower Unite",
+	);
+	if (towerUnite == null) return null;
+
+	return {
+		activityName: "Tower Unite",
+		activityIcon: TowerUniteIcon,
+		imageUrl:
+			"https://static.wikia.nocookie.net/tower-unite/images/6/65/MainPlaza.jpg",
+		imageAlt: towerUnite.assets?.large_text,
+		firstLine: towerUnite.state,
+		secondLine: towerUnite.details, // sometimes empty
+		backgroundColor: "#3fa9f5",
+		activityUrl: "https://towerunite.com",
+		timestampStart: null,
+		timestampEnd: null,
+	};
+}
+
+const processActivities: ((data: DataEvent) => CurrentActivity | null)[] = [
+	processTowerUnite,
+	processSpotify,
+	// crunchyroll can hang sometimes, so lets prioritize it last
+	processCrunchyroll,
+];
+
 export function useLanyard(discordId: string) {
 	const [data, setData] = useState<DataEvent>();
 
-	const [song, setSong] = useState<CurrentSong | null>();
-	const [songTime, setSongTime] = useState<{
+	const [activity, setActivity] = useState<CurrentActivity | null>();
+
+	const [activityTime, setActivityTime] = useState<{
 		length: number;
 		current: number;
 	} | null>();
@@ -87,60 +177,64 @@ export function useLanyard(discordId: string) {
 	useEffect(() => {
 		let heartbeatInterval: NodeJS.Timer | null;
 
-		let songTimeInterval: NodeJS.Timer | null;
-
-		const processSpotifySong = (data: DataEvent): CurrentSong | null => {
-			const song: CurrentSong = data.spotify;
-			if (song == null) return null;
-			song.track_url = "https://open.spotify.com/track/" + song.track_id;
-			song.player = "Spotify";
-			return song;
-		};
+		let activityTimeInterval: NodeJS.Timer | null;
 
 		// there used to be more players like deadbeef and apple music
 		// and they'd use musicbrainz to guess cover images
-		// TODO: link branch where source code is available
+		// https://github.com/makifoxgirl/maki.cafe/blob/outdated-angular-version/src/app/cards/discord/discord.component.ts
 
-		const clearSongTimeInterval = () => {
-			if (songTimeInterval) {
-				clearInterval(songTimeInterval);
-				songTimeInterval = null;
+		const clearActivityTimeInterval = () => {
+			if (activityTimeInterval) {
+				clearInterval(activityTimeInterval);
+				activityTimeInterval = null;
 			}
 		};
 
-		const processMusic = (data: DataEvent) => {
-			// let song: CurrentSong = this.processDeadBeefSong();
-			// if (song == null) song = this.processCiderAppleMusicSong();
-			// if (song == null) song = this.processSpotifySong();
-			const song = processSpotifySong(data);
+		const processActivity = (data: DataEvent) => {
+			let activity: CurrentActivity | null = processActivities[0](data);
 
-			if (song == null) {
+			if (activity == null) {
+				for (let i = 1; i < processActivities.length; i++) {
+					activity = processActivities[i](data);
+					if (activity != null) break;
+				}
+			}
+
+			// nope none found
+
+			if (activity == null) {
 				// clean up
-				clearSongTimeInterval();
-				setSongTime(null);
-				setSong(null);
+				clearActivityTimeInterval();
+				setActivityTime(null);
+				setActivity(null);
 				return;
 			}
 
-			setSong(song);
+			setActivity(activity);
 
 			// if timestamps.end doesnt exist, clean up
-			if (song.timestamps.end == null) {
-				clearSongTimeInterval();
-				setSongTime(null);
+			if (
+				activity.timestampStart == null ||
+				activity.timestampEnd == null
+			) {
+				clearActivityTimeInterval();
+				setActivityTime(null);
 			} else {
-				const length = song.timestamps.end - song.timestamps.start;
+				const length = activity.timestampEnd - activity.timestampStart;
+
+				let timestampStart = activity.timestampStart;
+				let timestampEnd = activity.timestampEnd;
 
 				const updateCurrent = () => {
-					const current = Date.now() - song.timestamps.start;
-					if (current > song.timestamps.end) return;
-					setSongTime({ length, current });
+					const current = Date.now() - timestampStart;
+					if (current > timestampEnd) return;
+					setActivityTime({ length, current });
 				};
 
 				updateCurrent();
 
-				clearSongTimeInterval();
-				songTimeInterval = setInterval(updateCurrent, 1000);
+				clearActivityTimeInterval();
+				activityTimeInterval = setInterval(updateCurrent, 1000);
 			}
 		};
 
@@ -177,7 +271,7 @@ export function useLanyard(discordId: string) {
 						data = data[discordId];
 					}
 					setData(data);
-					processMusic(data);
+					processActivity(data);
 					break;
 			}
 		};
@@ -196,5 +290,5 @@ export function useLanyard(discordId: string) {
 		};
 	}, []);
 
-	return { data, song, songTime };
+	return { data, activity, activityTime };
 }
