@@ -7,7 +7,9 @@ import {
 	Text,
 	VStack,
 } from "@chakra-ui/react";
+import { formatDistance } from "date-fns";
 import Image from "next/image";
+import { IoGameController } from "react-icons/io5";
 import { MdHelp } from "react-icons/md";
 import { useLanyard } from "../../hooks/UseLanyard";
 import { config } from "../../utils/config";
@@ -54,21 +56,31 @@ export default function DiscordHomeCard() {
 			mt={4}
 		>
 			<HStack>
-				{activity == null ? (
+				{activity?.imageUrl == "" ? (
 					<Center
 						width={16}
 						height={16}
 						borderRadius={6}
 						background="rgba(255, 255, 255, 0.5)"
 					>
-						<Text fontSize="32px" color="rgba(255, 255, 255, 0.5)">
-							#!
-						</Text>
+						{activity == null ? (
+							<Text
+								fontSize="32px"
+								color="rgba(255, 255, 255, 0.5)"
+							>
+								#!
+							</Text>
+						) : (
+							<IoGameController
+								size={32}
+								color="rgba(255, 255, 255, 0.5)"
+							/>
+						)}
 					</Center>
 				) : (
 					<Link
-						href={activity.activityUrl}
-						title={activity.imageAlt}
+						href={activity?.activityUrl}
+						title={activity?.imageAlt}
 						width={64 + "px"}
 						height={64 + "px"}
 						position={"relative"}
@@ -78,8 +90,8 @@ export default function DiscordHomeCard() {
 						className={styles["animate-activity-image"]}
 					>
 						<Image
-							src={activity.imageUrl}
-							alt={activity.imageAlt}
+							src={activity?.imageUrl ?? ""}
+							alt={activity?.imageAlt ?? ""}
 							fill={true}
 							// width={64}
 							// height={64}
@@ -118,11 +130,23 @@ export default function DiscordHomeCard() {
 					<SubHeading size={"sm"} fontWeight={400}>
 						{activity == null
 							? "or playing or watching"
-							: activity.secondLine}
+							: activity.secondLine != ""
+							? activity.secondLine
+							: activityTime != null
+							? formatDistance(
+									Date.now() - activityTime.current,
+									Date.now(),
+									{
+										addSuffix: true,
+									},
+							  )
+							: ""}
 					</SubHeading>
 				</Flex>
 			</HStack>
-			{activity == null || activityTime == null ? (
+			{activity == null ||
+			activityTime == null ||
+			activityTime.length == 0 ? (
 				<></>
 			) : (
 				<HStack

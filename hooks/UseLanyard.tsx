@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { IconType } from "react-icons";
+import { MdGamepad } from "react-icons/md";
 import { CrunchyrollIcon } from "../components/ui/social-icons/CrunchyrollIcon";
 import { SpotifyIcon } from "../components/ui/social-icons/SpotifyIcon";
 import { TowerUniteIcon } from "../components/ui/social-icons/TowerUniteIcon";
@@ -157,8 +158,33 @@ function processTowerUnite(data: DataEvent): CurrentActivity | null {
 	};
 }
 
+function processIsPlaying(data: DataEvent): CurrentActivity | null {
+	const isPlaying = data.activities.find(activity => activity.type == 0);
+	if (isPlaying == null) return null;
+
+	// i tried finding a way to get the icon but i just cant unfortunately
+
+	return {
+		activityName: "Playing a game",
+		activityIcon: MdGamepad,
+		imageUrl: "",
+		imageAlt: "",
+		firstLine: isPlaying.name,
+		secondLine: "",
+		// backgroundColor: "rgba(0,0,0,0.85)",
+		backgroundColor: "#e91e63",
+		activityUrl: "",
+		timestampStart: isPlaying.timestamps.start,
+		timestampEnd: null,
+	};
+}
+
 const processActivities: ((data: DataEvent) => CurrentActivity | null)[] = [
+	// games with rich presence
 	processTowerUnite,
+	// games, any
+	processIsPlaying,
+	// music
 	processSpotify,
 	// crunchyroll can hang sometimes, so lets prioritize it last
 	processCrunchyroll,
@@ -213,28 +239,32 @@ export function useLanyard(discordId: string) {
 			setActivity(activity);
 
 			// if timestamps.end doesnt exist, clean up
-			if (
-				activity.timestampStart == null ||
-				activity.timestampEnd == null
-			) {
+			if (activity.timestampStart == null) {
 				clearActivityTimeInterval();
 				setActivityTime(null);
 			} else {
-				const length = activity.timestampEnd - activity.timestampStart;
+				const timestampStart = activity.timestampStart;
+				const timestampEnd = activity.timestampEnd;
 
-				let timestampStart = activity.timestampStart;
-				let timestampEnd = activity.timestampEnd;
+				const length =
+					activity.timestampEnd == null
+						? 0
+						: activity.timestampEnd - activity.timestampStart;
 
 				const updateCurrent = () => {
 					const current = Date.now() - timestampStart;
-					if (current > timestampEnd) return;
+					if (timestampEnd && current > timestampEnd) return;
 					setActivityTime({ length, current });
 				};
 
 				updateCurrent();
 
 				clearActivityTimeInterval();
-				activityTimeInterval = setInterval(updateCurrent, 1000);
+				activityTimeInterval = setInterval(
+					updateCurrent,
+					// if no timestamp end, only update every minute
+					length == 0 ? 1000 * 60 : 1000,
+				);
 			}
 		};
 
