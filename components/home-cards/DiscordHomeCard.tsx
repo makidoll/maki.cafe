@@ -56,7 +56,7 @@ export default function DiscordHomeCard() {
 			mt={4}
 		>
 			<HStack>
-				{activity?.imageUrl == "" ? (
+				{!activity?.imageUrl ? (
 					<Center
 						width={16}
 						height={16}
