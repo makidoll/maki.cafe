@@ -1,5 +1,3 @@
-import * as path from "path";
-
 const socialIds = {
 	discord: "72139729285427200",
 	twitter: "makifoxgirl",

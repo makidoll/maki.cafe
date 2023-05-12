@@ -212,7 +212,11 @@ export default function DiscordHomeCard() {
 							status={data?.discord_status}
 							mobile={data?.active_on_discord_mobile}
 						/>
-						<VStack paddingLeft={2} spacing={-1}>
+						<VStack
+							paddingLeft={2}
+							spacing={-1}
+							alignItems={"start"}
+						>
 							<SubHeading fontSize={"1.5em"}>
 								{data.discord_user.username}
 							</SubHeading>
