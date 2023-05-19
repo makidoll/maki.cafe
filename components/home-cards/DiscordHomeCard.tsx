@@ -218,14 +218,15 @@ export default function DiscordHomeCard() {
 							alignItems={"start"}
 						>
 							<SubHeading fontSize={"1.5em"}>
-								{data.discord_user.username}
+								{data.discord_user.global_name}
 							</SubHeading>
 							<SubHeading
 								opacity={0.6}
 								fontSize={"1em"}
 								fontWeight={600}
 							>
-								#{data.discord_user.discriminator}
+								{data.discord_user.username}#
+								{data.discord_user.discriminator}
 							</SubHeading>
 						</VStack>
 					</HStack>

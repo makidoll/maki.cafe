@@ -60,11 +60,16 @@ interface DataEvent {
 	discord_status: "online" | "idle" | "dnd" | "offline";
 	discord_user: {
 		avatar: string;
+		avtar_decoration: null;
+		bot: boolean;
 		discriminator: string;
+		display_name: string;
+		global_name: string;
 		id: string;
 		public_flags: number;
 		username: string;
 	};
+	kv: object;
 	listening_to_spotify: boolean;
 	spotify: Spotify;
 }
@@ -217,6 +222,8 @@ export function useLanyard(discordId: string) {
 		};
 
 		const processActivity = (data: DataEvent) => {
+			console.log(data);
+
 			let activity: CurrentActivity | null = processActivities[0](data);
 
 			if (activity == null) {
