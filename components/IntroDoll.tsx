@@ -18,14 +18,14 @@ const endScale = 1 * scale;
 
 const polarAngle = 72 * Deg2Rad;
 
-export default function IntroAvatar(props: BoxProps & { onLoaded: () => any }) {
-	// const IntroAvatarModel = dynamic(() => import("./IntroAvatarModel"), {
+export default function IntroDoll(props: BoxProps & { onLoaded: () => any }) {
+	// const IntroDollModel = dynamic(() => import("./IntroDollModel"), {
 	// 	ssr: false,
 	// });
 
 	RectAreaLightUniformsLib.init();
 
-	const IntroAvatarModel = lazy(() => import("./IntroAvatarModel"));
+	const IntroDollModel = lazy(() => import("./IntroDollModel"));
 
 	const [loadingOpacity, setLoadingOpacity] = useState(1);
 	const [opacity, setOpacity] = useState(0);
@@ -51,7 +51,7 @@ export default function IntroAvatar(props: BoxProps & { onLoaded: () => any }) {
 				}}
 			>
 				{/* <Bounds fit clip observe margin={1} damping={0}> */}
-				<IntroAvatarModel
+				<IntroDollModel
 					position={new Vector3(0, -0.029, 0)}
 					rotationY={rotationY}
 					scale={scale}
