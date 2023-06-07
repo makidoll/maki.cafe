@@ -55,7 +55,7 @@ export default function Social() {
 					paddingRight={1}
 				>
 					{/* game dev fox girl */}
-					game dev doll
+					shiny game dev doll
 				</SubHeading>
 				<SubHeading
 					opacity={0.4}
