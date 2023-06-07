@@ -108,7 +108,7 @@ export default function HomelabHomeCard() {
 						fontWeight={500}
 					>
 						<Box
-							background="#1d1f21"
+							background="rgba(255,255,255,0.2)"
 							color="white"
 							px={1.5}
 							pt={1}
