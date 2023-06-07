@@ -5,8 +5,8 @@ export default function HomeCardLoading() {
 		<Spinner
 			thickness="4px"
 			speed="1s"
-			emptyColor="gray.200"
-			color="gray.400"
+			emptyColor={`rgba(255,255,255,0.1)`}
+			color={`rgba(255,255,255,0.2)`}
 			size="xl"
 			marginTop={4}
 			marginBottom={3}
