@@ -225,8 +225,9 @@ export default function DiscordHomeCard() {
 								fontSize={"1em"}
 								fontWeight={600}
 							>
-								{data.discord_user.username}#
-								{data.discord_user.discriminator}
+								{data.discord_user.discriminator == "0"
+									? `@${data.discord_user.username}`
+									: `${data.discord_user.username}#${data.discord_user.discriminator}`}
 							</SubHeading>
 						</VStack>
 					</HStack>
