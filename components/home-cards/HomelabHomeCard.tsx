@@ -89,7 +89,7 @@ function linksToListItem(name: string, links: string[][]) {
 	);
 }
 
-export default function HomelabHomeCard() {
+export default function HomelabHomeCard(props: { onOlder: () => any }) {
 	const uptimeRobot = trpc.uptimeRobot.all.useQuery();
 
 	return (
@@ -193,6 +193,11 @@ export default function HomelabHomeCard() {
 						<chakra.span fontWeight={800}>
 							November 11, 2022
 						</chakra.span>
+						<br />
+						<br />
+						<Link onClick={props.onOlder}>
+							Click here to see older setup
+						</Link>
 						<br />
 						<br />
 					</Text>

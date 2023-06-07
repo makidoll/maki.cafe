@@ -1,21 +1,23 @@
 import { Box, Grid } from "@chakra-ui/react";
 import type { NextPage } from "next";
+import { useState } from "react";
+import IntroDoll from "../components/IntroDoll";
+import Social from "../components/Social";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
 import HomelabHomeCard from "../components/home-cards/HomelabHomeCard";
+import HomelabOlderHomeCard from "../components/home-cards/HomelabOlderHomeCard";
 import MfcHomeCard from "../components/home-cards/MfcHomeCard";
 import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import WhereHomeCard from "../components/home-cards/WhereHomeCard";
 import WorkHomeCard from "../components/home-cards/WorkHomeCard";
-import IntroDoll from "../components/IntroDoll";
-import Social from "../components/Social";
 import Logo from "../components/ui/Logo";
 import styles from "./index.module.scss";
-import { useState } from "react";
 
 const Home: NextPage = () => {
 	const [ready, setReady] = useState(false);
+	const [olderHomelab, setOlderHomelab] = useState(false);
 
 	return (
 		<Box
@@ -68,7 +70,19 @@ const Home: NextPage = () => {
 				<WorkHomeCard />
 				<WhereHomeCard />
 				<GamesHomeCard />
-				<HomelabHomeCard />
+				{olderHomelab ? (
+					<HomelabOlderHomeCard
+						onNewer={() => {
+							setOlderHomelab(false);
+						}}
+					/>
+				) : (
+					<HomelabHomeCard
+						onOlder={() => {
+							setOlderHomelab(true);
+						}}
+					/>
+				)}
 				<MfcHomeCard />
 				<FlickrHomeCard />
 				<SketchfabHomeCard />
