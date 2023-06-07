@@ -180,7 +180,7 @@ export default function GamesHomeCard(props) {
 						key={i}
 						href={social.url}
 						textDecor="none"
-						color="#000"
+						color="#fff"
 					>
 						<Flex
 							width="100%"
@@ -190,7 +190,7 @@ export default function GamesHomeCard(props) {
 							mt={3}
 							mb={-2}
 						>
-							<social.icon size={18} />
+							<social.icon size={18} color="#fff" />
 							<Text ml={1} fontWeight={500}>
 								{social.name}
 							</Text>

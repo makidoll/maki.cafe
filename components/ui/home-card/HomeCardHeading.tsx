@@ -32,7 +32,7 @@ export default function HomeCardHeading(
 		H = (
 			<Flex flexDir={"row"} mt={mt}>
 				{H}
-				<Icon size={24} />
+				<Icon size={24} color="#fff" />
 			</Flex>
 		);
 	}
@@ -40,7 +40,7 @@ export default function HomeCardHeading(
 	if (href) {
 		H = (
 			<Link
-				color="#000"
+				color="#fff"
 				href={href}
 				transition={config.styles.hoverTransition}
 				transformOrigin="center"

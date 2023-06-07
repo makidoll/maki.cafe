@@ -44,8 +44,8 @@ export default function Social() {
 				{/* <Emoji>🌺</Emoji>
 				<Emoji>🦊</Emoji>
 				<Emoji>🦋</Emoji> */}
-				<Emoji>🦊</Emoji>
-				<Emoji>🍃</Emoji>
+				{/* <Emoji>🦊</Emoji> */}
+				{/* <Emoji>🍃</Emoji> */}
 				<Emoji>✨</Emoji>
 				<SubHeading
 					opacity={0.5}
@@ -54,7 +54,8 @@ export default function Social() {
 					paddingLeft={2}
 					paddingRight={1}
 				>
-					game dev fox girl
+					{/* game dev fox girl */}
+					game dev doll
 				</SubHeading>
 				<SubHeading
 					opacity={0.4}
@@ -62,11 +63,11 @@ export default function Social() {
 					fontSize="md"
 					paddingRight={2}
 				>
-					she/they
+					it/she/they
 				</SubHeading>
 				<Emoji>🏳️‍⚧️</Emoji>
-				<Emoji>lesbian-flag</Emoji>
-				{/* <Emoji>t4t-flag-better</Emoji>  */}
+				{/* <Emoji>lesbian-flag</Emoji> */}
+				{/* <Emoji>t4t-flag-better</Emoji> */}
 			</HStack>
 			<Link
 				href="https://xn--3h8h64hda.ws"
@@ -76,7 +77,7 @@ export default function Social() {
 				fontSize="xs"
 				fontFamily={minecraft.style.fontFamily}
 				marginTop={1}
-				color="#000"
+				color="#fff"
 			>
 				<HStack spacing={0.5} justifyContent="center">
 					<Text opacity={0.3}>now available at www.</Text>
@@ -102,7 +103,7 @@ export default function Social() {
 						transformOrigin="center"
 						_hover={{ transform: "scale(1.1)" }}
 					>
-						<social.icon width={"auto"} height={24} />
+						<social.icon width={"auto"} height={24} color="#fff" />
 					</Link>
 				))}
 			</HStack>
@@ -112,10 +113,10 @@ export default function Social() {
 				transition={config.styles.hoverTransition}
 				_hover={{ transform: "scale(1.05)" }}
 				marginTop={4}
-				color="#000"
+				color="#fff"
 			>
 				<HStack spacing={2} opacity={0.2}>
-					<GitHubIcon size={16} />
+					<GitHubIcon size={16} color="#fff" />
 					<Text fontWeight={700}>See site&apos;s code</Text>
 				</HStack>
 			</Link>

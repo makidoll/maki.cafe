@@ -22,6 +22,9 @@
 	$letters-length: length($letters);
 
 	$letter-color: #e91e63;
+	$letter-shadow-color: #e91e63;
+	$letter-shadow-opacity: 0.333;
+
 	$letter-delay: 400ms;
 
 	$letter-width: 30px;
@@ -94,10 +97,10 @@
 	.path-shadow {
 		// default should be last frame
 		stroke-width: $letter-width;
-		opacity: 0.2;
+		opacity: $letter-shadow-opacity;
 
 		// properties
-		stroke: mix($letter-color, #000, 80%);
+		stroke: $letter-shadow-color;
 		animation-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
 		animation-fill-mode: both;
 		animation-duration: 1000ms * $letter-speed;
@@ -135,7 +138,7 @@
 
 				100% {
 					stroke-width: $letter-width;
-					opacity: 0.2;
+					opacity: $letter-shadow-opacity;
 					transform: translate(
 						($i * $letter-spacing) + $letter-shadow-distance,
 						$letter-shadow-distance

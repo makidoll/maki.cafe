@@ -6,7 +6,13 @@ import { inter } from "../fonts/fonts";
 import { trpc } from "../utils/trpc";
 import "./_app.scss";
 
+if (globalThis.localStorage != null) {
+	globalThis.localStorage.setItem("chakra-ui-color-mode", "dark");
+}
+
 const theme = extendTheme({
+	initialColorMode: "dark",
+	useSystemColorMode: false,
 	components: {
 		// Heading: {
 		// 	baseStyle: {
@@ -40,6 +46,15 @@ const theme = extendTheme({
 			// a200: "#ff4081",
 			// a400: "#f50057",
 			// a700: "#c51162",
+		},
+		tomorrow: "#1d1f21",
+	},
+	styles: {
+		global: {
+			body: {
+				bg: "tomorrow",
+				color: "white",
+			},
 		},
 	},
 	fonts: {

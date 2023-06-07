@@ -55,7 +55,7 @@ export default function MfcHomeCard() {
 									w={45}
 									h={45}
 									borderRadius={4}
-									border="2px solid white"
+									border="2px solid #1d1f21"
 									boxShadow={
 										"0 0 0 2px " + colors[figure.type]
 									}

@@ -222,7 +222,7 @@ export function useLanyard(discordId: string) {
 		};
 
 		const processActivity = (data: DataEvent) => {
-			console.log(data);
+			// console.log(data);
 
 			let activity: CurrentActivity | null = processActivities[0](data);
 

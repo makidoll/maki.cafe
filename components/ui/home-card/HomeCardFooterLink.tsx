@@ -6,7 +6,7 @@ export default function HomeCardFooterLink(props: {
 	children?: string;
 }) {
 	return (
-		<Link href={props.href} textDecor="none" color="#000">
+		<Link href={props.href} textDecor="none" color="#fff">
 			<Flex
 				width="100%"
 				alignItems="center"
@@ -18,7 +18,7 @@ export default function HomeCardFooterLink(props: {
 				<Text mr={1} fontWeight={500}>
 					{props.children}
 				</Text>
-				<MdOpenInNew size={24} />
+				<MdOpenInNew size={24} color="#fff" />
 			</Flex>
 		</Link>
 	);

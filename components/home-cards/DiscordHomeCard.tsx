@@ -198,7 +198,7 @@ export default function DiscordHomeCard() {
 	return (
 		<HomeCard>
 			<HStack>
-				<Link href={config.socialLinks.discord} color="#000">
+				<Link href={config.socialLinks.discord} color="#fff">
 					<HStack>
 						<DiscordUserImage
 							size={48}
