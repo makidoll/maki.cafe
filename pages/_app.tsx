@@ -63,8 +63,8 @@ const theme = extendTheme({
 	},
 });
 
-const title = "Maki 🦊🍃✨";
-const description = "hi im Maki and i make things ❤️";
+const title = "Maki Doll ✨🏳️‍⚧️";
+const description = "i make things ❤️";
 
 const domain = "maki.cafe";
 const url = "https://" + domain;
