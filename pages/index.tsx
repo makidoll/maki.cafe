@@ -12,8 +12,11 @@ import IntroAvatar from "../components/IntroAvatar";
 import Social from "../components/Social";
 import Logo from "../components/ui/Logo";
 import styles from "./index.module.scss";
+import { useState } from "react";
 
 const Home: NextPage = () => {
+	const [ready, setReady] = useState(false);
+
 	return (
 		<Box
 			className={
@@ -27,9 +30,16 @@ const Home: NextPage = () => {
 				flexDirection="column"
 				width="100%"
 			>
-				<IntroAvatar h={350} mt={24} mb={16} />
+				<IntroAvatar
+					h={400}
+					mt={24}
+					mb={16}
+					onLoaded={() => {
+						setReady(true);
+					}}
+				/>
 				<Box width={400} marginTop={0}>
-					<Logo />
+					<Logo ready={ready} />
 				</Box>
 				<Box marginTop={6}>
 					<Social />

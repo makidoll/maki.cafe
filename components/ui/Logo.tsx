@@ -1,20 +1,20 @@
 import { useEffect, useState } from "react";
-import { useLanyard } from "../../hooks/UseLanyard";
 import styles from "./Logo.module.scss";
 
 const animationForwardTime = 2800;
 const animationBackwardTime = 1400;
 
-export default function Logo() {
+export default function Logo(props: { ready: boolean }) {
 	// true so it renders starting the animation without js
-	const [animateForward, setAnimateForward] = useState(true);
+	const [animateForward, setAnimateForward] = useState(false);
 	const [animateBackward, setAnimateBackward] = useState(false);
-	const [animateHide, setAnimateHide] = useState(false);
+	const [animateHide, setAnimateHide] = useState(true);
 	const [animating, setAnimating] = useState(false);
 
 	const playForward = (force = false) => {
 		if (animating && !force) return;
 
+		setAnimateHide(false);
 		setAnimating(true);
 		setAnimateForward(true);
 		setTimeout(() => {
@@ -30,6 +30,7 @@ export default function Logo() {
 	const playBackward = () => {
 		if (animating) return;
 
+		setAnimateHide(false);
 		setAnimating(true);
 		setAnimateBackward(true);
 		setTimeout(() => {
@@ -45,9 +46,9 @@ export default function Logo() {
 	};
 
 	useEffect(() => {
-		playForward();
+		if (props.ready) playForward();
 		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, []);
+	}, [props.ready]);
 
 	return (
 		<svg

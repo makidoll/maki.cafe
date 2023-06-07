@@ -1,39 +1,59 @@
 import { a, SpringValue } from "@react-spring/three";
-import { useGLTF, useTexture } from "@react-three/drei";
+import { Environment, useGLTF, useTexture } from "@react-three/drei";
 import { useEffect } from "react";
-import { DoubleSide, LinearFilter, Mesh, Vector3 } from "three";
+import { Color, DoubleSide, LinearFilter, Mesh, Vector3 } from "three";
+
+const path = "/baked-doll/";
+const glbPath = path + "baked.glb";
+
+const Deg2Rad = 0.0174533;
 
 export default function IntroAvatarModel(props: {
-	position?: Vector3;
-	rotationY?: SpringValue<number>;
-	scale?: SpringValue<number>;
+	position: Vector3;
+	rotationY: SpringValue<number>;
+	scale: SpringValue<number>;
+	endScale: number;
 	onLoaded?: () => any;
 }) {
-	const path = "/intro-avatar/";
-	const { scene } = useGLTF(path + "baked.glb");
+	const { scene } = useGLTF(glbPath);
+
+	// const rectAreaLightA = useRef<any>();
+	// const rectAreaLightB = useRef<any>();
+	// const rectAreaLightC = useRef<any>();
+	// useHelper(rectAreaLightA, RectAreaLightHelper);
+	// useHelper(rectAreaLightB, RectAreaLightHelper);
+	// useHelper(rectAreaLightC, RectAreaLightHelper);
 
 	const getMesh = (name: string) =>
 		scene.children.find(o => o.name == name) as Mesh;
 
-	const Bastion_Baked = getMesh("Bastion_Baked");
-	const KeyboardGomez_Baked = getMesh("KeyboardGomez_Baked");
-	const Maki_Baked = getMesh("Maki_Baked");
-	const Rest_Baked = getMesh("Rest_Baked");
+	// meshes
+	const mBastion = getMesh("Bastion_Baked");
+	const mKeyboardGomez = getMesh("KeyboardGomez_Baked");
+	const mRest = getMesh("Rest_Baked");
+	const mMercyHair = getMesh("MercyHair_Baked");
+	const mEyesDoll = getMesh("EyesDoll_Baked");
+	const mDoll = getMesh("Doll_Baked");
 
-	const Bastion_Baked_Map = useTexture(path + "bastion_baked.webp");
-	const KeyboardGomez_Baked_Map = useTexture(
-		path + "keyboardgomez_baked.webp",
-	);
-	const Maki_Baked_Map = useTexture(path + "maki_baked.webp");
-	const Rest_Baked_Map = useTexture(path + "rest_baked.webp");
-	const Rest_Baked_Alpha_Map = useTexture(path + "rest_baked_alpha.webp");
+	// textures
+	const tBastion = useTexture(path + "bastion_baked.webp");
+	const tKeyboardGomez = useTexture(path + "keyboardgomez_baked.webp");
+	const tRest = useTexture(path + "rest_baked.webp");
+	const tRestAlpha = useTexture(path + "rest_baked_alpha.webp");
+	const tMercyHair = useTexture(path + "mercyhair_baked.webp");
+	const tEyesDoll = useTexture(path + "eyesdoll.webp");
+	const tDollDiffuse = useTexture(path + "doll_diffuse.webp");
+	const tDollRoughness = useTexture(path + "doll_roughness.webp");
 
 	for (const map of [
-		Bastion_Baked_Map,
-		KeyboardGomez_Baked_Map,
-		Maki_Baked_Map,
-		Rest_Baked_Map,
-		Rest_Baked_Alpha_Map,
+		tBastion,
+		tKeyboardGomez,
+		tRest,
+		tRestAlpha,
+		tMercyHair,
+		tEyesDoll,
+		tDollDiffuse,
+		tDollRoughness,
 	]) {
 		// map.anisotropy = 4;
 		map.magFilter = LinearFilter;
@@ -47,49 +67,74 @@ export default function IntroAvatarModel(props: {
 	}, []);
 
 	return (
-		<>
-			<a.mesh
-				geometry={Bastion_Baked?.geometry}
-				position={props.position}
-				rotation-y={props.rotationY}
-				scale={props.scale}
-			>
-				<meshBasicMaterial map={Bastion_Baked_Map} side={DoubleSide} />
+		<a.group
+			position={props.position}
+			scale={props.scale}
+			rotation-y={props.rotationY}
+		>
+			<a.mesh geometry={mBastion?.geometry}>
+				<meshBasicMaterial map={tBastion} side={DoubleSide} />
 			</a.mesh>
-			<a.mesh
-				geometry={KeyboardGomez_Baked?.geometry}
-				position={props.position}
-				rotation-y={props.rotationY}
-				scale={props.scale}
-			>
+			<a.mesh geometry={mKeyboardGomez?.geometry}>
+				<meshBasicMaterial map={tKeyboardGomez} side={DoubleSide} />
+			</a.mesh>
+			<a.mesh geometry={mRest?.geometry}>
 				<meshBasicMaterial
-					map={KeyboardGomez_Baked_Map}
+					map={tRest}
 					side={DoubleSide}
-				/>
-			</a.mesh>
-			<a.mesh
-				geometry={Maki_Baked?.geometry}
-				position={props.position}
-				rotation-y={props.rotationY}
-				scale={props.scale}
-			>
-				<meshBasicMaterial map={Maki_Baked_Map} side={DoubleSide} />
-			</a.mesh>
-			<a.mesh
-				geometry={Rest_Baked?.geometry}
-				position={props.position}
-				rotation-y={props.rotationY}
-				scale={props.scale}
-			>
-				<meshBasicMaterial
-					map={Rest_Baked_Map}
-					side={DoubleSide}
-					alphaMap={Rest_Baked_Alpha_Map}
+					alphaMap={tRestAlpha}
 					alphaTest={0.5}
 				/>
 			</a.mesh>
-		</>
+			<a.mesh geometry={mMercyHair?.geometry}>
+				<meshBasicMaterial map={tMercyHair} side={DoubleSide} />
+			</a.mesh>
+			<a.mesh geometry={mEyesDoll?.geometry}>
+				<meshBasicMaterial map={tEyesDoll} side={DoubleSide} />
+			</a.mesh>
+			<a.mesh geometry={mDoll?.geometry}>
+				<meshPhysicalMaterial
+					// color="black"
+					map={tDollDiffuse}
+					roughnessMap={tDollRoughness}
+					// roughness={0.5}
+				/>
+			</a.mesh>
+			<Environment
+				// files="https://vazxmixjsiawhamofees.supabase.co/storage/v1/object/public/hdris/noon-grass/noon_grass_1k.hdr"
+				files={path + "environment.hdr"}
+				// background
+			/>
+			{/* <ambientLight intensity={0.05} color={"#fff"} /> */}
+			<a.rectAreaLight
+				// ref={rectAreaLightA}
+				color={new Color("#00C6FF")}
+				intensity={30}
+				position={new Vector3(-0.829314, 0.380562, 1.16075)}
+				rotation={[0, -28.3484 * Deg2Rad, 0]}
+				width={0.3 * props.endScale}
+				height={0.8 * props.endScale}
+			></a.rectAreaLight>
+			<a.rectAreaLight
+				// ref={rectAreaLightB}
+				color={new Color("#FF9100")}
+				intensity={30}
+				position={new Vector3(0.829314, 0.380562, 1.16075)}
+				rotation={[0, 28.3484 * Deg2Rad, 0]}
+				width={0.3 * props.endScale}
+				height={0.8 * props.endScale}
+			></a.rectAreaLight>
+			<a.rectAreaLight
+				// ref={rectAreaLightC}
+				color={new Color("#373A4A")}
+				intensity={30}
+				position={new Vector3(0, 0.339337, 0.516989)}
+				rotation={[0, 0, 0]}
+				width={0.719457 * props.endScale}
+				height={0.402013 * props.endScale}
+			></a.rectAreaLight>
+		</a.group>
 	);
 }
 
-useGLTF.preload("/intro-avatar/baked.glb");
+useGLTF.preload(glbPath);
