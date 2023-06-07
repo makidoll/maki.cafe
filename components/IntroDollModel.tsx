@@ -36,16 +36,24 @@ export default function IntroDollModel(props: {
 	const mDoll = getMesh("Doll_Baked");
 
 	// textures
-	const tBastion = useTexture(path + "bastion_baked.webp");
-	const tKeyboardGomez = useTexture(path + "keyboardgomez_baked.webp");
-	const tRest = useTexture(path + "rest_baked.webp");
-	const tRestAlpha = useTexture(path + "rest_baked_alpha.webp");
-	const tMercyHair = useTexture(path + "mercyhair_baked.webp");
-	const tEyesDoll = useTexture(path + "eyesdoll.webp");
-	const tDollDiffuse = useTexture(path + "doll_diffuse.webp");
-	const tDollRoughness = useTexture(path + "doll_roughness.webp");
+	const textures = useTexture([
+		path + "bastion_baked.webp",
+		path + "keyboardgomez_baked.webp",
+		path + "rest_baked.webp",
+		path + "rest_baked_alpha.webp",
+		path + "mercyhair_baked.webp",
+		path + "eyesdoll.webp",
+		path + "doll_diffuse.webp",
+		path + "doll_roughness.webp",
+	]);
 
-	for (const map of [
+	for (const texture of textures) {
+		texture.magFilter = LinearFilter;
+		texture.minFilter = LinearFilter;
+		texture.generateMipmaps = true;
+	}
+
+	const [
 		tBastion,
 		tKeyboardGomez,
 		tRest,
@@ -54,12 +62,7 @@ export default function IntroDollModel(props: {
 		tEyesDoll,
 		tDollDiffuse,
 		tDollRoughness,
-	]) {
-		// map.anisotropy = 4;
-		map.magFilter = LinearFilter;
-		map.minFilter = LinearFilter;
-		map.generateMipmaps = true;
-	}
+	] = textures;
 
 	useEffect(() => {
 		if (props.onLoaded) props.onLoaded();
@@ -93,11 +96,9 @@ export default function IntroDollModel(props: {
 				<meshBasicMaterial map={tEyesDoll} side={DoubleSide} />
 			</a.mesh>
 			<a.mesh geometry={mDoll?.geometry}>
-				<meshPhysicalMaterial
-					// color="black"
+				<meshStandardMaterial
 					map={tDollDiffuse}
 					roughnessMap={tDollRoughness}
-					// roughness={0.5}
 				/>
 			</a.mesh>
 			<Environment
