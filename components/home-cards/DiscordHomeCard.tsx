@@ -47,7 +47,9 @@ export default function DiscordHomeCard() {
 	const activityCard = (
 		<VStack
 			backgroundColor={
-				activity == null ? "rgba(0,0,0,0.5)" : activity.backgroundColor
+				activity == null
+					? "rgba(255,255,255,0.15)"
+					: activity.backgroundColor
 			}
 			color="white"
 			padding={2}
@@ -61,7 +63,7 @@ export default function DiscordHomeCard() {
 						width={16}
 						height={16}
 						borderRadius={6}
-						background="rgba(255, 255, 255, 0.5)"
+						background="rgba(255, 255, 255, 0.3)"
 					>
 						{activity == null ? (
 							<Text
