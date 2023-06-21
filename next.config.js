@@ -1,5 +1,7 @@
 /** @type {import('next').NextConfig} */
 
+const CopyPlugin = require("copy-webpack-plugin");
+
 const nextConfig = {
 	reactStrictMode: true,
 	swcMinify: true,
@@ -30,6 +32,21 @@ const nextConfig = {
 	i18n: {
 		locales: ["en"],
 		defaultLocale: "en",
+	},
+	webpack: function (config, options) {
+		config.experiments = { ...config.experiments, asyncWebAssembly: true };
+		config.plugins = [
+			...config.plugins,
+			new CopyPlugin({
+				patterns: [
+					{
+						from: "node_modules/three/examples/jsm/libs/draco/",
+						to: "./static/libs/draco/",
+					},
+				],
+			}),
+		];
+		return config;
 	},
 };
 

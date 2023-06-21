@@ -5,7 +5,7 @@ import { Canvas } from "@react-three/fiber";
 import { lazy, useState } from "react";
 import { Vector3 } from "three";
 import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLightUniformsLib";
-import HomeCardLoading from "./ui/home-card/HomeCardLoading";
+import HomeCardLoading from "../components/ui/home-card/HomeCardLoading";
 
 const Deg2Rad = 0.0174533;
 
