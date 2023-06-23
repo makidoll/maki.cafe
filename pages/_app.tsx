@@ -48,11 +48,14 @@ const theme = extendTheme({
 			// a700: "#c51162",
 		},
 		tomorrow: "#1d1f21",
+		hexcorp: "#ff64ff",
+		hexcorpDark: "#231929",
+		justKindaDark: "#0f0f0f",
 	},
 	styles: {
 		global: {
 			body: {
-				bg: "tomorrow",
+				bg: "justKindaDark",
 				color: "white",
 			},
 		},
@@ -63,7 +66,7 @@ const theme = extendTheme({
 	},
 });
 
-const title = "Maki Doll ✨🏳️‍⚧️";
+const title = "Maki Drone ✨🏳️‍⚧️";
 const description = "i make things ❤️";
 
 const domain = "maki.cafe";

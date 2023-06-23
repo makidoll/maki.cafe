@@ -55,7 +55,7 @@ export default function Social() {
 					paddingRight={1}
 				>
 					{/* game dev fox girl */}
-					shiny game dev doll
+					shiny game dev drone
 				</SubHeading>
 				<SubHeading
 					opacity={0.4}
@@ -108,7 +108,7 @@ export default function Social() {
 				))}
 			</HStack>
 			<Link
-				href="https://github.com/makifoxgirl/maki.cafe"
+				href={config.socialLinks.github + "/maki.cafe"}
 				transformOrigin="center"
 				transition={config.styles.hoverTransition}
 				_hover={{ transform: "scale(1.05)" }}
