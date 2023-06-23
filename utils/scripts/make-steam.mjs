@@ -32,7 +32,7 @@ const bannerWidth = 231;
 const bannerHeight = 87;
 
 const sheetWidth = 5;
-const sheetHeight = 6;
+const sheetHeight = 7;
 
 // TODO: move this into ../config.ts
 
@@ -63,21 +63,21 @@ const steamIds = [
 	"367520", // hollow knight
 	"570940", // dark souls
 	"553420", // tunic
+	// idk
+	"275850", // no mans sky
+	"976730", // halo mcc
+	"427520", // factorio
 ];
 
 const imagePathsAndUrls = [
 	// from https://www.steamgriddb.com
 	{
+		path: "../games/overwatch-2.png",
+		url: "https://overwatch.blizzard.com/en-us/",
+	},
+	{
 		path: "../games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
-	},
-	{
-		path: "../games/catherine-full-body.png",
-		url: "https://www.catherinethegame.com/fullbody/",
-	},
-	{
-		path: "../games/super-mario-odyssey.png",
-		url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
 	},
 	{
 		path: "../games/picross-3d-round-2.jpg",
@@ -88,12 +88,20 @@ const imagePathsAndUrls = [
 		url: "http://mother3.fobby.net/",
 	},
 	{
-		path: "../games/drakengard-3.png",
-		url: "https://www.youtube.com/watch?v=SmrnXQ3kBts",
+		path: "../games/super-mario-odyssey.png",
+		url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
 	},
 	{
-		path: "../games/overwatch-2.png",
-		url: "https://overwatch.blizzard.com/en-us/",
+		path: "../games/splatoon-2.png",
+		url: "https://splatoon.nintendo.com",
+	},
+	{
+		path: "../games/rift-apart.png",
+		url: "https://www.playstation.com/en-us/games/ratchet-and-clank-rift-apart/",
+	},
+	{
+		path: "../games/catherine-full-body.png",
+		url: "https://www.catherinethegame.com/fullbody/",
 	},
 	{
 		path: "../games/world-of-warcraft.png",
