@@ -1,7 +1,7 @@
 import { Box, Grid } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
-import IntroDollRewrite from "../components/IntroDollRewrite";
+import IntroDrone from "../components/IntroDrone";
 import Social from "../components/Social";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
@@ -32,7 +32,7 @@ const Home: NextPage = () => {
 				flexDirection="column"
 				width="100%"
 			>
-				<IntroDollRewrite
+				<IntroDrone
 					h={400}
 					mt={24}
 					mb={16}

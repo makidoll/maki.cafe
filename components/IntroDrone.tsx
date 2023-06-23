@@ -1,14 +1,7 @@
-import { Box, BoxProps, Flex, useLatestRef } from "@chakra-ui/react";
+import { Box, BoxProps, Flex } from "@chakra-ui/react";
+import { useEffect, useRef, useState } from "react";
 import {
-	EffectCallback,
-	useState,
-	useEffect,
-	useLayoutEffect,
-	useRef,
-} from "react";
-import {
-	ACESFilmicToneMapping,
-	CineonToneMapping,
+	Color,
 	DataTexture,
 	DoubleSide,
 	EquirectangularReflectionMapping,
@@ -18,10 +11,8 @@ import {
 	Mesh,
 	MeshBasicMaterial,
 	MeshStandardMaterial,
-	NoToneMapping,
 	PerspectiveCamera,
 	RectAreaLight,
-	ReinhardToneMapping,
 	SRGBColorSpace,
 	Scene,
 	Texture,
@@ -34,14 +25,14 @@ import { RectAreaLightUniformsLib } from "three/examples/jsm/lights/RectAreaLigh
 import { DRACOLoader } from "three/examples/jsm/loaders/DRACOLoader";
 import { GLTF, GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import { RGBELoader } from "three/examples/jsm/loaders/RGBELoader";
-import { TweenManager } from "../utils/tween-manager";
 import { Easing } from "../utils/easing-functions";
+import { TweenManager } from "../utils/tween-manager";
 import HomeCardLoading from "./ui/home-card/HomeCardLoading";
 
 const Deg2Rad = 0.0174533;
 
 const startDegrees = 180 * Deg2Rad;
-const endDegrees = -30 * Deg2Rad;
+const endDegrees = -60 * Deg2Rad;
 
 const startScale = 0.5;
 const endScale = 1;
@@ -63,7 +54,63 @@ function rectAreaLightHelper(light: RectAreaLight) {
 	light.add(helper);
 }
 
-async function getDollModel(): Promise<Group> {
+function seperateRGB(texture: Texture): {
+	r: DataTexture;
+	g: DataTexture;
+	b: DataTexture;
+} {
+	// TODO: this is probably kinda slow
+
+	const image: HTMLImageElement = texture.image;
+	const width = image.width;
+	const height = image.width;
+
+	const canvas = document.createElement("canvas");
+	canvas.width = width;
+	canvas.height = height;
+
+	const context = canvas.getContext("2d");
+	if (context == null) throw new Error("Failed to make 2D context");
+	context.drawImage(image, 0, 0);
+
+	const imageData = context.getImageData(0, 0, width, height);
+	imageData.data;
+
+	canvas.remove();
+
+	const rData = new Uint8Array(width * height * 4);
+	const gData = new Uint8Array(width * height * 4);
+	const bData = new Uint8Array(width * height * 4);
+
+	for (let i = 0; i < width * height; i++) {
+		rData[i * 4 + 0] = imageData.data[i * 4 + 0];
+		rData[i * 4 + 1] = imageData.data[i * 4 + 0];
+		rData[i * 4 + 2] = imageData.data[i * 4 + 0];
+		rData[i * 4 + 3] = 1;
+
+		gData[i * 4 + 0] = imageData.data[i * 4 + 1];
+		gData[i * 4 + 1] = imageData.data[i * 4 + 1];
+		gData[i * 4 + 2] = imageData.data[i * 4 + 1];
+		gData[i * 4 + 3] = 1;
+
+		bData[i * 4 + 0] = imageData.data[i * 4 + 2];
+		bData[i * 4 + 1] = imageData.data[i * 4 + 2];
+		bData[i * 4 + 2] = imageData.data[i * 4 + 2];
+		bData[i * 4 + 3] = 1;
+	}
+
+	const r = new DataTexture(rData, width, height);
+	const g = new DataTexture(gData, width, height);
+	const b = new DataTexture(bData, width, height);
+
+	r.needsUpdate = true;
+	g.needsUpdate = true;
+	b.needsUpdate = true;
+
+	return { r, g, b };
+}
+
+async function getDroneModel(): Promise<Group> {
 	const loader = new GLTFLoader();
 
 	const draco = new DRACOLoader();
@@ -73,27 +120,34 @@ async function getDollModel(): Promise<Group> {
 	loader.setDRACOLoader(draco);
 
 	const gltf = await new Promise<GLTF>((resolve, reject) => {
-		loader.load("baked-doll/baked.glb", resolve, undefined, reject);
+		loader.load("baked-drone/baked.glb", resolve, undefined, reject);
 	});
 
 	enum TextureName {
-		rest_baked = "rest_baked.webp",
-		rest_baked_alpha = "rest_baked_alpha.webp",
-		bastion_baked = "bastion_baked.webp",
-		keyboardgomez_baked = "keyboardgomez_baked.webp",
-		mercyhair_baked = "mercyhair_baked.webp",
-		eyesdoll = "eyesdoll.webp",
-		doll_diffuse = "doll_diffuse.webp",
-		doll_roughness = "doll_roughness.webp",
+		rest = "rest.webp",
+		bastion = "bastion.webp",
+		keyboardGomez = "keyboard-gomez.webp",
+		dollRoughness = "doll-roughness.webp",
+		// eyes = "eyes.png", // we dont see it haha
+		maskDiffuse = "mask-diffuse.webp",
+		maskAlphaEmissionRoughness = "mask-alpha-emission-roughness.webp",
 	}
+
+	const nonColorTextures: TextureName[] = [
+		TextureName.dollRoughness,
+		TextureName.maskAlphaEmissionRoughness,
+	];
 
 	const texturesLoaded: Texture[] = await Promise.all(
 		Object.values(TextureName).map(async filename => {
-			const texture = await loadTexture("baked-doll/" + filename);
+			const texture = await loadTexture("baked-drone/" + filename);
 			texture.magFilter = LinearFilter;
 			texture.minFilter = LinearFilter;
-			texture.generateMipmaps = true;
-			texture.colorSpace = "srgb";
+			texture.generateMipmaps = false;
+			texture.colorSpace = nonColorTextures.includes(filename)
+				? "srgb-linear"
+				: "srgb";
+			texture.flipY = false;
 			return texture;
 		}),
 	);
@@ -110,25 +164,16 @@ async function getDollModel(): Promise<Group> {
 	const unlitTextures: { name: string; map: Texture; alphaMap?: Texture }[] =
 		[
 			{
-				name: "Rest_Baked",
-				map: textures[TextureName.rest_baked],
-				alphaMap: textures[TextureName.rest_baked_alpha],
+				name: "rest",
+				map: textures[TextureName.rest],
 			},
 			{
-				name: "Bastion_Baked",
-				map: textures[TextureName.bastion_baked],
+				name: "bastion",
+				map: textures[TextureName.bastion],
 			},
 			{
-				name: "KeyboardGomez_Baked",
-				map: textures[TextureName.keyboardgomez_baked],
-			},
-			{
-				name: "MercyHair_Baked",
-				map: textures[TextureName.mercyhair_baked],
-			},
-			{
-				name: "EyesDoll_Baked",
-				map: textures[TextureName.eyesdoll],
+				name: "keyboard-gomez",
+				map: textures[TextureName.keyboardGomez],
 			},
 		];
 
@@ -157,46 +202,73 @@ async function getDollModel(): Promise<Group> {
 		}
 	}
 
-	// set doll mesh material
+	// doll material
 
-	const dollMesh = gltf.scene.children.find(
-		o => o.name == "Doll_Baked",
-	) as Mesh;
-
+	const dollMesh = gltf.scene.children.find(o => o.name == "doll") as Mesh;
 	dollMesh.material = new MeshStandardMaterial({
-		map: textures[TextureName.doll_diffuse],
-		roughnessMap: textures[TextureName.doll_roughness],
+		color: new Color(0, 0, 0),
+		roughnessMap: textures[TextureName.dollRoughness],
 	});
+
+	// doll eyes material
+
+	const eyesMesh = gltf.scene.children.find(o => o.name == "eyes") as Mesh;
+	eyesMesh.material = new MeshStandardMaterial({
+		// map: textures[TextureName.eyes], // we dont see it haha
+		color: new Color(0, 0, 0),
+		roughness: 0,
+		// specular: 1
+	});
+
+	// mask material
+
+	const {
+		r: maskAlpha,
+		g: maskEmission,
+		b: maskRoughness,
+	} = seperateRGB(textures[TextureName.maskAlphaEmissionRoughness]);
+
+	const maskMesh = gltf.scene.children.find(o => o.name == "mask") as Mesh;
+	maskMesh.material = new MeshStandardMaterial({
+		map: textures[TextureName.maskDiffuse],
+		roughnessMap: maskRoughness,
+		emissiveMap: maskEmission,
+		emissiveIntensity: 1,
+		emissive: new Color("#e91e63"),
+		alphaMap: maskAlpha,
+		alphaTest: 0.5,
+	});
+
+	// remove mask for testing
+	// gltf.scene.children.splice(gltf.scene.children.indexOf(maskMesh), 1);
 
 	// add lights
 
 	const scene = gltf.scene;
 
-	const blueLight = new RectAreaLight("#00C6FF", 30, 0.3, 0.8);
-	blueLight.position.set(-0.829314, 0.380562, 1.16075);
-	blueLight.rotation.set(0, -28.3484 * Deg2Rad, 0);
-	scene.add(blueLight);
+	const fuchsiaLight = new RectAreaLight("#E91E63", 30, 0.3, 0.8);
+	fuchsiaLight.position.set(-0.829314, 0.380562, 1.16075);
+	fuchsiaLight.rotation.set(0, -28.3484 * Deg2Rad, 0);
+	scene.add(fuchsiaLight);
 
-	const orangeLight = new RectAreaLight("#FF9100", 30, 0.3, 0.8);
-	orangeLight.position.set(0.829314, 0.380562, 1.16075);
-	orangeLight.rotation.set(0, 28.3484 * Deg2Rad, 0);
-	scene.add(orangeLight);
+	const blueLight = new RectAreaLight("#00BFFF", 30, 0.3, 0.8);
+	blueLight.position.set(0.829314, 0.380562, 1.16075);
+	blueLight.rotation.set(0, 28.3484 * Deg2Rad, 0);
+	scene.add(blueLight);
 
 	const screenLight = new RectAreaLight("#373A4A", 30, 0.719457, 0.402013);
 	screenLight.position.set(0, 0.339337, 0.516989);
 	screenLight.rotation.set(0, 0, 0);
 	scene.add(screenLight);
 
+	// rectAreaLightHelper(fuchsiaLight);
 	// rectAreaLightHelper(blueLight);
-	// rectAreaLightHelper(orangeLight);
 	// rectAreaLightHelper(screenLight);
 
 	return scene;
 }
 
-export default function IntroDollRewrite(
-	props: BoxProps & { onLoaded: () => any },
-) {
+export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 	const [loadingOpacity, setLoadingOpacity] = useState(1);
 	const [opacity, setOpacity] = useState(0);
 
@@ -218,22 +290,22 @@ export default function IntroDollRewrite(
 		const scene = new Scene();
 		scene.background = null; // transparent
 
-		const hdr = await loadHdr("baked-doll/environment.hdr");
+		const hdr = await loadHdr("baked-drone/environment.hdr");
 		hdr.mapping = EquirectangularReflectionMapping;
 		scene.environment = hdr;
 
-		const dollModel = await getDollModel();
-		dollModel.position.set(0, -0.41, 0);
+		const droneModel = await getDroneModel();
+		droneModel.position.set(0, -0.41, 0);
 
 		const dollRotationTweener = tweenMangager.newTweener(y => {
-			dollModel.rotation.set(0, y, 0);
+			droneModel.rotation.set(0, y, 0);
 		}, startDegrees);
 
 		const dollScaleTweener = tweenMangager.newTweener(s => {
-			dollModel.scale.set(s, s, s);
+			droneModel.scale.set(s, s, s);
 		}, startScale);
 
-		scene.add(dollModel);
+		scene.add(droneModel);
 
 		// set up controls
 
