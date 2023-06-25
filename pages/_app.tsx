@@ -66,7 +66,7 @@ const theme = extendTheme({
 	},
 });
 
-const title = "Maki Drone ✨🏳️‍⚧️";
+const title = "Maki ✨🏳️‍⚧️";
 const description = "i make things ❤️";
 
 const domain = "maki.cafe";
