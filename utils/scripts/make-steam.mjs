@@ -100,6 +100,10 @@ const imagePathsAndUrls = [
 		url: "https://www.playstation.com/en-us/games/ratchet-and-clank-rift-apart/",
 	},
 	{
+		path: "../games/universal-paperclips.png",
+		url: "https://www.decisionproblem.com/paperclips/",
+	},
+	{
 		path: "../games/catherine-full-body.png",
 		url: "https://www.catherinethegame.com/fullbody/",
 	},
