@@ -47,8 +47,6 @@ async function fetchGithubGists(): Promise<Snippet[]> {
 
 	page.close();
 
-	console.log(snippets);
-
 	return snippets.slice(0, 8);
 }
 
