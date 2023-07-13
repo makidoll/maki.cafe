@@ -19,6 +19,7 @@ const socialLinks = {
 	discord: "https://discord.com/users/" + socialIds.discord,
 	twitter: "https://twitter.com/" + socialIds.twitter,
 	github: "https://github.com/" + socialIds.github,
+	githubGist: "https://gist.github.com/" + socialIds.github,
 	instagram: "https://instagram.com/" + socialIds.instagram,
 	soundcloud: "https://soundcloud.com/" + socialIds.soundcloud,
 	steam: "https://steamcommunity.com/id/" + socialIds.steam,

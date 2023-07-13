@@ -14,6 +14,7 @@ import WhereHomeCard from "../components/home-cards/WhereHomeCard";
 import WorkHomeCard from "../components/home-cards/WorkHomeCard";
 import Logo from "../components/ui/Logo";
 import styles from "./index.module.scss";
+import GithubGistsHomeCard from "../components/home-cards/GithubGistsHomeCard";
 
 const Home: NextPage = () => {
 	const [ready, setReady] = useState(false);
@@ -83,6 +84,7 @@ const Home: NextPage = () => {
 						}}
 					/>
 				)}
+				<GithubGistsHomeCard />
 				<MfcHomeCard />
 				<FlickrHomeCard />
 				<SketchfabHomeCard />
