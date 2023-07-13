@@ -2,7 +2,7 @@ const socialIds = {
 	discord: "72139729285427200",
 	twitter: "makidrone",
 	github: "makidrone",
-	instagram: "makifoxgirl",
+	instagram: "makidrone_",
 	soundcloud: "makidrone",
 	steam: "makidrone",
 	skeb: "@Maki",
@@ -12,7 +12,7 @@ const socialIds = {
 	mfc: "MakiXx_",
 	flickr: "125408076@N04",
 	homelabUptimeRobot: "GMWojUB9A8",
-	sketchfab: "makidoll",
+	sketchfab: "makidrone",
 };
 
 const socialLinks = {
