@@ -1,5 +1,5 @@
 import { Flex, HStack, Link, Text } from "@chakra-ui/react";
-import { minecraft } from "../fonts/fonts";
+// import { minecraft } from "../fonts/fonts";
 import { config } from "../utils/config";
 import Emoji from "./ui/Emoji";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
@@ -69,7 +69,7 @@ export default function Social() {
 				{/* <Emoji>lesbian-flag</Emoji> */}
 				{/* <Emoji>t4t-flag-better</Emoji> */}
 			</HStack>
-			<Link
+			{/* <Link
 				href="https://xn--3h8h64hda.ws"
 				transformOrigin="center"
 				transition={config.styles.hoverTransition}
@@ -92,8 +92,8 @@ export default function Social() {
 					</Emoji>
 					<Text opacity={0.3}>.ws!</Text>
 				</HStack>
-			</Link>
-			<HStack spacing={2} opacity={0.3} marginTop={8}>
+			</Link> */}
+			<HStack spacing={2} opacity={0.3} marginTop={6}>
 				{socials.map((social, i) => (
 					<Link
 						key={i}
