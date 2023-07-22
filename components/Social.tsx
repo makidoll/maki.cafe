@@ -108,6 +108,7 @@ export default function Social() {
 						transition={config.styles.hoverTransition}
 						transformOrigin="center"
 						_hover={{ transform: "scale(1.1)" }}
+						rel="me"
 					>
 						<social.icon width={"auto"} height={24} color="#fff" />
 					</Link>
