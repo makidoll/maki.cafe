@@ -313,7 +313,7 @@ export function useLanyard(discordId: string) {
 			}
 		};
 
-		const socket = new WebSocket("wss://lanyard.cutelab.space/socket");
+		const socket = new WebSocket("wss://lanyard.maki.cafe/socket");
 		socket.addEventListener("message", onMessage);
 
 		return () => {
