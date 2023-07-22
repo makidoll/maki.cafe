@@ -2,12 +2,13 @@ import { Flex, HStack, Link, Text } from "@chakra-ui/react";
 // import { minecraft } from "../fonts/fonts";
 import { config } from "../utils/config";
 import Emoji from "./ui/Emoji";
+import SubHeading from "./ui/SubHeading";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
-import { SteamIcon } from "./ui/social-icons/SteamIcon";
-import SubHeading from "./ui/SubHeading";
+import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
 import { SketchfabIcon } from "./ui/social-icons/SketchfabIcon";
+import { SteamIcon } from "./ui/social-icons/SteamIcon";
 
 export default function Social() {
 	var socials = [
@@ -34,7 +35,12 @@ export default function Social() {
 		{
 			icon: SketchfabIcon,
 			href: config.socialLinks.sketchfab,
-			name: "sketchfab",
+			name: "Sketchfab",
+		},
+		{
+			icon: MastodonIcon,
+			href: config.socialLinks.mastodon,
+			name: "Mastodon",
 		},
 	];
 

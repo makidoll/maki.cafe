@@ -32,6 +32,7 @@ const socialLinks = {
 	homelabUptimeRobot:
 		"https://stats.uptimerobot.com/" + socialIds.homelabUptimeRobot,
 	sketchfab: "https://sketchfab.com/" + socialIds.sketchfab,
+	mastodon: "https://mastodon.hotmilk.space/@maki",
 };
 
 export const config = {
