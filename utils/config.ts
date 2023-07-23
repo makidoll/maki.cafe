@@ -7,7 +7,7 @@ const socialIds = {
 	steam: "makidrone",
 	skeb: "@Maki",
 	psnProfiles: "makifoxgirl",
-	matrix: "@maki:cutelab.space",
+	matrix: "@maki:hotmilk.space",
 	osu: "3286216",
 	mfc: "MakiXx_",
 	flickr: "125408076@N04",
@@ -37,7 +37,7 @@ const socialLinks = {
 
 export const config = {
 	api: {
-		lanyard: "wss://lanyard.cutelab.space/socket",
+		lanyard: "wss://lanyard.maki.cafe/socket",
 		bibliogram: "https://bibliogram.cutelab.space",
 		nitter: "https://nitter.cutelab.space",
 	},

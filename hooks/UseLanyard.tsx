@@ -4,6 +4,7 @@ import { MdGamepad } from "react-icons/md";
 import { CrunchyrollIcon } from "../components/ui/social-icons/CrunchyrollIcon";
 import { SpotifyIcon } from "../components/ui/social-icons/SpotifyIcon";
 import { TowerUniteIcon } from "../components/ui/social-icons/TowerUniteIcon";
+import { config } from "../utils/config";
 
 enum Op {
 	Event = 0,
@@ -313,7 +314,7 @@ export function useLanyard(discordId: string) {
 			}
 		};
 
-		const socket = new WebSocket("wss://lanyard.maki.cafe/socket");
+		const socket = new WebSocket(config.api.lanyard);
 		socket.addEventListener("message", onMessage);
 
 		return () => {
