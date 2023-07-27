@@ -3,15 +3,27 @@ import { config } from "../../utils/config";
 import { baseProcedure, router } from "../trpc";
 import { RouterCache } from "../router-cache";
 
-type Response = {
-	uptime: number;
-	up: number;
-	down: number;
+type UptimeRobotStatus = "success" | "warning" | "black";
+
+type UptimeRobotResponse = {
+	psp: {
+		monitors: {
+			monitorId: number;
+			createdAt: number;
+			statusClass: UptimeRobotStatus;
+			name: string;
+			url: string;
+			type: string;
+			dailyRatios: { ratio: string; label: UptimeRobotStatus }[];
+			"90dRatio": { ratio: string; label: UptimeRobotStatus };
+			"30dRatio": { ratio: string; label: UptimeRobotStatus };
+		}[];
+	};
 };
 
-const cache = new RouterCache<Response>("uptime-robot");
+const cache = new RouterCache<UptimeRobotResponse>("uptime-robot");
 
-async function fetchUptimeRobot() {
+async function fetchUptimeRobot(): Promise<UptimeRobotResponse> {
 	const uptimeRes = await axios(
 		"https://stats.uptimerobot.com/api/getMonitorList/" +
 			config.socialIds.homelabUptimeRobot +
@@ -19,6 +31,7 @@ async function fetchUptimeRobot() {
 			Date.now(),
 	);
 
+	/*
 	let uptime = 0;
 	let up = 0;
 	let down = 0;
@@ -38,6 +51,9 @@ async function fetchUptimeRobot() {
 	uptime /= monitors.length;
 
 	return { uptime, up, down };
+	*/
+
+	return uptimeRes.data;
 }
 
 export const uptimeRobotRouter = router({
@@ -47,7 +63,7 @@ export const uptimeRobotRouter = router({
 		// 		name: z.string().nullish(),
 		// 	}),
 		// )
-		.query(async ({ input }): Promise<Response> => {
+		.query(async ({ input }): Promise<UptimeRobotResponse> => {
 			// if (process.env.NODE_ENV == "development") {
 			// 	return { uptime: 98.54321, up: 40, down: 20 };
 			// }

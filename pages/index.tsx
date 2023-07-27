@@ -6,19 +6,26 @@ import Social from "../components/Social";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
-import HomelabHomeCard from "../components/home-cards/HomelabHomeCard";
-import HomelabOlderHomeCard from "../components/home-cards/HomelabOlderHomeCard";
+import GithubGistsHomeCard from "../components/home-cards/GithubGistsHomeCard";
+import HomelabCutelabBlahajHomeCard from "../components/home-cards/HomelabCutelabBlahajHomeCard";
+import HomelabCutelabYetiHomeCard from "../components/home-cards/HomelabCutelabYetiHomeCard";
+import HomelabHotmilkHomeCard, {
+	OlderHomelab,
+} from "../components/home-cards/HomelabHotmilkBlahajHomeCard";
 import MfcHomeCard from "../components/home-cards/MfcHomeCard";
 import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import WhereHomeCard from "../components/home-cards/WhereHomeCard";
 import WorkHomeCard from "../components/home-cards/WorkHomeCard";
 import Logo from "../components/ui/Logo";
 import styles from "./index.module.scss";
-import GithubGistsHomeCard from "../components/home-cards/GithubGistsHomeCard";
 
 const Home: NextPage = () => {
 	const [ready, setReady] = useState(false);
-	const [olderHomelab, setOlderHomelab] = useState(false);
+
+	const [olderHomelab, setOlderHomelab] = useState(OlderHomelab.None);
+	const resetHomelab = () => {
+		setOlderHomelab(OlderHomelab.None);
+	};
 
 	return (
 		<Box
@@ -71,18 +78,12 @@ const Home: NextPage = () => {
 				<WorkHomeCard />
 				<WhereHomeCard />
 				<GamesHomeCard />
-				{olderHomelab ? (
-					<HomelabOlderHomeCard
-						onNewer={() => {
-							setOlderHomelab(false);
-						}}
-					/>
+				{olderHomelab == OlderHomelab.Cutelab_Blahaj_Nov_11_2022 ? (
+					<HomelabCutelabBlahajHomeCard onNewer={resetHomelab} />
+				) : olderHomelab == OlderHomelab.Cutelab_Yeti_Feb_21_2022 ? (
+					<HomelabCutelabYetiHomeCard onNewer={resetHomelab} />
 				) : (
-					<HomelabHomeCard
-						onOlder={() => {
-							setOlderHomelab(true);
-						}}
-					/>
+					<HomelabHotmilkHomeCard onOlder={setOlderHomelab} />
 				)}
 				<GithubGistsHomeCard />
 				<MfcHomeCard />
