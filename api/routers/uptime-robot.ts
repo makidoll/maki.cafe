@@ -19,6 +19,14 @@ type UptimeRobotResponse = {
 			"30dRatio": { ratio: string; label: UptimeRobotStatus };
 		}[];
 	};
+	statistics: {
+		uptime: {
+			l90: {
+				ratio: string;
+				label: UptimeRobotStatus;
+			};
+		};
+	};
 };
 
 const cache = new RouterCache<UptimeRobotResponse>("uptime-robot");

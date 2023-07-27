@@ -1,5 +1,6 @@
 import { Box, Flex, Link, Text, VStack, chakra } from "@chakra-ui/react";
 import { MdArrowForward } from "react-icons/md";
+import { jetBrainsMono } from "../../fonts/fonts";
 import { config } from "../../utils/config";
 import { trpc } from "../../utils/trpc";
 import OpenableImage from "../ui/OpenableImage";
@@ -19,6 +20,118 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 	onOlder: (type: OlderHomelab) => any;
 }) {
 	const uptimeRobot = trpc.uptimeRobot.all.useQuery();
+
+	const What =
+		uptimeRobot == null ? (
+			<HomeCardLoading />
+		) : (
+			<>
+				<chakra.table style={{ borderCollapse: "collapse" }}>
+					<chakra.tbody>
+						{uptimeRobot.data?.psp.monitors.map((service, i) => (
+							<chakra.tr
+								key={i}
+								backgroundColor={
+									i % 2 == 1
+										? "rgba(255,255,255,0.05)"
+										: "transparent"
+								}
+							>
+								<chakra.td>
+									<Flex pr={3} pl={1}>
+										{service.name}
+									</Flex>
+								</chakra.td>
+								<chakra.td>
+									<Flex
+										color={"#fff"}
+										alignItems={"center"}
+										justifyContent={"center"}
+										gap={0.5}
+									>
+										{service.dailyRatios
+											.slice(0, 14)
+											.reverse()
+											.map((b, i) => (
+												<Box
+													key={i}
+													w={1}
+													h={4}
+													borderRadius={999}
+													backgroundColor={(() => {
+														var ratio = Number(
+															b.ratio,
+														);
+														switch (b.label) {
+															case "success":
+																return "var(--chakra-colors-whatsapp-500)";
+															case "warning":
+																return ratio <
+																	90
+																	? "var(--chakra-colors-red-500)"
+																	: "var(--chakra-colors-orange-500)";
+															default:
+															case "black":
+																return "hsl(0deg,0%,25%)";
+														}
+													})()}
+												></Box>
+											))}
+									</Flex>
+								</chakra.td>
+								<chakra.td>
+									<Flex
+										alignItems={"center"}
+										justifyContent={"center"}
+										gap={0.5}
+										pl={3}
+										pr={1}
+									>
+										<Box
+											w={3}
+											h={3}
+											backgroundColor={
+												service.statusClass == "success"
+													? "var(--chakra-colors-whatsapp-500)"
+													: "var(--chakra-colors-red-500)"
+											}
+											borderRadius={999}
+											mr={0.5}
+										></Box>
+										{service.statusClass == "success"
+											? "Up"
+											: "Down"}
+									</Flex>
+								</chakra.td>
+							</chakra.tr>
+						))}
+					</chakra.tbody>
+				</chakra.table>
+				<Flex
+					backgroundColor={"brand.500"}
+					fontFamily={jetBrainsMono.style.fontFamily}
+					display={"inline-flex"}
+					flexDir={"row"}
+					mt={4}
+					borderRadius={"999px"}
+					overflow={"hidden"}
+					fontWeight={500}
+				>
+					<Box px={1.5} py={0.5} fontWeight={800}>
+						{uptimeRobot.data?.statistics.uptime.l90.ratio}% uptime
+					</Box>
+					<Link
+						px={1.5}
+						py={0.5}
+						background={"#444"}
+						color={"white"}
+						href={config.socialLinks.homelabUptimeRobot}
+					>
+						See more here
+					</Link>
+				</Flex>
+			</>
+		);
 
 	return (
 		<HomeCard>
@@ -106,106 +219,7 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 						</Link>
 					</Flex>
 					<br />
-					{uptimeRobot == null ? (
-						<HomeCardLoading />
-					) : (
-						<chakra.table style={{ borderCollapse: "collapse" }}>
-							<chakra.tbody>
-								{uptimeRobot.data?.psp.monitors.map(
-									(service, i) => (
-										<chakra.tr
-											key={i}
-											backgroundColor={
-												i % 2 == 1
-													? "rgba(255,255,255,0.05)"
-													: "transparent"
-											}
-										>
-											<chakra.td>
-												<Flex pr={3} pl={1}>
-													{service.name}
-												</Flex>
-											</chakra.td>
-											<chakra.td>
-												<Flex
-													color={"#fff"}
-													alignItems={"center"}
-													justifyContent={"center"}
-													gap={0.5}
-												>
-													{service.dailyRatios
-														.slice(0, 14)
-														.reverse()
-														.map((b, i) => (
-															<Box
-																key={i}
-																w={1}
-																h={4}
-																borderRadius={
-																	999
-																}
-																backgroundColor={(() => {
-																	var ratio =
-																		Number(
-																			b.ratio,
-																		);
-																	switch (
-																		b.label
-																	) {
-																		case "success":
-																			return "var(--chakra-colors-whatsapp-500)";
-																		case "warning":
-																			return ratio <
-																				90
-																				? "var(--chakra-colors-red-500)"
-																				: "var(--chakra-colors-orange-500)";
-																		default:
-																		case "black":
-																			return "hsl(0deg,0%,25%)";
-																	}
-																})()}
-															></Box>
-														))}
-												</Flex>
-											</chakra.td>
-											<chakra.td>
-												<Flex
-													alignItems={"center"}
-													justifyContent={"center"}
-													gap={0.5}
-													pl={3}
-													pr={1}
-												>
-													<Box
-														w={3}
-														h={3}
-														backgroundColor={
-															service.statusClass ==
-															"success"
-																? "var(--chakra-colors-whatsapp-500)"
-																: "var(--chakra-colors-red-500)"
-														}
-														borderRadius={999}
-														mr={0.5}
-													></Box>
-													{service.statusClass ==
-													"success"
-														? "Up"
-														: "Down"}
-												</Flex>
-											</chakra.td>
-										</chakra.tr>
-									),
-								)}
-							</chakra.tbody>
-						</chakra.table>
-					)}
-					<Text>
-						<br />
-						<Link href={config.socialLinks.homelabUptimeRobot}>
-							See uptime page here
-						</Link>
-					</Text>
+					{What}
 				</Box>
 			</Flex>
 		</HomeCard>
