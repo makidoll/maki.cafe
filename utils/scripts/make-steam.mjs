@@ -39,42 +39,42 @@ const sheetHeight = 7;
 const steamIds = [
 	"210970", // the witness
 	"224760", // fez
-	"504230", // celeste
+	"2357570", // overwatch
+	// -- new line
 	"620", // portal 2
-	"972660", // spiritfarer
+	"504230", // celeste
 	"524220", // nier automata
-	// -- gets smaller
+	// -- now smaller, new line
 	"1055540", // a short hike
 	"257850", // hyper light drifer
 	"219890", // anti chamber
-	"1003590", // tetris effect
+	"972660", // spiritfarer
 	// -- new line
 	"438100", // vrchat
 	"782330", // doom eternal
-	"413150", // stardew valley
+	"1003590", // tetris effect
 	"1113560", // nier replicant
 	// -- new line
-	"447040", // watch dogs 2
 	"394690", // tower unite
+	"413150", // stardew valley
 	"963000", // frog detective 1
 	"650700", // yume nikki
 	// -- new line
 	"1332010", // stray
-	"367520", // hollow knight
+	"447040", // watch dogs 2
 	"570940", // dark souls
 	"553420", // tunic
-	// idk
+	// -- new line
 	"275850", // no mans sky
 	"976730", // halo mcc
+	"367520", // hollow knight
 	"427520", // factorio
+	// -- new line
+	"1895880", // ratchet and clank rift apart
 ];
 
 const imagePathsAndUrls = [
 	// from https://www.steamgriddb.com
-	{
-		path: "../games/overwatch-2.png",
-		url: "https://overwatch.blizzard.com/en-us/",
-	},
 	{
 		path: "../games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
@@ -94,10 +94,6 @@ const imagePathsAndUrls = [
 	{
 		path: "../games/splatoon-2.png",
 		url: "https://splatoon.nintendo.com",
-	},
-	{
-		path: "../games/rift-apart.png",
-		url: "https://www.playstation.com/en-us/games/ratchet-and-clank-rift-apart/",
 	},
 	{
 		path: "../games/universal-paperclips.png",
