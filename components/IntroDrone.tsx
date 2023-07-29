@@ -54,62 +54,6 @@ function rectAreaLightHelper(light: RectAreaLight) {
 	light.add(helper);
 }
 
-function seperateRGB(texture: Texture): {
-	r: DataTexture;
-	g: DataTexture;
-	b: DataTexture;
-} {
-	// TODO: this is probably kinda slow
-
-	const image: HTMLImageElement = texture.image;
-	const width = image.width;
-	const height = image.width;
-
-	const canvas = document.createElement("canvas");
-	canvas.width = width;
-	canvas.height = height;
-
-	const context = canvas.getContext("2d");
-	if (context == null) throw new Error("Failed to make 2D context");
-	context.drawImage(image, 0, 0);
-
-	const imageData = context.getImageData(0, 0, width, height);
-	imageData.data;
-
-	canvas.remove();
-
-	const rData = new Uint8Array(width * height * 4);
-	const gData = new Uint8Array(width * height * 4);
-	const bData = new Uint8Array(width * height * 4);
-
-	for (let i = 0; i < width * height; i++) {
-		rData[i * 4 + 0] = imageData.data[i * 4 + 0];
-		rData[i * 4 + 1] = imageData.data[i * 4 + 0];
-		rData[i * 4 + 2] = imageData.data[i * 4 + 0];
-		rData[i * 4 + 3] = 1;
-
-		gData[i * 4 + 0] = imageData.data[i * 4 + 1];
-		gData[i * 4 + 1] = imageData.data[i * 4 + 1];
-		gData[i * 4 + 2] = imageData.data[i * 4 + 1];
-		gData[i * 4 + 3] = 1;
-
-		bData[i * 4 + 0] = imageData.data[i * 4 + 2];
-		bData[i * 4 + 1] = imageData.data[i * 4 + 2];
-		bData[i * 4 + 2] = imageData.data[i * 4 + 2];
-		bData[i * 4 + 3] = 1;
-	}
-
-	const r = new DataTexture(rData, width, height);
-	const g = new DataTexture(gData, width, height);
-	const b = new DataTexture(bData, width, height);
-
-	r.needsUpdate = true;
-	g.needsUpdate = true;
-	b.needsUpdate = true;
-
-	return { r, g, b };
-}
-
 async function getDroneModel(): Promise<Group> {
 	const loader = new GLTFLoader();
 
@@ -123,19 +67,23 @@ async function getDroneModel(): Promise<Group> {
 		loader.load("baked-drone/baked.glb", resolve, undefined, reject);
 	});
 
+	// console.log(gltf.scene.children.map(c => c.name));
+
 	enum TextureName {
 		rest = "rest.webp",
 		bastion = "bastion.webp",
 		keyboardGomez = "keyboard-gomez.webp",
 		dollRoughness = "doll-roughness.webp",
-		// eyes = "eyes.png", // we dont see it haha
-		maskDiffuse = "mask-diffuse.webp",
-		maskAlphaEmissionRoughness = "mask-alpha-emission-roughness.webp",
+		// eyes = "eyes.webp", // we dont see it haha
+		maskRoughness = "mask-roughness.webp",
+		maskEmission = "mask-emission.webp",
+		maskAlpha = "mask-alpha.webp",
 	}
 
 	const nonColorTextures: TextureName[] = [
 		TextureName.dollRoughness,
-		TextureName.maskAlphaEmissionRoughness,
+		TextureName.maskRoughness,
+		TextureName.maskAlpha,
 	];
 
 	const texturesLoaded: Texture[] = await Promise.all(
@@ -164,15 +112,15 @@ async function getDroneModel(): Promise<Group> {
 	const unlitTextures: { name: string; map: Texture; alphaMap?: Texture }[] =
 		[
 			{
-				name: "rest",
+				name: "rest_Baked",
 				map: textures[TextureName.rest],
 			},
 			{
-				name: "bastion",
+				name: "bastion_Baked",
 				map: textures[TextureName.bastion],
 			},
 			{
-				name: "keyboard-gomez",
+				name: "keyboard-gomez_Baked",
 				map: textures[TextureName.keyboardGomez],
 			},
 		];
@@ -204,7 +152,7 @@ async function getDroneModel(): Promise<Group> {
 
 	// doll material
 
-	const dollMesh = gltf.scene.children.find(o => o.name == "doll") as Mesh;
+	const dollMesh = gltf.scene.children.find(o => o.name == "Doll") as Mesh;
 	dollMesh.material = new MeshStandardMaterial({
 		color: new Color(0, 0, 0),
 		roughnessMap: textures[TextureName.dollRoughness],
@@ -212,30 +160,27 @@ async function getDroneModel(): Promise<Group> {
 
 	// doll eyes material
 
-	const eyesMesh = gltf.scene.children.find(o => o.name == "eyes") as Mesh;
-	eyesMesh.material = new MeshStandardMaterial({
-		// map: textures[TextureName.eyes], // we dont see it haha
-		color: new Color(0, 0, 0),
-		roughness: 0,
-		// specular: 1
-	});
+	// const eyesMesh = gltf.scene.children.find(o => o.name == "eyes") as Mesh;
+	// eyesMesh.material = new MeshStandardMaterial({
+	// 	// map: textures[TextureName.eyes], // we dont see it haha
+	// 	color: new Color(0, 0, 0),
+	// 	roughness: 0,
+	// 	// specular: 1
+	// });
 
 	// mask material
 
-	const {
-		r: maskAlpha,
-		g: maskEmission,
-		b: maskRoughness,
-	} = seperateRGB(textures[TextureName.maskAlphaEmissionRoughness]);
+	const maskMesh = gltf.scene.children.find(
+		o => o.name == "Mask_Baked",
+	) as Mesh;
 
-	const maskMesh = gltf.scene.children.find(o => o.name == "mask") as Mesh;
 	maskMesh.material = new MeshStandardMaterial({
-		map: textures[TextureName.maskDiffuse],
-		roughnessMap: maskRoughness,
-		emissiveMap: maskEmission,
+		color: new Color("#000"),
+		roughnessMap: textures[TextureName.maskRoughness],
 		emissiveIntensity: 1,
-		emissive: new Color("#e91e63"),
-		alphaMap: maskAlpha,
+		emissive: new Color("#fff"),
+		emissiveMap: textures[TextureName.maskEmission],
+		alphaMap: textures[TextureName.maskAlpha],
 		alphaTest: 0.5,
 	});
 
