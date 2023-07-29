@@ -16,6 +16,12 @@ export enum OlderHomelab {
 	Cutelab_Yeti_Feb_21_2022,
 }
 
+const colors = {
+	green: "#689F38", // light green 700
+	orange: "#FF9800", // orange 500
+	red: "#F44336", // red 500
+};
+
 export default function HomelabHotmilkBlahajHomeCard(props: {
 	onOlder: (type: OlderHomelab) => any;
 }) {
@@ -64,12 +70,12 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 														);
 														switch (b.label) {
 															case "success":
-																return "var(--chakra-colors-whatsapp-500)";
+																return colors.green;
 															case "warning":
 																return ratio <
 																	90
-																	? "var(--chakra-colors-red-500)"
-																	: "var(--chakra-colors-orange-500)";
+																	? colors.red
+																	: colors.orange;
 															default:
 															case "black":
 																return "hsl(0deg,0%,25%)";
@@ -92,8 +98,8 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 											h={3}
 											backgroundColor={
 												service.statusClass == "success"
-													? "var(--chakra-colors-whatsapp-500)"
-													: "var(--chakra-colors-red-500)"
+													? colors.green
+													: colors.red
 											}
 											borderRadius={999}
 											mr={0.5}
