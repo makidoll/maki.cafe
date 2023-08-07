@@ -32,7 +32,7 @@ const bannerWidth = 231;
 const bannerHeight = 87;
 
 const sheetWidth = 5;
-const sheetHeight = 7;
+const sheetHeight = 8;
 
 // TODO: move this into ../config.ts
 
@@ -71,6 +71,7 @@ const steamIds = [
 	"427520", // factorio
 	// -- new line
 	"1895880", // ratchet and clank rift apart
+	"319630", // life is strange
 ];
 
 const imagePathsAndUrls = [
