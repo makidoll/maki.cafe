@@ -1,7 +1,6 @@
 import { Box, Grid } from "@chakra-ui/react";
 import type { NextPage } from "next";
 import { useState } from "react";
-import IntroDrone from "../components/IntroDrone";
 import Social from "../components/Social";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
@@ -12,6 +11,7 @@ import HomelabCutelabYetiHomeCard from "../components/home-cards/HomelabCutelabY
 import HomelabHotmilkHomeCard, {
 	OlderHomelab,
 } from "../components/home-cards/HomelabHotmilkBlahajHomeCard";
+import MastodonMediaHomeCard from "../components/home-cards/MastodonMediaHomeCard";
 import MfcHomeCard from "../components/home-cards/MfcHomeCard";
 import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import WhereHomeCard from "../components/home-cards/WhereHomeCard";
@@ -26,6 +26,15 @@ const Home: NextPage = () => {
 	const resetHomelab = () => {
 		setOlderHomelab(OlderHomelab.None);
 	};
+
+	const homelab =
+		olderHomelab == OlderHomelab.Cutelab_Blahaj_Nov_11_2022 ? (
+			<HomelabCutelabBlahajHomeCard onNewer={resetHomelab} />
+		) : olderHomelab == OlderHomelab.Cutelab_Yeti_Feb_21_2022 ? (
+			<HomelabCutelabYetiHomeCard onNewer={resetHomelab} />
+		) : (
+			<HomelabHotmilkHomeCard onOlder={setOlderHomelab} />
+		);
 
 	return (
 		<Box
@@ -75,20 +84,15 @@ const Home: NextPage = () => {
 				mb={32}
 			>
 				<DiscordHomeCard />
-				<WorkHomeCard />
-				<WhereHomeCard />
+				{homelab}
+				<MastodonMediaHomeCard />
 				<GamesHomeCard />
-				{olderHomelab == OlderHomelab.Cutelab_Blahaj_Nov_11_2022 ? (
-					<HomelabCutelabBlahajHomeCard onNewer={resetHomelab} />
-				) : olderHomelab == OlderHomelab.Cutelab_Yeti_Feb_21_2022 ? (
-					<HomelabCutelabYetiHomeCard onNewer={resetHomelab} />
-				) : (
-					<HomelabHotmilkHomeCard onOlder={setOlderHomelab} />
-				)}
 				<GithubGistsHomeCard />
-				<MfcHomeCard />
-				<FlickrHomeCard />
 				<SketchfabHomeCard />
+				<WhereHomeCard />
+				<WorkHomeCard />
+				<FlickrHomeCard />
+				<MfcHomeCard />
 			</Grid>
 		</Box>
 	);
