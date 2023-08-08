@@ -28,19 +28,14 @@ export default function Social() {
 			name: "Steam",
 		},
 		{
-			icon: ElementAltIcon,
-			href: config.socialLinks.matrix,
-			name: "Element",
-		},
-		{
-			icon: SketchfabIcon,
-			href: config.socialLinks.sketchfab,
-			name: "Sketchfab",
-		},
-		{
 			icon: MastodonIcon,
 			href: config.socialLinks.mastodon,
 			name: "Mastodon",
+		},
+		{
+			icon: ElementAltIcon,
+			href: config.socialLinks.matrix,
+			name: "Element",
 		},
 	];
 
@@ -57,23 +52,35 @@ export default function Social() {
 					opacity={0.5}
 					fontWeight={600}
 					fontSize="2xl"
-					paddingLeft={2}
-					paddingRight={1}
+					pl={1.5}
+					pr={1.5}
 				>
 					{/* game dev fox girl */}
-					shiny game dev drone
+					shiny rubber drone doll
 				</SubHeading>
 				<SubHeading
 					opacity={0.4}
 					fontWeight={700}
 					fontSize="md"
-					paddingRight={2}
+					pr={1.5}
 				>
 					it/she/they
 				</SubHeading>
 				<Emoji>🏳️‍⚧️</Emoji>
 				{/* <Emoji>lesbian-flag</Emoji> */}
 				{/* <Emoji>t4t-flag-better</Emoji> */}
+			</HStack>
+			<HStack spacing={1}>
+				<Emoji size={16}>🎮</Emoji>
+				<Text
+					opacity={0.3}
+					fontWeight={600}
+					fontSize="xl"
+					pl={1}
+					letterSpacing={-1}
+				>
+					play and make video games
+				</Text>
 			</HStack>
 			{/* <Link
 				href="https://xn--3h8h64hda.ws"
@@ -99,7 +106,7 @@ export default function Social() {
 					<Text opacity={0.3}>.ws!</Text>
 				</HStack>
 			</Link> */}
-			<HStack spacing={2} opacity={0.3} marginTop={6}>
+			<HStack spacing={2} opacity={0.3} marginTop={8}>
 				{socials.map((social, i) => (
 					<Link
 						key={i}
@@ -119,7 +126,7 @@ export default function Social() {
 				transformOrigin="center"
 				transition={config.styles.hoverTransition}
 				_hover={{ transform: "scale(1.05)" }}
-				marginTop={4}
+				marginTop={8}
 				color="#fff"
 			>
 				<HStack spacing={2} opacity={0.2}>
