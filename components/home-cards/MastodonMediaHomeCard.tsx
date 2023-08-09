@@ -38,7 +38,7 @@ export default function MastodonMediaHomeCard() {
 		// https://docs.joinmastodon.org/methods/accounts/#statuses
 
 		const statusesUrl = new URL(
-			"https://mastodon.hotmilk.space/api/v1/accounts/110755825766915676/statuses",
+			`https://${config.socialIds.mastodon.instance}/api/v1/accounts/${config.socialIds.mastodon.id}/statuses`,
 		);
 
 		statusesUrl.searchParams.set("pinned", "false");
@@ -85,7 +85,7 @@ export default function MastodonMediaHomeCard() {
 			<Center flexDir={"column"}>
 				<HomeCardHeading
 					icon={MastodonIcon}
-					href={config.socialLinks.mastodon}
+					href={config.socialLinks.mastodon + "/media"}
 				>
 					mastodon media
 				</HomeCardHeading>

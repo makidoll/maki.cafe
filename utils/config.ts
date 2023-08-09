@@ -13,6 +13,11 @@ const socialIds = {
 	flickr: "125408076@N04",
 	homelabUptimeRobot: "GMWojUB9A8",
 	sketchfab: "makidrone",
+	mastodon: {
+		instance: "mastodon.hotmilk.space",
+		id: "110755825766915676",
+		username: "maki",
+	},
 };
 
 const socialLinks = {
@@ -32,7 +37,7 @@ const socialLinks = {
 	homelabUptimeRobot:
 		"https://stats.uptimerobot.com/" + socialIds.homelabUptimeRobot,
 	sketchfab: "https://sketchfab.com/" + socialIds.sketchfab,
-	mastodon: "https://mastodon.hotmilk.space/@maki",
+	mastodon: `https://${socialIds.mastodon.instance}/@${socialIds.mastodon.username}`,
 };
 
 export const config = {
