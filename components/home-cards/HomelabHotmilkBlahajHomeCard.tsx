@@ -1,5 +1,5 @@
 import { Box, Flex, Link, Text, VStack, chakra } from "@chakra-ui/react";
-import { MdArrowForward } from "react-icons/md";
+import { MdArrowForward, MdLink } from "react-icons/md";
 import { jetBrainsMono } from "../../fonts/fonts";
 import { config } from "../../utils/config";
 import { trpc } from "../../utils/trpc";
@@ -45,7 +45,31 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 							>
 								<chakra.td>
 									<Flex pr={3} pl={1}>
-										{service.name}
+										{config.selfHostedLinkMap[
+											service.name
+										] == null ? (
+											service.name
+										) : (
+											<Link
+												href={
+													config.selfHostedLinkMap[
+														service.name
+													]
+												}
+												display={"flex"}
+												flexDir={"row"}
+												alignItems={"center"}
+												color={"#fff"}
+											>
+												<MdArrowForward
+													size={12}
+													style={{
+														marginRight: "2px",
+													}}
+												/>
+												{service.name}
+											</Link>
+										)}
 									</Flex>
 								</chakra.td>
 								<chakra.td>

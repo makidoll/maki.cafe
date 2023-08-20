@@ -48,38 +48,15 @@ export const config = {
 	},
 	socialIds,
 	socialLinks,
-	// favoriteSteamGames: [
-	// 	"210970", // the witness
-	// 	"224760", // fez
-	// 	"782330", // doom eternal
-	// 	"504230", // celeste
-	// 	"1055540", // a short hike
-	// 	"524220", // nier automata
-	// 	// -- gets smaller
-	// 	"620", // portal 2
-	// 	"438100", // vrchat
-	// 	"972660", // spiritfarer
-	// 	"257850", // hyper light drifer
-	// 	"219890", // anti chamber
-	// 	"1003590", // tetris effect
-	// 	"1113560", // nier replicant
-	// 	"413150", // stardew valley
-	// 	"447040", // watch dogs 2
-	// 	"394690", // tower unite
-	// 	"963000", // frog detective 1
-	// 	"650700", // yume nikki
-	// 	"1332010", // stray
-	// ],
-	// favoriteOtherGames: [
-	// 	// from https://www.steamgriddb.com
-	// 	path.resolve(__dirname, "games/overwatch-2.png"),
-	// 	path.resolve(__dirname, "games/earthbound.png"),
-	// 	path.resolve(__dirname, "games/catherine-full-body.png"),
-	// 	path.resolve(__dirname, "games/super-mario-odyssey.png"),
-	// 	path.resolve(__dirname, "games/mother-3.png"),
-	// 	path.resolve(__dirname, "games/drakengard-3.png"),
-	// ],
 	styles: {
 		hoverTransition: "transform .15s ease-in-out",
+	},
+	selfHostedLinkMap: {
+		"blahaj.quest": "https://blahaj.quest",
+		Gitlab: "https://git.hotmilk.space",
+		Lemmy: "https://lemmy.hotmilk.space",
+		"maki.cafe": "https://maki.cafe",
+		Mastodon: "https://mastodon.hotmilk.space",
+		Speedtest: "https://speedtest.hotmilk.space",
 	},
 };
