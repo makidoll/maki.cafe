@@ -22,6 +22,7 @@
 		"copy-webpack-plugin": "^11.0.0",
 		"date-fns": "^2.30.0",
 		"framer-motion": "^10",
+		"js-untar": "^2.0.0",
 		"next": "^13.4.0",
 		"playwright": "^1.33.0",
 		"raw-loader": "^4.0.2",

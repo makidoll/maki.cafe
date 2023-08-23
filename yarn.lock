@@ -2709,6 +2709,11 @@ js-sdsl@^4.1.4:
   resolved "https://registry.yarnpkg.com/js-tokens/-/js-tokens-4.0.0.tgz#19203fb59991df98e3a287050d4647cdeaf32499"
   integrity sha512-RdJUflcE3cUzKiMqQgsCu06FPu9UdIJO0beYbPhHN4k6apgJtifcoCtT9bcxOpYBtpD2kCM6Sbzg4CausW/PKQ==
 
+js-untar@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/js-untar/-/js-untar-2.0.0.tgz#b452d28dedd3b0be92c2ac9a7d70f612a93c7453"
+  integrity sha512-7CsDLrYQMbLxDt2zl9uKaPZSdmJMvGGQ7wo9hoB3J+z/VcO2w63bXFgHVnjF1+S9wD3zAu8FBVj7EYWjTQ3Z7g==
+
 js-yaml@^4.1.0:
   version "4.1.0"
   resolved "https://registry.yarnpkg.com/js-yaml/-/js-yaml-4.1.0.tgz#c1fb65f8f5017901cdd2c951864ba18458a10602"

@@ -51,9 +51,9 @@ const Home: NextPage = () => {
 				width="100%"
 			>
 				<IntroDrone
-					h={400}
-					mt={24}
-					mb={16}
+					h={550}
+					mt={0}
+					mb={0}
 					onLoaded={() => {
 						setReady(true);
 					}}
