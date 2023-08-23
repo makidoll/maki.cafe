@@ -19,6 +19,7 @@ import WhereHomeCard from "../components/home-cards/WhereHomeCard";
 import WorkHomeCard from "../components/home-cards/WorkHomeCard";
 import Logo from "../components/ui/Logo";
 import styles from "./index.module.scss";
+import gnomeDarkImage from "./gnome-dark.png";
 
 const Home: NextPage = () => {
 	const [ready, setReady] = useState(false);
@@ -43,6 +44,26 @@ const Home: NextPage = () => {
 				process.env.NODE_ENV == "development" ? "" : styles["fade-in"]
 			}
 		>
+			{/* <Box
+				position={"fixed"}
+				top={0}
+				left={0}
+				right={0}
+				h={4}
+				zIndex={999998}
+				backgroundColor={"justKindaDark"}
+				backgroundSize={"100% 100%"}
+			></Box> */}
+			<Box
+				position={"fixed"}
+				top={0}
+				left={0}
+				right={0}
+				h={2}
+				zIndex={999999}
+				backgroundImage={gnomeDarkImage.src}
+				backgroundSize={"100% 100%"}
+			></Box>
 			<Box
 				display="flex"
 				alignItems="center"
@@ -52,7 +73,7 @@ const Home: NextPage = () => {
 			>
 				<IntroDrone
 					h={550}
-					mt={0}
+					mt={2}
 					mb={0}
 					onLoaded={() => {
 						setReady(true);
