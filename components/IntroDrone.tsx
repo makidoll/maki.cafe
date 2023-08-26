@@ -111,8 +111,6 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 
 			if (!isElementInFrame(canvas)) return;
 
-			console.log("update");
-
 			const azimuthalAngle = controls.getAzimuthalAngle();
 			rotation = glslMod(
 				invLerp(-Math.PI, Math.PI, azimuthalAngle) -
