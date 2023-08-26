@@ -18,6 +18,13 @@ const endDegrees = -60 / 360; // deg
 const startScale = 0.5;
 const endScale = 1;
 
+function isElementInFrame(el: HTMLElement) {
+	const rect = el.getBoundingClientRect();
+	const w = window.innerWidth || document.documentElement.clientWidth;
+	const h = window.innerHeight || document.documentElement.clientHeight;
+	return rect.top < h && rect.bottom > 0 && rect.left < w && rect.right > 0;
+}
+
 export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 	const [loadingOpacity, setLoadingOpacity] = useState(1);
 	const [opacity, setOpacity] = useState(0);
@@ -95,9 +102,16 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 		const update = () => {
 			if (parent == null) return;
 
-			// update controls
-
 			controls.update();
+			tweenMangager.update();
+
+			// update frame
+
+			if (canvas == null) return;
+
+			if (!isElementInFrame(canvas)) return;
+
+			console.log("update");
 
 			const azimuthalAngle = controls.getAzimuthalAngle();
 			rotation = glslMod(
@@ -105,14 +119,6 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 					tweenValues.rotation,
 				1,
 			);
-
-			// update tweens
-
-			tweenMangager.update();
-
-			// update frame
-
-			if (canvas == null) return;
 
 			try {
 				const nFrame = rotation * totalFrames;
