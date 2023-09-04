@@ -69,7 +69,7 @@ const theme = extendTheme({
 const title = "Maki ✨🏳️‍⚧️";
 const description = "i make things ❤️";
 
-const domain = "maki.cafe";
+const domain = "makidrone.io";
 const url = "https://" + domain;
 const imageUrl = url + "/icon.png";
 
@@ -123,7 +123,7 @@ function MyApp({ Component, pageProps }: AppProps) {
 			<Script
 				id="ithelpsme"
 				defer
-				data-domain="maki.cafe"
+				data-domain="makidrone.io"
 				data-api="https://ithelpsme.hotmilk.space/api/event"
 				dangerouslySetInnerHTML={{
 					__html: `

@@ -1,5 +1,13 @@
-import { Box, Flex, Link, Text, VStack, chakra } from "@chakra-ui/react";
-import { MdArrowForward, MdLink } from "react-icons/md";
+import {
+	Box,
+	Flex,
+	Link,
+	Text,
+	Tooltip,
+	VStack,
+	chakra,
+} from "@chakra-ui/react";
+import { MdArrowForward } from "react-icons/md";
 import { jetBrainsMono } from "../../fonts/fonts";
 import { config } from "../../utils/config";
 import { trpc } from "../../utils/trpc";
@@ -34,107 +42,119 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 			<>
 				<chakra.table style={{ borderCollapse: "collapse" }}>
 					<chakra.tbody>
-						{uptimeRobot.data?.psp.monitors.map((service, i) => (
-							<chakra.tr
-								key={i}
-								backgroundColor={
-									i % 2 == 1
-										? "rgba(255,255,255,0.05)"
-										: "transparent"
-								}
-							>
-								<chakra.td>
-									<Flex pr={3} pl={1}>
-										{config.selfHostedLinkMap[
-											service.name
-										] == null ? (
-											service.name
+						{uptimeRobot.data?.psp.monitors.map((service, i) => {
+							const serviceLink =
+								config.selfHostedLinkMap[service.name];
+
+							const serviceTooltip =
+								config.selfHostedLinkTooltipMap[service.name];
+
+							const serviceLabel = (
+								<Flex pr={3} pl={1}>
+									{serviceLink == null ? (
+										service.name
+									) : (
+										<Link
+											href={serviceLink}
+											display={"flex"}
+											flexDir={"row"}
+											alignItems={"center"}
+											color={"#fff"}
+										>
+											<MdArrowForward
+												size={12}
+												style={{
+													marginRight: "2px",
+												}}
+											/>
+											{service.name}
+										</Link>
+									)}
+								</Flex>
+							);
+							return (
+								<chakra.tr
+									key={i}
+									backgroundColor={
+										i % 2 == 1
+											? "rgba(255,255,255,0.05)"
+											: "transparent"
+									}
+								>
+									<chakra.td>
+										{serviceTooltip == null ? (
+											serviceLabel
 										) : (
-											<Link
-												href={
-													config.selfHostedLinkMap[
-														service.name
-													]
-												}
-												display={"flex"}
-												flexDir={"row"}
-												alignItems={"center"}
-												color={"#fff"}
-											>
-												<MdArrowForward
-													size={12}
-													style={{
-														marginRight: "2px",
-													}}
-												/>
-												{service.name}
-											</Link>
+											<Tooltip label={serviceTooltip}>
+												{serviceLabel}
+											</Tooltip>
 										)}
-									</Flex>
-								</chakra.td>
-								<chakra.td>
-									<Flex
-										color={"#fff"}
-										alignItems={"center"}
-										justifyContent={"center"}
-										gap={0.5}
-									>
-										{service.dailyRatios
-											.slice(0, 14)
-											.reverse()
-											.map((b, i) => (
-												<Box
-													key={i}
-													w={1}
-													h={4}
-													borderRadius={999}
-													backgroundColor={(() => {
-														var ratio = Number(
-															b.ratio,
-														);
-														switch (b.label) {
-															case "success":
-																return colors.green;
-															case "warning":
-																return ratio <
-																	90
-																	? colors.red
-																	: colors.orange;
-															default:
-															case "black":
-																return "hsl(0deg,0%,25%)";
-														}
-													})()}
-												></Box>
-											))}
-									</Flex>
-								</chakra.td>
-								<chakra.td>
-									<Flex
-										alignItems={"center"}
-										justifyContent={"center"}
-										gap={0.5}
-										pl={3}
-										pr={1}
-									>
-										<Box
-											w={3}
-											h={3}
-											backgroundColor={
-												service.statusClass == "success"
-													? colors.green
-													: colors.red
-											}
-											borderRadius={999}
-											mr={0.5}
-										></Box>
-										{service.statusClass == "success"
-											? "Up"
-											: "Down"}
-									</Flex>
-								</chakra.td>
-							</chakra.tr>
-						))}
+									</chakra.td>
+									<chakra.td>
+										<Flex
+											color={"#fff"}
+											alignItems={"center"}
+											justifyContent={"center"}
+											gap={0.5}
+										>
+											{service.dailyRatios
+												.slice(0, 14)
+												.reverse()
+												.map((b, i) => (
+													<Box
+														key={i}
+														w={1}
+														h={4}
+														borderRadius={999}
+														backgroundColor={(() => {
+															var ratio = Number(
+																b.ratio,
+															);
+															switch (b.label) {
+																case "success":
+																	return colors.green;
+																case "warning":
+																	return ratio <
+																		90
+																		? colors.red
+																		: colors.orange;
+																default:
+																case "black":
+																	return "hsl(0deg,0%,25%)";
+															}
+														})()}
+													></Box>
+												))}
+										</Flex>
+									</chakra.td>
+									<chakra.td>
+										<Flex
+											alignItems={"center"}
+											justifyContent={"center"}
+											gap={0.5}
+											pl={3}
+											pr={1}
+										>
+											<Box
+												w={3}
+												h={3}
+												backgroundColor={
+													service.statusClass ==
+													"success"
+														? colors.green
+														: colors.red
+												}
+												borderRadius={999}
+												mr={0.5}
+											></Box>
+											{service.statusClass == "success"
+												? "Up"
+												: "Down"}
+										</Flex>
+									</chakra.td>
+								</chakra.tr>
+							);
+						})}
 					</chakra.tbody>
 				</chakra.table>
 				<Flex

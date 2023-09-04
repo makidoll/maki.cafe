@@ -122,7 +122,7 @@ export default function Social() {
 				))}
 			</HStack>
 			<Link
-				href={config.socialLinks.github + "/maki.cafe"}
+				href={config.socialLinks.github + "/makidrone.io"}
 				transformOrigin="center"
 				transition={config.styles.hoverTransition}
 				_hover={{ transform: "scale(1.05)" }}
