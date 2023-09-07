@@ -108,6 +108,10 @@ const imagePathsAndUrls = [
 		path: "../games/world-of-warcraft.png",
 		url: "https://worldofwarcraft.blizzard.com/en-us/",
 	},
+	{
+		path: "../games/tropix-2.png",
+		url: "https://www.tropixgame.com/",
+	},
 ].map(e => ({ ...e, path: path.resolve(__dirname, e.path) }));
 
 (async () => {
