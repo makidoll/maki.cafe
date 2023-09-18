@@ -50,7 +50,7 @@ const theme = extendTheme({
 		tomorrow: "#1d1f21",
 		hexcorp: "#ff64ff",
 		hexcorpDark: "#231929",
-		justKindaDark: "#0f0f0f",
+		justKindaDark: "#111111",
 	},
 	styles: {
 		global: {
