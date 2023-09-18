@@ -12,6 +12,7 @@ import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
 import { SoundCloudIcon } from "./ui/social-icons/SoundCloudIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { TwitterIcon } from "./ui/social-icons/TwitterIcon";
+import { PronounsPageIcon } from "./ui/social-icons/PronounsPageIcon";
 
 interface Social {
 	icon: IconType;
@@ -49,13 +50,19 @@ export default function Social() {
 		],
 		[
 			{
+				icon: PronounsPageIcon,
+				href: config.socialLinks.pronounsPage,
+				name: "Pronouns",
+				color: "#e91e63", // original #ff95bb
+				small: true,
+			},
+			{
 				icon: DiscordIcon,
 				href: config.socialLinks.discord,
 				name: "Discord",
 				color: "#5865F2",
 				small: true,
 			},
-
 			{
 				icon: ElementAltIcon,
 				href: config.socialLinks.matrix,
@@ -70,13 +77,13 @@ export default function Social() {
 				color: "#333",
 				small: true,
 			},
-			{
-				icon: SoundCloudIcon,
-				href: config.socialLinks.soundcloud,
-				name: "SoundCloud",
-				color: "#ff7700",
-				small: true,
-			},
+			// {
+			// 	icon: SoundCloudIcon,
+			// 	href: config.socialLinks.soundcloud,
+			// 	name: "SoundCloud",
+			// 	color: "#ff7700",
+			// 	small: true,
+			// },
 		],
 	];
 
@@ -88,7 +95,7 @@ export default function Social() {
 					href={social.href}
 					size={social.small ? "sm" : "md"}
 					key={i}
-					opacity={social.small ? 0.5 : 1}
+					opacity={1}
 					leftIcon={
 						<social.icon
 							color={"#fff"}
@@ -98,9 +105,7 @@ export default function Social() {
 					color={"#fff"}
 					background={social.color}
 					_hover={{
-						background: social.small
-							? social.color
-							: colorMix(social.color, "#ffffff", 0.2),
+						background: colorMix(social.color, "#ffffff", 0.2),
 						opacity: 1,
 					}}
 				>

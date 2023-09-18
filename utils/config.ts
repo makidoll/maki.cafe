@@ -38,6 +38,7 @@ const socialLinks = {
 		"https://stats.uptimerobot.com/" + socialIds.homelabUptimeRobot,
 	sketchfab: "https://sketchfab.com/" + socialIds.sketchfab,
 	mastodon: `https://${socialIds.mastodon.instance}/@${socialIds.mastodon.username}`,
+	pronounsPage: "https://en.pronouns.page/@makidrone",
 };
 
 export const config = {
