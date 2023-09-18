@@ -1,126 +1,216 @@
-import { Flex, HStack, Link, Text } from "@chakra-ui/react";
-// import { minecraft } from "../fonts/fonts";
+import { Button, Flex, HStack, Link, Text, VStack } from "@chakra-ui/react";
+import { IconType } from "react-icons";
+import { FaCode } from "react-icons/fa";
 import { config } from "../utils/config";
+import { colorMix } from "../utils/utils";
 import Emoji from "./ui/Emoji";
 import SubHeading from "./ui/SubHeading";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
-import { SketchfabIcon } from "./ui/social-icons/SketchfabIcon";
+import { SoundCloudIcon } from "./ui/social-icons/SoundCloudIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
+import { TwitterIcon } from "./ui/social-icons/TwitterIcon";
+
+interface Social {
+	icon: IconType;
+	href: string;
+	name: string;
+	color: string;
+	small: boolean;
+}
 
 export default function Social() {
-	var socials = [
-		{
-			icon: DiscordIcon,
-			href: config.socialLinks.discord,
-			name: "Discord",
-		},
-		{
-			icon: GitHubIcon,
-			href: config.socialLinks.github,
-			name: "GitHub",
-		},
-		{
-			icon: SteamIcon,
-			href: config.socialLinks.steam,
-			name: "Steam",
-		},
-		{
-			icon: MastodonIcon,
-			href: config.socialLinks.mastodon,
-			name: "Mastodon",
-		},
-		{
-			icon: ElementAltIcon,
-			href: config.socialLinks.matrix,
-			name: "Element",
-		},
+	const socialsSpacing = 3;
+	const socialsRows: Social[][] = [
+		[
+			{
+				icon: TwitterIcon,
+				href: config.socialLinks.twitter,
+				name: "Twitter",
+				color: "#1DA1F2",
+				small: false,
+			},
+			{
+				icon: MastodonIcon,
+				href: config.socialLinks.mastodon,
+				name: "Mastodon",
+				color: "#6364FF",
+				small: false,
+			},
+			{
+				icon: GitHubIcon,
+				href: config.socialLinks.github,
+				name: "GitHub",
+				color: "#333",
+				small: false,
+			},
+		],
+		[
+			{
+				icon: DiscordIcon,
+				href: config.socialLinks.discord,
+				name: "Discord",
+				color: "#5865F2",
+				small: true,
+			},
+
+			{
+				icon: ElementAltIcon,
+				href: config.socialLinks.matrix,
+				name: "Element",
+				color: "#0dbd8b",
+				small: true,
+			},
+			{
+				icon: SteamIcon,
+				href: config.socialLinks.steam,
+				name: "Steam",
+				color: "#333",
+				small: true,
+			},
+			{
+				icon: SoundCloudIcon,
+				href: config.socialLinks.soundcloud,
+				name: "SoundCloud",
+				color: "#ff7700",
+				small: true,
+			},
+		],
 	];
+
+	const SocialsRows = socialsRows.map((row, i) => (
+		<HStack key={i} spacing={socialsSpacing}>
+			{row.map((social, i) => (
+				<Button
+					as={"a"}
+					href={social.href}
+					size={social.small ? "sm" : "md"}
+					key={i}
+					opacity={social.small ? 0.5 : 1}
+					leftIcon={
+						<social.icon
+							color={"#fff"}
+							size={social.small ? 16 : 18}
+						/>
+					}
+					color={"#fff"}
+					background={social.color}
+					_hover={{
+						background: social.small
+							? social.color
+							: colorMix(social.color, "#ffffff", 0.2),
+						opacity: 1,
+					}}
+				>
+					{social.name}
+				</Button>
+			))}
+		</HStack>
+	));
+
+	const subTextOpacity = 0.5;
+	const fontWeight = 600;
 
 	return (
 		<Flex flexDir="column" alignItems="center" justifyContent="center">
-			<HStack spacing={1}>
-				{/* <Emoji>🌺</Emoji>
-				<Emoji>🦊</Emoji>
-				<Emoji>🦋</Emoji> */}
-				{/* <Emoji>🦊</Emoji> */}
-				{/* <Emoji>🍃</Emoji> */}
-				<Emoji>✨</Emoji>
+			<HStack spacing={2}>
+				<Emoji size={24} font="twemoji" mr={-0.5}>
+					✨
+				</Emoji>
+				{/* <Emoji size={24} custom="pleading-hypno"></Emoji> */}
+				<SubHeading
+					opacity={0.7}
+					fontWeight={fontWeight}
+					fontSize="2xl"
+				>
+					cute shiny latex drone doll
+				</SubHeading>
+				<Emoji size={24} custom="cyber-heart"></Emoji>
 				<SubHeading
 					opacity={0.5}
-					fontWeight={600}
-					fontSize="2xl"
-					pl={1.5}
-					pr={1.5}
-				>
-					{/* game dev fox girl */}
-					shiny rubber drone doll
-				</SubHeading>
-				<SubHeading
-					opacity={0.4}
-					fontWeight={700}
+					fontWeight={fontWeight + 100}
 					fontSize="md"
-					pr={1.5}
 				>
 					it/she/they
 				</SubHeading>
-				<Emoji>🏳️‍⚧️</Emoji>
-				{/* <Emoji>lesbian-flag</Emoji> */}
-				{/* <Emoji>t4t-flag-better</Emoji> */}
+				<Emoji size={24} custom="trans-heart"></Emoji>
+				{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}
 			</HStack>
-			<HStack spacing={1}>
-				<Emoji size={16}>🎮</Emoji>
-				<Text
-					opacity={0.3}
-					fontWeight={600}
-					fontSize="xl"
-					pl={1}
-					letterSpacing={-1}
-				>
-					play and make video games
-				</Text>
-			</HStack>
-			{/* <Link
-				href="https://xn--3h8h64hda.ws"
-				transformOrigin="center"
-				transition={config.styles.hoverTransition}
-				_hover={{ transform: "scale(1.05)" }}
-				fontSize="xs"
-				fontFamily={minecraft.style.fontFamily}
-				marginTop={1}
-				color="#fff"
-			>
-				<HStack spacing={0.5} justifyContent="center">
-					<Text opacity={0.3}>now available at www.</Text>
-					<Emoji size={14} opacity={0.6}>
-						🌺
+			<VStack spacing={0} mt={4}>
+				<HStack spacing={1}>
+					<Emoji size={24} custom="shaderlab"></Emoji>
+					<Text
+						opacity={subTextOpacity}
+						fontWeight={fontWeight}
+						fontSize="xl"
+						pl={1}
+						letterSpacing={-1}
+					>
+						play and make video games
+					</Text>
+				</HStack>
+				<HStack spacing={1}>
+					<Emoji size={24} font="noto">
+						👩‍💻
 					</Emoji>
-					<Emoji size={14} opacity={0.6}>
+					<Text
+						opacity={subTextOpacity}
+						fontWeight={fontWeight}
+						fontSize="xl"
+						pl={1}
+						letterSpacing={-1}
+					>
+						programming and running servers
+					</Text>
+				</HStack>
+				<HStack spacing={1}>
+					<Emoji size={24} font="noto">
 						🦊
 					</Emoji>
-					<Emoji size={14} opacity={0.6}>
-						🦋
-					</Emoji>
-					<Text opacity={0.3}>.ws!</Text>
-				</HStack>
-			</Link> */}
-			<HStack spacing={2} opacity={0.3} marginTop={8}>
-				{socials.map((social, i) => (
-					<Link
-						key={i}
-						href={social.href}
-						aria-label={social.name}
-						transition={config.styles.hoverTransition}
-						transformOrigin="center"
-						_hover={{ transform: "scale(1.1)" }}
-						rel="me"
+					<Text
+						opacity={subTextOpacity}
+						fontWeight={fontWeight}
+						fontSize="xl"
+						px={1}
+						letterSpacing={-1}
 					>
-						<social.icon width={"auto"} height={24} color="#fff" />
-					</Link>
-				))}
-			</HStack>
+						sensitive
+					</Text>
+					<Emoji size={24} font="noto">
+						🐸
+					</Emoji>
+					<Text
+						opacity={subTextOpacity}
+						fontWeight={fontWeight}
+						fontSize="xl"
+						px={1}
+						letterSpacing={-1}
+					>
+						neurospicy
+					</Text>
+					<Emoji size={24} font="noto">
+						🦐
+					</Emoji>
+					<Text
+						opacity={subTextOpacity}
+						fontWeight={fontWeight}
+						fontSize="xl"
+						px={1}
+						letterSpacing={-1}
+					>
+						mess
+					</Text>
+					<Emoji size={24} font="noto">
+						🐍
+					</Emoji>
+				</HStack>
+			</VStack>
+
+			<VStack mt={8} spacing={socialsSpacing}>
+				{SocialsRows}
+			</VStack>
 			<Link
 				href={config.socialLinks.github + "/makidrone.io"}
 				transformOrigin="center"
@@ -130,8 +220,12 @@ export default function Social() {
 				color="#fff"
 			>
 				<HStack spacing={2} opacity={0.2}>
-					<GitHubIcon size={16} color="#fff" />
-					<Text fontWeight={700}>See site&apos;s code</Text>
+					<FaCode
+						size={16}
+						color="#fff"
+						style={{ marginBottom: "-4px" }}
+					/>
+					<Text fontWeight={600}>see site&apos;s code</Text>
 				</HStack>
 			</Link>
 		</Flex>

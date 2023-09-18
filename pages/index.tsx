@@ -79,7 +79,7 @@ const Home: NextPage = () => {
 						setReady(true);
 					}}
 				/>
-				<Box width={400} marginTop={0}>
+				<Box width={350} marginTop={0}>
 					<Logo ready={ready} />
 				</Box>
 				<Box marginTop={6}>
