@@ -9,10 +9,9 @@ import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
-import { SoundCloudIcon } from "./ui/social-icons/SoundCloudIcon";
+import { PronounsPageIcon } from "./ui/social-icons/PronounsPageIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { TwitterIcon } from "./ui/social-icons/TwitterIcon";
-import { PronounsPageIcon } from "./ui/social-icons/PronounsPageIcon";
 
 interface Social {
 	icon: IconType;
