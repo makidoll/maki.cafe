@@ -5,6 +5,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Easing } from "../utils/easing-functions";
 import { TweenManager } from "../utils/tween-manager";
 import HomeCardLoading from "./ui/home-card/HomeCardLoading";
+import introDroneFrames from "./assets/intro-drone-frames.mp4";
 
 const Deg2Rad = 0.0174533;
 
@@ -14,11 +15,8 @@ const endDegrees = -60 / 360; // deg
 const startScale = 0.5;
 const endScale = 1;
 
-const videoFrames = 1024;
-const videoFps = 60;
-const videoNormalizedToSeconds = videoFrames / videoFps;
-
-// ffmpeg -framerate 60 -pattern_type glob -i "intro-drone-frames/*.png" \
+// 1024 frames, so play at 1024 fps to make it one second long
+// ffmpeg -framerate 1024 -pattern_type glob -i "intro-drone-frames/*.png" \
 // -movflags faststart -vcodec libx264 -crf 23 -g 1 -pix_fmt yuv420p \
 // intro-drone-frames.mp4
 
@@ -43,6 +41,37 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 	const { onLoaded: _, ...flexProps } = props;
 
 	const init = async (parent: HTMLDivElement, video: HTMLVideoElement) => {
+		let hasPlayPaused = false;
+
+		const removePlayPausedEventListeners = () => {
+			document.documentElement.removeEventListener(
+				"touchstart",
+				onClickForPlayPaused,
+			);
+			document.documentElement.removeEventListener(
+				"mousedown",
+				onClickForPlayPaused,
+			);
+		};
+
+		const onClickForPlayPaused = e => {
+			if (hasPlayPaused) return;
+			video.play;
+			video.pause();
+			hasPlayPaused = true;
+			removePlayPausedEventListeners();
+		};
+
+		document.documentElement.addEventListener(
+			"touchstart",
+			onClickForPlayPaused,
+		);
+
+		document.documentElement.addEventListener(
+			"mousedown",
+			onClickForPlayPaused,
+		);
+
 		const tweenMangager = new TweenManager();
 
 		const tweenValues = {
@@ -99,7 +128,7 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 				1,
 			);
 
-			video.currentTime = rotation * videoNormalizedToSeconds;
+			video.currentTime = rotation;
 		};
 
 		const cleanup = () => {
@@ -187,9 +216,11 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 					pointerEvents: "none",
 					userSelect: "none",
 				}}
-				// controls
+				playsInline={true}
+				preload={"auto"}
+				muted={true}
 			>
-				<source src="intro-drone-frames.mp4" type="video/mp4"></source>
+				<source src={introDroneFrames} type="video/mp4"></source>
 			</video>
 			<Flex
 				position={"absolute"}

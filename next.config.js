@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
 
-const CopyPlugin = require("copy-webpack-plugin");
+// const CopyPlugin = require("copy-webpack-plugin");
 
 const nextConfig = {
 	reactStrictMode: true,
@@ -37,19 +37,37 @@ const nextConfig = {
 		locales: ["en"],
 		defaultLocale: "en",
 	},
-	webpack: function (config, options) {
-		config.experiments = { ...config.experiments, asyncWebAssembly: true };
-		config.plugins = [
-			...config.plugins,
-			new CopyPlugin({
-				patterns: [
-					{
-						from: "node_modules/three/examples/jsm/libs/draco/",
-						to: "./static/libs/draco/",
+	webpack: (config, { isServer }) => {
+		// config.experiments = { ...config.experiments, asyncWebAssembly: true };
+
+		// config.plugins = [
+		// 	...config.plugins,
+		// 	new CopyPlugin({
+		// 		patterns: [
+		// 			{
+		// 				from: "node_modules/three/examples/jsm/libs/draco/",
+		// 				to: "./static/libs/draco/",
+		// 			},
+		// 		],
+		// 	}),
+		// ];
+
+		const prefix = config.assetPrefix ?? config.basePath ?? "";
+
+		config.module.rules.push({
+			test: /\.mp4$/,
+			use: [
+				{
+					loader: "file-loader",
+					options: {
+						publicPath: `${prefix}/_next/static/media/`,
+						outputPath: `${isServer ? "../" : ""}static/media/`,
+						name: "[name].[hash:8].[ext]",
 					},
-				],
-			}),
-		];
+				},
+			],
+		});
+
 		return config;
 	},
 };
