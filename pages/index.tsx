@@ -78,6 +78,7 @@ const Home: NextPage = () => {
 				backgroundRepeat={"repeat"}
 				// opacity={0.01}
 				style={{
+					// it can flash white if opacity is set above
 					opacity: "0.01 !important",
 					WebkitMaskImage:
 						"linear-gradient(0deg, transparent, black)",
