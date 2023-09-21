@@ -76,8 +76,9 @@ const Home: NextPage = () => {
 				backgroundSize={`52px 90px`}
 				backgroundPosition={"center 0"}
 				backgroundRepeat={"repeat"}
-				opacity={0.01}
+				// opacity={0.01}
 				style={{
+					opacity: "0.01 !important",
 					WebkitMaskImage:
 						"linear-gradient(0deg, transparent, black)",
 				}}
