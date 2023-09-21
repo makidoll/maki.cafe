@@ -189,10 +189,7 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 				}}
 				// controls
 			>
-				<source
-					src="intro-drone-frames.webm"
-					type="video/webm"
-				></source>
+				<source src="intro-drone-frames.mp4" type="video/mp4"></source>
 			</video>
 			<Flex
 				position={"absolute"}
