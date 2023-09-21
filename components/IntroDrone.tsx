@@ -1,5 +1,4 @@
 import { BoxProps, Flex } from "@chakra-ui/react";
-import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 import { PerspectiveCamera } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
@@ -9,14 +8,19 @@ import HomeCardLoading from "./ui/home-card/HomeCardLoading";
 
 const Deg2Rad = 0.0174533;
 
-const frameWidth = 1024;
-const frameHeight = 1024;
-
 const startDegrees = 180 / 360; // deg
 const endDegrees = -60 / 360; // deg
 
 const startScale = 0.5;
 const endScale = 1;
+
+const videoFrames = 1024;
+const videoFps = 60;
+const videoNormalizedToSeconds = videoFrames / videoFps;
+
+// ffmpeg -framerate 60 -pattern_type glob -i "intro-drone-frames/*.png" \
+// -movflags faststart -vcodec libx264 -crf 23 -g 1 -pix_fmt yuv420p \
+// intro-drone-frames.mp4
 
 function isElementInFrame(el: HTMLElement) {
 	const rect = el.getBoundingClientRect();
@@ -25,20 +29,20 @@ function isElementInFrame(el: HTMLElement) {
 	return rect.top < h && rect.bottom > 0 && rect.left < w && rect.right > 0;
 }
 
+function glslMod(a, n) {
+	return (a + n) % n;
+}
+
 export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 	const [loadingOpacity, setLoadingOpacity] = useState(1);
 	const [opacity, setOpacity] = useState(0);
 
 	const parentRef = useRef<HTMLDivElement>();
-	const canvasRef = useRef<HTMLCanvasElement>();
+	const videoRef = useRef<HTMLVideoElement>();
 
-	const init = async (parent: HTMLDivElement, canvas: HTMLCanvasElement) => {
-		const ctx = canvas.getContext("2d");
-		if (ctx == null) return;
+	const { onLoaded: _, ...flexProps } = props;
 
-		canvas.width = frameWidth;
-		canvas.height = frameHeight;
-
+	const init = async (parent: HTMLDivElement, video: HTMLVideoElement) => {
 		const tweenMangager = new TweenManager();
 
 		const tweenValues = {
@@ -53,29 +57,6 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 		const scaleTweener = tweenMangager.newTweener(s => {
 			tweenValues.scale = s;
 		}, startScale);
-
-		const framesRes = await axios("/intro-drone-frames.tar", {
-			responseType: "arraybuffer",
-		});
-
-		// ssr doesn't like js-untar
-		const untar = (await import("js-untar")).default;
-
-		const tarFrames = (await untar(framesRes.data)).filter(
-			f => f.type == "0", // files only
-		);
-
-		const totalFrames = tarFrames.length;
-
-		const frames = tarFrames.map(file => {
-			const img = new Image();
-			img.src = file.getBlobUrl();
-			return img;
-		});
-
-		function glslMod(a, n) {
-			return (a + n) % n;
-		}
 
 		const camera = new PerspectiveCamera(1, 1, 10, 1000);
 		camera.position.set(0, 0, -75);
@@ -105,11 +86,11 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 			controls.update();
 			tweenMangager.update();
 
-			// update frame
+			// update frames
 
-			if (canvas == null) return;
+			if (video == null) return;
 
-			if (!isElementInFrame(canvas)) return;
+			if (!isElementInFrame(video)) return;
 
 			const azimuthalAngle = controls.getAzimuthalAngle();
 			rotation = glslMod(
@@ -118,31 +99,7 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 				1,
 			);
 
-			try {
-				const nFrame = rotation * totalFrames;
-
-				const nFrameFloor = glslMod(Math.floor(nFrame), totalFrames);
-				const nFrameCeil = glslMod(Math.ceil(nFrame), totalFrames);
-
-				const nValue = glslMod(nFrame, 1);
-
-				const x = canvas.width * ((1 - tweenValues.scale) / 2);
-				const y = canvas.height * ((1 - tweenValues.scale) / 2);
-				const sx = canvas.width * tweenValues.scale;
-				const sy = canvas.height * tweenValues.scale;
-
-				// ctx.clearRect(0, 0, frameWidth, frameHeight);
-
-				// ctx.globalAlpha = 1 - Math.pow(n, 16);
-
-				ctx.globalAlpha = 1;
-
-				ctx.drawImage(frames[nFrameFloor], x, y, sx, sy);
-
-				ctx.globalAlpha = nValue;
-
-				ctx.drawImage(frames[nFrameCeil], x, y, sx, sy);
-			} catch (error) {}
+			video.currentTime = rotation * videoNormalizedToSeconds;
 		};
 
 		const cleanup = () => {
@@ -159,20 +116,20 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 	};
 
 	useEffect(() => {
-		if (parentRef.current == null || canvasRef.current == null) return;
+		if (parentRef.current == null || videoRef.current == null) return;
 
 		let cleanup = () => {};
 
 		let updating = true;
 
 		(async () => {
-			if (parentRef.current == null || canvasRef.current == null) {
+			if (parentRef.current == null || videoRef.current == null) {
 				return;
 			}
 
 			const newFunctions = await init(
 				parentRef.current,
-				canvasRef.current,
+				videoRef.current,
 			);
 
 			if (newFunctions == null) return;
@@ -201,23 +158,25 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 			updating = false;
 			cleanup();
 		};
-	}, [parentRef, canvasRef]);
+	}, [parentRef, videoRef]);
 
 	return (
 		<Flex
 			w={"100%"}
 			h={256}
-			{...props}
+			{...flexProps}
 			position={"relative"}
 			ref={ref => {
 				if (ref) parentRef.current = ref;
 			}}
 			alignItems={"center"}
 			justifyContent={"center"}
+			// pointerEvents={"none"}
+			userSelect={"none"}
 		>
-			<canvas
+			<video
 				ref={ref => {
-					if (ref) canvasRef.current = ref;
+					if (ref) videoRef.current = ref;
 				}}
 				style={{
 					transition: "opacity 0.1s linear",
@@ -225,8 +184,16 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 					opacity,
 					width: (props.h ?? props.height ?? 0) + "px",
 					height: (props.h ?? props.height ?? 0) + "px",
+					pointerEvents: "none",
+					userSelect: "none",
 				}}
-			></canvas>
+				// controls
+			>
+				<source
+					src="intro-drone-frames.webm"
+					type="video/webm"
+				></source>
+			</video>
 			<Flex
 				position={"absolute"}
 				w={"100%"}
