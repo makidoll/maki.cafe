@@ -1,4 +1,13 @@
-import { Box, Center, Grid, GridItem, Link } from "@chakra-ui/react";
+import {
+	Box,
+	Center,
+	Flex,
+	Grid,
+	GridItem,
+	HStack,
+	Link,
+	Text,
+} from "@chakra-ui/react";
 import axios from "axios";
 import Image from "next/image";
 import { useEffect, useState } from "react";
@@ -8,6 +17,7 @@ import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { MastodonIcon } from "../ui/social-icons/MastodonIcon";
+import { TwitterIcon } from "../ui/social-icons/TwitterIcon";
 
 interface MastodonStatus {
 	content: string;
@@ -80,6 +90,19 @@ export default function MastodonMediaHomeCard() {
 	const imageWidth = 80;
 	const imageAspectRatio = 4 / 3;
 
+	const socials = [
+		{
+			name: "Twitter",
+			url: config.socialLinks.twitter,
+			icon: TwitterIcon,
+		},
+		{
+			name: "Mastodon",
+			url: config.socialLinks.mastodon,
+			icon: MastodonIcon,
+		},
+	];
+
 	return (
 		<HomeCard>
 			<Center flexDir={"column"}>
@@ -129,9 +152,30 @@ export default function MastodonMediaHomeCard() {
 						</GridItem>
 					))}
 				</Grid>
-				<HomeCardFooterLink href={config.socialLinks.flickr}>
-					View more
-				</HomeCardFooterLink>
+				<HStack spacing={6} justifyContent={"center"}>
+					{socials.map((social, i) => (
+						<Link
+							key={i}
+							href={social.url}
+							textDecor="none"
+							color="#fff"
+						>
+							<Flex
+								width="100%"
+								alignItems="center"
+								justifyContent="center"
+								opacity={0.4}
+								mt={3}
+								mb={-2}
+							>
+								<social.icon size={18} color="#fff" />
+								<Text ml={1} fontWeight={500}>
+									{social.name}
+								</Text>
+							</Flex>
+						</Link>
+					))}
+				</HStack>
 			</Center>
 		</HomeCard>
 	);
