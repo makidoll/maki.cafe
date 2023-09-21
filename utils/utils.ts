@@ -66,3 +66,7 @@ export function colorMix(hexA: string, hexB: string, amount: number) {
 		b.toString(16).padStart(2, "0")
 	);
 }
+
+export function capitalize(text: string) {
+	return text[0].toUpperCase() + text.substring(1).toLowerCase();
+}

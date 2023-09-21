@@ -55,13 +55,13 @@ export default function Social() {
 				color: "#e91e63", // original #ff95bb
 				small: true,
 			},
-			{
-				icon: DiscordIcon,
-				href: config.socialLinks.discord,
-				name: "Discord",
-				color: "#5865F2",
-				small: true,
-			},
+			// {
+			// 	icon: DiscordIcon,
+			// 	href: config.socialLinks.discord,
+			// 	name: "Discord",
+			// 	color: "#5865F2",
+			// 	small: true,
+			// },
 			{
 				icon: ElementAltIcon,
 				href: config.socialLinks.matrix,
@@ -209,6 +209,7 @@ export default function Social() {
 					<Emoji size={24} font="noto">
 						🐍
 					</Emoji>
+					{/* TODO: missing squirrel */}
 				</HStack>
 			</VStack>
 

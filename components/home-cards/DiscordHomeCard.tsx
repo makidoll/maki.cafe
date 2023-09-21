@@ -13,18 +13,19 @@ import { IoGameController } from "react-icons/io5";
 import { MdHelp } from "react-icons/md";
 import { useLanyard } from "../../hooks/UseLanyard";
 import { config } from "../../utils/config";
+import { capitalize } from "../../utils/utils";
 import DancingLetters from "../ui/DancingLetters";
 import DiscordUserImage from "../ui/DiscordUserImage";
+import SubHeading from "../ui/SubHeading";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
-import SubHeading from "../ui/SubHeading";
 import styles from "./DiscordHomeCard.module.scss";
 
 const clamp = (n: number, min: number, max: number) =>
 	Math.min(Math.max(n, min), max);
 
-const msToTime = (ms: number) => {
+const msToTimeStr = (ms: number) => {
 	let s = Math.floor(ms / 1000);
 	const m = Math.floor(s / 60);
 	s -= m * 60;
@@ -157,7 +158,7 @@ export default function DiscordHomeCard() {
 					style={{ marginBottom: "-3px" }}
 				>
 					<Text fontSize="13px" width="42px" overflow={"hidden"}>
-						{msToTime(activityTime.current)}
+						{msToTimeStr(activityTime.current)}
 					</Text>
 					<Box
 						flexGrow={1}
@@ -190,7 +191,7 @@ export default function DiscordHomeCard() {
 						overflow={"hidden"}
 						textAlign="right"
 					>
-						{msToTime(activityTime.length)}
+						{msToTimeStr(activityTime.length)}
 					</Text>
 				</HStack>
 			)}
@@ -200,40 +201,37 @@ export default function DiscordHomeCard() {
 	return (
 		<HomeCard>
 			<HStack>
-				<Link href={config.socialLinks.discord} color="#fff">
-					<HStack>
-						<DiscordUserImage
-							size={48}
-							url={
-								"https://cdn.discordapp.com/avatars/" +
-								config.socialIds.discord +
-								"/" +
-								data?.discord_user.avatar +
-								".webp?size=128"
-							}
-							status={data?.discord_status}
-							mobile={data?.active_on_discord_mobile}
-						/>
-						<VStack
-							paddingLeft={2}
-							spacing={-1}
-							alignItems={"start"}
+				{/* <Link href={config.socialLinks.discord} color="#fff"> */}
+				<HStack>
+					<DiscordUserImage
+						size={48}
+						url={
+							"https://cdn.discordapp.com/avatars/" +
+							config.socialIds.discord +
+							"/" +
+							data?.discord_user.avatar +
+							".webp?size=128"
+						}
+						status={data?.discord_status}
+						mobile={data?.active_on_discord_mobile}
+					/>
+					<VStack paddingLeft={2} spacing={-1} alignItems={"start"}>
+						<SubHeading fontSize={"1.5em"}>
+							{data.discord_user.global_name}
+						</SubHeading>
+						<SubHeading
+							opacity={0.6}
+							fontSize={"1em"}
+							fontWeight={600}
 						>
-							<SubHeading fontSize={"1.5em"}>
-								{data.discord_user.global_name}
-							</SubHeading>
-							<SubHeading
-								opacity={0.6}
-								fontSize={"1em"}
-								fontWeight={600}
-							>
-								{data.discord_user.discriminator == "0"
-									? `@${data.discord_user.username}`
-									: `${data.discord_user.username}#${data.discord_user.discriminator}`}
-							</SubHeading>
-						</VStack>
-					</HStack>
-				</Link>
+							{/* {data.discord_user.discriminator == "0"
+								? `@${data.discord_user.username}`
+								: `${data.discord_user.username}#${data.discord_user.discriminator}`} */}
+							{capitalize(data.discord_status)}
+						</SubHeading>
+					</VStack>
+				</HStack>
+				{/* </Link>
 				<SubHeading
 					opacity={0.4}
 					fontWeight={200}
@@ -242,7 +240,7 @@ export default function DiscordHomeCard() {
 					fontSize="3xl"
 				>
 					{data.discord_status}
-				</SubHeading>
+				</SubHeading> */}
 			</HStack>
 			{activityCard}
 			<HomeCardFooterLink href="https://github.com/Phineas/lanyard">
