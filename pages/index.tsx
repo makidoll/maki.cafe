@@ -3,6 +3,7 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import IntroDrone from "../components/IntroDrone";
 import Social from "../components/Social";
+import hexagonsTile from "../components/assets/hexagons.png";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
@@ -18,8 +19,8 @@ import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import WhereHomeCard from "../components/home-cards/WhereHomeCard";
 import WorkHomeCard from "../components/home-cards/WorkHomeCard";
 import Logo from "../components/ui/Logo";
-import styles from "./index.module.scss";
 import gnomeDarkImage from "./gnome-dark.png";
+import styles from "./index.module.scss";
 
 const Home: NextPage = () => {
 	const [ready, setReady] = useState(false);
@@ -63,6 +64,23 @@ const Home: NextPage = () => {
 				zIndex={999999}
 				backgroundImage={gnomeDarkImage.src}
 				backgroundSize={"100% 100%"}
+			></Box>
+			<Box
+				position={"absolute"}
+				top={2}
+				left={0}
+				right={0}
+				h={"80vh"}
+				zIndex={-999999}
+				backgroundImage={hexagonsTile.src}
+				backgroundSize={`52px 90px`}
+				backgroundPosition={"center 0"}
+				backgroundRepeat={"repeat"}
+				opacity={0.01}
+				style={{
+					WebkitMaskImage:
+						"linear-gradient(0deg, transparent, black)",
+				}}
 			></Box>
 			<Box
 				display="flex"

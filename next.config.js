@@ -54,8 +54,9 @@ const nextConfig = {
 
 		const prefix = config.assetPrefix ?? config.basePath ?? "";
 
+		// add more files to file loading via url
 		config.module.rules.push({
-			test: /\.mp4$/,
+			test: /\.(mp4)|(webm)$/i,
 			use: [
 				{
 					loader: "file-loader",
@@ -67,6 +68,20 @@ const nextConfig = {
 				},
 			],
 		});
+
+		// inline loading with import ... as ".png?inline"
+		// config.module.rules.unshift({
+		// 	test: /\.(png)$/i,
+		// 	resourceQuery: /makiinline/,
+		// 	use: [
+		// 		{
+		// 			loader: "url-loader",
+		// 			options: {
+		// 				limit: true,
+		// 			},
+		// 		},
+		// 	],
+		// });
 
 		return config;
 	},

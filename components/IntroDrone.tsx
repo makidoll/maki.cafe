@@ -5,7 +5,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Easing } from "../utils/easing-functions";
 import { TweenManager } from "../utils/tween-manager";
 import HomeCardLoading from "./ui/home-card/HomeCardLoading";
-import introDroneFrames from "./assets/intro-drone-frames.mp4";
+import introDroneFrames from "./assets/intro-drone-frames.webm";
 
 const Deg2Rad = 0.0174533;
 
@@ -16,9 +16,14 @@ const startScale = 0.5;
 const endScale = 1;
 
 // 1024 frames, so play at 1024 fps to make it one second long
+
 // ffmpeg -framerate 1024 -pattern_type glob -i "intro-drone-frames/*.png" \
 // -movflags faststart -vcodec libx264 -crf 23 -g 1 -pix_fmt yuv420p \
 // intro-drone-frames.mp4
+
+// ffmpeg -framerate 1024 -pattern_type glob -i "intro-drone-frames/*.png" \
+// -movflags faststart -c:v libvpx-vp9 -b:v 0 -crf 52 -g 1 -pix_fmt yuva420p  \
+// intro-drone-frames.webm
 
 function isElementInFrame(el: HTMLElement) {
 	const rect = el.getBoundingClientRect();
@@ -31,6 +36,15 @@ function glslMod(a, n) {
 	return (a + n) % n;
 }
 
+// https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/readyState
+enum VideoReadyState {
+	HAVE_NOTHING = 0,
+	HAVE_METADATA = 1,
+	HAVE_CURRENT_DATA = 2,
+	HAVE_FUTURE_DATA = 3,
+	HAVE_ENOUGH_DATA = 4,
+}
+
 export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 	const [loadingOpacity, setLoadingOpacity] = useState(1);
 	const [opacity, setOpacity] = useState(0);
@@ -41,6 +55,23 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 	const { onLoaded: _, ...flexProps } = props;
 
 	const init = async (parent: HTMLDivElement, video: HTMLVideoElement) => {
+		// wait until video is loaded (well kinda but idk)
+
+		if (video.readyState != VideoReadyState.HAVE_ENOUGH_DATA) {
+			console.log("waiting for done");
+			await new Promise(resolve => {
+				let interval = setInterval(() => {
+					if (video.readyState != VideoReadyState.HAVE_ENOUGH_DATA)
+						return;
+					clearInterval(interval);
+					resolve(null);
+				}, 100);
+			});
+			console.log("done");
+		}
+
+		// play and pause when user clicked
+
 		let hasPlayPaused = false;
 
 		const removePlayPausedEventListeners = () => {
@@ -72,6 +103,8 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 			onClickForPlayPaused,
 		);
 
+		// init tweeners
+
 		const tweenMangager = new TweenManager();
 
 		const tweenValues = {
@@ -86,6 +119,8 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 		const scaleTweener = tweenMangager.newTweener(s => {
 			tweenValues.scale = s;
 		}, startScale);
+
+		// init fake 3d camera for angle
 
 		const camera = new PerspectiveCamera(1, 1, 10, 1000);
 		camera.position.set(0, 0, -75);
@@ -220,7 +255,7 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 				preload={"auto"}
 				muted={true}
 			>
-				<source src={introDroneFrames} type="video/mp4"></source>
+				<source src={introDroneFrames} type="video/webm"></source>
 			</video>
 			<Flex
 				position={"absolute"}
