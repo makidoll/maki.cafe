@@ -6,8 +6,8 @@ export default function WorkHomeCard() {
 	return (
 		<HomeCard>
 			<VStack spacing={4}>
-				<HomeCardHeading>work and experience</HomeCardHeading>
-				<Text textAlign="center">
+				<HomeCardHeading>stuff ive made</HomeCardHeading>
+				{/* <Text textAlign="center">
 					Currently working on new things with Unity.
 				</Text>
 				<Text textAlign="center">
@@ -18,7 +18,7 @@ export default function WorkHomeCard() {
 					<Link href="https://blahaj.quest">
 						https://blahaj.quest
 					</Link>
-				</Text>
+				</Text> */}
 			</VStack>
 		</HomeCard>
 	);

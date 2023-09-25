@@ -1,6 +1,6 @@
 import { Button, Flex, HStack, Link, Text, VStack } from "@chakra-ui/react";
 import { IconType } from "react-icons";
-import { FaCode } from "react-icons/fa";
+import { FaArrowRight, FaCode } from "react-icons/fa";
 import { config } from "../utils/config";
 import { colorMix } from "../utils/utils";
 import Emoji from "./ui/Emoji";
@@ -26,17 +26,17 @@ export default function Social() {
 	const socialsRows: Social[][] = [
 		[
 			{
-				icon: TwitterIcon,
-				href: config.socialLinks.twitter,
-				name: "Twitter",
-				color: "#1DA1F2",
-				small: false,
-			},
-			{
 				icon: MastodonIcon,
 				href: config.socialLinks.mastodon,
 				name: "Mastodon",
 				color: "#6364FF",
+				small: false,
+			},
+			{
+				icon: TwitterIcon,
+				href: config.socialLinks.twitter,
+				name: "Twitter",
+				color: "#1DA1F2",
 				small: false,
 			},
 			{
@@ -142,7 +142,7 @@ export default function Social() {
 				<Emoji size={24} custom="trans-heart"></Emoji>
 				{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}
 			</HStack>
-			<VStack spacing={0} mt={4}>
+			<VStack spacing={0} mt={3}>
 				<HStack spacing={1}>
 					<Emoji size={24} custom="shaderlab"></Emoji>
 					<Text
@@ -212,27 +212,46 @@ export default function Social() {
 					{/* TODO: missing squirrel */}
 				</HStack>
 			</VStack>
-
-			<VStack mt={8} spacing={socialsSpacing}>
+			<VStack mt={6} spacing={socialsSpacing}>
 				{SocialsRows}
 			</VStack>
-			<Link
-				href={config.socialLinks.github + "/makidrone.io"}
-				transformOrigin="center"
-				transition={config.styles.hoverTransition}
-				_hover={{ transform: "scale(1.05)" }}
-				marginTop={8}
-				color="#fff"
-			>
-				<HStack spacing={2} opacity={0.2}>
-					<FaCode
-						size={16}
-						color="#fff"
-						style={{ marginBottom: "-4px" }}
-					/>
-					<Text fontWeight={600}>see site&apos;s code</Text>
+			<VStack spacing={1} mt={6}>
+				<HStack spacing={0}>
+					<Emoji
+						size={24}
+						custom="arch-linux"
+						opacity={subTextOpacity + 0.1}
+					></Emoji>
+					<Text
+						opacity={subTextOpacity - 0.1}
+						fontWeight={fontWeight}
+						fontSize="lg"
+						px={1}
+						letterSpacing={-1}
+						fontStyle={"italic"}
+					>
+						i use arch btw lmao
+					</Text>
 				</HStack>
-			</Link>
+				<Link
+					href={config.socialLinks.github + "/makidrone.io"}
+					transformOrigin="center"
+					transition={config.styles.hoverTransition}
+					_hover={{ transform: "scale(1.05)" }}
+					color="#fff"
+				>
+					<HStack spacing={1.5} opacity={0.25}>
+						<Text fontWeight={fontWeight} fontSize="md">
+							see site&apos;s code
+						</Text>
+						<FaArrowRight
+							size={16}
+							color="#fff"
+							style={{ marginBottom: "0px" }}
+						/>
+					</HStack>
+				</Link>
+			</VStack>
 		</Flex>
 	);
 }
