@@ -120,10 +120,10 @@ export default function StuffIveMadeHomeCard() {
 				lineHeight={1.2}
 				mb={3}
 			>
-				It's hard to make a list like this, so I recommend looking
+				It&apos;s hard to make a list like this, so I recommend looking
 				through my <chakra.span fontWeight={700}>Mastodon</chakra.span>{" "}
 				or <chakra.span fontWeight={700}>GitHub</chakra.span> if you
-				wanna see what I'm up to.
+				wanna see what I&apos;m up to.
 			</Text>
 			<Grid templateColumns="repeat(4, 1fr)" gap={1} mb={1}>
 				{stuff.map((thing, i) => makeButton(thing, i))}
