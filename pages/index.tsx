@@ -16,8 +16,8 @@ import HomelabHotmilkHomeCard, {
 import MastodonMediaHomeCard from "../components/home-cards/MastodonMediaHomeCard";
 import MfcHomeCard from "../components/home-cards/MfcHomeCard";
 import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
+import StuffIveMadeHomeCard from "../components/home-cards/StuffIveMadeHomeCard";
 import WhereHomeCard from "../components/home-cards/WhereHomeCard";
-import WorkHomeCard from "../components/home-cards/WorkHomeCard";
 import Logo from "../components/ui/Logo";
 import gnomeDarkImage from "./gnome-dark.png";
 import styles from "./index.module.scss";
@@ -126,13 +126,13 @@ const Home: NextPage = () => {
 				mb={32}
 			>
 				<DiscordHomeCard />
+				<StuffIveMadeHomeCard />
 				{homelab}
 				<MastodonMediaHomeCard />
 				<GamesHomeCard />
 				<GithubGistsHomeCard />
 				<SketchfabHomeCard />
 				<WhereHomeCard />
-				<WorkHomeCard />
 				<FlickrHomeCard />
 				<MfcHomeCard />
 			</Grid>

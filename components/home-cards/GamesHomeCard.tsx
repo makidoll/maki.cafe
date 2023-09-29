@@ -16,6 +16,7 @@ import { PlayStationIcon } from "../ui/social-icons/PlayStationIcon";
 import { SteamIcon } from "../ui/social-icons/SteamIcon";
 import { gamesInfo } from "./games-info";
 import gamesSpritesheet from "./games-spritesheet.png";
+import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 
 export default function GamesHomeCard(props) {
 	const gamesWithPositions = getBackgroundPositionsForSpritesheet(
@@ -27,24 +28,6 @@ export default function GamesHomeCard(props) {
 	}));
 
 	const steamHorizontalAspectRation = "231 / 87";
-
-	const socials = [
-		{
-			name: "Steam",
-			url: config.socialLinks.steam,
-			icon: SteamIcon,
-		},
-		{
-			name: "PlayStation",
-			url: config.socialLinks.psnProfiles,
-			icon: PlayStationIcon,
-		},
-		// {
-		// 	name: "Osu",
-		// 	url: config.socialLinks.osu,
-		// 	icon: OsuIcon,
-		// },
-	];
 
 	return (
 		<HomeCard>
@@ -174,30 +157,25 @@ export default function GamesHomeCard(props) {
 						</GridItem>
 					))}
 			</Grid>
-			<HStack spacing={6} justifyContent={"center"}>
-				{socials.map((social, i) => (
-					<Link
-						key={i}
-						href={social.url}
-						textDecor="none"
-						color="#fff"
-					>
-						<Flex
-							width="100%"
-							alignItems="center"
-							justifyContent="center"
-							opacity={0.4}
-							mt={3}
-							mb={-2}
-						>
-							<social.icon size={18} color="#fff" />
-							<Text ml={1} fontWeight={500}>
-								{social.name}
-							</Text>
-						</Flex>
-					</Link>
-				))}
-			</HStack>
+			<HomeCardFooterLink
+				multi={[
+					{
+						name: "Steam",
+						url: config.socialLinks.steam,
+						icon: SteamIcon,
+					},
+					{
+						name: "PlayStation",
+						url: config.socialLinks.psnProfiles,
+						icon: PlayStationIcon,
+					},
+					// {
+					// 	name: "Osu",
+					// 	url: config.socialLinks.osu,
+					// 	icon: OsuIcon,
+					// },
+				]}
+			/>
 		</HomeCard>
 	);
 }
