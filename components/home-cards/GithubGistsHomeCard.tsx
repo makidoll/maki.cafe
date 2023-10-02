@@ -37,6 +37,7 @@ export default function GithubGistsHomeCard() {
 						fontSize={11}
 						lineHeight={1.1}
 						color={"white"}
+						href={post.url}
 					>
 						<Text color={"brand.500"}>{post.name}</Text>
 						<Text>{post.description}</Text>
