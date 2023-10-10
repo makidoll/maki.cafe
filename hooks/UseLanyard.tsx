@@ -169,12 +169,13 @@ function processIsPlaying(data: DataEvent): CurrentActivity | null {
 	if (isPlaying == null) return null;
 
 	// i tried finding a way to get the icon but i just cant unfortunately
+	// unless its an external image
 
 	return {
 		activityName: "Playing a game",
 		activityIcon: MdGamepad,
-		imageUrl: "",
-		imageAlt: "",
+		imageUrl: discordImageToUrl(isPlaying.assets?.large_image ?? ""),
+		imageAlt: isPlaying.assets?.large_text ?? "",
 		firstLine: isPlaying.name,
 		secondLine: "",
 		// backgroundColor: "rgba(0,0,0,0.85)",
