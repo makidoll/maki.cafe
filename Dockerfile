@@ -1,14 +1,14 @@
 FROM rockylinux:9
 
-RUN dnf install -y nodejs gtk3 dbus-glib && npm i -g yarn
+RUN dnf install -y nodejs gtk3 dbus-glib && npm i -g pnpm
 
 WORKDIR /app
 
-ADD package.json yarn.lock /app/
-# RUN yarn install && yarn playwright install-deps firefox
-RUN yarn install
+ADD package.json pnpm-lock.yaml /app/
+# RUN npm install --frozen-lockfile && pnpm playwright install-deps firefox
+RUN pnpm install --frozen-lockfile
 
 ADD . .
-RUN yarn build
+RUN pnpm build
 
-CMD yarn serve
+CMD pnpm serve
