@@ -208,9 +208,9 @@ export function useLanyard(discordId: string) {
 	} | null>();
 
 	useEffect(() => {
-		let heartbeatInterval: NodeJS.Timer | null;
+		let heartbeatInterval: any;
 
-		let activityTimeInterval: NodeJS.Timer | null;
+		let activityTimeInterval: any;
 
 		// there used to be more players like deadbeef and apple music
 		// and they'd use musicbrainz to guess cover images
