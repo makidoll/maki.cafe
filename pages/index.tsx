@@ -3,7 +3,7 @@ import type { NextPage } from "next";
 import { useState } from "react";
 import IntroDrone from "../components/IntroDrone";
 import Social from "../components/Social";
-import hexagonsTile from "../components/assets/hexagons.png";
+import militarismTile from "../components/assets/militarism.svg";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
@@ -72,14 +72,17 @@ const Home: NextPage = () => {
 				right={0}
 				h={"80vh"}
 				zIndex={-999999}
-				backgroundImage={hexagonsTile.src}
-				backgroundSize={`52px 90px`}
+				backgroundImage={militarismTile.src}
+				// backgroundSize={`52px 90px`} // hexagon
+				backgroundSize={[1200, 923.76]
+					.map(v => v * 0.2 + "px")
+					.join(" ")}
 				backgroundPosition={"center 0"}
 				backgroundRepeat={"repeat"}
-				opacity={0.01}
+				opacity={0.02}
 				style={{
 					// it can flash white if opacity is only set above
-					opacity: "0.01 !important",
+					opacity: "0.02 !important",
 					WebkitMaskImage:
 						"linear-gradient(0deg, transparent, black)",
 				}}
