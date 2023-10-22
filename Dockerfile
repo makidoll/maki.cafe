@@ -1,5 +1,6 @@
-FROM node:lts
-RUN corepack enable
+FROM rockylinux:9
+
+RUN dnf install -y nodejs gtk3 dbus-glib && npm i -g pnpm
 
 WORKDIR /app
 
