@@ -1,7 +1,7 @@
+import type { NextApiRequest, NextApiResponse } from "next";
+import { getBrowser } from "../../utils/api/playwright-browser";
+import { RouterCache } from "../../utils/api/router-cache";
 import { config } from "../../utils/config";
-import { getBrowser } from "../playwright-browser";
-import { RouterCache } from "../router-cache";
-import { baseProcedure, router } from "../trpc";
 
 interface Model {
 	url: string;
@@ -9,7 +9,9 @@ interface Model {
 	alt: string;
 }
 
-const cache = new RouterCache<Model[]>("sketchfab");
+export type SketchfabReponse = Model[];
+
+const cache = new RouterCache<SketchfabReponse>("sketchfab");
 
 // (async () => {
 // 	console.log("hiya");
@@ -17,7 +19,7 @@ const cache = new RouterCache<Model[]>("sketchfab");
 // 	console.log(browser);
 // })();
 
-async function fetchSketchfabPosts(): Promise<Model[]> {
+async function fetchSketchfabPosts(): Promise<SketchfabReponse> {
 	const browser = await getBrowser();
 	const page = await browser.newPage();
 
@@ -28,7 +30,7 @@ async function fetchSketchfabPosts(): Promise<Model[]> {
 
 	const modelEls = await page.$$('div[itemtype="http://schema.org/3DModel"]');
 
-	const models: Model[] = [];
+	const models: SketchfabReponse = [];
 
 	for (const modelEl of modelEls) {
 		const metaUrlEl = await modelEl.$('meta[itemprop="url"]');
@@ -56,8 +58,15 @@ async function fetchSketchfabPosts(): Promise<Model[]> {
 	return models.slice(0, 16);
 }
 
-export const sketchfabRouter = router({
-	all: baseProcedure.query(async ({ input }): Promise<Model[]> => {
-		return await cache.get(fetchSketchfabPosts);
-	}),
-});
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse<SketchfabReponse>,
+) {
+	try {
+		const data = await cache.get(fetchSketchfabPosts);
+		res.status(200).json(data);
+	} catch (error) {
+		res.status(500).json({ error: "something happened sorry" } as any);
+		console.error(error);
+	}
+}

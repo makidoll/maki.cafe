@@ -1,7 +1,9 @@
 import { Box, Center, Grid, GridItem, Link } from "@chakra-ui/react";
 import Image from "next/image";
+import useSWR from "swr";
+import { SketchfabReponse } from "../../pages/api/sketchfab";
+import { swrFetcher } from "../../utils/api/swr-fetcher";
 import { config } from "../../utils/config";
-import { trpc } from "../../utils/trpc";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
@@ -9,9 +11,12 @@ import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { SketchfabIcon } from "../ui/social-icons/SketchfabIcon";
 
 export default function SketchfabHomeCard() {
-	const models = trpc.sketchfab.all.useQuery();
+	const { data, error, isLoading } = useSWR<SketchfabReponse>(
+		"/api/sketchfab",
+		swrFetcher,
+	);
 
-	if (models.data == null) {
+	if (isLoading || error || data == null) {
 		return (
 			<HomeCard>
 				<Center flexDir={"column"}>
@@ -39,7 +44,7 @@ export default function SketchfabHomeCard() {
 					gap={1}
 					mt={4}
 				>
-					{models.data.map((model, i) => (
+					{data.map((model, i) => (
 						<GridItem key={i}>
 							<Link href={model.url}>
 								<Box

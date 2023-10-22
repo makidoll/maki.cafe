@@ -1,4 +1,4 @@
-import { GlobalRef } from "../utils/global-ref";
+import { GlobalRef } from "../global-ref";
 
 export class RouterCache<T> {
 	cacheTime = 0;
@@ -6,6 +6,7 @@ export class RouterCache<T> {
 	cachedValue: GlobalRef<T>;
 	cachedDate: GlobalRef<number>;
 
+	// 5 minutes by default
 	constructor(keyName: string, cacheTime = 5 * 60 * 1000) {
 		this.cacheTime = cacheTime;
 		this.cachedValue = new GlobalRef<T>(keyName + ".cached.value");

@@ -3,7 +3,6 @@ import type { AppProps } from "next/app";
 import Head from "next/head";
 import Script from "next/script";
 import { inter } from "../fonts/fonts";
-import { trpc } from "../utils/trpc";
 import "./_app.scss";
 
 if (globalThis.localStorage != null) {
@@ -73,7 +72,7 @@ const domain = "makidrone.io";
 const url = "https://" + domain;
 const imageUrl = url + "/icon.png";
 
-function MyApp({ Component, pageProps }: AppProps) {
+export default function MyApp({ Component, pageProps }: AppProps) {
 	return (
 		<ChakraProvider theme={theme}>
 			<Head>
@@ -136,5 +135,3 @@ function MyApp({ Component, pageProps }: AppProps) {
 		</ChakraProvider>
 	);
 }
-
-export default trpc.withTRPC(MyApp);

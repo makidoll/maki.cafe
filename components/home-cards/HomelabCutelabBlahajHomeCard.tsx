@@ -11,7 +11,6 @@ import {
 import { Fragment } from "react";
 import { MdArrowBack } from "react-icons/md";
 import { config } from "../../utils/config";
-import { trpc } from "../../utils/trpc";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import OpenableImage from "../ui/OpenableImage";
@@ -92,8 +91,6 @@ function linksToListItem(name: string, links: string[][]) {
 export default function HomelabCutelabBlahajHomeCard(props: {
 	onNewer: () => any;
 }) {
-	const uptimeRobot = trpc.uptimeRobot.all.useQuery();
-
 	return (
 		<HomeCard>
 			<Flex flexDir={"row"}>

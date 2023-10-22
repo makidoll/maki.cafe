@@ -1,7 +1,9 @@
 import { Box, Center, Grid, GridItem, Link } from "@chakra-ui/react";
 import Image from "next/image";
+import useSWR from "swr";
+import { FlickrResponse } from "../../pages/api/flickr";
+import { swrFetcher } from "../../utils/api/swr-fetcher";
 import { config } from "../../utils/config";
-import { trpc } from "../../utils/trpc";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
@@ -9,10 +11,12 @@ import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { FlickrIcon } from "../ui/social-icons/FlickrIcon";
 
 export default function FlickrHomeCard() {
-	// const [posts, setPosts] = useState<Post[]>([]);
-	const posts = trpc.flickr.all.useQuery();
+	const { data, error, isLoading } = useSWR<FlickrResponse>(
+		"/api/flickr",
+		swrFetcher,
+	);
 
-	if (!posts.data) {
+	if (isLoading || error || data == null) {
 		return (
 			<HomeCard>
 				<HomeCardLoading />
@@ -38,7 +42,7 @@ export default function FlickrHomeCard() {
 					gap={1}
 					mt={4}
 				>
-					{posts.data.map((post, i) => (
+					{data.map((post, i) => (
 						<GridItem
 							key={i}
 							transition={config.styles.hoverTransition}

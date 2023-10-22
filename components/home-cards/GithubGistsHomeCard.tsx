@@ -1,16 +1,21 @@
-import { Box, Center, Flex, Link, Text } from "@chakra-ui/react";
+import { Center, Flex, Link, Text } from "@chakra-ui/react";
+import useSWR from "swr";
+import { GithubGistsResponse } from "../../pages/api/github-gists";
+import { swrFetcher } from "../../utils/api/swr-fetcher";
 import { config } from "../../utils/config";
-import { trpc } from "../../utils/trpc";
 import HomeCard from "../ui/home-card/HomeCard";
-import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
+import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
+import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
 
 export default function GithubGistsHomeCard() {
-	const posts = trpc.githubGist.all.useQuery();
+	const { data, error, isLoading } = useSWR<GithubGistsResponse>(
+		"/api/github-gists",
+		swrFetcher,
+	);
 
-	if (!posts.data) {
+	if (isLoading || error || data == null) {
 		return (
 			<HomeCard>
 				<HomeCardLoading />
@@ -30,10 +35,10 @@ export default function GithubGistsHomeCard() {
 				</HomeCardHeading>
 			</Center>
 			<Flex flexDir={"column"} w={350}>
-				{posts.data.map((post, i) => (
+				{data.map((post, i) => (
 					<Link
 						key={i}
-						mb={i == posts.data.length - 1 ? 0 : 3}
+						mb={i == data.length - 1 ? 0 : 3}
 						fontSize={11}
 						lineHeight={1.1}
 						color={"white"}

@@ -8,9 +8,11 @@ import {
 	chakra,
 } from "@chakra-ui/react";
 import { MdArrowForward } from "react-icons/md";
+import useSWR from "swr";
 import { jetBrainsMono } from "../../fonts/fonts";
+import { UptimeRobotResponse } from "../../pages/api/uptime-robot";
+import { swrFetcher } from "../../utils/api/swr-fetcher";
 import { config } from "../../utils/config";
-import { trpc } from "../../utils/trpc";
 import OpenableImage from "../ui/OpenableImage";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
@@ -33,16 +35,19 @@ const colors = {
 export default function HomelabHotmilkBlahajHomeCard(props: {
 	onOlder: (type: OlderHomelab) => any;
 }) {
-	const uptimeRobot = trpc.uptimeRobot.all.useQuery();
+	const { data, error, isLoading } = useSWR<UptimeRobotResponse>(
+		"/api/uptime-robot",
+		swrFetcher,
+	);
 
 	const What =
-		uptimeRobot == null ? (
+		isLoading || error || data == undefined ? (
 			<HomeCardLoading />
 		) : (
 			<>
 				<chakra.table style={{ borderCollapse: "collapse" }}>
 					<chakra.tbody>
-						{uptimeRobot.data?.psp.monitors.map((service, i) => {
+						{data.psp.monitors.map((service, i) => {
 							const serviceLink =
 								config.selfHostedLinkMap[service.name];
 
@@ -168,7 +173,7 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 					fontWeight={500}
 				>
 					<Box px={1.5} py={0.5} fontWeight={800}>
-						{uptimeRobot.data?.statistics.uptime.l90.ratio}% uptime
+						{data.statistics.uptime.l90.ratio}% uptime
 					</Box>
 					<Link
 						px={1.5}

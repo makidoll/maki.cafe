@@ -1,11 +1,11 @@
 import axios from "axios";
+import type { NextApiRequest, NextApiResponse } from "next";
+import { RouterCache } from "../../utils/api/router-cache";
 import { config } from "../../utils/config";
-import { baseProcedure, router } from "../trpc";
-import { RouterCache } from "../router-cache";
 
-type UptimeRobotStatus = "success" | "warning" | "black";
+export type UptimeRobotStatus = "success" | "warning" | "black";
 
-type UptimeRobotResponse = {
+export type UptimeRobotResponse = {
 	psp: {
 		monitors: {
 			monitorId: number;
@@ -64,18 +64,15 @@ async function fetchUptimeRobot(): Promise<UptimeRobotResponse> {
 	return uptimeRes.data;
 }
 
-export const uptimeRobotRouter = router({
-	all: baseProcedure
-		// .input(
-		// 	z.object({
-		// 		name: z.string().nullish(),
-		// 	}),
-		// )
-		.query(async ({ input }): Promise<UptimeRobotResponse> => {
-			// if (process.env.NODE_ENV == "development") {
-			// 	return { uptime: 98.54321, up: 40, down: 20 };
-			// }
-
-			return await cache.get(fetchUptimeRobot);
-		}),
-});
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse<UptimeRobotResponse>,
+) {
+	try {
+		const data = await cache.get(fetchUptimeRobot);
+		res.status(200).json(data);
+	} catch (error) {
+		res.status(500).json({ error: "something happened sorry" } as any);
+		console.error(error);
+	}
+}

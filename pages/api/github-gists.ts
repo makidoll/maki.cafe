@@ -1,7 +1,7 @@
+import type { NextApiRequest, NextApiResponse } from "next";
+import { getBrowser } from "../../utils/api/playwright-browser";
+import { RouterCache } from "../../utils/api/router-cache";
 import { config } from "../../utils/config";
-import { getBrowser } from "../playwright-browser";
-import { RouterCache } from "../router-cache";
-import { baseProcedure, router } from "../trpc";
 
 interface Snippet {
 	url: string;
@@ -9,9 +9,11 @@ interface Snippet {
 	description: string;
 }
 
-const cache = new RouterCache<Snippet[]>("github");
+export type GithubGistsResponse = Snippet[];
 
-async function fetchGithubGists(): Promise<Snippet[]> {
+const cache = new RouterCache<GithubGistsResponse>("github");
+
+async function fetchGithubGists(): Promise<GithubGistsResponse> {
 	const browser = await getBrowser();
 	const page = await browser.newPage();
 
@@ -22,7 +24,7 @@ async function fetchGithubGists(): Promise<Snippet[]> {
 
 	const snippetEls = await page.$$("div.gist-snippet > div:first-of-type");
 
-	const snippets: Snippet[] = [];
+	const snippets: GithubGistsResponse = [];
 
 	for (const snippetEl of snippetEls) {
 		const snippetText = await snippetEl.textContent();
@@ -50,8 +52,15 @@ async function fetchGithubGists(): Promise<Snippet[]> {
 	return snippets.slice(0, 8);
 }
 
-export const githubGistRouter = router({
-	all: baseProcedure.query(async ({ input }): Promise<Snippet[]> => {
-		return await cache.get(fetchGithubGists);
-	}),
-});
+export default async function handler(
+	req: NextApiRequest,
+	res: NextApiResponse<GithubGistsResponse>,
+) {
+	try {
+		const data = await cache.get(fetchGithubGists);
+		res.status(200).json(data);
+	} catch (error) {
+		res.status(500).json({ error: "something happened sorry" } as any);
+		console.error(error);
+	}
+}
