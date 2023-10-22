@@ -1,12 +1,10 @@
-FROM rockylinux:9
-
-RUN dnf install -y nodejs gtk3 dbus-glib && npm i -g pnpm
+FROM node:lts
+RUN corepack enable
 
 WORKDIR /app
 
 ADD package.json pnpm-lock.yaml /app/
-# RUN pnpm install --frozen-lockfile && pnpm playwright install-deps firefox
-RUN pnpm install --frozen-lockfile
+RUN pnpm install --frozen-lockfile && pnpm playwright install-deps firefox
 
 ADD . .
 RUN pnpm build
