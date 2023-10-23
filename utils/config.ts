@@ -1,10 +1,10 @@
 const socialIds = {
 	discord: "72139729285427200",
 	twitter: "makidrone",
-	github: "makidrone",
+	github: "makidoll",
 	instagram: "makidrone_",
 	soundcloud: "makidrone",
-	steam: "makidrone",
+	steam: "makidoll",
 	skeb: "@Maki",
 	psnProfiles: "makifoxgirl",
 	matrix: "@maki:hotmilk.space",
