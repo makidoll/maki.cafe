@@ -1,6 +1,11 @@
 import { Box, Grid } from "@chakra-ui/react";
-import type { NextPage } from "next";
+import type {
+	GetServerSideProps,
+	InferGetServerSidePropsType,
+	NextPage,
+} from "next";
 import { useState } from "react";
+import { getSelectorsByUserAgent } from "react-device-detect";
 import IntroDrone from "../components/IntroDrone";
 import Social from "../components/Social";
 import militarismTile from "../components/assets/militarism.svg";
@@ -22,7 +27,24 @@ import Logo from "../components/ui/Logo";
 import gnomeDarkImage from "./gnome-dark.png";
 import styles from "./index.module.scss";
 
-const Home: NextPage = () => {
+export const getServerSideProps = (async ({ req }) => {
+	let isMobile = false;
+	if (req) {
+		isMobile = getSelectorsByUserAgent(
+			req.headers["user-agent"] ?? "",
+		).isMobile;
+	} else {
+		isMobile = getSelectorsByUserAgent(navigator.userAgent).isMobile;
+	}
+
+	return { props: { isMobile } };
+}) satisfies GetServerSideProps<{
+	isMobile: boolean;
+}>;
+
+const Home: NextPage = (
+	props: InferGetServerSidePropsType<typeof getServerSideProps>,
+) => {
 	const [ready, setReady] = useState(false);
 
 	const [olderHomelab, setOlderHomelab] = useState(OlderHomelab.None);
@@ -101,6 +123,7 @@ const Home: NextPage = () => {
 					onLoaded={() => {
 						setReady(true);
 					}}
+					isMobile={props.isMobile}
 				/>
 				<Box width={350} marginTop={0}>
 					<Logo ready={ready} />

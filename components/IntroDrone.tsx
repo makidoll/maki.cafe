@@ -5,7 +5,8 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Easing } from "../utils/easing-functions";
 import { TweenManager } from "../utils/tween-manager";
 import HomeCardLoading from "./ui/home-card/HomeCardLoading";
-import introDroneFrames from "./assets/intro-drone-frames.webm";
+import introDroneFrames1024 from "./assets/intro-drone-frames-1024.webm";
+import introDroneFrames384 from "./assets/intro-drone-frames-384.webm";
 
 const Deg2Rad = 0.0174533;
 
@@ -15,25 +16,47 @@ const endDegrees = -60 / 360; // deg
 const startScale = 0.5;
 const endScale = 1;
 
-// 1024 frames, so play at 1024 fps to make it one second long
+// const frameSize = 512;
+
+// > 1024 frames, so play at 1024 fps to make it one second long
 
 // ffmpeg -framerate 1024 -pattern_type glob -i "intro-drone-frames/*.png" \
 // -movflags faststart -vcodec libx264 -crf 23 -g 1 -pix_fmt yuv420p \
 // intro-drone-frames.mp4
 
-// ffmpeg -framerate 1024 -pattern_type glob -i "intro-drone-frames/*.png" \
-// -movflags faststart -c:v libvpx-vp9 -b:v 0 -crf 52 -g 1 -pix_fmt yuva420p  \
-// intro-drone-frames.webm
+// > lowering resolution helps a lot on mobile
+// > -vf scale=512:512
+
+// > also lowering crf on mobile which will increase filesize
+// > but is okay because lowering res will decrease it a lot
+
+// ffmpeg -y -framerate 1024 -pattern_type glob -i "intro-drone-frames/*.png" \
+// -c:v libvpx-vp9 -row-mt 1 -pix_fmt yuva420p \
+// -b:v 0 -crf 52 -g 1 \
+// intro-drone-frames-1024.webm
+
+// ffmpeg -y -framerate 1024 -pattern_type glob -i "intro-drone-frames/*.png" \
+// -c:v libvpx-vp9 -row-mt 1 -pix_fmt yuva420p -vf scale=384:384 \
+// -b:v 0 -crf 42 -g 1 \
+// intro-drone-frames-384.webm
+
+// > i originally converted the frames to webps and tar'd them
+// > its inefficient and we gotta downscale quite a bit, not recommended
+
+// parallel -eta cwebp -q 90 -resize 512 512 {} -o {.}.webp ::: *.png
+// tar -cvf ../intro-drone-frames.tar *.webp
+
+const glslMod = (a: number, n: number) => (a + n) % n;
+
+const clamp = (a: number, min = 0, max = 1) => Math.min(max, Math.max(min, a));
+
+const invLerp = (x: number, y: number, a: number) => clamp((a - x) / (y - x));
 
 function isElementInFrame(el: HTMLElement) {
 	const rect = el.getBoundingClientRect();
 	const w = window.innerWidth || document.documentElement.clientWidth;
 	const h = window.innerHeight || document.documentElement.clientHeight;
 	return rect.top < h && rect.bottom > 0 && rect.left < w && rect.right > 0;
-}
-
-function glslMod(a, n) {
-	return (a + n) % n;
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/readyState
@@ -45,7 +68,11 @@ enum VideoReadyState {
 	HAVE_ENOUGH_DATA = 4,
 }
 
-export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
+export default function IntroDrone(
+	props: BoxProps & { onLoaded: () => any; isMobile: boolean },
+) {
+	const size = (props.h ?? props.height ?? 0) as number;
+
 	const [loadingOpacity, setLoadingOpacity] = useState(1);
 	const [opacity, setOpacity] = useState(0);
 
@@ -55,10 +82,26 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 	const { onLoaded: _, ...flexProps } = props;
 
 	const init = async (parent: HTMLDivElement, video: HTMLVideoElement) => {
+		// const ctx = canvas.getContext("2d");
+		// if (ctx == null) return;
+
+		// canvas.width = canvas.height = size;
+
+		// const tar = await (await fetch(introDroneFrames)).arrayBuffer();
+		// const files = await untar(tar); // npm:isomorphic-untar
+
+		// const limit = pLimit(1024); // npm:p-limit
+
+		// const framePromises = files
+		// 	.map(async f => createImageBitmap(new Blob([f.buffer])))
+		// 	.map(fn => limit(() => fn));
+
+		// const frames = await Promise.all(framePromises);
+
 		// wait until video is loaded (well kinda but idk)
 
 		if (video.readyState != VideoReadyState.HAVE_ENOUGH_DATA) {
-			console.log("waiting for done");
+			// console.log("waiting for done");
 			await new Promise(resolve => {
 				let interval = setInterval(() => {
 					if (video.readyState != VideoReadyState.HAVE_ENOUGH_DATA)
@@ -67,7 +110,7 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 					resolve(null);
 				}, 100);
 			});
-			console.log("done");
+			// console.log("done");
 		}
 
 		// play and pause when user clicked
@@ -138,10 +181,6 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 
 		controls.update();
 
-		const clamp = (a, min = 0, max = 1) => Math.min(max, Math.max(min, a));
-
-		const invLerp = (x, y, a) => clamp((a - x) / (y - x));
-
 		let rotation = 0;
 
 		const update = () => {
@@ -153,8 +192,9 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 			// update frames
 
 			if (video == null) return;
-
 			if (!isElementInFrame(video)) return;
+
+			// if (ctx == null) return;
 
 			const azimuthalAngle = controls.getAzimuthalAngle();
 			rotation = glslMod(
@@ -162,6 +202,11 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 					tweenValues.rotation,
 				1,
 			);
+
+			// const frame = frames[Math.floor(rotation * frames.length)];
+
+			// ctx.clearRect(0, 0, size, size);
+			// ctx.drawImage(frame, 0, 0, frameSize, frameSize, 0, 0, size, size);
 
 			video.currentTime = rotation;
 		};
@@ -180,6 +225,11 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 	};
 
 	useEffect(() => {
+		// setLoadingOpacity(0);
+		// setOpacity(1);
+		// props.onLoaded();
+		// return;
+
 		if (parentRef.current == null || videoRef.current == null) return;
 
 		let cleanup = () => {};
@@ -246,8 +296,8 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 					transition: "opacity 0.1s linear",
 					zIndex: 20,
 					opacity,
-					width: (props.h ?? props.height ?? 0) + "px",
-					height: (props.h ?? props.height ?? 0) + "px",
+					width: size + "px",
+					height: size + "px",
 					pointerEvents: "none",
 					userSelect: "none",
 				}}
@@ -255,7 +305,14 @@ export default function IntroDrone(props: BoxProps & { onLoaded: () => any }) {
 				preload={"auto"}
 				muted={true}
 			>
-				<source src={introDroneFrames} type="video/webm"></source>
+				<source
+					src={
+						props.isMobile
+							? introDroneFrames384
+							: introDroneFrames1024
+					}
+					type="video/webm"
+				></source>
 			</video>
 			<Flex
 				position={"absolute"}

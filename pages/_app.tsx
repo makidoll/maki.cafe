@@ -118,6 +118,8 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				<meta name="twitter:title" content={title} />
 				<meta name="twitter:description" content={description} />
 				<meta name="twitter:image" content={imageUrl} />
+				{/* <script src="https://cdn.jsdelivr.net/npm/eruda"></script>
+				<script>eruda.init();</script> */}
 			</Head>
 			<Script
 				id="ithelpsme"

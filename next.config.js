@@ -57,7 +57,7 @@ const nextConfig = {
 
 		// add more files to file loading via url
 		config.module.rules.push({
-			test: /\.(mp4)|(webm)$/i,
+			test: /\.(mp4)|(webm)|(tar)$/i,
 			use: [
 				{
 					loader: "file-loader",
