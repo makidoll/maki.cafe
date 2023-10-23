@@ -3,7 +3,8 @@
 // const CopyPlugin = require("copy-webpack-plugin");
 
 const nextConfig = {
-	reactStrictMode: true,
+	// https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
+	reactStrictMode: false,
 	swcMinify: true,
 	images: {
 		remotePatterns: [
