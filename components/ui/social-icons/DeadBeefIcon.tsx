@@ -1,6 +1,6 @@
 import { IconBaseProps, IconType } from "react-icons";
 
-export const DeadbeefIcon: IconType = (props: IconBaseProps) => (
+export const DeadBeefIcon: IconType = (props: IconBaseProps) => (
 	<svg
 		viewBox="0 0 480 641"
 		fill={props.color}

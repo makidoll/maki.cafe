@@ -5,6 +5,8 @@ import { CrunchyrollIcon } from "../components/ui/social-icons/CrunchyrollIcon";
 import { SpotifyIcon } from "../components/ui/social-icons/SpotifyIcon";
 import { TowerUniteIcon } from "../components/ui/social-icons/TowerUniteIcon";
 import { config } from "../utils/config";
+import { colorMix } from "../utils/utils";
+import { DeadBeefIcon } from "../components/ui/social-icons/DeadBeefIcon";
 
 enum Op {
 	Event = 0,
@@ -164,6 +166,31 @@ function processTowerUnite(data: DataEvent): CurrentActivity | null {
 	};
 }
 
+function processDeadBeef(data: DataEvent): CurrentActivity | null {
+	const deadBeef = data.activities.find(
+		activity => activity.name == "DeaDBeeF",
+	);
+	if (deadBeef == null) return null;
+
+	console.log(deadBeef);
+
+	return {
+		activityName: "DeaDBeeF",
+		activityIcon: DeadBeefIcon,
+		imageUrl: discordImageToUrl(deadBeef.assets?.large_image),
+		imageAlt: deadBeef.assets?.large_text,
+		firstLine: deadBeef.details,
+		secondLine: deadBeef.state,
+		backgroundColor: "#80c040",
+		activityUrl:
+			"https://musicbrainz.org/search?query=" +
+			encodeURIComponent(deadBeef.assets?.large_text) +
+			"&type=release",
+		timestampStart: deadBeef.timestamps.start,
+		timestampEnd: deadBeef.timestamps.end,
+	};
+}
+
 function processIsPlaying(data: DataEvent): CurrentActivity | null {
 	const isPlaying = data.activities.find(activity => activity.type == 0);
 	if (isPlaying == null) return null;
@@ -187,9 +214,10 @@ function processIsPlaying(data: DataEvent): CurrentActivity | null {
 }
 
 const processActivities: ((data: DataEvent) => CurrentActivity | null)[] = [
-	// games with rich presence
+	// programs with rich presence
 	processTowerUnite,
-	// games, any
+	processDeadBeef,
+	// games or anything really
 	processIsPlaying,
 	// music
 	processSpotify,
@@ -214,7 +242,7 @@ export function useLanyard(discordId: string) {
 
 		// there used to be more players like deadbeef and apple music
 		// and they'd use musicbrainz to guess cover images
-		// https://github.com/makidrone/makidrone.io/blob/outdated-angular-version/src/app/cards/discord/discord.component.ts
+		// https://github.com/makidoll/makidoll.io/blob/outdated-angular-version/src/app/cards/discord/discord.component.ts
 
 		const clearActivityTimeInterval = () => {
 			if (activityTimeInterval) {

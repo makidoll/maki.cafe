@@ -57,6 +57,7 @@ export default function DiscordHomeCard() {
 			borderRadius={12}
 			spacing={1}
 			mt={4}
+			textShadow={"2px 2px 0 rgba(0,0,0,0.1)"}
 		>
 			<HStack>
 				{!activity?.imageUrl ? (
