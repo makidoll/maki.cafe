@@ -96,9 +96,12 @@ interface CurrentActivity {
 	activityUrl: string;
 	timestampStart: number | null;
 	timestampEnd: number | null;
+	type: "game" | "other";
 }
 
 function discordImageToUrl(image: string) {
+	if (typeof image != "string") return "";
+	if (!image.startsWith("mp:external/")) return "";
 	return image.replace(
 		/^mp:external\//i,
 		"https://media.discordapp.net/external/",
@@ -120,6 +123,7 @@ function processSpotify(data: DataEvent): CurrentActivity | null {
 		activityUrl: "https://open.spotify.com/track/" + song.track_id,
 		timestampStart: song.timestamps.start,
 		timestampEnd: song.timestamps.end,
+		type: "other",
 	};
 }
 
@@ -142,6 +146,7 @@ function processCrunchyroll(data: DataEvent): CurrentActivity | null {
 			encodeURIComponent(crunchyroll.details),
 		timestampStart: crunchyroll.timestamps.start,
 		timestampEnd: crunchyroll.timestamps.end, // i think its null
+		type: "other",
 	};
 }
 
@@ -163,6 +168,7 @@ function processTowerUnite(data: DataEvent): CurrentActivity | null {
 		activityUrl: "https://towerunite.com",
 		timestampStart: null,
 		timestampEnd: null,
+		type: "game",
 	};
 }
 
@@ -172,7 +178,7 @@ function processDeadBeef(data: DataEvent): CurrentActivity | null {
 	);
 	if (deadBeef == null) return null;
 
-	console.log(deadBeef);
+	console.log(deadBeef.assets?.large_image);
 
 	return {
 		activityName: "DeaDBeeF",
@@ -188,6 +194,7 @@ function processDeadBeef(data: DataEvent): CurrentActivity | null {
 			"&type=release",
 		timestampStart: deadBeef.timestamps.start,
 		timestampEnd: deadBeef.timestamps.end,
+		type: "other",
 	};
 }
 
@@ -210,6 +217,7 @@ function processIsPlaying(data: DataEvent): CurrentActivity | null {
 		activityUrl: "",
 		timestampStart: isPlaying.timestamps.start,
 		timestampEnd: null,
+		type: "game",
 	};
 }
 

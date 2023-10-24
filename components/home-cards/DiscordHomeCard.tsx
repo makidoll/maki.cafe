@@ -67,10 +67,11 @@ export default function DiscordHomeCard() {
 						borderRadius={6}
 						background="rgba(255, 255, 255, 0.3)"
 					>
-						{activity == null ? (
+						{activity == null || activity.type == "other" ? (
 							<Text
 								fontSize="32px"
 								color="rgba(255, 255, 255, 0.5)"
+								textShadow={"none"}
 							>
 								#!
 							</Text>
