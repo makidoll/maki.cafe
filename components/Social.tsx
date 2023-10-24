@@ -222,16 +222,18 @@ export default function Social() {
 						custom="arch-linux"
 						opacity={subTextOpacity + 0.1}
 					></Emoji>
-					<Text
+					<Link
 						opacity={subTextOpacity - 0.1}
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
 						letterSpacing={-1}
 						fontStyle={"italic"}
+						href={config.socialLinks.github + "/dots"}
+						color="white"
 					>
 						i use arch btw lmao
-					</Text>
+					</Link>
 				</HStack>
 				<Link
 					href={config.socialLinks.github + "/makidrone.io"}
