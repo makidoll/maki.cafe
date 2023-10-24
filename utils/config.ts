@@ -43,7 +43,7 @@ const socialLinks = {
 
 export const config = {
 	api: {
-		lanyard: "wss://lanyard.makidrone.io/socket",
+		lanyard: "wss://lanyard.makidoll.io/socket",
 		// bibliogram: "https://bibliogram.cutelab.space",
 		// nitter: "https://nitter.cutelab.space",
 	},
@@ -56,11 +56,11 @@ export const config = {
 		"blahaj.quest": "https://blahaj.quest",
 		Gitlab: "https://git.hotmilk.space",
 		Lemmy: "https://lemmy.hotmilk.space",
-		"makidrone.io": "https://makidrone.io",
+		"makidoll.io": "https://makidoll.io",
 		Mastodon: "https://mastodon.hotmilk.space",
 		Speedtest: "https://speedtest.hotmilk.space",
 	},
 	selfHostedLinkTooltipMap: {
-		"makidrone.io": "or maki.cafe",
+		"makidoll.io": "or maki.cafe",
 	},
 };

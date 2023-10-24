@@ -1,8 +1,8 @@
-# makidrone.io
+# makidoll.io
 
 Built with **Next.js** and **Chakra UI**
 
-Used to be built with Angular which is now available in [outdated-angular-version](https://github.com/makidrone/makidrone.io/tree/outdated-angular-version) branch
+Used to be built with Angular which is now available in [outdated-angular-version](https://github.com/makidoll/makidoll.io/tree/outdated-angular-version) branch
 
 ```bash
 yarn install
