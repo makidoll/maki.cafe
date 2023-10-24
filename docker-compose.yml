@@ -29,7 +29,7 @@ services:
             - traefik.http.middlewares.maki-cafe-redirect.redirectregex.replacement=https://makidoll.io$${1}
             - traefik.http.middlewares.maki-cafe-redirect.redirectregex.permanent=false
 
-            - traefik.http.middlewares.makidrone-redirect.redirectregex.regex=^https?://(?:www\.)?maki.cafe(.+)
+            - traefik.http.middlewares.makidrone-redirect.redirectregex.regex=^https?://(?:www\.)?makidrone.io(.+)
             - traefik.http.middlewares.makidrone-redirect.redirectregex.replacement=https://makidoll.io$${1}
             - traefik.http.middlewares.makidrone-redirect.redirectregex.permanent=false
 
