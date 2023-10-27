@@ -72,6 +72,7 @@ const steamIds = [
 	// -- new line
 	"1895880", // ratchet and clank rift apart
 	"319630", // life is strange
+	"1091500", // cyberpunk 2077
 ];
 
 const imagePathsAndUrls = [
