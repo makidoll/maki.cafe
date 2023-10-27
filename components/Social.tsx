@@ -19,6 +19,7 @@ interface Social {
 	name: string;
 	color: string;
 	small: boolean;
+	rel?: string;
 }
 
 export default function Social() {
@@ -31,6 +32,7 @@ export default function Social() {
 				name: "Mastodon",
 				color: "#6364FF",
 				small: false,
+				rel: "me",
 			},
 			{
 				icon: TwitterIcon,
@@ -107,6 +109,7 @@ export default function Social() {
 						background: colorMix(social.color, "#ffffff", 0.2),
 						opacity: 1,
 					}}
+					rel={social.rel}
 				>
 					{social.name}
 				</Button>
