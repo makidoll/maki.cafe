@@ -34,13 +34,13 @@ export default function Social() {
 				small: false,
 				rel: "me",
 			},
-			{
-				icon: TwitterIcon,
-				href: config.socialLinks.twitter,
-				name: "Twitter",
-				color: "#1DA1F2",
-				small: false,
-			},
+			// {
+			// 	icon: TwitterIcon,
+			// 	href: config.socialLinks.twitter,
+			// 	name: "Twitter",
+			// 	color: "#1DA1F2",
+			// 	small: false,
+			// },
 			{
 				icon: GitHubIcon,
 				href: config.socialLinks.github,
@@ -132,7 +132,7 @@ export default function Social() {
 					fontWeight={fontWeight}
 					fontSize="2xl"
 				>
-					cute shiny latex drone doll
+					cute shiny latex doll
 				</SubHeading>
 				<Emoji size={24} custom="cyber-heart"></Emoji>
 				<SubHeading
@@ -140,7 +140,7 @@ export default function Social() {
 					fontWeight={fontWeight + 100}
 					fontSize="md"
 				>
-					it/she/they
+					she/they/it
 				</SubHeading>
 				<Emoji size={24} custom="trans-heart"></Emoji>
 				{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}

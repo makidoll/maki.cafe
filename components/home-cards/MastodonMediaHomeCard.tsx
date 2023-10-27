@@ -91,11 +91,11 @@ export default function MastodonMediaHomeCard() {
 	const imageAspectRatio = 4 / 3;
 
 	const socials = [
-		{
-			name: "Twitter",
-			url: config.socialLinks.twitter,
-			icon: TwitterIcon,
-		},
+		// {
+		// 	name: "Twitter",
+		// 	url: config.socialLinks.twitter,
+		// 	icon: TwitterIcon,
+		// },
 		{
 			name: "Mastodon",
 			url: config.socialLinks.mastodon,
