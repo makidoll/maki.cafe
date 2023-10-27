@@ -79,7 +79,7 @@ export default function IntroDrone(
 	const parentRef = useRef<HTMLDivElement>();
 	const videoRef = useRef<HTMLVideoElement>();
 
-	const { onLoaded: _, ...flexProps } = props;
+	const { onLoaded, isMobile, ...flexProps } = props;
 
 	const init = async (parent: HTMLDivElement, video: HTMLVideoElement) => {
 		// const ctx = canvas.getContext("2d");
@@ -263,7 +263,7 @@ export default function IntroDrone(
 				setTimeout(() => {
 					setOpacity(1);
 					newFunctions.afterInit();
-					props.onLoaded();
+					onLoaded();
 				}, 100);
 			}, 100);
 		})();
@@ -306,11 +306,7 @@ export default function IntroDrone(
 				muted={true}
 			>
 				<source
-					src={
-						props.isMobile
-							? introDroneFrames384
-							: introDroneFrames1024
-					}
+					src={isMobile ? introDroneFrames384 : introDroneFrames1024}
 					type="video/webm"
 				></source>
 			</video>

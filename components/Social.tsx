@@ -132,7 +132,7 @@ export default function Social() {
 					fontWeight={fontWeight}
 					fontSize="2xl"
 				>
-					cute shiny latex doll
+					cute game dev doll
 				</SubHeading>
 				<Emoji size={24} custom="cyber-heart"></Emoji>
 				<SubHeading
@@ -140,7 +140,7 @@ export default function Social() {
 					fontWeight={fontWeight + 100}
 					fontSize="md"
 				>
-					she/they/it
+					she/they
 				</SubHeading>
 				<Emoji size={24} custom="trans-heart"></Emoji>
 				{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}
@@ -172,45 +172,57 @@ export default function Social() {
 						programming and running servers
 					</Text>
 				</HStack>
-				<HStack spacing={1}>
-					<Emoji size={24} font="noto">
+				<HStack spacing={0.5} mt={0.5}>
+					<Emoji size={20} font="noto">
 						🦊
 					</Emoji>
 					<Text
 						opacity={subTextOpacity}
 						fontWeight={fontWeight}
-						fontSize="xl"
+						fontSize="lg"
 						px={1}
 						letterSpacing={-1}
 					>
 						sensitive
 					</Text>
-					<Emoji size={24} font="noto">
+					<Emoji size={20} font="noto">
 						🐸
 					</Emoji>
 					<Text
 						opacity={subTextOpacity}
 						fontWeight={fontWeight}
-						fontSize="xl"
+						fontSize="lg"
 						px={1}
 						letterSpacing={-1}
 					>
-						neurospicy
+						neuro-
 					</Text>
-					<Emoji size={24} font="noto">
+					<Emoji size={20} font="noto">
 						🦐
 					</Emoji>
 					<Text
 						opacity={subTextOpacity}
 						fontWeight={fontWeight}
-						fontSize="xl"
+						fontSize="lg"
+						px={1}
+						letterSpacing={-1}
+					>
+						-spicy
+					</Text>
+					<Emoji size={20} font="noto">
+						🐍
+					</Emoji>
+					<Text
+						opacity={subTextOpacity}
+						fontWeight={fontWeight}
+						fontSize="lg"
 						px={1}
 						letterSpacing={-1}
 					>
 						mess
 					</Text>
-					<Emoji size={24} font="noto">
-						🐍
+					<Emoji size={20} font="noto">
+						🐿️
 					</Emoji>
 					{/* TODO: missing squirrel */}
 				</HStack>
