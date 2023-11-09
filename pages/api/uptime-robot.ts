@@ -1,6 +1,6 @@
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { RouterCache } from "../../utils/api/router-cache";
+import { apiCache } from "../../utils/api/api-cache";
 import { config } from "../../utils/config";
 
 export type UptimeRobotStatus = "success" | "warning" | "black";
@@ -28,8 +28,6 @@ export type UptimeRobotResponse = {
 		};
 	};
 };
-
-const cache = new RouterCache<UptimeRobotResponse>("uptime-robot");
 
 async function fetchUptimeRobot(): Promise<UptimeRobotResponse> {
 	const uptimeRes = await axios(
@@ -69,8 +67,7 @@ export default async function handler(
 	res: NextApiResponse<UptimeRobotResponse>,
 ) {
 	try {
-		const data = await cache.get(fetchUptimeRobot);
-		res.status(200).json(data);
+		res.status(200).json(await apiCache("uptime-robot", fetchUptimeRobot));
 	} catch (error) {
 		res.status(500).json({ error: "something happened sorry" } as any);
 		console.error(error);

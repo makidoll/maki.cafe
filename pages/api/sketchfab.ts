@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { getBrowser } from "../../utils/api/playwright-browser";
-import { RouterCache } from "../../utils/api/router-cache";
+import { ApiCache, apiCache } from "../../utils/api/api-cache";
 import { config } from "../../utils/config";
 
 interface Model {
@@ -10,14 +10,6 @@ interface Model {
 }
 
 export type SketchfabReponse = Model[];
-
-const cache = new RouterCache<SketchfabReponse>("sketchfab");
-
-// (async () => {
-// 	console.log("hiya");
-
-// 	console.log(browser);
-// })();
 
 async function fetchSketchfabPosts(): Promise<SketchfabReponse> {
 	const browser = await getBrowser();
@@ -63,8 +55,7 @@ export default async function handler(
 	res: NextApiResponse<SketchfabReponse>,
 ) {
 	try {
-		const data = await cache.get(fetchSketchfabPosts);
-		res.status(200).json(data);
+		res.status(200).json(await apiCache("sketchfab", fetchSketchfabPosts));
 	} catch (error) {
 		res.status(500).json({ error: "something happened sorry" } as any);
 		console.error(error);

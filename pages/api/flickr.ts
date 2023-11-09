@@ -1,7 +1,7 @@
 import axios from "axios";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { RouterCache } from "../../utils/api/router-cache";
 import { config } from "../../utils/config";
+import { apiCache } from "../../utils/api/api-cache";
 
 interface Post {
 	title: string;
@@ -16,8 +16,6 @@ interface Post {
 }
 
 export type FlickrResponse = Post[];
-
-const cache = new RouterCache<FlickrResponse>("flickr");
 
 async function fetchFlickr() {
 	const res = await axios(
@@ -38,8 +36,7 @@ export default async function handler(
 	res: NextApiResponse<FlickrResponse>,
 ) {
 	try {
-		const data = await cache.get(fetchFlickr);
-		res.status(200).json(data);
+		res.status(200).json(await apiCache("flickr", fetchFlickr));
 	} catch (error) {
 		res.status(500).json({ error: "something happened sorry" } as any);
 		console.error(error);

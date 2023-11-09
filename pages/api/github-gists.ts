@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { apiCache } from "../../utils/api/api-cache";
 import { getBrowser } from "../../utils/api/playwright-browser";
-import { RouterCache } from "../../utils/api/router-cache";
 import { config } from "../../utils/config";
 
 interface Snippet {
@@ -10,8 +10,6 @@ interface Snippet {
 }
 
 export type GithubGistsResponse = Snippet[];
-
-const cache = new RouterCache<GithubGistsResponse>("github");
 
 async function fetchGithubGists(): Promise<GithubGistsResponse> {
 	const browser = await getBrowser();
@@ -57,8 +55,7 @@ export default async function handler(
 	res: NextApiResponse<GithubGistsResponse>,
 ) {
 	try {
-		const data = await cache.get(fetchGithubGists);
-		res.status(200).json(data);
+		res.status(200).json(await apiCache("github", fetchGithubGists));
 	} catch (error) {
 		res.status(500).json({ error: "something happened sorry" } as any);
 		console.error(error);
