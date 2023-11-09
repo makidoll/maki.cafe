@@ -300,13 +300,7 @@ export default function Social() {
 			</VStack>
 			<VStack spacing={1} mt={6}>
 				<HStack spacing={0}>
-					<Emoji
-						size={24}
-						custom="arch-linux"
-						opacity={subTextOpacity + 0.1}
-					></Emoji>
 					<Link
-						opacity={subTextOpacity - 0.1}
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
@@ -314,8 +308,25 @@ export default function Social() {
 						fontStyle={"italic"}
 						href={config.socialLinks.github + "/dots"}
 						color="white"
+						transition={config.styles.hoverTransition}
+						_hover={{ transform: "scale(1.05)" }}
 					>
-						i use arch btw lmao
+						<HStack spacing={2}>
+							<Emoji
+								opacity={subTextOpacity + 0.1}
+								size={24}
+								custom="arch-linux"
+							></Emoji>
+							<Text opacity={subTextOpacity - 0.1}>
+								i use arch btw lmao
+							</Text>
+							<FaArrowRight
+								opacity={subTextOpacity - 0.1}
+								size={16}
+								color="#fff"
+								style={{ marginBottom: "0px" }}
+							/>
+						</HStack>
 					</Link>
 				</HStack>
 				<Link
