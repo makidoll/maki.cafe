@@ -1,17 +1,25 @@
-import { Button, Flex, HStack, Link, Text, VStack } from "@chakra-ui/react";
+import {
+	Box,
+	Button,
+	Flex,
+	HStack,
+	Link,
+	Text,
+	VStack,
+} from "@chakra-ui/react";
 import { IconType } from "react-icons";
-import { FaArrowRight, FaCode } from "react-icons/fa";
+import { FaArrowRight } from "react-icons/fa";
 import { config } from "../utils/config";
 import { colorMix } from "../utils/utils";
+import rainbowShaderGif from "./assets/rainbow-shader.gif";
 import Emoji from "./ui/Emoji";
 import SubHeading from "./ui/SubHeading";
-import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
+import { KofiIcon } from "./ui/social-icons/KofiIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
 import { PronounsPageIcon } from "./ui/social-icons/PronounsPageIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
-import { TwitterIcon } from "./ui/social-icons/TwitterIcon";
 
 interface Social {
 	icon: IconType;
@@ -20,6 +28,7 @@ interface Social {
 	color: string;
 	small: boolean;
 	rel?: string;
+	rainbow?: boolean;
 }
 
 export default function Social() {
@@ -47,6 +56,14 @@ export default function Social() {
 				name: "GitHub",
 				color: "#333",
 				small: false,
+			},
+			{
+				icon: KofiIcon,
+				href: config.socialLinks.kofi,
+				name: "Support me",
+				color: "#13C3FF",
+				small: false,
+				rainbow: true,
 			},
 		],
 		[
@@ -110,7 +127,58 @@ export default function Social() {
 						opacity: 1,
 					}}
 					rel={social.rel}
+					position={"relative"}
+					overflow={social.rainbow ? "hidden" : "auto"}
 				>
+					{social.rainbow ? (
+						<>
+							<Box
+								position={"absolute"}
+								top={0}
+								bottom={0}
+								left={0}
+								right={0}
+								margin={"auto"}
+								opacity={1}
+								backgroundSize={"cover"}
+								backgroundImage={`url(${rainbowShaderGif.src})`}
+								style={{
+									imageRendering: "pixelated",
+								}}
+							></Box>
+							<Box
+								position={"absolute"}
+								top={0}
+								bottom={0}
+								left={0}
+								right={0}
+								margin={"auto"}
+								opacity={1}
+								display={"flex"}
+								alignItems={"center"}
+								justifyContent={"center"}
+								backgroundColor={"rgba(20,20,20,0.3)"}
+								_hover={{
+									backgroundColor: "rgba(20,20,20,0.15)",
+								}}
+								transitionProperty={
+									"var(--chakra-transition-property-common)"
+								}
+								transitionDuration={
+									"var(--chakra-transition-duration-normal)"
+								}
+							>
+								<social.icon
+									color={"#fff"}
+									size={social.small ? 16 : 18}
+									style={{ marginRight: "8px" }}
+								/>
+								{social.name}
+							</Box>
+						</>
+					) : (
+						<></>
+					)}
 					{social.name}
 				</Button>
 			))}

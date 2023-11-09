@@ -39,6 +39,7 @@ const socialLinks = {
 	sketchfab: "https://sketchfab.com/" + socialIds.sketchfab,
 	mastodon: `https://${socialIds.mastodon.instance}/@${socialIds.mastodon.username}`,
 	pronounsPage: "https://en.pronouns.page/@makidoll",
+	kofi: "https://ko-fi.com/makidoll",
 };
 
 export const config = {

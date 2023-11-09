@@ -1,0 +1,85 @@
+<html>
+	<head>
+		<style>
+			* {
+				margin: 0;
+			}
+
+			#canvas {
+				transform: scale(4);
+				transform-origin: 0 0;
+				image-rendering: crisp-edges;
+				image-rendering: pixelated;
+			}
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas"></canvas>
+		<script src="../glsl-canvas.js"></script>
+		<script>
+			async function wait(ms) {
+				return new Promise(resolve => {
+					setTimeout(() => {
+						resolve(ms);
+					}, ms);
+				});
+			}
+
+			function download(filename, text) {
+				var element = document.createElement("a");
+				element.setAttribute(
+					"href",
+					"data:text/plain;charset=utf-8," + encodeURIComponent(text),
+				);
+				element.setAttribute("download", filename);
+				element.style.display = "none";
+				document.body.appendChild(element);
+				element.click();
+				document.body.removeChild(element);
+			}
+
+			(async () => {
+				const canvas = document.getElementById("canvas");
+
+				// 158x40
+				canvas.width = 40;
+				canvas.height = 10;
+
+				const req = await fetch("rainbow-shader.frag?" + Date.now());
+				const fragmentString = await req.text();
+
+				const sandbox = new glsl.Canvas(canvas, {
+					fragmentString,
+					alpha: false,
+					antialias: false,
+					mode: "flat",
+				});
+
+				sandbox.setTexture(
+					"u_tex_blue_noise_1024",
+					"blue_noise_1024.png",
+					{ filtering: "nearest" },
+				);
+
+				await wait(1000);
+				// return;
+
+				let frames = [];
+
+				// 50 fps for a gif
+				const outputLength = 3; // seconds
+				const outputFps = 50; // fps
+
+				const outputFrames = outputFps * outputLength;
+
+				for (let i = 0; i < outputFrames; i++) {
+					sandbox.setUniform("u_time_for_gif", i / outputFps);
+					sandbox.render();
+					frames.push(canvas.toDataURL("png"));
+				}
+
+				download("frames.json", JSON.stringify(frames));
+			})();
+		</script>
+	</body>
+</html>
