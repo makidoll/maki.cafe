@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
+import { apiCache } from "../../utils/api/api-cache";
 import { getBrowser } from "../../utils/api/playwright-browser";
-import { ApiCache, apiCache } from "../../utils/api/api-cache";
 import { config } from "../../utils/config";
 
 interface Model {
