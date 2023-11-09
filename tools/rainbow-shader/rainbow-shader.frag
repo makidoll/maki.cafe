@@ -13,6 +13,8 @@ uniform sampler2D u_tex_blue_noise_1024;
 // #define _paletteDitherIterations 128
 // #define _paletteDitherErrorFactor 1.0
 
+// using resurrect 64
+
 // const int paletteSize = 64;
 // const vec3 palette[paletteSize] = vec3[](
 // 	vec3(0x2e, 0x22, 0x2f) / 255.0,
@@ -81,7 +83,8 @@ uniform sampler2D u_tex_blue_noise_1024;
 // 	vec3(0xfd, 0xcb, 0xb0) / 255.0
 // );
 
-// uses the palette
+// uses the palette. picked out as best as i could
+
 const int gradientSize = 15;
 const vec3 gradient[gradientSize] = vec3[](
 	vec3(0x7a, 0x30, 0x45) / 255.0,
