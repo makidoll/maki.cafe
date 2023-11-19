@@ -192,6 +192,9 @@ export default function Social() {
 		<Flex flexDir="column" alignItems="center" justifyContent="center">
 			<HStack spacing={2}>
 				<Emoji size={24} font="twemoji" mr={-0.5}>
+					🎀
+				</Emoji>
+				<Emoji size={24} font="twemoji" mr={-0.5}>
 					✨
 				</Emoji>
 				{/* <Emoji size={24} custom="pleading-hypno"></Emoji> */}
@@ -240,7 +243,7 @@ export default function Social() {
 						programming and running servers
 					</Text>
 				</HStack>
-				<HStack spacing={0.5} mt={0.5}>
+				{/* <HStack spacing={0.5} mt={0.5}>
 					<Emoji size={20} font="noto">
 						🦊
 					</Emoji>
@@ -292,7 +295,32 @@ export default function Social() {
 					<Emoji size={20} font="noto">
 						🐿️
 					</Emoji>
-					{/* TODO: missing squirrel */}
+				</HStack> */}
+				<HStack spacing={0.5} mt={0.5}>
+					<Emoji size={20} font="noto">
+						🐸
+					</Emoji>
+					<Text
+						opacity={subTextOpacity}
+						fontWeight={fontWeight}
+						fontSize="xl"
+						px={1}
+						letterSpacing={-1}
+					>
+						autistic and highly sensitive
+					</Text>
+					<Emoji size={20} font="noto">
+						🦐
+					</Emoji>
+					<Emoji size={20} font="noto">
+						🦊
+					</Emoji>
+					<Emoji size={20} font="noto">
+						🐍
+					</Emoji>
+					<Emoji size={20} font="noto">
+						🐿️
+					</Emoji>
 				</HStack>
 			</VStack>
 			<VStack mt={6} spacing={socialsSpacing}>

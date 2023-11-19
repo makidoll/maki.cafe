@@ -8,7 +8,6 @@ import { useState } from "react";
 import { getSelectorsByUserAgent } from "react-device-detect";
 import IntroDrone from "../components/IntroDrone";
 import Social from "../components/Social";
-import militarismTile from "../components/assets/militarism.svg";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
@@ -24,6 +23,7 @@ import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import StuffIveMadeHomeCard from "../components/home-cards/StuffIveMadeHomeCard";
 import WhereHomeCard from "../components/home-cards/WhereHomeCard";
 import Logo from "../components/ui/Logo";
+import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import gnomeDarkImage from "./gnome-dark.png";
 import styles from "./index.module.scss";
 
@@ -94,11 +94,13 @@ const Home: NextPage = (
 				right={0}
 				h={"80vh"}
 				zIndex={-999999}
-				backgroundImage={militarismTile.src}
 				// backgroundSize={`52px 90px`} // hexagon
-				backgroundSize={[1200, 923.76]
-					.map(v => v * 0.2 + "px")
-					.join(" ")}
+				// backgroundSize={[1200, 923.76]
+				// 	.map(v => v * 0.2 + "px")
+				// 	.join(" ")}
+				// backgroundImage={militarismTile.src}
+				backgroundImage={polkaDotPattern.src}
+				backgroundSize={[10, 11.547].map(v => v * 10 + "px").join(" ")}
 				backgroundPosition={"center 0"}
 				backgroundRepeat={"repeat"}
 				opacity={0.02}
