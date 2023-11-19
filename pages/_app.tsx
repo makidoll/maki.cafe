@@ -65,7 +65,7 @@ const theme = extendTheme({
 	},
 });
 
-const title = "Maki ✨🏳️‍⚧️";
+const title = "Maki Doll 🎀 ✨";
 const description = "i make things ❤️";
 
 const domain = "makidoll.io";
