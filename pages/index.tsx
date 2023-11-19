@@ -1,4 +1,4 @@
-import { Box, Grid } from "@chakra-ui/react";
+import { Box, Grid, Text, chakra } from "@chakra-ui/react";
 import type {
 	GetServerSideProps,
 	InferGetServerSidePropsType,
@@ -127,7 +127,47 @@ const Home: NextPage = (
 					}}
 					isMobile={props.isMobile}
 				/>
-				<Box width={350} marginTop={0}>
+				<Box
+					width={350}
+					// marginTop={0}
+					position={"relative"}
+					marginTop="16px"
+				>
+					<chakra.svg
+						viewBox="0 0 100 50"
+						xmlns="http://www.w3.org/2000/svg"
+						margin={"auto"}
+						position={"absolute"}
+						top={"-230px"}
+						left={"-128px"}
+						right={"-128px"}
+						opacity={ready ? 0.2 : 0}
+						fontFamily={"Inter"}
+					>
+						<path
+							id="textPath"
+							fill="none"
+							d="
+								M 10, 50
+								a 40,40 0 1,0 80,0
+								40,40 0 1,0 -80,0
+							"
+							transform="scale(1 0.333)"
+						/>
+						<text>
+							<textPath
+								href="#textPath"
+								fontSize={"2.7px"}
+								fill="white"
+								startOffset={23}
+								// letterSpacing={"0.2px"}
+								fontWeight={400}
+							>
+								hoping to change my avatar soon...
+							</textPath>
+						</text>
+					</chakra.svg>
+
 					<Logo ready={ready} />
 				</Box>
 				<Box marginTop={6}>
