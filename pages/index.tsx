@@ -143,6 +143,7 @@ const Home: NextPage = (
 						right={"-128px"}
 						opacity={ready ? 0.2 : 0}
 						fontFamily={"Inter"}
+						pointerEvents={"none"}
 					>
 						<path
 							id="textPath"
