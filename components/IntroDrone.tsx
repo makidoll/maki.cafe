@@ -297,6 +297,7 @@ export default function IntroDrone(
 					zIndex: 20,
 					opacity,
 					width: size + "px",
+					minWidth: size + "px",
 					height: size + "px",
 					pointerEvents: "none",
 					userSelect: "none",
