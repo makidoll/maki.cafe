@@ -142,7 +142,7 @@ const Home: NextPage = (
 						left={"-128px"}
 						right={"-128px"}
 						opacity={ready ? 0.2 : 0}
-						fontFamily={"Inter"}
+						fontFamily={"Nunito"}
 						pointerEvents={"none"}
 					>
 						<path

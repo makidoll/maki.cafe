@@ -224,7 +224,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="xl"
 						pl={1}
-						letterSpacing={-1}
+						letterSpacing={-0.5}
 					>
 						play and make video games
 					</Text>
@@ -238,7 +238,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="xl"
 						pl={1}
-						letterSpacing={-1}
+						letterSpacing={-0.5}
 					>
 						programming and running servers
 					</Text>
@@ -252,7 +252,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-1}
+						letterSpacing={-0.5}
 					>
 						sensitive
 					</Text>
@@ -264,7 +264,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-1}
+						letterSpacing={-0.5}
 					>
 						neuro-
 					</Text>
@@ -276,7 +276,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-1}
+						letterSpacing={-0.5}
 					>
 						-spicy
 					</Text>
@@ -288,7 +288,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-1}
+						letterSpacing={-0.5}
 					>
 						mess
 					</Text>
@@ -305,7 +305,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="xl"
 						px={1}
-						letterSpacing={-1}
+						letterSpacing={-0.5}
 					>
 						autistic and highly sensitive
 					</Text>
@@ -332,7 +332,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-1}
+						letterSpacing={-0.5}
 						fontStyle={"italic"}
 						href={config.socialLinks.github + "/dots"}
 						color="white"

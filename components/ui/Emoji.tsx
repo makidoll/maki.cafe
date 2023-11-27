@@ -90,8 +90,9 @@ export default function Emoji(
 		if (customEmoji != null) emojiUrl = customEmoji.src;
 	} else {
 		if (props.font == null || props.font == "twemoji") {
+			// "https://twemoji.maxcdn.com/v/14.0.2/svg/"
 			emojiUrl =
-				"https://twemoji.maxcdn.com/v/14.0.2/svg/" +
+				"https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/" +
 				toCodePoint(emoji, "-") +
 				".svg";
 		} else if (props.font == "noto") {
