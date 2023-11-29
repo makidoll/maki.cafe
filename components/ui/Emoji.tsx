@@ -91,6 +91,7 @@ export default function Emoji(
 	} else {
 		if (props.font == null || props.font == "twemoji") {
 			// "https://twemoji.maxcdn.com/v/14.0.2/svg/"
+			// redirects to jsdelivr which got blocked on pihole the other day
 			emojiUrl =
 				"https://cdnjs.cloudflare.com/ajax/libs/twemoji/14.0.2/svg/" +
 				toCodePoint(emoji, "-") +
