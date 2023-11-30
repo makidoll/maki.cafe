@@ -14,6 +14,7 @@ import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import blahajFinderImage from "./stuff-ive-made/blahaj-finder.png";
 import hexcorpImage from "./stuff-ive-made/hexcorp.jpg";
 import froggyBotImage from "./stuff-ive-made/froggy-bot.png";
+import essenceBgImage from "./stuff-ive-made/essence-bg.png";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import { config } from "../../utils/config";
 import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
@@ -40,6 +41,13 @@ export default function StuffIveMadeHomeCard() {
 			link: "https://github.com/makidrone/frog-bot",
 			image: froggyBotImage.src,
 			color: "#B7D019",
+		},
+		{
+			name: "mechanyx\ncoil\nlauncher",
+			link: "https://mastodon.hotmilk.space/@maki/111502034093982672",
+			image: essenceBgImage.src,
+			color: "#393d4b",
+			fontSize: 13,
 		},
 		{
 			name: "hexdrone\nstatus\ncodes",
@@ -145,7 +153,8 @@ export default function StuffIveMadeHomeCard() {
 				mt={3}
 				opacity={0.35}
 			>
-				idk, i just kinda keep to myself a lot now a days
+				i kinda keep to myself a lot now a days. im trying my best to
+				add more!
 			</Text>
 			<HomeCardFooterLink
 				multi={[
