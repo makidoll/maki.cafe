@@ -153,12 +153,6 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 		])
 	).flat();
 
-	try {
-		browser.close();
-	} catch (error) {
-		console.error(error);
-	}
-
 	// turn image urls into buffers for spritesheet
 
 	// console.log("Downloading images...");
@@ -197,4 +191,6 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 	);
 
 	console.log("Done");
+
+	await browser.close();
 })();
