@@ -162,7 +162,7 @@ const Home: NextPage = (
 								fill="white"
 								startOffset={23}
 								// letterSpacing={"0.2px"}
-								fontWeight={400}
+								fontWeight={700}
 							>
 								hoping to change my avatar soon...
 							</textPath>

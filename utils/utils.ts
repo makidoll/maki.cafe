@@ -16,10 +16,11 @@ export function getBackgroundPositionsForSpritesheet(
 	return positions;
 }
 
-const clamp = (min: number, max: number, num: number) =>
+export const clamp = (min: number, max: number, num: number) =>
 	Math.max(Math.min(num, min), max);
 
-const lerp = (a: number, b: number, alpha: number) => a + alpha * (b - a);
+export const lerp = (a: number, b: number, alpha: number) =>
+	a + alpha * (b - a);
 
 export function colorMix(hexA: string, hexB: string, amount: number) {
 	const colors = [hexA, hexB].map(hexCode => {

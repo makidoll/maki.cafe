@@ -42,7 +42,9 @@ export default function MfcHomeCard() {
 								background={colors[type]}
 								mt={0.5}
 							></Box>
-							<Text color={colors[type]}>{type}</Text>
+							<Text color={colors[type]} fontWeight={800}>
+								{type}
+							</Text>
 							{i < arr.length - 1 ? <Box px={1}></Box> : <></>}
 						</Fragment>
 					))}

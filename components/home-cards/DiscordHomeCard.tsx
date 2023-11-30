@@ -218,7 +218,11 @@ export default function DiscordHomeCard() {
 						mobile={data?.active_on_discord_mobile}
 					/>
 					<VStack paddingLeft={2} spacing={-1} alignItems={"start"}>
-						<SubHeading fontSize={"1.5em"}>
+						<SubHeading
+							fontSize={"1.5em"}
+							fontWeight={900}
+							letterSpacing={-0.5}
+						>
 							{data.discord_user.global_name}
 						</SubHeading>
 						<SubHeading

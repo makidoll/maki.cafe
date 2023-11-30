@@ -10,7 +10,7 @@ import {
 import { IconType } from "react-icons";
 import { FaArrowRight } from "react-icons/fa";
 import { config } from "../utils/config";
-import { colorMix } from "../utils/utils";
+import { colorMix, lerp } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
 import Emoji from "./ui/Emoji";
 import SubHeading from "./ui/SubHeading";
@@ -129,6 +129,7 @@ export default function Social() {
 					rel={social.rel}
 					position={"relative"}
 					overflow={social.rainbow ? "hidden" : "auto"}
+					fontWeight={800}
 				>
 					{social.rainbow ? (
 						<>
@@ -185,8 +186,13 @@ export default function Social() {
 		</HStack>
 	));
 
-	const subTextOpacity = 0.5;
-	const fontWeight = 600;
+	const primaryFontWeight = 900;
+	const primaryLetterSpacing = -1.0;
+	const primaryTextOpacity = 0.7;
+
+	const secondaryFontWeight = 700;
+	const secondaryLetterSpacing = -1.0;
+	const secondaryTextOpacity = 0.6;
 
 	return (
 		<Flex flexDir="column" alignItems="center" justifyContent="center">
@@ -199,17 +205,23 @@ export default function Social() {
 				</Emoji>
 				{/* <Emoji size={24} custom="pleading-hypno"></Emoji> */}
 				<SubHeading
-					opacity={0.7}
-					fontWeight={fontWeight}
+					opacity={primaryTextOpacity}
+					fontWeight={primaryFontWeight}
 					fontSize="2xl"
+					letterSpacing={primaryLetterSpacing}
 				>
 					cute game dev doll
 				</SubHeading>
 				<Emoji size={24} custom="cyber-heart"></Emoji>
 				<SubHeading
-					opacity={0.5}
-					fontWeight={fontWeight + 100}
+					opacity={lerp(
+						primaryTextOpacity,
+						secondaryTextOpacity,
+						0.5,
+					)}
+					fontWeight={primaryFontWeight}
 					fontSize="md"
+					letterSpacing={primaryLetterSpacing + 0.25}
 				>
 					she/they
 				</SubHeading>
@@ -220,11 +232,11 @@ export default function Social() {
 				<HStack spacing={1}>
 					<Emoji size={24} custom="shaderlab"></Emoji>
 					<Text
-						opacity={subTextOpacity}
-						fontWeight={fontWeight}
+						opacity={secondaryTextOpacity}
+						fontWeight={secondaryFontWeight}
 						fontSize="xl"
 						pl={1}
-						letterSpacing={-0.5}
+						letterSpacing={secondaryLetterSpacing}
 					>
 						play and make video games
 					</Text>
@@ -234,11 +246,11 @@ export default function Social() {
 						👩‍💻
 					</Emoji>
 					<Text
-						opacity={subTextOpacity}
-						fontWeight={fontWeight}
+						opacity={secondaryTextOpacity}
+						fontWeight={secondaryFontWeight}
 						fontSize="xl"
 						pl={1}
-						letterSpacing={-0.5}
+						letterSpacing={secondaryLetterSpacing}
 					>
 						programming and running servers
 					</Text>
@@ -252,7 +264,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-0.5}
+						letterSpacing={letterSpacing}
 					>
 						sensitive
 					</Text>
@@ -264,7 +276,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-0.5}
+						letterSpacing={letterSpacing}
 					>
 						neuro-
 					</Text>
@@ -276,7 +288,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-0.5}
+						letterSpacing={letterSpacing}
 					>
 						-spicy
 					</Text>
@@ -288,7 +300,7 @@ export default function Social() {
 						fontWeight={fontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-0.5}
+						letterSpacing={letterSpacing}
 					>
 						mess
 					</Text>
@@ -301,11 +313,11 @@ export default function Social() {
 						🐸
 					</Emoji>
 					<Text
-						opacity={subTextOpacity}
-						fontWeight={fontWeight}
+						opacity={secondaryTextOpacity}
+						fontWeight={secondaryFontWeight}
 						fontSize="xl"
 						px={1}
-						letterSpacing={-0.5}
+						letterSpacing={secondaryLetterSpacing}
 					>
 						autistic and highly sensitive
 					</Text>
@@ -329,10 +341,10 @@ export default function Social() {
 			<VStack spacing={1} mt={6}>
 				<HStack spacing={0}>
 					<Link
-						fontWeight={fontWeight}
+						fontWeight={secondaryFontWeight}
 						fontSize="lg"
 						px={1}
-						letterSpacing={-0.5}
+						letterSpacing={secondaryLetterSpacing}
 						fontStyle={"italic"}
 						href={config.socialLinks.github + "/dots"}
 						color="white"
@@ -341,15 +353,15 @@ export default function Social() {
 					>
 						<HStack spacing={2}>
 							<Emoji
-								opacity={subTextOpacity + 0.1}
+								opacity={secondaryTextOpacity + 0.1}
 								size={24}
 								custom="arch-linux"
 							></Emoji>
-							<Text opacity={subTextOpacity - 0.1}>
+							<Text opacity={secondaryTextOpacity - 0.1}>
 								i use arch btw lmao
 							</Text>
 							<FaArrowRight
-								opacity={subTextOpacity - 0.1}
+								opacity={secondaryTextOpacity - 0.1}
 								size={16}
 								color="#fff"
 								style={{ marginBottom: "0px" }}
@@ -365,7 +377,7 @@ export default function Social() {
 					color="#fff"
 				>
 					<HStack spacing={1.5} opacity={0.25}>
-						<Text fontWeight={fontWeight} fontSize="md">
+						<Text fontWeight={secondaryFontWeight} fontSize="md">
 							see site&apos;s code
 						</Text>
 						<FaArrowRight
