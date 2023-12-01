@@ -2,15 +2,9 @@
 
 Built with **Next.js** and **Chakra UI**
 
-Used to be built with Angular which is now available in [outdated-angular-version](https://github.com/makidoll/makidoll.io/tree/outdated-angular-version) branch
+Used to be built with Angular in [outdated-angular-version](https://github.com/makidoll/makidoll.io/tree/outdated-angular-version) branch
 
-```bash
-yarn install
-# generate spritesheets
-yarn make
-# develop
-yarn start
-# deploy
-yarn build
-yarn serve
-```
+-   `pnpm install`
+-   `pnpm make` generates spritesheets
+-   `pnpm start` develop
+-   `pnpm build && pnpm serve` deploy
