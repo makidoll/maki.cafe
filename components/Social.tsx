@@ -174,13 +174,13 @@ export default function Social() {
 									size={social.small ? 16 : 18}
 									style={{ marginRight: "8px" }}
 								/>
-								{social.name}
+								{social.name.toLowerCase()}
 							</Box>
 						</>
 					) : (
 						<></>
 					)}
-					{social.name}
+					{social.name.toLowerCase()}
 				</Button>
 			))}
 		</HStack>
