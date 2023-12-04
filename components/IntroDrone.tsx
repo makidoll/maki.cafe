@@ -4,9 +4,9 @@ import { PerspectiveCamera } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Easing } from "../utils/easing-functions";
 import { TweenManager } from "../utils/tween-manager";
-import HomeCardLoading from "./ui/home-card/HomeCardLoading";
 import introDroneFrames1024 from "./assets/intro-drone-frames-1024.webm";
 import introDroneFrames384 from "./assets/intro-drone-frames-384.webm";
+import HomeCardLoading from "./ui/home-card/HomeCardLoading";
 
 const Deg2Rad = 0.0174533;
 
@@ -181,6 +181,21 @@ export default function IntroDrone(
 
 		controls.update();
 
+		// update cursor
+
+		parent.style.cursor = "grab";
+
+		const onMouseDown = () => {
+			console.log("mouse down");
+			parent.style.cursor = "grabbing";
+		};
+		const onMouseUp = () => {
+			parent.style.cursor = "grab";
+		};
+
+		parent.addEventListener("mousedown", onMouseDown);
+		parent.addEventListener("mouseup", onMouseUp);
+
 		let rotation = 0;
 
 		const update = () => {
@@ -213,6 +228,8 @@ export default function IntroDrone(
 
 		const cleanup = () => {
 			// console.log("cleanup");
+			parent.removeEventListener("mousedown", onMouseDown);
+			parent.removeEventListener("mouseup", onMouseUp);
 			tweenMangager.removeAllTweeners();
 		};
 
