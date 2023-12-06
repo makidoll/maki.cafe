@@ -482,7 +482,7 @@ export default function Social() {
 							onClick={xmppOnClose}
 							background={"brand.500"}
 							size={"sm"}
-							mt={3}
+							mt={4}
 							_hover={{
 								background: "brand.400",
 							}}
