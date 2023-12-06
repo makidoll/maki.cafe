@@ -18,6 +18,7 @@ const socialIds = {
 		id: "110755825766915676",
 		username: "maki",
 	},
+	xmpp: "maki@hotmilk.space",
 };
 
 const socialLinks = {

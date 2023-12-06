@@ -4,7 +4,7 @@ export const KofiIcon: IconType = (props: IconBaseProps) => (
 	<svg
 		viewBox="0 0 759.732 498.373"
 		// fill={props.color}
-		// width={props.size || "1em"}
+		width={props.size || "1em"}
 		height={props.size || "1em"}
 		{...props}
 	>

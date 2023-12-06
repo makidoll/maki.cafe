@@ -1,11 +1,20 @@
 import {
 	Box,
 	Button,
+	Code,
 	Flex,
 	HStack,
+	Heading,
 	Link,
+	Modal,
+	ModalCloseButton,
+	ModalContent,
+	ModalFooter,
+	ModalHeader,
+	ModalOverlay,
 	Text,
 	VStack,
+	useDisclosure,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { FaArrowRight } from "react-icons/fa";
@@ -14,12 +23,15 @@ import { colorMix, lerp } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
 import Emoji from "./ui/Emoji";
 import SubHeading from "./ui/SubHeading";
-import { ElementAltIcon } from "./ui/social-icons/ElementAltIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
 import { KofiIcon } from "./ui/social-icons/KofiIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
+import { MatrixAltIcon } from "./ui/social-icons/MatrixAltIcon";
 import { PronounsPageIcon } from "./ui/social-icons/PronounsPageIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
+import { XmppIcon } from "./ui/social-icons/XmppIcon";
+import { jetBrainsMono } from "../fonts/fonts";
+import { useToast } from "@chakra-ui/react";
 
 interface Social {
 	icon: IconType;
@@ -29,9 +41,18 @@ interface Social {
 	small: boolean;
 	rel?: string;
 	rainbow?: boolean;
+	iconSize?: number;
+	openXmpp?: boolean;
 }
 
 export default function Social() {
+	const toast = useToast();
+	const {
+		isOpen: xmppIsOpen,
+		onOpen: xmppOnOpen,
+		onClose: xmppOnClose,
+	} = useDisclosure();
+
 	const socialsSpacing = 3;
 	const socialsRows: Social[][] = [
 		[
@@ -64,9 +85,32 @@ export default function Social() {
 				color: "#13C3FF",
 				small: false,
 				rainbow: true,
+				iconSize: 26,
 			},
 		],
 		[
+			{
+				icon: XmppIcon,
+				href: config.socialLinks.matrix,
+				name: "XMPP",
+				color: "#e96d1f", // e96d1f or d9541e
+				small: true,
+				openXmpp: true,
+			},
+			{
+				icon: MatrixAltIcon,
+				href: config.socialLinks.matrix,
+				name: "Matrix",
+				color: "#0dbd8b", // element color
+				small: true,
+			},
+			{
+				icon: SteamIcon,
+				href: config.socialLinks.steam,
+				name: "Steam",
+				color: "#333",
+				small: true,
+			},
 			{
 				icon: PronounsPageIcon,
 				href: config.socialLinks.pronounsPage,
@@ -81,20 +125,6 @@ export default function Social() {
 			// 	color: "#5865F2",
 			// 	small: true,
 			// },
-			{
-				icon: ElementAltIcon,
-				href: config.socialLinks.matrix,
-				name: "Element",
-				color: "#0dbd8b",
-				small: true,
-			},
-			{
-				icon: SteamIcon,
-				href: config.socialLinks.steam,
-				name: "Steam",
-				color: "#333",
-				small: true,
-			},
 			// {
 			// 	icon: SoundCloudIcon,
 			// 	href: config.socialLinks.soundcloud,
@@ -109,15 +139,22 @@ export default function Social() {
 		<HStack key={i} spacing={socialsSpacing}>
 			{row.map((social, i) => (
 				<Button
-					as={"a"}
-					href={social.href}
+					{...(social.openXmpp
+						? {
+								as: "button",
+								onClick: xmppOnOpen,
+						  }
+						: {
+								as: "a",
+								href: social.href,
+						  })}
 					size={social.small ? "sm" : "md"}
 					key={i}
 					opacity={1}
 					leftIcon={
 						<social.icon
 							color={"#fff"}
-							size={social.small ? 16 : 18}
+							size={social.iconSize ?? (social.small ? 16 : 18)}
 						/>
 					}
 					color={"#fff"}
@@ -171,7 +208,10 @@ export default function Social() {
 							>
 								<social.icon
 									color={"#fff"}
-									size={social.small ? 16 : 18}
+									size={
+										social.iconSize ??
+										(social.small ? 16 : 18)
+									}
 									style={{ marginRight: "8px" }}
 								/>
 								{social.name.toLowerCase()}
@@ -195,67 +235,68 @@ export default function Social() {
 	const secondaryTextOpacity = 0.6;
 
 	return (
-		<Flex flexDir="column" alignItems="center" justifyContent="center">
-			<HStack spacing={2}>
-				<Emoji size={24} font="twemoji" mr={-0.5}>
-					🎀
-				</Emoji>
-				<Emoji size={24} font="twemoji" mr={-0.5}>
-					✨
-				</Emoji>
-				{/* <Emoji size={24} custom="pleading-hypno"></Emoji> */}
-				<SubHeading
-					opacity={primaryTextOpacity}
-					fontWeight={primaryFontWeight}
-					fontSize="2xl"
-					letterSpacing={primaryLetterSpacing}
-				>
-					cute game dev doll
-				</SubHeading>
-				<Emoji size={24} custom="cyber-heart"></Emoji>
-				<SubHeading
-					opacity={lerp(
-						primaryTextOpacity,
-						secondaryTextOpacity,
-						0.5,
-					)}
-					fontWeight={primaryFontWeight}
-					fontSize="md"
-					letterSpacing={primaryLetterSpacing + 0.25}
-				>
-					she/they
-				</SubHeading>
-				<Emoji size={24} custom="trans-heart"></Emoji>
-				{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}
-			</HStack>
-			<VStack spacing={0} mt={3}>
-				<HStack spacing={1}>
-					<Emoji size={24} custom="shaderlab"></Emoji>
-					<Text
-						opacity={secondaryTextOpacity}
-						fontWeight={secondaryFontWeight}
-						fontSize="xl"
-						pl={1}
-						letterSpacing={secondaryLetterSpacing}
-					>
-						play and make video games
-					</Text>
-				</HStack>
-				<HStack spacing={1}>
-					<Emoji size={24} font="noto">
-						👩‍💻
+		<>
+			<Flex flexDir="column" alignItems="center" justifyContent="center">
+				<HStack spacing={2}>
+					<Emoji size={24} font="twemoji" mr={-0.5}>
+						🎀
 					</Emoji>
-					<Text
-						opacity={secondaryTextOpacity}
-						fontWeight={secondaryFontWeight}
-						fontSize="xl"
-						pl={1}
-						letterSpacing={secondaryLetterSpacing}
+					<Emoji size={24} font="twemoji" mr={-0.5}>
+						✨
+					</Emoji>
+					{/* <Emoji size={24} custom="pleading-hypno"></Emoji> */}
+					<SubHeading
+						opacity={primaryTextOpacity}
+						fontWeight={primaryFontWeight}
+						fontSize="2xl"
+						letterSpacing={primaryLetterSpacing}
 					>
-						programming and running servers
-					</Text>
+						cute game dev doll
+					</SubHeading>
+					<Emoji size={24} custom="cyber-heart"></Emoji>
+					<SubHeading
+						opacity={lerp(
+							primaryTextOpacity,
+							secondaryTextOpacity,
+							0.5,
+						)}
+						fontWeight={primaryFontWeight}
+						fontSize="md"
+						letterSpacing={primaryLetterSpacing + 0.25}
+					>
+						she/they
+					</SubHeading>
+					<Emoji size={24} custom="trans-heart"></Emoji>
+					{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}
 				</HStack>
-				{/* <HStack spacing={0.5} mt={0.5}>
+				<VStack spacing={0} mt={3}>
+					<HStack spacing={1}>
+						<Emoji size={24} custom="shaderlab"></Emoji>
+						<Text
+							opacity={secondaryTextOpacity}
+							fontWeight={secondaryFontWeight}
+							fontSize="xl"
+							pl={1}
+							letterSpacing={secondaryLetterSpacing}
+						>
+							play and make video games
+						</Text>
+					</HStack>
+					<HStack spacing={1}>
+						<Emoji size={24} font="noto">
+							👩‍💻
+						</Emoji>
+						<Text
+							opacity={secondaryTextOpacity}
+							fontWeight={secondaryFontWeight}
+							fontSize="xl"
+							pl={1}
+							letterSpacing={secondaryLetterSpacing}
+						>
+							programming and running servers
+						</Text>
+					</HStack>
+					{/* <HStack spacing={0.5} mt={0.5}>
 					<Emoji size={20} font="noto">
 						🦊
 					</Emoji>
@@ -308,86 +349,176 @@ export default function Social() {
 						🐿️
 					</Emoji>
 				</HStack> */}
-				<HStack spacing={0.5} mt={0.5}>
-					<Emoji size={20} font="noto">
-						🐸
-					</Emoji>
-					<Text
-						opacity={secondaryTextOpacity}
-						fontWeight={secondaryFontWeight}
-						fontSize="xl"
-						px={1}
-						letterSpacing={secondaryLetterSpacing}
-					>
-						autistic and highly sensitive
-					</Text>
-					<Emoji size={20} font="noto">
-						🦐
-					</Emoji>
-					<Emoji size={20} font="noto">
-						🦊
-					</Emoji>
-					<Emoji size={20} font="noto">
-						🐍
-					</Emoji>
-					<Emoji size={20} font="noto">
-						🐿️
-					</Emoji>
-				</HStack>
-			</VStack>
-			<VStack mt={6} spacing={socialsSpacing}>
-				{SocialsRows}
-			</VStack>
-			<VStack spacing={1} mt={6}>
-				<HStack spacing={0}>
+					<HStack spacing={0.5} mt={0.5}>
+						<Emoji size={20} font="noto">
+							🐸
+						</Emoji>
+						<Text
+							opacity={secondaryTextOpacity}
+							fontWeight={secondaryFontWeight}
+							fontSize="xl"
+							px={1}
+							letterSpacing={secondaryLetterSpacing}
+						>
+							autistic and highly sensitive
+						</Text>
+						<Emoji size={20} font="noto">
+							🦐
+						</Emoji>
+						<Emoji size={20} font="noto">
+							🦊
+						</Emoji>
+						<Emoji size={20} font="noto">
+							🐍
+						</Emoji>
+						<Emoji size={20} font="noto">
+							🐿️
+						</Emoji>
+					</HStack>
+				</VStack>
+				<VStack mt={6} spacing={socialsSpacing}>
+					{SocialsRows}
+				</VStack>
+				<VStack spacing={1} mt={6}>
+					<HStack spacing={0}>
+						<Link
+							fontWeight={secondaryFontWeight}
+							fontSize="lg"
+							px={1}
+							letterSpacing={secondaryLetterSpacing}
+							fontStyle={"italic"}
+							href={config.socialLinks.github + "/dots"}
+							color="white"
+							transition={config.styles.hoverTransition}
+							_hover={{ transform: "scale(1.05)" }}
+						>
+							<HStack spacing={2}>
+								<Emoji
+									opacity={secondaryTextOpacity + 0.1}
+									size={24}
+									custom="arch-linux"
+								></Emoji>
+								<Text opacity={secondaryTextOpacity - 0.1}>
+									i use arch btw lmao
+								</Text>
+								<FaArrowRight
+									opacity={secondaryTextOpacity - 0.1}
+									size={16}
+									color="#fff"
+									style={{ marginBottom: "0px" }}
+								/>
+							</HStack>
+						</Link>
+					</HStack>
 					<Link
-						fontWeight={secondaryFontWeight}
-						fontSize="lg"
-						px={1}
-						letterSpacing={secondaryLetterSpacing}
-						fontStyle={"italic"}
-						href={config.socialLinks.github + "/dots"}
-						color="white"
+						href={config.socialLinks.github + "/makidoll.io"}
+						transformOrigin="center"
 						transition={config.styles.hoverTransition}
 						_hover={{ transform: "scale(1.05)" }}
+						color="#fff"
 					>
-						<HStack spacing={2}>
-							<Emoji
-								opacity={secondaryTextOpacity + 0.1}
-								size={24}
-								custom="arch-linux"
-							></Emoji>
-							<Text opacity={secondaryTextOpacity - 0.1}>
-								i use arch btw lmao
+						<HStack spacing={1.5} opacity={0.25}>
+							<Text
+								fontWeight={secondaryFontWeight}
+								fontSize="md"
+							>
+								see site&apos;s code
 							</Text>
 							<FaArrowRight
-								opacity={secondaryTextOpacity - 0.1}
 								size={16}
 								color="#fff"
 								style={{ marginBottom: "0px" }}
 							/>
 						</HStack>
 					</Link>
-				</HStack>
-				<Link
-					href={config.socialLinks.github + "/makidoll.io"}
-					transformOrigin="center"
-					transition={config.styles.hoverTransition}
-					_hover={{ transform: "scale(1.05)" }}
-					color="#fff"
+				</VStack>
+			</Flex>
+			<Modal
+				isOpen={xmppIsOpen}
+				onClose={xmppOnClose}
+				isCentered
+				colorScheme="brand"
+			>
+				<ModalOverlay background={"rgba(17,17,17,0.7)"} />
+				<ModalContent
+					background={"#222"}
+					width={"fit-content"}
+					borderRadius={16}
 				>
-					<HStack spacing={1.5} opacity={0.25}>
-						<Text fontWeight={secondaryFontWeight} fontSize="md">
-							see site&apos;s code
-						</Text>
-						<FaArrowRight
-							size={16}
-							color="#fff"
-							style={{ marginBottom: "0px" }}
-						/>
-					</HStack>
-				</Link>
-			</VStack>
-		</Flex>
+					<ModalHeader my={1.5}>
+						<HStack spacing={3}>
+							<Heading size={"md"}>Add me at</Heading>
+							<Code
+								px={1.5}
+								py={0.5}
+								borderRadius={4}
+								onClick={e => {
+									const el = e.target as HTMLElement;
+									const range = document.createRange();
+									range.selectNodeContents(el);
+
+									const selection = window.getSelection();
+									selection?.removeAllRanges();
+									selection?.addRange(range);
+
+									navigator.clipboard.writeText(
+										el.textContent ?? "",
+									);
+
+									toast({
+										title: "Copied to clipboard",
+										position: "bottom-left",
+										status: "info",
+										variant: "subtle",
+										duration: 1200,
+										isClosable: false,
+									});
+								}}
+								fontFamily={jetBrainsMono.style.fontFamily}
+							>
+								{config.socialIds.xmpp}
+							</Code>
+						</HStack>
+						<Button
+							as="a"
+							href={"xmpp:" + config.socialIds.xmpp}
+							onClick={xmppOnClose}
+							background={"brand.500"}
+							size={"sm"}
+							mt={3}
+							_hover={{
+								background: "brand.400",
+							}}
+							_active={{
+								background: "brand.300",
+							}}
+							fontWeight={700}
+						>
+							Open using preferred client
+						</Button>
+					</ModalHeader>
+					{/* <ModalCloseButton /> */}
+					{/* <ModalBody>
+						<Code px={1.5}>{config.socialIds.xmpp}</Code>
+					</ModalBody> */}
+					{/* <ModalFooter mt={-2}>
+						<Button
+							as="a"
+							href={"xmpp:" + config.socialIds.xmpp}
+							onClick={xmppOnClose}
+							background={"brand.500"}
+							_hover={{
+								background: "brand.400",
+							}}
+							_active={{
+								background: "brand.300",
+							}}
+						>
+							Open using client
+						</Button>
+					</ModalFooter> */}
+				</ModalContent>
+			</Modal>
+		</>
 	);
 }
