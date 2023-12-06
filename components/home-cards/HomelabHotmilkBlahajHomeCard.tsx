@@ -9,7 +9,6 @@ import {
 } from "@chakra-ui/react";
 import { MdArrowForward } from "react-icons/md";
 import useSWR from "swr";
-import { jetBrainsMono } from "../../fonts/fonts";
 import { UptimeRobotResponse } from "../../pages/api/uptime-robot";
 import { swrFetcher } from "../../utils/api/swr-fetcher";
 import { config } from "../../utils/config";
@@ -164,7 +163,7 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 				</chakra.table>
 				<Flex
 					backgroundColor={"brand.500"}
-					fontFamily={jetBrainsMono.style.fontFamily}
+					fontFamily={"var(--chakra-fonts-monospace)"}
 					display={"inline-flex"}
 					flexDir={"row"}
 					mt={4}
@@ -172,12 +171,13 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 					overflow={"hidden"}
 					fontWeight={500}
 				>
-					<Box px={1.5} py={0.5} fontWeight={800}>
+					<Box px={2} py={0.5} pb={1} fontWeight={800}>
 						{data.statistics.uptime.l90.ratio}% uptime
 					</Box>
 					<Link
-						px={1.5}
+						px={2}
 						py={0.5}
+						pb={1}
 						background={"#444"}
 						color={"white"}
 						href={config.socialLinks.homelabUptimeRobot}

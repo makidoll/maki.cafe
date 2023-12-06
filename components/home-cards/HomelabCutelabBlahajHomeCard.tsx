@@ -103,7 +103,7 @@ export default function HomelabCutelabBlahajHomeCard(props: {
 						borderRadius={4}
 						overflow="hidden"
 						w="100%"
-						fontFamily={jetBrainsMono.style.fontFamily}
+						fontFamily={"var(--chakra-fonts-monospace)"}
 						fontSize="0.7em"
 						fontWeight={500}
 					>

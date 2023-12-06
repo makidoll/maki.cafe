@@ -7,14 +7,13 @@ import {
 	Heading,
 	Link,
 	Modal,
-	ModalCloseButton,
 	ModalContent,
-	ModalFooter,
 	ModalHeader,
 	ModalOverlay,
 	Text,
 	VStack,
 	useDisclosure,
+	useToast,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { FaArrowRight } from "react-icons/fa";
@@ -30,8 +29,6 @@ import { MatrixAltIcon } from "./ui/social-icons/MatrixAltIcon";
 import { PronounsPageIcon } from "./ui/social-icons/PronounsPageIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { XmppIcon } from "./ui/social-icons/XmppIcon";
-import { jetBrainsMono } from "../fonts/fonts";
-import { useToast } from "@chakra-ui/react";
 
 interface Social {
 	icon: IconType;
@@ -474,7 +471,7 @@ export default function Social() {
 										isClosable: false,
 									});
 								}}
-								fontFamily={jetBrainsMono.style.fontFamily}
+								fontFamily={"var(--chakra-fonts-monospace)"}
 							>
 								{config.socialIds.xmpp}
 							</Code>

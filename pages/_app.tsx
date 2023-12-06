@@ -2,7 +2,7 @@ import { ChakraProvider, extendTheme } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
 import Head from "next/head";
 import Script from "next/script";
-import { nunito } from "../fonts/fonts";
+import { cascadiaMono, nunito } from "../fonts/fonts";
 import "./_app.scss";
 
 if (globalThis.localStorage != null) {
@@ -62,6 +62,7 @@ const theme = extendTheme({
 	fonts: {
 		heading: nunito.style.fontFamily,
 		body: nunito.style.fontFamily,
+		monospace: cascadiaMono.style.fontFamily,
 	},
 });
 
