@@ -22,10 +22,10 @@ import { colorMix, lerp } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
 import Emoji from "./ui/Emoji";
 import SubHeading from "./ui/SubHeading";
+import { ElementIcon } from "./ui/social-icons/ElementIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
 import { KofiIcon } from "./ui/social-icons/KofiIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
-import { MatrixAltIcon } from "./ui/social-icons/MatrixAltIcon";
 import { PronounsPageIcon } from "./ui/social-icons/PronounsPageIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { XmppIcon } from "./ui/social-icons/XmppIcon";
@@ -90,12 +90,12 @@ export default function Social() {
 				icon: XmppIcon,
 				href: config.socialLinks.matrix,
 				name: "XMPP",
-				color: "#e96d1f", // e96d1f or d9541e
+				color: "#227ee1", // e96d1f or d9541e
 				small: true,
 				openXmpp: true,
 			},
 			{
-				icon: MatrixAltIcon,
+				icon: ElementIcon,
 				href: config.socialLinks.matrix,
 				name: "Matrix",
 				color: "#0dbd8b", // element color
