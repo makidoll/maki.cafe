@@ -133,9 +133,10 @@ export default function Social() {
 	];
 
 	const SocialsRows = socialsRows.map((row, i) => (
-		<HStack key={i} spacing={socialsSpacing}>
+		<HStack key={"social-row-" + i} spacing={socialsSpacing}>
 			{row.map((social, i) => (
 				<Button
+					key={"social-button-" + i}
 					{...(social.openXmpp
 						? {
 								as: "button",
@@ -146,7 +147,6 @@ export default function Social() {
 								href: social.href,
 						  })}
 					size={social.small ? "sm" : "md"}
-					key={i}
 					opacity={1}
 					leftIcon={
 						<social.icon
