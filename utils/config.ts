@@ -41,6 +41,7 @@ const socialLinks = {
 	mastodon: `https://${socialIds.mastodon.instance}/@${socialIds.mastodon.username}`,
 	pronounsPage: "https://en.pronouns.page/@makidoll",
 	kofi: "https://ko-fi.com/makidoll",
+	codewars: "https://www.codewars.com/users/makidoll",
 };
 
 export const config = {

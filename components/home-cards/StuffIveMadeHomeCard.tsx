@@ -19,6 +19,7 @@ import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import { config } from "../../utils/config";
 import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
 import { MastodonIcon } from "../ui/social-icons/MastodonIcon";
+import { CodewarsIcon } from "../ui/social-icons/CodewarsIcon";
 
 interface Thing {
 	name: string;
@@ -38,7 +39,7 @@ export default function StuffIveMadeHomeCard() {
 		},
 		{
 			name: "froggy\nbot",
-			link: "https://github.com/makidrone/frog-bot",
+			link: "https://github.com/makidoll/frog-bot",
 			image: froggyBotImage.src,
 			color: "#B7D019",
 		},
@@ -51,7 +52,7 @@ export default function StuffIveMadeHomeCard() {
 		},
 		{
 			name: "hexdrone\nstatus\ncodes",
-			link: "https://makidrone.github.io/hexdrone-status-codes/",
+			link: "https://makidoll.github.io/hexdrone-status-codes/",
 			image: hexcorpImage.src,
 			color: "#ff64ff",
 			fontSize: 13,
@@ -60,15 +61,20 @@ export default function StuffIveMadeHomeCard() {
 
 	const stuffThinner: (Thing | null)[] = [
 		{
-			name: "msa millenium lcd",
-			link: "https://github.com/makidrone/msa-millenium-rp2040-touch-lcd",
+			name: "cloudflare ddns",
+			link: "https://github.com/makidoll/cloudflare-ddns",
 			image: "",
 			color: "#333",
 		},
-		// null,
 		{
 			name: "twinkly shaders",
-			link: "https://github.com/makidrone/twinkly-shaders",
+			link: "https://github.com/makidoll/twinkly-shaders",
+			image: "",
+			color: "#333",
+		},
+		{
+			name: "msa millenium lcd",
+			link: "https://github.com/makidoll/msa-millenium-rp2040-touch-lcd",
 			image: "",
 			color: "#333",
 		},
@@ -128,10 +134,11 @@ export default function StuffIveMadeHomeCard() {
 				lineHeight={1.2}
 				mb={3}
 			>
-				It&apos;s hard to make a list like this, so I recommend looking
-				through my <chakra.span fontWeight={700}>Mastodon</chakra.span>{" "}
-				or <chakra.span fontWeight={700}>GitHub</chakra.span> if you
-				wanna see what I&apos;m up to.
+				I&apos;m not good at making lists like this, so I recommend
+				looking through my{" "}
+				<chakra.span fontWeight={700}>Mastodon</chakra.span> or{" "}
+				<chakra.span fontWeight={700}>GitHub</chakra.span> if you wanna
+				see what I&apos; might be up to.
 			</Text>
 			<Grid templateColumns="repeat(4, 1fr)" gap={1} mb={1}>
 				{stuff.map((thing, i) => makeButton(thing, i))}
@@ -167,6 +174,11 @@ export default function StuffIveMadeHomeCard() {
 						name: "GitHub",
 						url: config.socialLinks.github,
 						icon: GitHubIcon,
+					},
+					{
+						name: "Codewars",
+						url: config.socialLinks.codewars,
+						icon: CodewarsIcon,
 					},
 				]}
 			/>
