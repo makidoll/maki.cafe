@@ -36,47 +36,50 @@ const sheetHeight = 8;
 
 // TODO: move this into ../config.ts
 
-const steamIds = [
-	"210970", // the witness
-	"224760", // fez
+const steamGames = [
+	{
+		path: "../games/metroid.png",
+		url: "https://metroid.nintendo.com/",
+	},
 	"2357570", // overwatch
+	"224760", // fez
 	// -- new line
-	"620", // portal 2
+	"210970", // the witness
 	"504230", // celeste
-	"524220", // nier automata
+	"620", // portal 2
 	// -- now smaller, new line
-	"1055540", // a short hike
-	"257850", // hyper light drifer
-	"219890", // anti chamber
-	"972660", // spiritfarer
-	// -- new line
-	"438100", // vrchat
 	"782330", // doom eternal
+	"17410", // mirrors edge
+	"219890", // anti chamber
 	"1003590", // tetris effect
-	"1113560", // nier replicant
 	// -- new line
-	"394690", // tower unite
-	"413150", // stardew valley
-	"963000", // frog detective 1
-	"650700", // yume nikki
-	// -- new line
-	"1332010", // stray
-	"447040", // watch dogs 2
+	"257850", // hyper light drifer
+	"367520", // hollow knight
 	"570940", // dark souls
 	"553420", // tunic
 	// -- new line
-	"275850", // no mans sky
-	"976730", // halo mcc
-	"367520", // hollow knight
+	"1113560", // nier replicant
+	"524220", // nier automata
+	"1055540", // a short hike
+	"1332010", // stray
+	// -- new line
+	"972660", // spiritfarer
+	"413150", // stardew valley
 	"427520", // factorio
+	"650700", // yume nikki
+	// -- new line
+	"319630", // life is strange
+	"447040", // watch dogs 2
+	"253230", // a hat in time
+	"963000", // frog detective 1
 	// -- new line
 	"1895880", // ratchet and clank rift apart
-	"319630", // life is strange
-	"1091500", // cyberpunk 2077
-	"253230", // a hat in time
+	"976730", // halo mcc
+	"438100", // vrchat
+	"394690", // tower unite
 ];
 
-const imagePathsAndUrls = [
+const nonSteamGames = [
 	// from https://www.steamgriddb.com
 	{
 		path: "../games/earthbound.png",
@@ -114,28 +117,34 @@ const imagePathsAndUrls = [
 		path: "../games/tropix-2.png",
 		url: "https://www.tropixgame.com/",
 	},
-].map(e => ({ ...e, path: path.resolve(__dirname, e.path) }));
+];
 
 (async () => {
+	let urls = [];
+
 	const bannerInputs = await Promise.all(
-		[...steamIds, ...imagePathsAndUrls.map(e => e.path)].map(
-			async (steamIdOrPath, i) => {
-				let buffer;
-				if (/^[0-9]/.test(steamIdOrPath)) {
-					const res = await axios(
-						"https://cdn.cloudflare.steamstatic.com/steam/apps/" +
-							steamIdOrPath +
-							// "/header.jpg",
-							"/capsule_184x69.jpg",
-						{ responseType: "arraybuffer" },
-					);
-					buffer = res.data;
-				} else {
-					buffer = fs.readFileSync(path.resolve(steamIdOrPath));
-				}
-				return buffer;
-			},
-		),
+		[...steamGames, ...nonSteamGames].map(async (steamIdOrObj, i) => {
+			let buffer;
+
+			if (typeof steamIdOrObj == "object") {
+				urls.push(steamIdOrObj.url);
+				buffer = fs.readFileSync(
+					path.resolve(__dirname, steamIdOrObj.path),
+				);
+			} else {
+				const res = await axios(
+					"https://cdn.cloudflare.steamstatic.com/steam/apps/" +
+						steamIdOrObj +
+						// "/header.jpg",
+						"/capsule_184x69.jpg",
+					{ responseType: "arraybuffer" },
+				);
+				urls.push("https://store.steampowered.com/app/" + steamIdOrObj);
+				buffer = res.data;
+			}
+
+			return buffer;
+		}),
 	);
 
 	await makeSpriteSheet(
@@ -156,8 +165,8 @@ const imagePathsAndUrls = [
 			JSON.stringify({
 				sheetWidth,
 				sheetHeight,
-				steamIds,
-				nonSteamLinks: imagePathsAndUrls.map(e => e.url),
+				urls,
+				totalSteamGames: steamGames.length,
 			}),
 	);
 })();

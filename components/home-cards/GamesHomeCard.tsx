@@ -23,7 +23,7 @@ export default function GamesHomeCard(props) {
 		gamesInfo.sheetWidth,
 		gamesInfo.sheetHeight,
 	).map((position, i) => ({
-		steamId: gamesInfo.steamIds[i],
+		url: gamesInfo.urls[i],
 		position,
 	}));
 
@@ -41,13 +41,7 @@ export default function GamesHomeCard(props) {
 							transform: "scale(1.05)",
 						}}
 					>
-						<Link
-							aria-label="Steam Game"
-							href={
-								"https://store.steampowered.com/app/" +
-								game.steamId
-							}
-						>
+						<Link aria-label="Game" href={game.url}>
 							<Box
 								borderRadius={4}
 								sx={{
@@ -75,7 +69,7 @@ export default function GamesHomeCard(props) {
 				mt={1}
 			>
 				{gamesWithPositions
-					.slice(6, gamesInfo.steamIds.length)
+					.slice(6, gamesInfo.totalSteamGames)
 					.map((game, i) => (
 						<GridItem
 							key={i}
@@ -84,13 +78,7 @@ export default function GamesHomeCard(props) {
 								transform: "scale(1.05)",
 							}}
 						>
-							<Link
-								aria-label="Steam Game"
-								href={
-									"https://store.steampowered.com/app/" +
-									game.steamId
-								}
-							>
+							<Link aria-label="Game" href={game.url}>
 								<Box
 									borderRadius={4}
 									sx={{
@@ -120,11 +108,7 @@ export default function GamesHomeCard(props) {
 				mt={1}
 			>
 				{gamesWithPositions
-					.slice(
-						gamesInfo.steamIds.length,
-						gamesInfo.steamIds.length +
-							gamesInfo.nonSteamLinks.length,
-					)
+					.slice(gamesInfo.totalSteamGames, gamesInfo.urls.length)
 					.map((game, i) => (
 						<GridItem
 							key={i}
@@ -133,10 +117,7 @@ export default function GamesHomeCard(props) {
 								transform: "scale(1.05)",
 							}}
 						>
-							<Link
-								aria-label="Non-Steam Game"
-								href={gamesInfo.nonSteamLinks[i]}
-							>
+							<Link aria-label="Game" href={game.url}>
 								<Box
 									borderRadius={4}
 									sx={{
