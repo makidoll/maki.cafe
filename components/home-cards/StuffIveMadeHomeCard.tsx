@@ -15,6 +15,7 @@ import blahajFinderImage from "./stuff-ive-made/blahaj-finder.png";
 import hexcorpImage from "./stuff-ive-made/hexcorp.jpg";
 import froggyBotImage from "./stuff-ive-made/froggy-bot.png";
 import essenceBgImage from "./stuff-ive-made/essence-bg.png";
+import melondsMetroidHuntersImage from "./stuff-ive-made/melonds-metroid-hunters.jpg";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import { config } from "../../utils/config";
 import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
@@ -48,6 +49,13 @@ export default function StuffIveMadeHomeCard() {
 			link: "https://mastodon.hotmilk.space/@maki/111502034093982672",
 			image: essenceBgImage.src,
 			color: "#393d4b",
+			fontSize: 13,
+		},
+		{
+			name: "melonds\nmetroid\nhunters",
+			link: "https://github.com/makidoll/melonDS-Metroid-Hunters",
+			image: melondsMetroidHuntersImage.src,
+			color: "#872e0c",
 			fontSize: 13,
 		},
 		{
