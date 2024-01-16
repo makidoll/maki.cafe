@@ -6,7 +6,7 @@ import type {
 } from "next";
 import { useState } from "react";
 import { getSelectorsByUserAgent } from "react-device-detect";
-import IntroDrone from "../components/IntroDrone";
+import IntroDoll from "../components/IntroDoll";
 import Social from "../components/Social";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
@@ -118,7 +118,7 @@ const Home: NextPage = (
 				flexDirection="column"
 				width="100%"
 			>
-				<IntroDrone
+				<IntroDoll
 					h={550}
 					mt={2}
 					mb={0}
@@ -131,9 +131,9 @@ const Home: NextPage = (
 					width={350}
 					// marginTop={0}
 					position={"relative"}
-					marginTop="16px"
+					// marginTop="16px"
 				>
-					<chakra.svg
+					{/* <chakra.svg
 						viewBox="0 0 100 50"
 						xmlns="http://www.w3.org/2000/svg"
 						margin={"auto"}
@@ -167,8 +167,7 @@ const Home: NextPage = (
 								hoping to change my avatar soon...
 							</textPath>
 						</text>
-					</chakra.svg>
-
+					</chakra.svg> */}
 					<Logo ready={ready} />
 				</Box>
 				<Box marginTop={6}>
