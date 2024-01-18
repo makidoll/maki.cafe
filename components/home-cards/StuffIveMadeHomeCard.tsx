@@ -46,14 +46,14 @@ export default function StuffIveMadeHomeCard() {
 		},
 		{
 			name: "melonds\nmetroid\nhunters",
-			link: "https://github.com/makidoll/melonDS-Metroid-Hunters",
+			link: "https://github.com/makidoll/melonDS-Metroid-Prime-Hunters",
 			image: melondsMetroidHuntersImage.src,
 			color: "#872e0c",
 			fontSize: 13,
 		},
 		{
 			name: "mechanyx\ncoil\nlauncher",
-			link: "https://mastodon.hotmilk.space/@maki/111502034093982672",
+			link: "https://github.com/makidoll/coil-launcher",
 			image: essenceBgImage.src,
 			color: "#393d4b",
 			fontSize: 13,
