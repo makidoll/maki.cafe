@@ -357,7 +357,7 @@ export default function Social() {
 							px={1}
 							letterSpacing={secondaryLetterSpacing}
 						>
-							autistic and highly sensitive
+							neurodivergent and sensitive
 						</Text>
 						<Emoji size={20} font="noto">
 							🦐
