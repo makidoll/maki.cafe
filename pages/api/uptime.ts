@@ -58,8 +58,6 @@ async function fetchUptime(): Promise<UptimeResponse> {
 			Date.now(),
 	);
 
-	console.log(uptimeHeartbeatRes.data);
-
 	const response: UptimeResponse = [];
 
 	const heartbeatLength = 50;
