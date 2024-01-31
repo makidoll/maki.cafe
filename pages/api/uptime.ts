@@ -99,7 +99,7 @@ export default async function handler(
 	res: NextApiResponse<UptimeResponse>,
 ) {
 	try {
-		res.status(200).json(await apiCache("uptime", fetchUptime, 0));
+		res.status(200).json(await apiCache("uptime", fetchUptime));
 	} catch (error) {
 		res.status(500).json({ error: "something happened sorry" } as any);
 		console.error(error);
