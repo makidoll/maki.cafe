@@ -9,7 +9,7 @@ import {
 } from "@chakra-ui/react";
 import { MdArrowForward } from "react-icons/md";
 import useSWR from "swr";
-import { UptimeRobotResponse } from "../../pages/api/uptime-robot";
+import { UptimeResponse, UptimeStatus } from "../../pages/api/uptime";
 import { swrFetcher } from "../../utils/api/swr-fetcher";
 import { config } from "../../utils/config";
 import OpenableImage from "../ui/OpenableImage";
@@ -25,17 +25,24 @@ export enum OlderHomelab {
 	Cutelab_Yeti_Feb_21_2022,
 }
 
-const colors = {
-	green: "#689F38", // light green 700
-	orange: "#FF9800", // orange 500
-	red: "#F44336", // red 500
+const statusColorMap: { [status in UptimeStatus]: string } = {
+	[UptimeStatus.Online]: "#689F38", // light green 700
+	// [orange]: "#FF9800", // orange 500
+	[UptimeStatus.Offline]: "#F44336", // red 500
+	[UptimeStatus.None]: "hsl(0deg,0%,25%)",
+};
+
+const statusLabelMap: { [status in UptimeStatus]: string } = {
+	[UptimeStatus.Online]: "Up",
+	[UptimeStatus.Offline]: "Down",
+	[UptimeStatus.None]: "Unknown",
 };
 
 export default function HomelabHotmilkBlahajHomeCard(props: {
 	onOlder: (type: OlderHomelab) => any;
 }) {
-	const { data, error, isLoading } = useSWR<UptimeRobotResponse>(
-		"/api/uptime-robot",
+	const { data, error, isLoading } = useSWR<UptimeResponse>(
+		"/api/uptime",
 		swrFetcher,
 	);
 
@@ -46,20 +53,17 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 			<>
 				<chakra.table style={{ borderCollapse: "collapse" }}>
 					<chakra.tbody>
-						{data.psp.monitors.map((service, i) => {
-							const serviceLink =
-								config.selfHostedLinkMap[service.name];
-
+						{data.map((monitor, i) => {
 							const serviceTooltip =
-								config.selfHostedLinkTooltipMap[service.name];
+								config.selfHostedLinkTooltipMap[monitor.name];
 
 							const serviceLabel = (
 								<Flex pr={3} pl={1}>
-									{serviceLink == null ? (
-										service.name
+									{monitor.url == null ? (
+										monitor.name
 									) : (
 										<Link
-											href={serviceLink}
+											href={monitor.url}
 											display={"flex"}
 											flexDir={"row"}
 											alignItems={"center"}
@@ -71,11 +75,12 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 													marginRight: "2px",
 												}}
 											/>
-											{service.name}
+											{monitor.name}
 										</Link>
 									)}
 								</Flex>
 							);
+
 							return (
 								<chakra.tr
 									key={i}
@@ -101,32 +106,19 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 											justifyContent={"center"}
 											gap={0.5}
 										>
-											{service.dailyRatios
-												.slice(0, 14)
-												.reverse()
-												.map((b, i) => (
+											{monitor.heartbeat
+												.slice(-14)
+												.map((status, i) => (
 													<Box
 														key={i}
 														w={1}
-														h={4}
+														h={3.5}
 														borderRadius={999}
-														backgroundColor={(() => {
-															var ratio = Number(
-																b.ratio,
-															);
-															switch (b.label) {
-																case "success":
-																	return colors.green;
-																case "warning":
-																	return ratio <
-																		90
-																		? colors.red
-																		: colors.orange;
-																default:
-																case "black":
-																	return "hsl(0deg,0%,25%)";
-															}
-														})()}
+														backgroundColor={
+															statusColorMap[
+																status
+															]
+														}
 													></Box>
 												))}
 										</Flex>
@@ -134,26 +126,44 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 									<chakra.td>
 										<Flex
 											alignItems={"center"}
-											justifyContent={"center"}
+											justifyContent={"flex-start"}
 											gap={0.5}
-											pl={3}
+											pl={1}
 											pr={1}
+											textAlign={"center"}
 										>
 											<Box
 												w={3}
 												h={3}
 												backgroundColor={
-													service.statusClass ==
-													"success"
-														? colors.green
-														: colors.red
+													statusColorMap[
+														monitor.heartbeat[
+															monitor.heartbeat
+																.length - 1
+														]
+													]
 												}
 												borderRadius={999}
 												mr={0.5}
 											></Box>
-											{service.statusClass == "success"
-												? "Up"
-												: "Down"}
+											{
+												statusLabelMap[
+													monitor.heartbeat[
+														monitor.heartbeat
+															.length - 1
+													]
+												]
+											}{" "}
+											<chakra.span opacity={0.5} pl="1">
+												(
+												{monitor.uptime24h == 1
+													? 100
+													: (
+															monitor.uptime24h *
+															100
+													  ).toFixed(1)}
+												%)
+											</chakra.span>
 										</Flex>
 									</chakra.td>
 								</chakra.tr>
@@ -172,7 +182,15 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 					fontWeight={500}
 				>
 					<Box px={2} py={0.5} pb={1} fontWeight={800}>
-						{data.statistics.uptime.l90.ratio}% uptime
+						{(
+							(data.reduce(
+								(prev, curr) => prev + curr.uptime24h,
+								0,
+							) /
+								data.length) *
+							100
+						).toFixed(2)}
+						% uptime
 					</Box>
 					<Link
 						px={2}
@@ -180,7 +198,7 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 						pb={1}
 						background={"#444"}
 						color={"white"}
-						href={config.socialLinks.homelabUptimeRobot}
+						href={config.socialLinks.uptime}
 					>
 						See more here
 					</Link>
