@@ -119,7 +119,7 @@ const Home: NextPage = (
 				width="100%"
 			>
 				<IntroDoll
-					h={550}
+					h={600}
 					mt={2}
 					mb={0}
 					onLoaded={() => {
