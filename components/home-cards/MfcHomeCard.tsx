@@ -50,9 +50,9 @@ export default function MfcHomeCard() {
 					))}
 				</HStack>
 				<Grid templateColumns={"repeat(7, 1fr)"} gap={2} mt={4}>
-					{mfcData.map((figure, i) => (
+					{mfcData.figures.map((figure, i) => (
 						<GridItem key={i}>
-							<Link href={figure.link} aria-label="Anime Figure">
+							<Link href={figure.url} aria-label="Anime Figure">
 								<Box
 									w={45}
 									h={45}
@@ -62,9 +62,10 @@ export default function MfcHomeCard() {
 										"0 0 0 2px " + colors[figure.type]
 									}
 									sx={{ imageRendering: "optimizeQuality" }}
-									backgroundSize={"600% 400%"}
+									backgroundSize={mfcData.cssSize}
 									backgroundImage={mfcSpritesheet.src}
 									backgroundPosition={figure.position}
+									backgroundRepeat={"no-repeat"}
 									transition={config.styles.hoverTransition}
 									_hover={{ transform: "scale(1.05)" }}
 								></Box>

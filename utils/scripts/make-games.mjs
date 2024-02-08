@@ -4,7 +4,7 @@ import * as fs from "fs";
 import * as os from "os";
 import * as path from "path";
 import { CookieJar } from "tough-cookie";
-import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
+import { makeSpriteSheet } from "./spritesheet-lib.mjs";
 
 const __dirname = path.dirname(
 	import.meta.url.replace(
@@ -30,15 +30,16 @@ const axios = axiosCookiejar.wrapper(axiosNoCookiejar.create({ jar }));
 
 const bannerWidth = 231;
 const bannerHeight = 87;
+const bannerPadding = 4;
 
 const sheetWidth = 5;
 const sheetHeight = 8;
 
-// TODO: move this into ../config.ts
+// banners from https://www.steamgriddb.com
 
-const steamGames = [
+const games = [
 	{
-		path: "../games/metroid.png",
+		banner: "../games/metroid.png",
 		url: "https://metroid.nintendo.com/",
 	},
 	"2357570", // overwatch
@@ -77,44 +78,43 @@ const steamGames = [
 	"976730", // halo mcc
 	"438100", // vrchat
 	"394690", // tower unite
-];
-
-const nonSteamGames = [
-	// from https://www.steamgriddb.com
+	// -- new line
 	{
-		path: "../games/earthbound.png",
+		banner: "../games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
 	},
 	{
-		path: "../games/picross-3d-round-2.jpg",
+		banner: "../games/picross-3d-round-2.jpg",
 		url: "https://www.nintendo.com/store/products/picross-3d-round-2-3ds/",
 	},
 	{
-		path: "../games/mother-3.png",
+		banner: "../games/mother-3.png",
 		url: "http://mother3.fobby.net/",
 	},
 	{
-		path: "../games/super-mario-odyssey.png",
+		banner: "../games/super-mario-odyssey.png",
 		url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
 	},
+	// -- new line
 	{
-		path: "../games/splatoon-2.png",
+		banner: "../games/splatoon-2.png",
 		url: "https://splatoon.nintendo.com",
 	},
 	{
-		path: "../games/universal-paperclips.png",
+		banner: "../games/universal-paperclips.png",
 		url: "https://www.decisionproblem.com/paperclips/",
 	},
 	{
-		path: "../games/catherine-full-body.png",
+		banner: "../games/catherine-full-body.png",
 		url: "https://www.catherinethegame.com/fullbody/",
 	},
 	{
-		path: "../games/world-of-warcraft.png",
+		banner: "../games/world-of-warcraft.png",
 		url: "https://worldofwarcraft.blizzard.com/en-us/",
 	},
+	// -- new line
 	{
-		path: "../games/tropix-2.png",
+		banner: "../games/tropix-2.png",
 		url: "https://www.tropixgame.com/",
 	},
 ];
@@ -123,13 +123,13 @@ const nonSteamGames = [
 	let urls = [];
 
 	const bannerInputs = await Promise.all(
-		[...steamGames, ...nonSteamGames].map(async (steamIdOrObj, i) => {
+		[...games].map(async (steamIdOrObj, i) => {
 			let buffer;
 
 			if (typeof steamIdOrObj == "object") {
 				urls.push(steamIdOrObj.url);
 				buffer = fs.readFileSync(
-					path.resolve(__dirname, steamIdOrObj.path),
+					path.resolve(__dirname, steamIdOrObj.banner),
 				);
 			} else {
 				const res = await axios(
@@ -147,9 +147,10 @@ const nonSteamGames = [
 		}),
 	);
 
-	await makeSpriteSheet(
+	const spriteSheetOut = await makeSpriteSheet(
 		bannerWidth,
 		bannerHeight,
+		bannerPadding,
 		sheetWidth,
 		sheetHeight,
 		bannerInputs,
@@ -163,10 +164,11 @@ const nonSteamGames = [
 		path.resolve(__dirname, "../../components/home-cards/games-info.ts"),
 		"export const gamesInfo = " +
 			JSON.stringify({
-				sheetWidth,
-				sheetHeight,
-				urls,
-				totalSteamGames: steamGames.length,
+				cssSize: spriteSheetOut.cssSize,
+				games: urls.map((url, i) => ({
+					url,
+					position: spriteSheetOut.cssPositions[i],
+				})),
 			}),
 	);
 })();

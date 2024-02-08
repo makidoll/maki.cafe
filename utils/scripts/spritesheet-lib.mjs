@@ -1,8 +1,12 @@
 import sharp from "sharp";
 
+const cssPercentageNumbers = numbers =>
+	numbers.map(p => (p * 100).toFixed(2).replace(/\.00/, "") + "%").join(" ");
+
 export async function makeSpriteSheet(
 	imageWidth,
 	imageHeight,
+	imagePadding,
 	sheetWidth,
 	sheetHeight,
 	imagesInputs,
@@ -16,18 +20,28 @@ export async function makeSpriteSheet(
 		);
 	}
 
-	let positionStrings = [];
+	const spriteSheetWidth =
+		imageWidth * sheetWidth + imagePadding * (sheetWidth - 1);
+	const spriteSheetHeight =
+		imageHeight * sheetHeight + imagePadding * (sheetHeight - 1);
+
+	let cssSize = cssPercentageNumbers([
+		spriteSheetWidth / imageWidth,
+		spriteSheetHeight / imageHeight,
+	]);
+
+	let cssPositions = [];
 
 	const images = await Promise.all(
 		imagesInputs.map(async (imageInput, i) => {
 			const x = i % sheetWidth;
 			const y = Math.floor(i / sheetWidth);
 
-			positionStrings.push(
-				[
-					(x / (sheetWidth - 1)) * 100 + "%",
-					(y / (sheetHeight - 1)) * 100 + "%",
-				].join(" "),
+			cssPositions.push(
+				cssPercentageNumbers([
+					x / (sheetWidth - 1),
+					y / (sheetHeight - 1),
+				]),
 			);
 
 			const input = await sharp(imageInput)
@@ -40,16 +54,16 @@ export async function makeSpriteSheet(
 			return {
 				input,
 				gravity: "northwest",
-				left: x * imageWidth,
-				top: y * imageHeight,
+				left: x * imageWidth + x * imagePadding,
+				top: y * imageHeight + y * imagePadding,
 			};
 		}),
 	);
 
 	await sharp({
 		create: {
-			width: imageWidth * sheetWidth,
-			height: imageHeight * sheetHeight,
+			width: spriteSheetWidth,
+			height: spriteSheetHeight,
 			channels: 3,
 			background: { r: 0, g: 0, b: 0 },
 		},
@@ -60,5 +74,5 @@ export async function makeSpriteSheet(
 		})
 		.toFile(outputPath);
 
-	return positionStrings;
+	return { cssSize, cssPositions };
 }

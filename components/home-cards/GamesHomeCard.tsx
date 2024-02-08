@@ -1,66 +1,59 @@
-import {
-	Box,
-	Divider,
-	Flex,
-	Grid,
-	GridItem,
-	HStack,
-	Link,
-	Text,
-} from "@chakra-ui/react";
+import { Box, Grid, GridItem, Link, Text } from "@chakra-ui/react";
 import { config } from "../../utils/config";
-import { getBackgroundPositionsForSpritesheet } from "../../utils/utils";
 import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
+import { OsuIcon } from "../ui/social-icons/OsuIcon";
 import { PlayStationIcon } from "../ui/social-icons/PlayStationIcon";
 import { SteamIcon } from "../ui/social-icons/SteamIcon";
 import { gamesInfo } from "./games-info";
 import gamesSpritesheet from "./games-spritesheet.png";
-import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 
-export default function GamesHomeCard(props) {
-	const gamesWithPositions = getBackgroundPositionsForSpritesheet(
-		gamesInfo.sheetWidth,
-		gamesInfo.sheetHeight,
-	).map((position, i) => ({
-		url: gamesInfo.urls[i],
-		position,
-	}));
+const steamHorizontalAspectRatio = "231 / 87";
 
-	const steamHorizontalAspectRation = "231 / 87";
+function GameGridItem(props: { game: { url: string; position: string } }) {
+	return (
+		<GridItem
+			transition={config.styles.hoverTransition}
+			_hover={{
+				transform: "scale(1.05)",
+			}}
+		>
+			<Link aria-label="Game" href={props.game.url}>
+				<Box
+					borderRadius={4}
+					sx={{
+						imageRendering: "optimizeQuality",
+						aspectRatio: steamHorizontalAspectRatio,
+					}}
+					backgroundImage={gamesSpritesheet.src}
+					backgroundPosition={props.game.position}
+					backgroundRepeat={"no-repeat"}
+					backgroundSize={gamesInfo.cssSize}
+				/>
+			</Link>
+		</GridItem>
+	);
+}
 
+export default function GamesHomeCard() {
 	return (
 		<HomeCard>
 			<HomeCardHeading mb={4}>my favorite games</HomeCardHeading>
 			<Grid templateColumns="repeat(3, 1fr)" gap={1} w={350} maxW={350}>
-				{gamesWithPositions.slice(0, 6).map((game, i) => (
-					<GridItem
-						key={i}
-						transition={config.styles.hoverTransition}
-						_hover={{
-							transform: "scale(1.05)",
-						}}
-					>
-						<Link aria-label="Game" href={game.url}>
-							<Box
-								borderRadius={4}
-								sx={{
-									imageRendering: "optimizeQuality",
-									aspectRatio: steamHorizontalAspectRation,
-								}}
-								backgroundImage={gamesSpritesheet.src}
-								backgroundPosition={game.position}
-								backgroundSize={
-									gamesInfo.sheetWidth * 100 +
-									"% " +
-									gamesInfo.sheetHeight * 100 +
-									"%"
-								}
-							/>
-						</Link>
-					</GridItem>
+				{gamesInfo.games.slice(0, 6).map((game, i) => (
+					<GameGridItem game={game} key={i} />
 				))}
 			</Grid>
+			<Text
+				textAlign={"left"}
+				py={1}
+				opacity={0.4}
+				fontSize={"sm"}
+				fontWeight={600}
+			>
+				in no particular order...
+			</Text>
 			<Grid
 				templateColumns="repeat(4, 1fr)"
 				gap={1}
@@ -68,75 +61,9 @@ export default function GamesHomeCard(props) {
 				maxW={350}
 				mt={1}
 			>
-				{gamesWithPositions
-					.slice(6, gamesInfo.totalSteamGames)
-					.map((game, i) => (
-						<GridItem
-							key={i}
-							transition={config.styles.hoverTransition}
-							_hover={{
-								transform: "scale(1.05)",
-							}}
-						>
-							<Link aria-label="Game" href={game.url}>
-								<Box
-									borderRadius={4}
-									sx={{
-										imageRendering: "optimizeQuality",
-										aspectRatio:
-											steamHorizontalAspectRation,
-									}}
-									backgroundImage={gamesSpritesheet.src}
-									backgroundPosition={game.position}
-									backgroundSize={
-										gamesInfo.sheetWidth * 100 +
-										"% " +
-										gamesInfo.sheetHeight * 100 +
-										"%"
-									}
-								/>
-							</Link>
-						</GridItem>
-					))}
-			</Grid>
-			<Divider my={2} />
-			<Grid
-				templateColumns="repeat(4, 1fr)"
-				gap={1}
-				w={350}
-				maxW={350}
-				mt={1}
-			>
-				{gamesWithPositions
-					.slice(gamesInfo.totalSteamGames, gamesInfo.urls.length)
-					.map((game, i) => (
-						<GridItem
-							key={i}
-							transition={config.styles.hoverTransition}
-							_hover={{
-								transform: "scale(1.05)",
-							}}
-						>
-							<Link aria-label="Game" href={game.url}>
-								<Box
-									borderRadius={4}
-									sx={{
-										imageRendering: "optimizeQuality",
-										aspectRatio:
-											steamHorizontalAspectRation,
-									}}
-									backgroundImage={gamesSpritesheet.src}
-									backgroundPosition={game.position}
-									backgroundSize={
-										gamesInfo.sheetWidth * 100 +
-										"% " +
-										gamesInfo.sheetHeight * 100 +
-										"%"
-									}
-								/>
-							</Link>
-						</GridItem>
-					))}
+				{gamesInfo.games.slice(6).map((game, i) => (
+					<GameGridItem game={game} key={i} />
+				))}
 			</Grid>
 			<HomeCardFooterLink
 				multi={[
@@ -150,11 +77,11 @@ export default function GamesHomeCard(props) {
 						url: config.socialLinks.psnProfiles,
 						icon: PlayStationIcon,
 					},
-					// {
-					// 	name: "Osu",
-					// 	url: config.socialLinks.osu,
-					// 	icon: OsuIcon,
-					// },
+					{
+						name: "Osu",
+						url: config.socialLinks.osu,
+						icon: OsuIcon,
+					},
 				]}
 			/>
 		</HomeCard>

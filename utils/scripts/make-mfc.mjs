@@ -5,7 +5,7 @@ import * as path from "path";
 // import fetchCookie from "fetch-cookie";
 // import cheerio from "cheerio";
 import { firefox } from "playwright";
-import { makeSpriteSheet } from "./make-spritesheet-lib.mjs";
+import { makeSpriteSheet } from "./spritesheet-lib.mjs";
 
 // const cookieJar = new fetchCookie.toughCookie.CookieJar();
 // const fetch = fetchCookie(nodeFetch, cookieJar);
@@ -30,6 +30,7 @@ const sheetHeight = 4;
 // mfc resolution
 const imageWidth = 60;
 const imageHeight = 60;
+const imagePadding = 2;
 
 // const fetchOptions = {
 // 	headers: {
@@ -103,7 +104,7 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 		const aTags = await page.$$("span.item-icon a");
 
 		for (const a of aTags) {
-			const link = await page.evaluate(e => e.href, a);
+			const url = await page.evaluate(e => e.href, a);
 
 			const img = await a.$("img");
 			const src = await page.evaluate(e => e.src, img);
@@ -113,7 +114,7 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 
 			data.push({
 				name,
-				link,
+				url,
 				imageBuffer,
 				type,
 			});
@@ -167,9 +168,10 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 
 	console.log("Making spiritesheet...");
 
-	const positions = await makeSpriteSheet(
+	const spriteSheetOut = await makeSpriteSheet(
 		imageWidth,
 		imageHeight,
+		imagePadding,
 		sheetWidth,
 		sheetHeight,
 		mfcData.map(figure => figure.imageBuffer),
@@ -182,12 +184,16 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 	// merge css positions with mfcData
 	for (let i = 0; i < mfcData.length; i++) {
 		delete mfcData[i].imageBuffer;
-		mfcData[i].position = positions[i];
+		mfcData[i].position = spriteSheetOut.cssPositions[i];
 	}
 
 	fs.writeFileSync(
 		path.resolve(__dirname, "../../components/home-cards/mfc-info.ts"),
-		"export const mfcData = " + JSON.stringify(mfcData),
+		"export const mfcData = " +
+			JSON.stringify({
+				cssSize: spriteSheetOut.cssSize,
+				figures: mfcData,
+			}),
 	);
 
 	console.log("Done");
