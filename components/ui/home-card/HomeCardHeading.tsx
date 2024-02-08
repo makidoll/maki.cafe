@@ -1,13 +1,4 @@
-import {
-	ChakraComponent,
-	Flex,
-	FlexProps,
-	Heading,
-	HeadingProps,
-	Link,
-	LinkProps,
-	chakra,
-} from "@chakra-ui/react";
+import { Flex, FlexProps, Heading } from "@chakra-ui/react";
 import { IconType } from "react-icons";
 import { kgAlwaysAGoodTime } from "../../../fonts/fonts";
 import { config } from "../../../utils/config";

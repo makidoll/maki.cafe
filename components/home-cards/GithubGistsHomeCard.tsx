@@ -25,15 +25,13 @@ export default function GithubGistsHomeCard() {
 
 	return (
 		<HomeCard>
-			<Center>
-				<HomeCardHeading
-					icon={GitHubIcon}
-					href={config.socialLinks.githubGist}
-					mb={4}
-				>
-					github gists
-				</HomeCardHeading>
-			</Center>
+			<HomeCardHeading
+				icon={GitHubIcon}
+				href={config.socialLinks.githubGist}
+				mb={4}
+			>
+				github gists
+			</HomeCardHeading>
 			<Flex flexDir={"column"} w={350}>
 				{data.map((post, i) => (
 					<Link
