@@ -186,9 +186,9 @@ export default function IntroDoll(
 		parent.style.cursor = "grab";
 
 		const onMouseDown = () => {
-			console.log("mouse down");
 			parent.style.cursor = "grabbing";
 		};
+
 		const onMouseUp = () => {
 			parent.style.cursor = "grab";
 		};
