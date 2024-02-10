@@ -120,17 +120,15 @@ const games = [
 ];
 
 (async () => {
-	let urls = [];
-
-	const bannerInputs = await Promise.all(
-		[...games].map(async (steamIdOrObj, i) => {
-			let buffer;
-
+	const buffersAndUrls = await Promise.all(
+		games.map(async (steamIdOrObj, i) => {
 			if (typeof steamIdOrObj == "object") {
-				urls.push(steamIdOrObj.url);
-				buffer = fs.readFileSync(
-					path.resolve(__dirname, steamIdOrObj.banner),
-				);
+				return {
+					buffer: fs.readFileSync(
+						path.resolve(__dirname, steamIdOrObj.banner),
+					),
+					url: steamIdOrObj.url,
+				};
 			} else {
 				const res = await axios(
 					"https://cdn.cloudflare.steamstatic.com/steam/apps/" +
@@ -139,11 +137,12 @@ const games = [
 						"/capsule_184x69.jpg",
 					{ responseType: "arraybuffer" },
 				);
-				urls.push("https://store.steampowered.com/app/" + steamIdOrObj);
-				buffer = res.data;
-			}
 
-			return buffer;
+				return {
+					buffer: res.data,
+					url: "https://store.steampowered.com/app/" + steamIdOrObj,
+				};
+			}
 		}),
 	);
 
@@ -153,7 +152,7 @@ const games = [
 		bannerPadding,
 		sheetWidth,
 		sheetHeight,
-		bannerInputs,
+		buffersAndUrls.map(o => o.buffer),
 		path.resolve(
 			__dirname,
 			"../../components/home-cards/games-spritesheet.png",
@@ -165,8 +164,8 @@ const games = [
 		"export const gamesInfo = " +
 			JSON.stringify({
 				cssSize: spriteSheetOut.cssSize,
-				games: urls.map((url, i) => ({
-					url,
+				games: buffersAndUrls.map((o, i) => ({
+					url: o.url,
 					position: spriteSheetOut.cssPositions[i],
 				})),
 			}),
