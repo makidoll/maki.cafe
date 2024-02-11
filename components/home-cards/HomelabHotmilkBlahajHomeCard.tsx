@@ -17,7 +17,7 @@ import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import blahajInside from "./homelab/blahaj-inside.jpg";
-import blahajOutside from "./homelab/blahaj-outside.jpg";
+import blahajOutside from "./homelab/blahaj-outside-2.jpg";
 
 export enum OlderHomelab {
 	None,
@@ -246,9 +246,7 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 						Everything on this site is hosted here!
 						<br />
 						Last updated:{" "}
-						<chakra.span fontWeight={800}>
-							July 27, 2023
-						</chakra.span>
+						<chakra.span fontWeight={800}>Feb 11, 2024</chakra.span>
 						<br />
 						<br />
 						Older homelab:
