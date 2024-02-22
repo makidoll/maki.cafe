@@ -1,4 +1,4 @@
-import { Box, Grid, Text, chakra } from "@chakra-ui/react";
+import { Box, Grid } from "@chakra-ui/react";
 import type {
 	GetServerSideProps,
 	InferGetServerSidePropsType,
@@ -142,7 +142,7 @@ const Home: NextPage = (
 						left={"-128px"}
 						right={"-128px"}
 						opacity={ready ? 0.2 : 0}
-						fontFamily={"Nunito"}
+						fontFamily={""}
 						pointerEvents={"none"}
 					>
 						<path
