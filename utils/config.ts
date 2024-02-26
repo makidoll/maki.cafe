@@ -18,6 +18,7 @@ const socialIds = {
 		username: "maki",
 	},
 	xmpp: "maki@hotmilk.space",
+	twitch: "maki_doll",
 };
 
 const socialLinks = {
@@ -40,6 +41,7 @@ const socialLinks = {
 	pronounsPage: "https://en.pronouns.page/@makidoll",
 	kofi: "https://ko-fi.com/makidoll",
 	codewars: "https://www.codewars.com/users/makidoll",
+	twitch: "https://www.twitch.tv/" + socialIds.twitch,
 };
 
 export const config = {

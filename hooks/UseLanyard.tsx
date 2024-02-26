@@ -1,12 +1,12 @@
 import { useEffect, useState } from "react";
 import { IconType } from "react-icons";
+import { FaTwitch } from "react-icons/fa";
 import { MdGamepad } from "react-icons/md";
 import { CrunchyrollIcon } from "../components/ui/social-icons/CrunchyrollIcon";
+import { DeadBeefIcon } from "../components/ui/social-icons/DeadBeefIcon";
 import { SpotifyIcon } from "../components/ui/social-icons/SpotifyIcon";
 import { TowerUniteIcon } from "../components/ui/social-icons/TowerUniteIcon";
 import { config } from "../utils/config";
-import { colorMix } from "../utils/utils";
-import { DeadBeefIcon } from "../components/ui/social-icons/DeadBeefIcon";
 
 enum Op {
 	Event = 0,
@@ -35,6 +35,16 @@ interface Spotify {
 	track_id?: string; // only for spotify
 }
 
+// https://discord.com/developers/docs/game-sdk/activities#data-models-activitytype-enum
+enum DiscordActivityType {
+	Playing = 0,
+	Streaming = 1,
+	Listening = 2,
+	Watching = 3,
+	Custom = 4,
+	Competing = 5,
+}
+
 interface DataEvent {
 	active_on_discord_desktop: boolean;
 	active_on_discord_mobile: boolean;
@@ -56,9 +66,10 @@ interface DataEvent {
 		state: string;
 		sync_id: string;
 		timestamps: { start: number; end: number };
-		type: number;
+		type: DiscordActivityType;
 		application_id: string;
 		details: string;
+		url: string;
 	}[];
 	discord_status: "online" | "idle" | "dnd" | "offline";
 	discord_user: {
@@ -101,11 +112,20 @@ interface CurrentActivity {
 
 function discordImageToUrl(image: string) {
 	if (typeof image != "string") return "";
-	if (!image.startsWith("mp:external/")) return "";
-	return image.replace(
-		/^mp:external\//i,
-		"https://media.discordapp.net/external/",
-	);
+
+	if (image.startsWith("mp:external/")) {
+		return image.replace(
+			/^mp:external\//i,
+			"https://media.discordapp.net/external/",
+		);
+	} else if (image.startsWith("youtube:")) {
+		return `https://img.youtube.com/vi/${image.replace(
+			/^youtube:/i,
+			"",
+		)}/maxresdefault.jpg`;
+	}
+
+	return "";
 }
 
 function processSpotify(data: DataEvent): CurrentActivity | null {
@@ -221,7 +241,38 @@ function processIsPlaying(data: DataEvent): CurrentActivity | null {
 	};
 }
 
+function processStreaming(data: DataEvent): CurrentActivity | null {
+	const stream = data.activities.find(
+		activity => activity.type == DiscordActivityType.Streaming,
+	);
+
+	if (stream == null) return null;
+
+	console.log(stream);
+
+	console.log(discordImageToUrl(stream.assets.large_image));
+
+	return {
+		activityName: "Twitch",
+		activityIcon: FaTwitch,
+		imageUrl:
+			discordImageToUrl(stream.assets?.large_image ?? "") ??
+			`https://static-cdn.jtvnw.net/previews-ttv/live_user_${
+				config.socialIds.twitch
+			}-1920x1080.jpg?${Date.now()}`,
+		imageAlt: "Streaming",
+		firstLine: stream.details,
+		secondLine: stream.state,
+		backgroundColor: "#9146ff",
+		activityUrl: stream.url,
+		timestampStart: null,
+		timestampEnd: null,
+		type: "other",
+	};
+}
+
 const processActivities: ((data: DataEvent) => CurrentActivity | null)[] = [
+	processStreaming,
 	// programs with rich presence
 	processTowerUnite,
 	processDeadBeef,
@@ -267,7 +318,7 @@ export function useLanyard(discordId: string) {
 			if (activity == null) {
 				for (let i = 1; i < processActivities.length; i++) {
 					activity = processActivities[i](data);
-					if (activity != null) break;
+					if (activity != null) continue;
 				}
 			}
 

@@ -16,7 +16,7 @@ import {
 	useToast,
 } from "@chakra-ui/react";
 import { IconType } from "react-icons";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaTwitch } from "react-icons/fa";
 import { config } from "../utils/config";
 import { colorMix, lerp } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
@@ -86,6 +86,13 @@ export default function Social() {
 			},
 		],
 		[
+			{
+				icon: FaTwitch,
+				href: config.socialLinks.twitch,
+				name: "Twitch",
+				color: "#9146ff",
+				small: true,
+			},
 			{
 				icon: XmppIcon,
 				href: config.socialLinks.matrix,

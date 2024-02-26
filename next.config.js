@@ -8,30 +8,14 @@ const nextConfig = {
 	swcMinify: true,
 	images: {
 		remotePatterns: [
-			{
-				protocol: "https",
-				hostname: "i.scdn.co",
-			},
-			{
-				protocol: "https",
-				hostname: "live.staticflickr.com",
-			},
-			{
-				protocol: "https",
-				hostname: "media.sketchfab.com",
-			},
-			{
-				protocol: "https",
-				hostname: "media.discordapp.net",
-			},
-			{
-				protocol: "https",
-				hostname: "static.wikia.nocookie.net",
-			},
-			{
-				protocol: "https",
-				hostname: "mastodon.hotmilk.space",
-			},
+			{ protocol: "https", hostname: "i.scdn.co" },
+			{ protocol: "https", hostname: "live.staticflickr.com" },
+			{ protocol: "https", hostname: "media.sketchfab.com" },
+			{ protocol: "https", hostname: "media.discordapp.net" },
+			{ protocol: "https", hostname: "static.wikia.nocookie.net" },
+			{ protocol: "https", hostname: "mastodon.hotmilk.space" },
+			{ protocol: "https", hostname: "static-cdn.jtvnw.net" },
+			{ protocol: "https", hostname: "img.youtube.com" },
 		],
 	},
 	i18n: {
