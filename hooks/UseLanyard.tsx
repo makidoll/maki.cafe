@@ -110,23 +110,27 @@ interface CurrentActivity {
 	type: "game" | "other";
 }
 
-function discordImageToUrl(image: string) {
-	if (typeof image != "string") return "";
+function discordImageToUrl(imageStr: string) {
+	if (typeof imageStr != "string") return "";
 
-	if (image.startsWith("mp:external/")) {
-		return image.replace(
-			/^mp:external\//i,
-			"https://media.discordapp.net/external/",
-		);
-	} else if (image.startsWith("youtube:")) {
-		return `https://img.youtube.com/vi/${image.replace(
-			/^youtube:/i,
-			"",
-		)}/maxresdefault.jpg`;
+	const keyValueFnMap: { [key: string]: (value: string) => {} } = {
+		"mp:external/": value =>
+			"https://media.discordapp.net/external/" + value,
+		"youtube:": value =>
+			`https://img.youtube.com/vi/${value}/maxresdefault.jpg?${Date.now()}`,
+		"twitch:": value =>
+			`https://static-cdn.jtvnw.net/previews-ttv/live_user_${value}-1920x1080.jpg?${Date.now()}`,
+	};
+
+	for (let key of Object.keys(keyValueFnMap)) {
+		if (!imageStr.startsWith(key)) continue;
+		return keyValueFnMap[key](imageStr.replace(key, ""));
 	}
 
 	return "";
 }
+
+console.log(discordImageToUrl("twitch:maki_doll"));
 
 function processSpotify(data: DataEvent): CurrentActivity | null {
 	const song: Spotify = data.spotify;
@@ -248,18 +252,10 @@ function processStreaming(data: DataEvent): CurrentActivity | null {
 
 	if (stream == null) return null;
 
-	console.log(stream);
-
-	console.log(discordImageToUrl(stream.assets.large_image));
-
 	return {
 		activityName: "Twitch",
 		activityIcon: FaTwitch,
-		imageUrl:
-			discordImageToUrl(stream.assets?.large_image ?? "") ??
-			`https://static-cdn.jtvnw.net/previews-ttv/live_user_${
-				config.socialIds.twitch
-			}-1920x1080.jpg?${Date.now()}`,
+		imageUrl: discordImageToUrl(stream.assets?.large_image ?? ""),
 		imageAlt: "Streaming",
 		firstLine: stream.details,
 		secondLine: stream.state,
