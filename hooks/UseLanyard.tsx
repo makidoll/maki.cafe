@@ -113,7 +113,7 @@ interface CurrentActivity {
 function discordImageToUrl(imageStr: string) {
 	if (typeof imageStr != "string") return "";
 
-	const keyValueFnMap: { [key: string]: (value: string) => {} } = {
+	const keyValueFnMap: { [key: string]: (value: string) => string } = {
 		"mp:external/": value =>
 			"https://media.discordapp.net/external/" + value,
 		"youtube:": value =>
