@@ -102,12 +102,12 @@ export default function MyApp({ Component, pageProps }: AppProps) {
 				/>
 				<link rel="manifest" href="/site.webmanifest" />
 				<link rel="shortcut icon" href="/favicon.ico" />
-				<meta name="msapplication-TileColor" content="#1d1f21" />
+				<meta name="msapplication-TileColor" content="#e91e63" />
 				<meta
 					name="msapplication-config"
 					content="/browserconfig.xml"
 				/>
-				<meta name="theme-color" content="#ffffff" />
+				<meta name="theme-color" content="#111111" />
 				<meta name="description" content={description} />
 				<meta property="og:url" content={url} />
 				<meta property="og:type" content="website" />
