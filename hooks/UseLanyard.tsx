@@ -130,8 +130,6 @@ function discordImageToUrl(imageStr: string) {
 	return "";
 }
 
-console.log(discordImageToUrl("twitch:maki_doll"));
-
 function processSpotify(data: DataEvent): CurrentActivity | null {
 	const song: Spotify = data.spotify;
 	if (song == null) return null;
@@ -201,8 +199,6 @@ function processDeadBeef(data: DataEvent): CurrentActivity | null {
 		activity => activity.name == "DeaDBeeF",
 	);
 	if (deadBeef == null) return null;
-
-	console.log(deadBeef.assets?.large_image);
 
 	return {
 		activityName: "DeaDBeeF",
@@ -309,12 +305,12 @@ export function useLanyard(discordId: string) {
 		const processActivity = (data: DataEvent) => {
 			// console.log(data);
 
-			let activity: CurrentActivity | null = processActivities[0](data);
+			let activity: CurrentActivity | null = null;
 
 			if (activity == null) {
-				for (let i = 1; i < processActivities.length; i++) {
+				for (let i = 0; i < processActivities.length; i++) {
 					activity = processActivities[i](data);
-					if (activity != null) continue;
+					if (activity != null) break;
 				}
 			}
 
