@@ -19,6 +19,8 @@ const socialIds = {
 	},
 	xmpp: "maki@hotmilk.space",
 	twitch: "maki_doll",
+	secondLifeName: "maki.blossom",
+	secondLifeUuid: "b7c5f366-7a39-4289-8157-d3a8ae6d57f4",
 };
 
 const socialLinks = {
@@ -42,6 +44,7 @@ const socialLinks = {
 	kofi: "https://ko-fi.com/makidoll",
 	codewars: "https://www.codewars.com/users/makidoll",
 	twitch: "https://www.twitch.tv/" + socialIds.twitch,
+	secondLife: `secondlife:///app/agent/${socialIds.secondLifeUuid}/about`,
 };
 
 export const config = {

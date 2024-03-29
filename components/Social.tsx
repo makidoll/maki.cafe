@@ -29,25 +29,36 @@ import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
 import { PronounsPageIcon } from "./ui/social-icons/PronounsPageIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { XmppIcon } from "./ui/social-icons/XmppIcon";
+import { useState } from "react";
+import { chakra } from "@chakra-ui/react";
+import { SecondLifeIcon } from "./ui/social-icons/SecondLifeIcon";
+
+interface Popup {
+	title: string;
+	username: string;
+	uri: string;
+}
 
 interface Social {
 	icon: IconType;
-	href: string;
+	href?: string;
 	name: string;
 	color: string;
 	small: boolean;
 	rel?: string;
 	rainbow?: boolean;
 	iconSize?: number;
-	openXmpp?: boolean;
+	openPopup?: Popup;
 }
 
 export default function Social() {
 	const toast = useToast();
+
+	const [popupInfo, setPopupInfo] = useState<Popup>();
 	const {
-		isOpen: xmppIsOpen,
-		onOpen: xmppOnOpen,
-		onClose: xmppOnClose,
+		isOpen: popupIsOpen,
+		onOpen: popupOnOpen,
+		onClose: popupOnClose,
 	} = useDisclosure();
 
 	const socialsSpacing = 3;
@@ -87,19 +98,26 @@ export default function Social() {
 		],
 		[
 			{
-				icon: FaTwitch,
-				href: config.socialLinks.twitch,
-				name: "Twitch",
-				color: "#9146ff",
+				icon: SecondLifeIcon,
+				name: "Second Life",
+				color: "#00bfff",
 				small: true,
+				openPopup: {
+					title: "Second Life",
+					username: config.socialIds.secondLifeName,
+					uri: config.socialLinks.secondLife,
+				},
 			},
 			{
 				icon: XmppIcon,
-				href: config.socialLinks.matrix,
 				name: "XMPP",
 				color: "#227ee1", // e96d1f or d9541e
 				small: true,
-				openXmpp: true,
+				openPopup: {
+					title: "XMPP",
+					username: config.socialIds.xmpp,
+					uri: "xmpp:" + config.socialIds.xmpp,
+				},
 			},
 			{
 				icon: ElementIcon,
@@ -108,6 +126,16 @@ export default function Social() {
 				color: "#0dbd8b", // element color
 				small: true,
 			},
+		],
+		[
+			{
+				icon: FaTwitch,
+				href: config.socialLinks.twitch,
+				name: "Twitch",
+				color: "#9146ff",
+				small: true,
+			},
+
 			{
 				icon: SteamIcon,
 				href: config.socialLinks.steam,
@@ -144,10 +172,13 @@ export default function Social() {
 			{row.map((social, i) => (
 				<Button
 					key={"social-button-" + i}
-					{...(social.openXmpp
+					{...(social.openPopup
 						? {
 								as: "button",
-								onClick: xmppOnOpen,
+								onClick: () => {
+									setPopupInfo(social.openPopup);
+									popupOnOpen();
+								},
 						  }
 						: {
 								as: "a",
@@ -238,6 +269,10 @@ export default function Social() {
 	const secondaryLetterSpacing = -1.0;
 	const secondaryTextOpacity = 0.6;
 
+	const tertiaryFontWeight = 700;
+	const tertiaryLetterSpacing = -1.0;
+	const tertiaryTextOpacity = 0.4;
+
 	return (
 		<>
 			<Flex flexDir="column" alignItems="center" justifyContent="center">
@@ -255,10 +290,10 @@ export default function Social() {
 						fontSize="2xl"
 						letterSpacing={primaryLetterSpacing}
 					>
-						cute game dev doll
+						cute game dev pony doll
 					</SubHeading>
 					<Emoji size={24} custom="cyber-heart"></Emoji>
-					<SubHeading
+					{/* <SubHeading
 						opacity={lerp(
 							primaryTextOpacity,
 							secondaryTextOpacity,
@@ -268,9 +303,9 @@ export default function Social() {
 						fontSize="md"
 						letterSpacing={primaryLetterSpacing + 0.25}
 					>
-						she/they
+						she/they/it
 					</SubHeading>
-					<Emoji size={24} custom="trans-heart"></Emoji>
+					<Emoji size={24} custom="trans-heart"></Emoji> */}
 					{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}
 				</HStack>
 				<VStack spacing={0} mt={3}>
@@ -300,62 +335,9 @@ export default function Social() {
 							programming and running servers
 						</Text>
 					</HStack>
-					{/* <HStack spacing={0.5} mt={0.5}>
-					<Emoji size={20} font="noto">
-						🦊
-					</Emoji>
-					<Text
-						opacity={subTextOpacity}
-						fontWeight={fontWeight}
-						fontSize="lg"
-						px={1}
-						letterSpacing={letterSpacing}
-					>
-						sensitive
-					</Text>
-					<Emoji size={20} font="noto">
-						🐸
-					</Emoji>
-					<Text
-						opacity={subTextOpacity}
-						fontWeight={fontWeight}
-						fontSize="lg"
-						px={1}
-						letterSpacing={letterSpacing}
-					>
-						neuro-
-					</Text>
-					<Emoji size={20} font="noto">
-						🦐
-					</Emoji>
-					<Text
-						opacity={subTextOpacity}
-						fontWeight={fontWeight}
-						fontSize="lg"
-						px={1}
-						letterSpacing={letterSpacing}
-					>
-						-spicy
-					</Text>
-					<Emoji size={20} font="noto">
-						🐍
-					</Emoji>
-					<Text
-						opacity={subTextOpacity}
-						fontWeight={fontWeight}
-						fontSize="lg"
-						px={1}
-						letterSpacing={letterSpacing}
-					>
-						mess
-					</Text>
-					<Emoji size={20} font="noto">
-						🐿️
-					</Emoji>
-				</HStack> */}
 					<HStack spacing={0.5} mt={0.5}>
 						<Emoji size={20} font="noto">
-							🐸
+							🦄
 						</Emoji>
 						<Text
 							opacity={secondaryTextOpacity}
@@ -364,7 +346,7 @@ export default function Social() {
 							px={1}
 							letterSpacing={secondaryLetterSpacing}
 						>
-							neurodivergent and sensitive
+							neurodivergent sensitive
 						</Text>
 						<Emoji size={20} font="noto">
 							🦐
@@ -376,8 +358,32 @@ export default function Social() {
 							🐍
 						</Emoji>
 						<Emoji size={20} font="noto">
+							🐸
+						</Emoji>
+					</HStack>
+					<HStack spacing={0.5} mt={3}>
+						<Emoji size={18} custom="trans-heart"></Emoji>
+						<Text
+							opacity={tertiaryTextOpacity}
+							fontWeight={tertiaryFontWeight}
+							fontSize="lg"
+							px={1}
+							letterSpacing={tertiaryLetterSpacing}
+						>
+							she/they/it
+						</Text>
+						<Emoji size={18} font="noto">
 							🐿️
 						</Emoji>
+						<Text
+							opacity={tertiaryTextOpacity}
+							fontWeight={tertiaryFontWeight}
+							fontSize="lg"
+							px={1}
+							letterSpacing={tertiaryLetterSpacing}
+						>
+							hrt since 2018
+						</Text>
 					</HStack>
 				</VStack>
 				<VStack mt={6} spacing={socialsSpacing}>
@@ -438,8 +444,8 @@ export default function Social() {
 				</VStack>
 			</Flex>
 			<Modal
-				isOpen={xmppIsOpen}
-				onClose={xmppOnClose}
+				isOpen={popupIsOpen && popupInfo != null}
+				onClose={popupOnClose}
 				isCentered
 				colorScheme="brand"
 			>
@@ -449,9 +455,19 @@ export default function Social() {
 					width={"fit-content"}
 					borderRadius={16}
 				>
-					<ModalHeader my={1.5}>
+					<ModalHeader
+						my={1.5}
+						display={"flex"}
+						flexDir={"column"}
+						alignItems={"center"}
+						gap={1}
+					>
+						<Heading size={"md"} fontWeight={800} mb={2}>
+							{popupInfo?.title}
+							{/* <chakra.span fontWeight={700}>add at</chakra.span> */}
+						</Heading>
 						<HStack spacing={3}>
-							<Heading size={"md"}>Add me at</Heading>
+							{/* <Heading size={"md"}>Add me</Heading> */}
 							<Code
 								px={1.5}
 								py={0.5}
@@ -480,13 +496,13 @@ export default function Social() {
 								}}
 								fontFamily={"var(--chakra-fonts-monospace)"}
 							>
-								{config.socialIds.xmpp}
+								{popupInfo?.username}
 							</Code>
 						</HStack>
 						<Button
 							as="a"
-							href={"xmpp:" + config.socialIds.xmpp}
-							onClick={xmppOnClose}
+							href={popupInfo?.uri}
+							onClick={popupOnClose}
 							background={"brand.500"}
 							size={"sm"}
 							mt={4}
@@ -498,7 +514,7 @@ export default function Social() {
 							}}
 							fontWeight={700}
 						>
-							Open using preferred client
+							Open using client
 						</Button>
 					</ModalHeader>
 					{/* <ModalCloseButton /> */}
