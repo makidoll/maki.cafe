@@ -6,7 +6,7 @@ import type {
 } from "next";
 import { useState } from "react";
 import { getSelectorsByUserAgent } from "react-device-detect";
-import IntroDoll from "../components/IntroDoll";
+import IntroPony from "../components/IntroPony";
 import Social from "../components/Social";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
@@ -118,7 +118,7 @@ const Home: NextPage = (
 				flexDirection="column"
 				width="100%"
 			>
-				<IntroDoll
+				<IntroPony
 					h={600}
 					mt={2}
 					mb={0}
