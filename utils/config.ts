@@ -24,7 +24,7 @@ const socialIds = {
 };
 
 const socialLinks = {
-	// discord: "https://discord.com/users/" + socialIds.discord,
+	discord: "https://discord.com/users/" + socialIds.discord,
 	twitter: "https://twitter.com/" + socialIds.twitter,
 	github: "https://github.com/" + socialIds.github,
 	githubGist: "https://gist.github.com/" + socialIds.github,

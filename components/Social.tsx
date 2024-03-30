@@ -261,17 +261,17 @@ export default function Social() {
 		</HStack>
 	));
 
-	const primaryFontWeight = 900;
+	const primaryFontWeight = 800;
 	const primaryLetterSpacing = -1.0;
-	const primaryTextOpacity = 0.7;
+	const primaryTextOpacity = 0.8;
 
-	const secondaryFontWeight = 700;
+	const secondaryFontWeight = 600;
 	const secondaryLetterSpacing = -1.0;
-	const secondaryTextOpacity = 0.6;
+	const secondaryTextOpacity = 0.7;
 
-	const tertiaryFontWeight = 700;
+	const tertiaryFontWeight = 600;
 	const tertiaryLetterSpacing = -1.0;
-	const tertiaryTextOpacity = 0.4;
+	const tertiaryTextOpacity = 0.6;
 
 	return (
 		<>
@@ -346,7 +346,7 @@ export default function Social() {
 							px={1}
 							letterSpacing={secondaryLetterSpacing}
 						>
-							neurodivergent sensitive
+							neurodivergent/sensitive
 						</Text>
 						<Emoji size={20} font="noto">
 							🦐
@@ -404,15 +404,15 @@ export default function Social() {
 						>
 							<HStack spacing={2}>
 								<Emoji
-									opacity={secondaryTextOpacity + 0.1}
+									opacity={tertiaryTextOpacity}
 									size={24}
 									custom="arch-linux"
 								></Emoji>
-								<Text opacity={secondaryTextOpacity - 0.1}>
+								<Text opacity={tertiaryTextOpacity - 0.1}>
 									i use arch btw lmao
 								</Text>
 								<FaArrowRight
-									opacity={secondaryTextOpacity - 0.1}
+									opacity={tertiaryTextOpacity - 0.1}
 									size={16}
 									color="#fff"
 									style={{ marginBottom: "0px" }}

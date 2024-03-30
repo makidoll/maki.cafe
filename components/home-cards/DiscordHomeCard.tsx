@@ -203,42 +203,46 @@ export default function DiscordHomeCard() {
 	return (
 		<HomeCard>
 			<HStack>
-				{/* <Link href={config.socialLinks.discord} color="#fff"> */}
-				<HStack>
-					<DiscordUserImage
-						size={48}
-						url={
-							"https://cdn.discordapp.com/avatars/" +
-							config.socialIds.discord +
-							"/" +
-							data?.discord_user.avatar +
-							".webp?size=128"
-						}
-						status={data?.discord_status}
-						mobile={data?.active_on_discord_mobile}
-					/>
-					<VStack paddingLeft={2} spacing={-1} alignItems={"start"}>
-						<SubHeading
-							fontSize={"1.5em"}
-							fontWeight={900}
-							letterSpacing={-0.5}
+				<Link href={config.socialLinks.discord} color="#fff">
+					<HStack>
+						<DiscordUserImage
+							size={48}
+							url={
+								"https://cdn.discordapp.com/avatars/" +
+								config.socialIds.discord +
+								"/" +
+								data?.discord_user.avatar +
+								".webp?size=128"
+							}
+							status={data?.discord_status}
+							mobile={data?.active_on_discord_mobile}
+						/>
+						<VStack
+							paddingLeft={2}
+							spacing={-1}
+							alignItems={"start"}
 						>
-							{data.discord_user.global_name}
-						</SubHeading>
-						<SubHeading
-							opacity={0.6}
-							fontSize={"1em"}
-							fontWeight={600}
-						>
-							{/* {data.discord_user.discriminator == "0"
+							<SubHeading
+								fontSize={"1.5em"}
+								fontWeight={900}
+								letterSpacing={-0.5}
+							>
+								{data.discord_user.global_name}
+							</SubHeading>
+							<SubHeading
+								opacity={0.6}
+								fontSize={"1em"}
+								fontWeight={600}
+							>
+								{/* {data.discord_user.discriminator == "0"
 								? `@${data.discord_user.username}`
 								: `${data.discord_user.username}#${data.discord_user.discriminator}`} */}
-							{capitalize(data.discord_status)}
-						</SubHeading>
-					</VStack>
-				</HStack>
-				{/* </Link>
-				<SubHeading
+								{capitalize(data.discord_status)}
+							</SubHeading>
+						</VStack>
+					</HStack>
+				</Link>
+				{/* <SubHeading
 					opacity={0.4}
 					fontWeight={200}
 					flex={1}
