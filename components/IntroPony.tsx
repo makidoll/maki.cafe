@@ -4,8 +4,8 @@ import { PerspectiveCamera } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
 import { Easing } from "../utils/easing-functions";
 import { TweenManager } from "../utils/tween-manager";
-import introPonyFrames1024 from "./assets/intro-pony-frames-1024.webm";
-import introPonyFrames384 from "./assets/intro-pony-frames-384.webm";
+import introPonyFrames1000x800 from "./assets/intro-pony-frames-1000x800.webm";
+import introPonyFrames500x400 from "./assets/intro-pony-frames-500x400.webm";
 import HomeCardLoading from "./ui/home-card/HomeCardLoading";
 
 const Deg2Rad = 0.0174533;
@@ -18,9 +18,9 @@ const endScale = 1;
 
 // const frameSize = 512;
 
-// > 1024 frames, so play at 1024 fps to make it one second long
+// > 1000 frames, so play at 1000 fps to make it one second long
 
-// ffmpeg -framerate 1024 -pattern_type glob -i "intro-pony-frames/*.png" \
+// ffmpeg -framerate 1000 -pattern_type glob -i "intro-pony-frames/*.png" \
 // -movflags faststart -vcodec libx264 -crf 23 -g 1 -pix_fmt yuv420p \
 // intro-pony-frames.mp4
 
@@ -30,15 +30,15 @@ const endScale = 1;
 // > also lowering crf on mobile which will increase filesize
 // > but is okay because lowering res will decrease it a lot
 
-// ffmpeg -y -framerate 1024 -pattern_type glob -i "intro-pony-frames/*.png" \
+// ffmpeg -y -framerate 1000 -pattern_type glob -i "intro-pony-frames/*.png" \
 // -c:v libvpx-vp9 -row-mt 1 -pix_fmt yuva420p \
 // -b:v 0 -crf 52 -g 1 \
-// intro-pony-frames-1024.webm
+// intro-pony-frames-1000x800.webm
 
-// ffmpeg -y -framerate 1024 -pattern_type glob -i "intro-pony-frames/*.png" \
+// ffmpeg -y -framerate 1000 -pattern_type glob -i "intro-pony-frames/*.png" \
 // -c:v libvpx-vp9 -row-mt 1 -pix_fmt yuva420p -vf scale=384:384 \
 // -b:v 0 -crf 42 -g 1 \
-// intro-pony-frames-384.webm
+// intro-pony-frames-500x400.webm
 
 // > i originally converted the frames to webps and tar'd them
 // > its inefficient and we gotta downscale quite a bit, not recommended
@@ -90,7 +90,7 @@ export default function IntroPony(
 		// const tar = await (await fetch(introPonyFrames)).arrayBuffer();
 		// const files = await untar(tar); // npm:isomorphic-untar
 
-		// const limit = pLimit(1024); // npm:p-limit
+		// const limit = pLimit(1000); // npm:p-limit
 
 		// const framePromises = files
 		// 	.map(async f => createImageBitmap(new Blob([f.buffer])))
@@ -324,7 +324,11 @@ export default function IntroPony(
 				muted={true}
 			>
 				<source
-					src={isMobile ? introPonyFrames384 : introPonyFrames1024}
+					src={
+						isMobile
+							? introPonyFrames500x400
+							: introPonyFrames1000x800
+					}
 					type="video/webm"
 				></source>
 			</video>
