@@ -69,6 +69,12 @@ export default function StuffIveMadeHomeCard() {
 
 	const stuffThinner: (Thing | null)[] = [
 		{
+			name: "pokemon names",
+			link: "https://makidoll.github.io/pokemon-names",
+			image: "",
+			color: "#333",
+		},
+		{
 			name: "cloudflare ddns",
 			link: "https://github.com/makidoll/cloudflare-ddns",
 			image: "",
