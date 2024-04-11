@@ -13,15 +13,14 @@ import Image from "next/image";
 import { useEffect, useState } from "react";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
-import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { MastodonIcon } from "../ui/social-icons/MastodonIcon";
-import { TwitterIcon } from "../ui/social-icons/TwitterIcon";
 
 interface MastodonStatus {
 	content: string;
 	created_at: string;
+	sensitive: boolean;
 	emojis: { shortcode: string; url: string }[];
 	account: {
 		acct: string;
@@ -38,6 +37,7 @@ interface MastodonStatus {
 
 interface Image {
 	url: string;
+	sensitive: boolean;
 	image_url: string;
 }
 
@@ -66,6 +66,7 @@ export default function MastodonMediaHomeCard() {
 
 						images.push({
 							url: status.url,
+							sensitive: status.sensitive,
 							image_url: media_attachment.preview_url,
 						});
 					}
@@ -145,6 +146,9 @@ export default function MastodonMediaHomeCard() {
 										}
 										style={{
 											objectFit: "cover",
+											filter: image.sensitive
+												? "blur(12px)"
+												: "",
 										}}
 									/>
 								</Box>
