@@ -152,7 +152,7 @@ export default function StuffIveMadeHomeCard() {
 				looking through my{" "}
 				<chakra.span fontWeight={700}>Mastodon</chakra.span> or{" "}
 				<chakra.span fontWeight={700}>GitHub</chakra.span> if you wanna
-				see what I&apos; might be up to.
+				see what I might be up to.
 			</Text>
 			<Grid templateColumns="repeat(4, 1fr)" gap={1} mb={1}>
 				{stuff.map((thing, i) => makeButton(thing, i))}
