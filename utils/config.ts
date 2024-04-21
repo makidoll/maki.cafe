@@ -21,6 +21,7 @@ const socialIds = {
 	twitch: "maki_doll",
 	secondLifeName: "maki.blossom",
 	secondLifeUuid: "b7c5f366-7a39-4289-8157-d3a8ae6d57f4",
+	shaderToy: "MakiXx",
 };
 
 const socialLinks = {
@@ -45,6 +46,7 @@ const socialLinks = {
 	codewars: "https://www.codewars.com/users/makidoll",
 	twitch: "https://www.twitch.tv/" + socialIds.twitch,
 	secondLife: `secondlife:///app/agent/${socialIds.secondLifeUuid}/about`,
+	shaderToy: "https://www.shadertoy.com/user/" + socialIds.shaderToy,
 };
 
 export const config = {

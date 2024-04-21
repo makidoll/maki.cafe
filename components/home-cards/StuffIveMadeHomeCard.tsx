@@ -21,6 +21,7 @@ import { config } from "../../utils/config";
 import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
 import { MastodonIcon } from "../ui/social-icons/MastodonIcon";
 import { CodewarsIcon } from "../ui/social-icons/CodewarsIcon";
+import { ShaderToyIcon } from "../ui/social-icons/ShaderToyIcon";
 
 interface Thing {
 	name: string;
@@ -179,15 +180,20 @@ export default function StuffIveMadeHomeCard() {
 			</Text>
 			<HomeCardFooterLink
 				multi={[
-					{
-						name: "Mastodon",
-						url: config.socialLinks.mastodon,
-						icon: MastodonIcon,
-					},
+					// {
+					// 	name: "Mastodon",
+					// 	url: config.socialLinks.mastodon,
+					// 	icon: MastodonIcon,
+					// },
 					{
 						name: "GitHub",
 						url: config.socialLinks.github,
 						icon: GitHubIcon,
+					},
+					{
+						name: "ShaderToy",
+						url: config.socialLinks.shaderToy,
+						icon: ShaderToyIcon,
 					},
 					{
 						name: "Codewars",
