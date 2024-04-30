@@ -39,7 +39,7 @@ const sheetHeight = 8;
 
 const games = [
 	{
-		banner: "../games/metroid.png",
+		banner: "../games/metroid-dread.png",
 		url: "https://metroid.nintendo.com/",
 	},
 	"2357570", // overwatch
