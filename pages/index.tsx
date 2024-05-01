@@ -200,9 +200,9 @@ const Home: NextPage = (
 				<GamesHomeCard />
 				<GithubGistsHomeCard />
 				<SketchfabHomeCard />
-				<WhereHomeCard />
-				<FlickrHomeCard />
-				<MfcHomeCard />
+				{/* <WhereHomeCard /> */}
+				{/* <FlickrHomeCard /> */}
+				{/* <MfcHomeCard /> */}
 			</Grid>
 		</Box>
 	);

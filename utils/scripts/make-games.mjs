@@ -42,17 +42,20 @@ const games = [
 		banner: "../games/metroid-dread.png",
 		url: "https://metroid.nintendo.com/",
 	},
-	"2357570", // overwatch
-	"224760", // fez
-	// -- new line
+	{
+		banner: "../games/metroid-prime.png",
+		url: "https://metroid.nintendo.com/",
+	},
 	"210970", // the witness
+	// -- new line
+	"224760", // fez
 	"504230", // celeste
 	"620", // portal 2
 	// -- now smaller, new line
+	"2357570", // overwatch
 	"782330", // doom eternal
 	"17410", // mirrors edge
 	"219890", // anti chamber
-	"1003590", // tetris effect
 	// -- new line
 	"257850", // hyper light drifer
 	"367520", // hollow knight
@@ -79,6 +82,7 @@ const games = [
 	"438100", // vrchat
 	"394690", // tower unite
 	// -- new line
+	"1003590", // tetris effect
 	{
 		banner: "../games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
@@ -91,11 +95,11 @@ const games = [
 		banner: "../games/mother-3.png",
 		url: "http://mother3.fobby.net/",
 	},
+	// -- new line
 	{
 		banner: "../games/super-mario-odyssey.png",
 		url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
 	},
-	// -- new line
 	{
 		banner: "../games/splatoon-2.png",
 		url: "https://splatoon.nintendo.com",

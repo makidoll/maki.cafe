@@ -15,10 +15,11 @@ import {
 	useDisclosure,
 	useToast,
 } from "@chakra-ui/react";
+import { useState } from "react";
 import { IconType } from "react-icons";
 import { FaArrowRight, FaTwitch } from "react-icons/fa";
 import { config } from "../utils/config";
-import { colorMix, lerp } from "../utils/utils";
+import { colorMix } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
 import Emoji from "./ui/Emoji";
 import SubHeading from "./ui/SubHeading";
@@ -26,12 +27,10 @@ import { ElementIcon } from "./ui/social-icons/ElementIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
 import { KofiIcon } from "./ui/social-icons/KofiIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
-import { PronounsPageIcon } from "./ui/social-icons/PronounsPageIcon";
+import { SecondLifeIcon } from "./ui/social-icons/SecondLifeIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { XmppIcon } from "./ui/social-icons/XmppIcon";
-import { useState } from "react";
-import { chakra } from "@chakra-ui/react";
-import { SecondLifeIcon } from "./ui/social-icons/SecondLifeIcon";
+import { MdEmail } from "react-icons/md";
 
 interface Popup {
 	title: string;
@@ -49,6 +48,7 @@ interface Social {
 	rainbow?: boolean;
 	iconSize?: number;
 	openPopup?: Popup;
+	openWithJs?: boolean;
 }
 
 export default function Social() {
@@ -135,7 +135,6 @@ export default function Social() {
 				color: "#9146ff",
 				small: true,
 			},
-
 			{
 				icon: SteamIcon,
 				href: config.socialLinks.steam,
@@ -144,12 +143,20 @@ export default function Social() {
 				small: true,
 			},
 			{
-				icon: PronounsPageIcon,
-				href: config.socialLinks.pronounsPage,
-				name: "Pronouns",
-				color: "#e91e63", // original #ff95bb
+				icon: MdEmail,
+				href: config.socialLinks.email,
+				name: "Email",
+				color: "#222",
 				small: true,
+				openWithJs: true,
 			},
+			// {
+			// 	icon: PronounsPageIcon,
+			// 	href: config.socialLinks.pronounsPage,
+			// 	name: "Pronouns",
+			// 	color: "#e91e63", // original #ff95bb
+			// 	small: true,
+			// },
 			// {
 			// 	icon: DiscordIcon,
 			// 	href: config.socialLinks.discord,
@@ -172,12 +179,16 @@ export default function Social() {
 			{row.map((social, i) => (
 				<Button
 					key={"social-button-" + i}
-					{...(social.openPopup
+					{...(social.openPopup || social.openWithJs
 						? {
 								as: "button",
 								onClick: () => {
-									setPopupInfo(social.openPopup);
-									popupOnOpen();
+									if (social.openPopup) {
+										setPopupInfo(social.openPopup);
+										popupOnOpen();
+									} else if (social.openWithJs) {
+										window.open(social.href, "_self");
+									}
 								},
 						  }
 						: {
@@ -318,7 +329,7 @@ export default function Social() {
 							pl={1}
 							letterSpacing={secondaryLetterSpacing}
 						>
-							play and make video games
+							play and create video games
 						</Text>
 					</HStack>
 					<HStack spacing={1}>
@@ -332,10 +343,10 @@ export default function Social() {
 							pl={1}
 							letterSpacing={secondaryLetterSpacing}
 						>
-							programming and running servers
+							programming and hosting servers
 						</Text>
 					</HStack>
-					<HStack spacing={0.5} mt={0.5}>
+					{/* <HStack spacing={0.5} mt={0.5}>
 						<Emoji size={20} font="noto">
 							🦄
 						</Emoji>
@@ -360,8 +371,8 @@ export default function Social() {
 						<Emoji size={20} font="noto">
 							🐸
 						</Emoji>
-					</HStack>
-					<HStack spacing={0.5} mt={3}>
+					</HStack> */}
+					{/* <HStack spacing={0.5} mt={3}>
 						<Emoji size={18} custom="trans-heart"></Emoji>
 						<Text
 							opacity={tertiaryTextOpacity}
@@ -384,9 +395,9 @@ export default function Social() {
 						>
 							hrt since 2018
 						</Text>
-					</HStack>
+					</HStack> */}
 				</VStack>
-				<VStack mt={6} spacing={socialsSpacing}>
+				<VStack mt={10} spacing={socialsSpacing}>
 					{SocialsRows}
 				</VStack>
 				<VStack spacing={1} mt={6}>

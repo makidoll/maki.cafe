@@ -22,6 +22,7 @@ const socialIds = {
 	secondLifeName: "maki.blossom",
 	secondLifeUuid: "b7c5f366-7a39-4289-8157-d3a8ae6d57f4",
 	shaderToy: "MakiXx",
+	email: "maki@hotmilk.space",
 };
 
 const socialLinks = {
@@ -47,6 +48,7 @@ const socialLinks = {
 	twitch: "https://www.twitch.tv/" + socialIds.twitch,
 	secondLife: `secondlife:///app/agent/${socialIds.secondLifeUuid}/about`,
 	shaderToy: "https://www.shadertoy.com/user/" + socialIds.shaderToy,
+	email: "mailto:" + socialIds.email,
 };
 
 export const config = {

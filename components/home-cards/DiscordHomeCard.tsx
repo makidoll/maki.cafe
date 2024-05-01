@@ -134,7 +134,7 @@ export default function DiscordHomeCard() {
 					</SubHeading>
 					<SubHeading size={"sm"} fontWeight={400}>
 						{activity == null
-							? "or playing or watching"
+							? "or playing any games"
 							: activity.secondLine != ""
 							? activity.secondLine
 							: activityTime != null
