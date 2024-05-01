@@ -329,7 +329,7 @@ export default function Social() {
 							pl={1}
 							letterSpacing={secondaryLetterSpacing}
 						>
-							play and create video games
+							play and make video games
 						</Text>
 					</HStack>
 					<HStack spacing={1}>
@@ -343,7 +343,7 @@ export default function Social() {
 							pl={1}
 							letterSpacing={secondaryLetterSpacing}
 						>
-							programming and hosting servers
+							programming and running servers
 						</Text>
 					</HStack>
 					{/* <HStack spacing={0.5} mt={0.5}>
