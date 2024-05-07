@@ -1,1 +1,0 @@
-export const slMarketplaceInfo = {"cssSize":"202.29% 203.05%","items":[{"url":"https://marketplace.secondlife.com/s/Doll-Head-for-OpenPony/25972531","position":"0% 0%"}]}

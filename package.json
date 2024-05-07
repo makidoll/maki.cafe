@@ -4,8 +4,8 @@
 	"private": true,
 	"scripts": {
 		"make:games": "node utils/scripts/make-games.mjs",
-		"make:sl": "node utils/scripts/make-sl-marketplace.mjs",
-		"make:mfc": "node utils/scripts/make-mfc.mjs",
+		"_make:sl": "node utils/scripts/make-sl-marketplace.mjs",
+		"_make:mfc": "node utils/scripts/make-mfc.mjs",
 		"start": "next dev",
 		"build": "next build",
 		"serve": "next start",
