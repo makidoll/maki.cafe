@@ -98,17 +98,6 @@ export default function Social() {
 		],
 		[
 			{
-				icon: SecondLifeIcon,
-				name: "Second Life",
-				color: "#00bfff",
-				small: true,
-				openPopup: {
-					title: "Second Life",
-					username: config.socialIds.secondLifeName,
-					uri: config.socialLinks.secondLife,
-				},
-			},
-			{
 				icon: XmppIcon,
 				name: "XMPP",
 				color: "#227ee1", // e96d1f or d9541e
@@ -117,6 +106,17 @@ export default function Social() {
 					title: "XMPP",
 					username: config.socialIds.xmpp,
 					uri: "xmpp:" + config.socialIds.xmpp,
+				},
+			},
+			{
+				icon: SecondLifeIcon,
+				name: "Second Life",
+				color: "#00bfff",
+				small: true,
+				openPopup: {
+					title: "Second Life",
+					username: config.socialIds.secondLifeName,
+					uri: config.socialLinks.secondLife,
 				},
 			},
 			{
@@ -288,7 +288,7 @@ export default function Social() {
 		<>
 			<Flex flexDir="column" alignItems="center" justifyContent="center">
 				<HStack spacing={2}>
-					<Emoji size={24} font="twemoji" mr={-0.5}>
+					<Emoji size={24} font="noto" mr={-0.5}>
 						🎀
 					</Emoji>
 					<Emoji size={24} font="twemoji" mr={-0.5}>
@@ -301,7 +301,7 @@ export default function Social() {
 						fontSize="2xl"
 						letterSpacing={primaryLetterSpacing}
 					>
-						cute game dev pony doll
+						cute pony doll
 					</SubHeading>
 					<Emoji size={24} custom="cyber-heart"></Emoji>
 					{/* <SubHeading
@@ -320,6 +320,20 @@ export default function Social() {
 					{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}
 				</HStack>
 				<VStack spacing={0} mt={3}>
+					<HStack spacing={1}>
+						<Emoji size={24} font="noto">
+							🌱
+						</Emoji>
+						<Text
+							opacity={secondaryTextOpacity}
+							fontWeight={secondaryFontWeight}
+							fontSize="xl"
+							pl={1}
+							letterSpacing={secondaryLetterSpacing}
+						>
+							creator of virtual worlds
+						</Text>
+					</HStack>
 					<HStack spacing={1}>
 						<Emoji size={24} custom="shaderlab"></Emoji>
 						<Text
@@ -345,6 +359,24 @@ export default function Social() {
 						>
 							programming and running servers
 						</Text>
+					</HStack>
+					<HStack spacing={0} mt={4} opacity={0.5}>
+						{[
+							"🦄",
+							"🦐",
+							"🦞",
+							"🦊",
+							"🐍",
+							"🐸",
+							"🐦",
+							"🐿️",
+							"🦆",
+							"🪱",
+						].map((emoji, i) => (
+							<Emoji key={i} size={24} font="noto">
+								{emoji}
+							</Emoji>
+						))}
 					</HStack>
 					{/* <HStack spacing={0.5} mt={0.5}>
 						<Emoji size={20} font="noto">
@@ -397,7 +429,7 @@ export default function Social() {
 						</Text>
 					</HStack> */}
 				</VStack>
-				<VStack mt={10} spacing={socialsSpacing}>
+				<VStack mt={8} spacing={socialsSpacing}>
 					{SocialsRows}
 				</VStack>
 				<VStack spacing={1} mt={6}>
