@@ -15,6 +15,7 @@ import blahajFinderImage from "./stuff-ive-made/blahaj-finder.png";
 import hexcorpImage from "./stuff-ive-made/hexcorp.jpg";
 import froggyBotImage from "./stuff-ive-made/froggy-bot.png";
 import essenceBgImage from "./stuff-ive-made/essence-bg.png";
+import tivoliIconImage from "./stuff-ive-made/tivoli-icon.png";
 import melondsMetroidHuntersImage from "./stuff-ive-made/melonds-metroid-hunters.jpg";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import { config } from "../../utils/config";
@@ -65,6 +66,13 @@ export default function StuffIveMadeHomeCard() {
 			image: hexcorpImage.src,
 			color: "#ff64ff",
 			fontSize: 13,
+		},
+		{
+			name: "tivoli\ncloud",
+			link: "https://github.com/tivolicloud",
+			image: tivoliIconImage.src,
+			color: "#e91e63",
+			// fontSize: 16,
 		},
 	];
 
