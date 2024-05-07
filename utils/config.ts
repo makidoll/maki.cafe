@@ -49,6 +49,7 @@ const socialLinks = {
 	secondLife: `secondlife:///app/agent/${socialIds.secondLifeUuid}/about`,
 	shaderToy: "https://www.shadertoy.com/user/" + socialIds.shaderToy,
 	email: "mailto:" + socialIds.email,
+	slMarketplace: "https://marketplace.secondlife.com/stores/65674",
 };
 
 export const config = {

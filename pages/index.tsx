@@ -9,7 +9,6 @@ import { getSelectorsByUserAgent } from "react-device-detect";
 import IntroPony from "../components/IntroPony";
 import Social from "../components/Social";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
-import FlickrHomeCard from "../components/home-cards/FlickrHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
 import GithubGistsHomeCard from "../components/home-cards/GithubGistsHomeCard";
 import HomelabCutelabBlahajHomeCard from "../components/home-cards/HomelabCutelabBlahajHomeCard";
@@ -18,10 +17,9 @@ import HomelabHotmilkHomeCard, {
 	OlderHomelab,
 } from "../components/home-cards/HomelabHotmilkBlahajHomeCard";
 import MastodonMediaHomeCard from "../components/home-cards/MastodonMediaHomeCard";
-import MfcHomeCard from "../components/home-cards/MfcHomeCard";
 import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
+import SlMarketplaceHomeCard from "../components/home-cards/SlMarketplaceHomeCard";
 import StuffIveMadeHomeCard from "../components/home-cards/StuffIveMadeHomeCard";
-import WhereHomeCard from "../components/home-cards/WhereHomeCard";
 import Logo from "../components/ui/Logo";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import gnomeDarkImage from "./gnome-dark.png";
@@ -195,6 +193,7 @@ const Home: NextPage = (
 			>
 				<DiscordHomeCard />
 				<StuffIveMadeHomeCard />
+				<SlMarketplaceHomeCard />
 				{homelab}
 				<MastodonMediaHomeCard />
 				<GamesHomeCard />
