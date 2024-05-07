@@ -22,6 +22,7 @@ import SlMarketplaceHomeCard from "../components/home-cards/SlMarketplaceHomeCar
 import StuffIveMadeHomeCard from "../components/home-cards/StuffIveMadeHomeCard";
 import Logo from "../components/ui/Logo";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
+// import militarismTile from "../components/assets/militarism.svg";
 import gnomeDarkImage from "./gnome-dark.png";
 import styles from "./index.module.scss";
 
@@ -118,7 +119,7 @@ const Home: NextPage = (
 			>
 				<IntroPony
 					h={600}
-					mt={2}
+					mt={0}
 					mb={0}
 					onLoaded={() => {
 						setReady(true);
@@ -127,7 +128,7 @@ const Home: NextPage = (
 				/>
 				<Box
 					width={350}
-					// marginTop={0}
+					marginTop={-4}
 					position={"relative"}
 					// marginTop="16px"
 				>
@@ -168,7 +169,7 @@ const Home: NextPage = (
 					</chakra.svg> */}
 					<Logo ready={ready} />
 				</Box>
-				<Box marginTop={6}>
+				<Box marginTop={10}>
 					<Social />
 				</Box>
 			</Box>

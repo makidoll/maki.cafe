@@ -360,7 +360,7 @@ export default function Social() {
 							programming and running servers
 						</Text>
 					</HStack>
-					<HStack spacing={0} mt={4} opacity={0.5}>
+					<HStack spacing={0} mt={7} opacity={0.5}>
 						{[
 							"🦄",
 							"🦐",
@@ -429,7 +429,7 @@ export default function Social() {
 						</Text>
 					</HStack> */}
 				</VStack>
-				<VStack mt={8} spacing={socialsSpacing}>
+				<VStack mt={10} spacing={socialsSpacing}>
 					{SocialsRows}
 				</VStack>
 				<VStack spacing={1} mt={6}>

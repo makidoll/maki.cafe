@@ -227,7 +227,7 @@ export default function DiscordHomeCard() {
 								fontWeight={900}
 								letterSpacing={-0.5}
 							>
-								{data.discord_user.global_name}
+								{data.discord_user.global_name.toLowerCase()}
 							</SubHeading>
 							<SubHeading
 								opacity={0.6}
