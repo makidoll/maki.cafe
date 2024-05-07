@@ -35,13 +35,20 @@ interface Thing {
 export default function StuffIveMadeHomeCard() {
 	const stuff: Thing[] = [
 		{
+			name: "tivoli\ncloud",
+			link: "https://github.com/tivolicloud",
+			image: tivoliIconImage.src,
+			color: "transparent",
+			fontSize: 17,
+		},
+		{
 			name: "blahaj\nfinder",
 			link: "https://blahaj.quest",
 			image: blahajFinderImage.src,
 			color: "#3C8EA7",
 		},
 		{
-			name: "froggy\nbot",
+			name: "frog\nbot",
 			link: "https://github.com/makidoll/frog-bot",
 			image: froggyBotImage.src,
 			color: "#B7D019",
@@ -66,13 +73,6 @@ export default function StuffIveMadeHomeCard() {
 			image: hexcorpImage.src,
 			color: "#ff64ff",
 			fontSize: 13,
-		},
-		{
-			name: "tivoli\ncloud",
-			link: "https://github.com/tivolicloud",
-			image: tivoliIconImage.src,
-			color: "#e91e63",
-			// fontSize: 16,
 		},
 	];
 
