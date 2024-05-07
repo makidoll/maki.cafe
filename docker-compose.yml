@@ -10,7 +10,7 @@ services:
             - traefik.enable=true
 
             - >
-                traefik.http.routers.makidrone-io.rule=
+                traefik.http.routers.makidoll-io.rule=
                 Host(`makidoll.io`) || Host(`www.makidoll.io`) ||
                 Host(`makidrone.io`) || Host(`www.makidrone.io`) ||
                 Host(`maki.cafe`) || Host(`www.maki.cafe`)
