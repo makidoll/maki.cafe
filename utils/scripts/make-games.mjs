@@ -77,12 +77,12 @@ const games = [
 	"253230", // a hat in time
 	"963000", // frog detective 1
 	// -- new line
-	"1895880", // ratchet and clank rift apart
+	"220", // half life 2
 	"976730", // halo mcc
 	"438100", // vrchat
 	"394690", // tower unite
 	// -- new line
-	"220", // half life 2
+	"1895880", // ratchet and clank rift apart
 	"499180", // braid anniversary edition
 	"1003590", // tetris effect
 	{
