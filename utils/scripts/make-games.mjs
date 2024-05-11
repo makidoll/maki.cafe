@@ -33,7 +33,7 @@ const bannerHeight = 87;
 const bannerPadding = 4;
 
 const sheetWidth = 5;
-const sheetHeight = 8;
+const sheetHeight = 9;
 
 // banners from https://www.steamgriddb.com
 
@@ -82,20 +82,22 @@ const games = [
 	"438100", // vrchat
 	"394690", // tower unite
 	// -- new line
+	"220", // half life 2
+	"499180", // braid anniversary edition
 	"1003590", // tetris effect
+	{
+		banner: "../games/picross-3d-round-2.jpg",
+		url: "https://www.nintendo.com/store/products/picross-3d-round-2-3ds/",
+	},
+	// -- new line
 	{
 		banner: "../games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
 	},
 	{
-		banner: "../games/picross-3d-round-2.jpg",
-		url: "https://www.nintendo.com/store/products/picross-3d-round-2-3ds/",
-	},
-	{
 		banner: "../games/mother-3.png",
 		url: "http://mother3.fobby.net/",
 	},
-	// -- new line
 	{
 		banner: "../games/super-mario-odyssey.png",
 		url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
@@ -104,6 +106,7 @@ const games = [
 		banner: "../games/splatoon-2.png",
 		url: "https://splatoon.nintendo.com",
 	},
+	// -- new line
 	{
 		banner: "../games/universal-paperclips.png",
 		url: "https://www.decisionproblem.com/paperclips/",
@@ -116,7 +119,6 @@ const games = [
 		banner: "../games/world-of-warcraft.png",
 		url: "https://worldofwarcraft.blizzard.com/en-us/",
 	},
-	// -- new line
 	{
 		banner: "../games/tropix-2.png",
 		url: "https://www.tropixgame.com/",

@@ -169,7 +169,7 @@ const Home: NextPage = (
 					</chakra.svg> */}
 					<Logo ready={ready} />
 				</Box>
-				<Box marginTop={10}>
+				<Box marginTop={4}>
 					<Social />
 				</Box>
 			</Box>
