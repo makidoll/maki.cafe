@@ -195,8 +195,8 @@ const Home: NextPage = (
 				<DiscordHomeCard />
 				<StuffIveMadeHomeCard />
 				<SlMarketplaceHomeCard />
-				{homelab}
 				<MastodonMediaHomeCard />
+				{homelab}
 				<GamesHomeCard />
 				<GithubGistsHomeCard />
 				<SketchfabHomeCard />
