@@ -19,7 +19,7 @@ const socialIds = {
 	},
 	xmpp: "maki@hotmilk.space",
 	twitch: "maki_doll",
-	secondLifeName: "maki.blossom",
+	secondLifeName: "makidoll",
 	secondLifeUuid: "b7c5f366-7a39-4289-8157-d3a8ae6d57f4",
 	shaderToy: "MakiXx",
 	email: "maki@hotmilk.space",
