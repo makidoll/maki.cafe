@@ -123,6 +123,11 @@ const games = [
 		banner: "../games/tropix-2.png",
 		url: "https://www.tropixgame.com/",
 	},
+	// -- new line
+	{
+		banner: "../games/animal-crossing-cropped.png",
+		url: "https://animalcrossing.nintendo.com/",
+	},
 ];
 
 (async () => {
