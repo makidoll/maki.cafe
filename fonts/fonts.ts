@@ -13,6 +13,7 @@ import localFont from "next/font/local";
 
 const cascadiaMono = localFont({
 	// needs to be string literal
+	preload: false,
 	src: [
 		{
 			path: "./cascadia-mono/CascadiaMono-ExtraLight.woff2",
@@ -78,6 +79,7 @@ const cascadiaMono = localFont({
 });
 
 const kgAlwaysAGoodTime = localFont({
+	preload: false,
 	src: "./KGAlwaysAGoodTime.woff2",
 });
 
@@ -87,6 +89,7 @@ const kgAlwaysAGoodTime = localFont({
 
 const snPro = localFont({
 	// needs to be string literal
+	preload: false,
 	src: [
 		{
 			path: "./sn-pro/SNPro-Thin.woff2",
@@ -132,16 +135,6 @@ const snPro = localFont({
 			path: "./sn-pro/SNPro-Semibold.woff2",
 			style: "normal",
 			weight: "600",
-		},
-		{
-			path: "./sn-pro/SNPro-SemiboldItalic.woff2",
-			style: "italic",
-			weight: "600",
-		},
-		{
-			path: "./sn-pro/SNPro-Bold.woff2",
-			style: "normal",
-			weight: "700",
 		},
 		{
 			path: "./sn-pro/SNPro-BoldItalic.woff2",
