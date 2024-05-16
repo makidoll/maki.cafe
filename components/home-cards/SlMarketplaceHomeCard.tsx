@@ -55,7 +55,11 @@ export default function SlMarketplaceHomeCard() {
 
 	return (
 		<HomeCard>
-			<HomeCardHeading mb={4} icon={SecondLifeIcon}>
+			<HomeCardHeading
+				mb={4}
+				icon={SecondLifeIcon}
+				href={config.socialLinks.slMarketplace}
+			>
 				second life marketplace
 			</HomeCardHeading>
 			<Grid templateColumns="repeat(3, 1fr)" gap={1} w={400} maxW={400}>
