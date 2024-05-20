@@ -1,15 +1,13 @@
 import { Box, Grid, GridItem, Link } from "@chakra-ui/react";
-import useSWR from "swr";
-import { SlMarketplaceResponse } from "../../pages/api/sl-marketplace";
-import { swrFetcher } from "../../utils/api/swr-fetcher";
+import { SlMarketplaceData } from "../../data/sl-marketplace";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { SecondLifeIcon } from "../ui/social-icons/SecondLifeIcon";
 
-const steamHorizontalAspectRatio = "700 / 525";
+const slAspectRatio = "700 / 525";
 
 function MarketplaceItem(props: { item: { url: string; imageUrl: string } }) {
 	return (
@@ -24,7 +22,7 @@ function MarketplaceItem(props: { item: { url: string; imageUrl: string } }) {
 					borderRadius={12}
 					sx={{
 						imageRendering: "optimizeQuality",
-						aspectRatio: steamHorizontalAspectRatio,
+						aspectRatio: slAspectRatio,
 					}}
 					// backgroundImage={slSpritesheet.src}
 					// backgroundPosition={props.item.position}
@@ -39,16 +37,13 @@ function MarketplaceItem(props: { item: { url: string; imageUrl: string } }) {
 	);
 }
 
-export default function SlMarketplaceHomeCard() {
-	const { data, error, isLoading } = useSWR<SlMarketplaceResponse>(
-		"/api/sl-marketplace",
-		swrFetcher,
-	);
-
-	if (isLoading || error || data == null) {
+export default function SlMarketplaceHomeCard(props: {
+	data: SlMarketplaceData;
+}) {
+	if (props.data == null) {
 		return (
 			<HomeCard>
-				<HomeCardLoading />
+				<HomeCardFailedToLoad />
 			</HomeCard>
 		);
 	}
@@ -63,7 +58,7 @@ export default function SlMarketplaceHomeCard() {
 				second life marketplace
 			</HomeCardHeading>
 			<Grid templateColumns="repeat(3, 1fr)" gap={1} w={400} maxW={400}>
-				{data.map((item, i) => (
+				{props.data.map((item, i) => (
 					<MarketplaceItem item={item} key={i} />
 				))}
 			</Grid>

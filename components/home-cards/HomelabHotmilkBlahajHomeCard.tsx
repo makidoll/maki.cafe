@@ -8,9 +8,7 @@ import {
 	chakra,
 } from "@chakra-ui/react";
 import { MdArrowForward } from "react-icons/md";
-import useSWR from "swr";
-import { UptimeResponse, UptimeStatus } from "../../pages/api/uptime";
-import { swrFetcher } from "../../utils/api/swr-fetcher";
+import { UptimeData, UptimeStatus } from "../../data/uptime";
 import { config } from "../../utils/config";
 import OpenableImage from "../ui/OpenableImage";
 import HomeCard from "../ui/home-card/HomeCard";
@@ -18,6 +16,7 @@ import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import blahajInside from "./homelab/blahaj-inside.jpg";
 import blahajOutside from "./homelab/blahaj-outside-2.jpg";
+import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 
 export enum OlderHomelab {
 	None,
@@ -40,20 +39,16 @@ const statusLabelMap: { [status in UptimeStatus]: string } = {
 
 export default function HomelabHotmilkBlahajHomeCard(props: {
 	onOlder: (type: OlderHomelab) => any;
+	data: UptimeData;
 }) {
-	const { data, error, isLoading } = useSWR<UptimeResponse>(
-		"/api/uptime",
-		swrFetcher,
-	);
-
 	const What =
-		isLoading || error || data == undefined ? (
-			<HomeCardLoading />
+		props.data == null ? (
+			<HomeCardFailedToLoad />
 		) : (
 			<>
 				<chakra.table style={{ borderCollapse: "collapse" }}>
 					<chakra.tbody>
-						{data.map((monitor, i) => {
+						{props.data.map((monitor, i) => {
 							const serviceTooltip =
 								config.selfHostedLinkTooltipMap[monitor.name];
 
@@ -183,11 +178,11 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 				>
 					<Box px={2} py={0.5} pb={1} fontWeight={800}>
 						{(
-							(data.reduce(
+							(props.data.reduce(
 								(prev, curr) => prev + curr.uptime24h,
 								0,
 							) /
-								data.length) *
+								props.data.length) *
 							100
 						).toFixed(2)}
 						% uptime

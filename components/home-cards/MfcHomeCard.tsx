@@ -12,8 +12,8 @@ import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import { MfcIcon } from "../ui/social-icons/MfcIcon";
-import { mfcData } from "./mfc-info";
-import mfcSpritesheet from "./mfc-spritesheet.jpg";
+import { mfcData } from "../assets/mfc-info";
+import mfcSpritesheet from "../assets/mfc-spritesheet.jpg";
 
 export default function MfcHomeCard() {
 	const colors = {

@@ -1,24 +1,17 @@
-import { Center, Flex, Link, Text } from "@chakra-ui/react";
-import useSWR from "swr";
-import { GithubGistsResponse } from "../../pages/api/github-gists";
-import { swrFetcher } from "../../utils/api/swr-fetcher";
+import { Flex, Link, Text } from "@chakra-ui/react";
+import { GitHubGistsData } from "../../data/github-gists";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
 
-export default function GithubGistsHomeCard() {
-	const { data, error, isLoading } = useSWR<GithubGistsResponse>(
-		"/api/github-gists",
-		swrFetcher,
-	);
-
-	if (isLoading || error || data == null) {
+export default function GithubGistsHomeCard(props: { data: GitHubGistsData }) {
+	if (props.data == null) {
 		return (
 			<HomeCard>
-				<HomeCardLoading />
+				<HomeCardFailedToLoad />
 			</HomeCard>
 		);
 	}
@@ -33,10 +26,10 @@ export default function GithubGistsHomeCard() {
 				github gists
 			</HomeCardHeading>
 			<Flex flexDir={"column"} w={350}>
-				{data.map((post, i) => (
+				{props.data.map((post, i) => (
 					<Link
 						key={i}
-						mb={i == data.length - 1 ? 0 : 3}
+						mb={i == (props.data ?? []).length - 1 ? 0 : 3}
 						fontSize={11}
 						lineHeight={1.1}
 						color={"white"}

@@ -6,8 +6,8 @@ import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import { OsuIcon } from "../ui/social-icons/OsuIcon";
 import { PlayStationIcon } from "../ui/social-icons/PlayStationIcon";
 import { SteamIcon } from "../ui/social-icons/SteamIcon";
-import { gamesInfo } from "./games-info";
-import gamesSpritesheet from "./games-spritesheet.png";
+import { gamesInfo } from "../assets/games-info";
+import gamesSpritesheet from "../assets/games-spritesheet.png";
 
 const steamHorizontalAspectRatio = "231 / 87";
 

@@ -175,10 +175,7 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 		sheetWidth,
 		sheetHeight,
 		mfcData.map(figure => figure.imageBuffer),
-		path.resolve(
-			__dirname,
-			"../../components/home-cards/mfc-spritesheet.jpg",
-		),
+		path.resolve(__dirname, "../../components/assets/mfc-spritesheet.jpg"),
 	);
 
 	// merge css positions with mfcData
@@ -188,7 +185,7 @@ const timeout = 1000 * 60 * 2; // 2 minutes maybe?  mfc is so slow
 	}
 
 	fs.writeFileSync(
-		path.resolve(__dirname, "../../components/home-cards/mfc-info.ts"),
+		path.resolve(__dirname, "../../components/assets/mfc-info.ts"),
 		"export const mfcData = " +
 			JSON.stringify({
 				cssSize: spriteSheetOut.cssSize,

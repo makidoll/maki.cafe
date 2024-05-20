@@ -21,8 +21,12 @@ import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import SlMarketplaceHomeCard from "../components/home-cards/SlMarketplaceHomeCard";
 import StuffIveMadeHomeCard from "../components/home-cards/StuffIveMadeHomeCard";
 import Logo from "../components/ui/Logo";
+import { FlickrData, flickrData } from "../data/flickr";
+import { GitHubGistsData, githubGistsData } from "../data/github-gists";
+import { SketchfabData, sketchfabData } from "../data/sketchfab";
+import { SlMarketplaceData, slMarketplaceData } from "../data/sl-marketplace";
+import { UptimeData, uptimeData } from "../data/uptime";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
-// import militarismTile from "../components/assets/militarism.svg";
 import gnomeDarkImage from "./gnome-dark.png";
 import styles from "./index.module.scss";
 
@@ -36,9 +40,27 @@ export const getServerSideProps = (async ({ req }) => {
 		isMobile = getSelectorsByUserAgent(navigator.userAgent).isMobile;
 	}
 
-	return { props: { isMobile } };
+	return {
+		props: {
+			isMobile,
+			data: {
+				flickr: flickrData.value.getLatest(),
+				githubGists: githubGistsData.value.getLatest(),
+				sketchfab: sketchfabData.value.getLatest(),
+				slMarketplace: slMarketplaceData.value.getLatest(),
+				uptime: uptimeData.value.getLatest(),
+			},
+		},
+	};
 }) satisfies GetServerSideProps<{
 	isMobile: boolean;
+	data: {
+		flickr: FlickrData;
+		githubGists: GitHubGistsData;
+		sketchfab: SketchfabData;
+		slMarketplace: SlMarketplaceData;
+		uptime: UptimeData;
+	};
 }>;
 
 const Home: NextPage = (
@@ -57,7 +79,10 @@ const Home: NextPage = (
 		) : olderHomelab == OlderHomelab.Cutelab_Yeti_Feb_21_2022 ? (
 			<HomelabCutelabYetiHomeCard onNewer={resetHomelab} />
 		) : (
-			<HomelabHotmilkHomeCard onOlder={setOlderHomelab} />
+			<HomelabHotmilkHomeCard
+				onOlder={setOlderHomelab}
+				data={props.data.uptime}
+			/>
 		);
 
 	return (
@@ -194,12 +219,12 @@ const Home: NextPage = (
 			>
 				<DiscordHomeCard />
 				<StuffIveMadeHomeCard />
-				<SlMarketplaceHomeCard />
+				<SlMarketplaceHomeCard data={props.data.slMarketplace} />
 				<MastodonMediaHomeCard />
 				{homelab}
 				<GamesHomeCard />
-				<GithubGistsHomeCard />
-				<SketchfabHomeCard />
+				<GithubGistsHomeCard data={props.data.githubGists} />
+				<SketchfabHomeCard data={props.data.sketchfab} />
 				{/* <WhereHomeCard /> */}
 				{/* <FlickrHomeCard /> */}
 				{/* <MfcHomeCard /> */}

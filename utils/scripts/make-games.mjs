@@ -166,12 +166,12 @@ const games = [
 		buffersAndUrls.map(o => o.buffer),
 		path.resolve(
 			__dirname,
-			"../../components/home-cards/games-spritesheet.png",
+			"../../components/assets/games-spritesheet.png",
 		),
 	);
 
 	fs.writeFileSync(
-		path.resolve(__dirname, "../../components/home-cards/games-info.ts"),
+		path.resolve(__dirname, "../../components/assets/games-info.ts"),
 		"export const gamesInfo = " +
 			JSON.stringify({
 				cssSize: spriteSheetOut.cssSize,

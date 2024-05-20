@@ -1,27 +1,18 @@
 import { Box, Center, Grid, GridItem, Link } from "@chakra-ui/react";
 import Image from "next/image";
-import useSWR from "swr";
-import { SketchfabReponse } from "../../pages/api/sketchfab";
-import { swrFetcher } from "../../utils/api/swr-fetcher";
+import { SketchfabData } from "../../data/sketchfab";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { SketchfabIcon } from "../ui/social-icons/SketchfabIcon";
+import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 
-export default function SketchfabHomeCard() {
-	const { data, error, isLoading } = useSWR<SketchfabReponse>(
-		"/api/sketchfab",
-		swrFetcher,
-	);
-
-	if (isLoading || error || data == null) {
+export default function SketchfabHomeCard(props: { data: SketchfabData }) {
+	if (props.data == null) {
 		return (
 			<HomeCard>
-				<Center flexDir={"column"}>
-					<HomeCardLoading />
-				</Center>
+				<HomeCardFailedToLoad />
 			</HomeCard>
 		);
 	}
@@ -44,7 +35,7 @@ export default function SketchfabHomeCard() {
 					gap={1}
 					mt={4}
 				>
-					{data.map((model, i) => (
+					{props.data.map((model, i) => (
 						<GridItem key={i}>
 							<Link href={model.url}>
 								<Box
