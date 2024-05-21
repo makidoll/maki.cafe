@@ -137,6 +137,16 @@ const snPro = localFont({
 			weight: "600",
 		},
 		{
+			path: "./sn-pro/SNPro-SemiboldItalic.woff2",
+			style: "italic",
+			weight: "600",
+		},
+		{
+			path: "./sn-pro/SNPro-Bold.woff2",
+			style: "normal",
+			weight: "700",
+		},
+		{
 			path: "./sn-pro/SNPro-BoldItalic.woff2",
 			style: "italic",
 			weight: "700",
