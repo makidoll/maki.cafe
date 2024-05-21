@@ -17,7 +17,7 @@ export class SketchfabData extends DataSource<SketchfabDataResponse> {
 
 		// without /models, shows most popular
 		await page.goto(config.socialLinks.sketchfab + "/models", {
-			waitUntil: "networkidle",
+			waitUntil: "domcontentloaded",
 		});
 
 		const modelEls = await page.$$(
