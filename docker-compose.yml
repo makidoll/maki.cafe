@@ -1,3 +1,6 @@
+networks:
+    traefik:
+        external: true
 services:
     makidoll-io:
         build: .
