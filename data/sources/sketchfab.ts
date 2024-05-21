@@ -1,6 +1,7 @@
 import { DataSource } from "../data-source";
 import { getBrowser } from "../../utils/api/playwright-browser";
 import { config } from "../../utils/config";
+import { sleep } from "../../utils/utils";
 
 interface SketchfabModel {
 	url: string;
@@ -19,6 +20,8 @@ export class SketchfabData extends DataSource<SketchfabDataResponse> {
 		await page.goto(config.socialLinks.sketchfab + "/models", {
 			waitUntil: "domcontentloaded",
 		});
+
+		await sleep(1000);
 
 		const modelEls = await page.$$(
 			'div[itemtype="http://schema.org/3DModel"]',

@@ -71,3 +71,11 @@ export function colorMix(hexA: string, hexB: string, amount: number) {
 export function capitalize(text: string) {
 	return text[0].toUpperCase() + text.substring(1).toLowerCase();
 }
+
+export function sleep(ms: number) {
+	return new Promise(resolve => {
+		setTimeout(() => {
+			resolve(null);
+		}, ms);
+	});
+}
