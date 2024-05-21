@@ -1,9 +1,10 @@
-import axiosNoCookiejar from "axios";
-import * as axiosCookiejar from "axios-cookiejar-support";
+import axios from "axios";
+// import axiosNoCookiejar from "axios";
+// import * as axiosCookiejar from "axios-cookiejar-support";
 import * as fs from "fs";
 import * as os from "os";
 import * as path from "path";
-import { CookieJar } from "tough-cookie";
+// import { CookieJar } from "tough-cookie";
 import { makeSpriteSheet } from "./spritesheet-lib.mjs";
 
 const __dirname = path.dirname(
@@ -13,8 +14,8 @@ const __dirname = path.dirname(
 	),
 );
 
-const jar = new CookieJar();
-const axios = axiosCookiejar.wrapper(axiosNoCookiejar.create({ jar }));
+// const jar = new CookieJar();
+// const axios = axiosCookiejar.wrapper(axiosNoCookiejar.create({ jar }));
 
 // https://www.steamgriddb.com/
 

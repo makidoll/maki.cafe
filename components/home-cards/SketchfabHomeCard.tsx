@@ -1,14 +1,16 @@
 import { Box, Center, Grid, GridItem, Link } from "@chakra-ui/react";
 import Image from "next/image";
-import { SketchfabData } from "../../data/sketchfab";
+import { SketchfabDataResponse } from "../../data/sources/sketchfab";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import { SketchfabIcon } from "../ui/social-icons/SketchfabIcon";
-import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 
-export default function SketchfabHomeCard(props: { data: SketchfabData }) {
+export default function SketchfabHomeCard(props: {
+	data: SketchfabDataResponse;
+}) {
 	if (props.data == null) {
 		return (
 			<HomeCard>

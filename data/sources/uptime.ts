@@ -1,6 +1,5 @@
 import axios from "axios";
-import { DataAtInterval } from "../utils/api/data-at-interval";
-import { GlobalRef } from "../utils/global-ref";
+import { DataSource } from "../data-source";
 
 // export type UptimeStatus = "success" | "warning" | "black";
 
@@ -28,13 +27,15 @@ import { GlobalRef } from "../utils/global-ref";
 // 	};
 // };
 
-export enum UptimeStatus {
-	None = -1,
-	Offline = 0,
-	Online = 1,
-}
+// export enum UptimeStatus {
+// 	None = -1,
+// 	Offline = 0,
+// 	Online = 1,
+// }
 
-export type UptimeResponse = {
+export type UptimeStatus = -1 | 0 | 1;
+
+export type UptimeDataResponse = {
 	name: string;
 	url: string;
 	uptime24h: number;
@@ -42,9 +43,10 @@ export type UptimeResponse = {
 	heartbeat: UptimeStatus[];
 }[];
 
-export const uptimeData = new GlobalRef(
-	"data.uptime",
-	new DataAtInterval(async () => {
+export class UptimeData extends DataSource<UptimeDataResponse> {
+	protected intervalMinutes = 5;
+
+	async fetchData() {
 		const uptimeRes = await axios(
 			"https://uptime.hotmilk.space/status/hotmilk?" + Date.now(),
 		);
@@ -61,7 +63,7 @@ export const uptimeData = new GlobalRef(
 				Date.now(),
 		);
 
-		const response: UptimeResponse = [];
+		const response: UptimeDataResponse = [];
 
 		const heartbeatLength = 50;
 
@@ -79,7 +81,7 @@ export const uptimeData = new GlobalRef(
 				if (heartbeat.length < heartbeatLength) {
 					const missingLength = heartbeatLength - heartbeat.length;
 					heartbeat = [
-						...new Array(missingLength).fill(UptimeStatus.None),
+						...new Array(missingLength).fill(-1),
 						...heartbeat,
 					];
 				}
@@ -96,7 +98,5 @@ export const uptimeData = new GlobalRef(
 		}
 
 		return response;
-	}, 5), // update every 5 minutes
-);
-
-export type UptimeData = ReturnType<typeof uptimeData.value.getLatest>;
+	}
+}

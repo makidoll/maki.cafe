@@ -5,7 +5,7 @@ import * as path from "path";
 // import fetchCookie from "fetch-cookie";
 // import cheerio from "cheerio";
 import { firefox } from "playwright";
-import { makeSpriteSheet } from "./spritesheet-lib.mjs";
+import { makeSpriteSheet } from "../spritesheet-lib.mjs";
 
 // const cookieJar = new fetchCookie.toughCookie.CookieJar();
 // const fetch = fetchCookie(nodeFetch, cookieJar);

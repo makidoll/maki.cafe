@@ -52,7 +52,21 @@ const socialLinks = {
 	slMarketplace: "https://marketplace.secondlife.com/stores/65674",
 };
 
+const title = "🎀 ✨ Maki Doll";
+const description = "i make things ❤️";
+
+const domain = "makidoll.io";
+const url = "https://" + domain;
+const imageUrl = url + "/icon.png";
+
 export const config = {
+	metadata: {
+		title,
+		description,
+		domain,
+		url,
+		imageUrl,
+	},
 	api: {
 		lanyard: "wss://lanyard.makidoll.io/socket",
 		// bibliogram: "https://bibliogram.cutelab.space",

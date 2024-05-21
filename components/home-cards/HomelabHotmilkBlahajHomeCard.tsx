@@ -8,15 +8,14 @@ import {
 	chakra,
 } from "@chakra-ui/react";
 import { MdArrowForward } from "react-icons/md";
-import { UptimeData, UptimeStatus } from "../../data/uptime";
+import { UptimeDataResponse, UptimeStatus } from "../../data/sources/uptime";
 import { config } from "../../utils/config";
 import OpenableImage from "../ui/OpenableImage";
 import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import blahajInside from "./homelab/blahaj-inside.jpg";
 import blahajOutside from "./homelab/blahaj-outside-2.jpg";
-import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 
 export enum OlderHomelab {
 	None,
@@ -25,21 +24,21 @@ export enum OlderHomelab {
 }
 
 const statusColorMap: { [status in UptimeStatus]: string } = {
-	[UptimeStatus.Online]: "#689F38", // light green 700
+	[1]: "#689F38", // light green 700
 	// [orange]: "#FF9800", // orange 500
-	[UptimeStatus.Offline]: "#F44336", // red 500
-	[UptimeStatus.None]: "hsl(0deg,0%,25%)",
+	[0]: "#F44336", // red 500
+	[-1]: "hsl(0deg,0%,25%)",
 };
 
 const statusLabelMap: { [status in UptimeStatus]: string } = {
-	[UptimeStatus.Online]: "Up",
-	[UptimeStatus.Offline]: "Down",
-	[UptimeStatus.None]: "Unknown",
+	[1]: "Up",
+	[0]: "Down",
+	[-1]: "Unknown",
 };
 
 export default function HomelabHotmilkBlahajHomeCard(props: {
 	onOlder: (type: OlderHomelab) => any;
-	data: UptimeData;
+	data: UptimeDataResponse;
 }) {
 	const What =
 		props.data == null ? (

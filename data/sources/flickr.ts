@@ -1,7 +1,6 @@
 import axios from "axios";
-import { config } from "../utils/config";
-import { DataAtInterval } from "../utils/api/data-at-interval";
-import { GlobalRef } from "../utils/global-ref";
+import { DataSource } from "../data-source";
+import { config } from "../../utils/config";
 
 interface FlickrPost {
 	title: string;
@@ -15,9 +14,10 @@ interface FlickrPost {
 	tags: string;
 }
 
-export const flickrData = new GlobalRef(
-	"data.flickr",
-	new DataAtInterval(async () => {
+export type FlickrDataResponse = FlickrPost[];
+
+export class FlickrData extends DataSource<FlickrDataResponse> {
+	async fetchData() {
 		const res = await axios(
 			"https://www.flickr.com/services/feeds/photos_public.gne?id=" +
 				config.socialIds.flickr +
@@ -31,7 +31,5 @@ export const flickrData = new GlobalRef(
 		const data: { items: FlickrPost[] } = JSON.parse(json);
 
 		return data.items.slice(0, 20);
-	}),
-);
-
-export type FlickrData = ReturnType<typeof flickrData.value.getLatest>;
+	}
+}

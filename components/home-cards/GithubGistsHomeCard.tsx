@@ -1,5 +1,5 @@
 import { Flex, Link, Text } from "@chakra-ui/react";
-import { GitHubGistsData } from "../../data/github-gists";
+import { GitHubDataResponse } from "../../data/sources/github-gists";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
@@ -7,7 +7,9 @@ import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
 
-export default function GithubGistsHomeCard(props: { data: GitHubGistsData }) {
+export default function GithubGistsHomeCard(props: {
+	data: GitHubDataResponse;
+}) {
 	if (props.data == null) {
 		return (
 			<HomeCard>

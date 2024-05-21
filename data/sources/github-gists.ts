@@ -1,7 +1,6 @@
-import { DataAtInterval } from "../utils/api/data-at-interval";
-import { getBrowser } from "../utils/api/playwright-browser";
-import { config } from "../utils/config";
-import { GlobalRef } from "../utils/global-ref";
+import { DataSource } from "../data-source";
+import { getBrowser } from "../../utils/api/playwright-browser";
+import { config } from "../../utils/config";
 
 interface GitHubSnippet {
 	url: string;
@@ -9,9 +8,10 @@ interface GitHubSnippet {
 	description: string;
 }
 
-export const githubGistsData = new GlobalRef(
-	"data.githubGists",
-	new DataAtInterval(async () => {
+export type GitHubDataResponse = GitHubSnippet[];
+
+export class GitHubData extends DataSource<GitHubDataResponse> {
+	async fetchData() {
 		const browser = await getBrowser();
 		const page = await browser.newPage();
 
@@ -50,9 +50,5 @@ export const githubGistsData = new GlobalRef(
 		page.close();
 
 		return snippets.slice(0, 8);
-	}),
-);
-
-export type GitHubGistsData = ReturnType<
-	typeof githubGistsData.value.getLatest
->;
+	}
+}

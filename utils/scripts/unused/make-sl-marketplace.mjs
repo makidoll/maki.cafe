@@ -5,7 +5,7 @@ import * as os from "os";
 import * as path from "path";
 import { firefox } from "playwright";
 import { CookieJar } from "tough-cookie";
-import { makeSpriteSheet } from "./spritesheet-lib.mjs";
+import { makeSpriteSheet } from "../spritesheet-lib.mjs";
 
 const __dirname = path.dirname(
 	import.meta.url.replace(

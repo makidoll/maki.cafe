@@ -1,5 +1,5 @@
 import { Box, Grid, GridItem, Link } from "@chakra-ui/react";
-import { SlMarketplaceData } from "../../data/sl-marketplace";
+import { SlMarketplaceDataResponse } from "../../data/sources/sl-marketplace";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
@@ -38,7 +38,7 @@ function MarketplaceItem(props: { item: { url: string; imageUrl: string } }) {
 }
 
 export default function SlMarketplaceHomeCard(props: {
-	data: SlMarketplaceData;
+	data: SlMarketplaceDataResponse;
 }) {
 	if (props.data == null) {
 		return (

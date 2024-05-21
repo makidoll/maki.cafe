@@ -1,7 +1,6 @@
-import { DataAtInterval } from "../utils/api/data-at-interval";
-import { getBrowser } from "../utils/api/playwright-browser";
-import { config } from "../utils/config";
-import { GlobalRef } from "../utils/global-ref";
+import { DataSource } from "../data-source";
+import { getBrowser } from "../../utils/api/playwright-browser";
+import { config } from "../../utils/config";
 
 interface SketchfabModel {
 	url: string;
@@ -9,9 +8,10 @@ interface SketchfabModel {
 	alt: string;
 }
 
-export const sketchfabData = new GlobalRef(
-	"data.sketchfab",
-	new DataAtInterval(async () => {
+export type SketchfabDataResponse = SketchfabModel[];
+
+export class SketchfabData extends DataSource<SketchfabDataResponse> {
+	async fetchData() {
 		const browser = await getBrowser();
 		const page = await browser.newPage();
 
@@ -50,7 +50,5 @@ export const sketchfabData = new GlobalRef(
 		page.close();
 
 		return models.slice(0, 16);
-	}),
-);
-
-export type SketchfabData = ReturnType<typeof sketchfabData.value.getLatest>;
+	}
+}

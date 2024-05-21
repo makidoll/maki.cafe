@@ -1,6 +1,11 @@
 /** @type {import('next').NextConfig} */
 
+import { dirname } from "path";
+import { fileURLToPath } from "url";
+
 // const CopyPlugin = require("copy-webpack-plugin");
+
+// TODO: try react compiler
 
 const nextConfig = {
 	// https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
@@ -17,6 +22,10 @@ const nextConfig = {
 			{ protocol: "https", hostname: "static-cdn.jtvnw.net" },
 			{ protocol: "https", hostname: "img.youtube.com" },
 		],
+	},
+	env: {
+		USING_NEXT: "1",
+		APP_ROOT: dirname(fileURLToPath(import.meta.url)),
 	},
 	i18n: {
 		locales: ["en"],
@@ -72,4 +81,4 @@ const nextConfig = {
 	},
 };
 
-module.exports = nextConfig;
+export default nextConfig;

@@ -1,7 +1,7 @@
 import { BoxProps, Flex } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { PerspectiveCamera } from "three";
-import { OrbitControls } from "three/examples/jsm/controls/OrbitControls";
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Easing } from "../utils/easing-functions";
 import { TweenManager } from "../utils/tween-manager";
 import ponyDesktop from "./assets/pony-desktop.webm";
@@ -159,7 +159,7 @@ const init = async (
 		);
 	};
 
-	const onClickForPlayPaused = e => {
+	const onClickForPlayPaused = (e: Event) => {
 		if (hasPlayPaused) return;
 		video.play;
 		video.pause();

@@ -1,25 +1,18 @@
 import { Box, Center, Grid, GridItem, Link } from "@chakra-ui/react";
 import Image from "next/image";
-import useSWR from "swr";
-import { FlickrResponse } from "../../pages/api/flickr";
-import { swrFetcher } from "../../utils/api/swr-fetcher";
+import { FlickrDataResponse } from "../../data/sources/flickr";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { FlickrIcon } from "../ui/social-icons/FlickrIcon";
 
-export default function FlickrHomeCard() {
-	const { data, error, isLoading } = useSWR<FlickrResponse>(
-		"/api/flickr",
-		swrFetcher,
-	);
-
-	if (isLoading || error || data == null) {
+export default function FlickrHomeCard(props: { data: FlickrDataResponse }) {
+	if (props.data == null) {
 		return (
 			<HomeCard>
-				<HomeCardLoading />
+				<HomeCardFailedToLoad />
 			</HomeCard>
 		);
 	}
@@ -42,7 +35,7 @@ export default function FlickrHomeCard() {
 					gap={1}
 					mt={4}
 				>
-					{data.map((post, i) => (
+					{props.data.map((post, i) => (
 						<GridItem
 							key={i}
 							transition={config.styles.hoverTransition}

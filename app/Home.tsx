@@ -1,11 +1,7 @@
+"use client";
+
 import { Box, Grid } from "@chakra-ui/react";
-import type {
-	GetServerSideProps,
-	InferGetServerSidePropsType,
-	NextPage,
-} from "next";
 import { useState } from "react";
-import { getSelectorsByUserAgent } from "react-device-detect";
 import IntroPony from "../components/IntroPony";
 import Social from "../components/Social";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
@@ -13,7 +9,7 @@ import GamesHomeCard from "../components/home-cards/GamesHomeCard";
 import GithubGistsHomeCard from "../components/home-cards/GithubGistsHomeCard";
 import HomelabCutelabBlahajHomeCard from "../components/home-cards/HomelabCutelabBlahajHomeCard";
 import HomelabCutelabYetiHomeCard from "../components/home-cards/HomelabCutelabYetiHomeCard";
-import HomelabHotmilkHomeCard, {
+import HomelabHotmilkBlahajHomeCard, {
 	OlderHomelab,
 } from "../components/home-cards/HomelabHotmilkBlahajHomeCard";
 import MastodonMediaHomeCard from "../components/home-cards/MastodonMediaHomeCard";
@@ -21,51 +17,12 @@ import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import SlMarketplaceHomeCard from "../components/home-cards/SlMarketplaceHomeCard";
 import StuffIveMadeHomeCard from "../components/home-cards/StuffIveMadeHomeCard";
 import Logo from "../components/ui/Logo";
-import { FlickrData, flickrData } from "../data/flickr";
-import { GitHubGistsData, githubGistsData } from "../data/github-gists";
-import { SketchfabData, sketchfabData } from "../data/sketchfab";
-import { SlMarketplaceData, slMarketplaceData } from "../data/sl-marketplace";
-import { UptimeData, uptimeData } from "../data/uptime";
+import { LatestData } from "../data/data-sources-server";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
+import styles from "./Home.module.scss";
 import gnomeDarkImage from "./gnome-dark.png";
-import styles from "./index.module.scss";
 
-export const getServerSideProps = (async ({ req }) => {
-	let isMobile = false;
-	if (req) {
-		isMobile = getSelectorsByUserAgent(
-			req.headers["user-agent"] ?? "",
-		).isMobile;
-	} else {
-		isMobile = getSelectorsByUserAgent(navigator.userAgent).isMobile;
-	}
-
-	return {
-		props: {
-			isMobile,
-			data: {
-				flickr: flickrData.value.getLatest(),
-				githubGists: githubGistsData.value.getLatest(),
-				sketchfab: sketchfabData.value.getLatest(),
-				slMarketplace: slMarketplaceData.value.getLatest(),
-				uptime: uptimeData.value.getLatest(),
-			},
-		},
-	};
-}) satisfies GetServerSideProps<{
-	isMobile: boolean;
-	data: {
-		flickr: FlickrData;
-		githubGists: GitHubGistsData;
-		sketchfab: SketchfabData;
-		slMarketplace: SlMarketplaceData;
-		uptime: UptimeData;
-	};
-}>;
-
-const Home: NextPage = (
-	props: InferGetServerSidePropsType<typeof getServerSideProps>,
-) => {
+export default function Home(props: { isMobile: boolean; data: LatestData }) {
 	const [ready, setReady] = useState(false);
 
 	const [olderHomelab, setOlderHomelab] = useState(OlderHomelab.None);
@@ -79,7 +36,7 @@ const Home: NextPage = (
 		) : olderHomelab == OlderHomelab.Cutelab_Yeti_Feb_21_2022 ? (
 			<HomelabCutelabYetiHomeCard onNewer={resetHomelab} />
 		) : (
-			<HomelabHotmilkHomeCard
+			<HomelabHotmilkBlahajHomeCard
 				onOlder={setOlderHomelab}
 				data={props.data.uptime}
 			/>
@@ -223,7 +180,7 @@ const Home: NextPage = (
 				<MastodonMediaHomeCard />
 				{homelab}
 				<GamesHomeCard />
-				<GithubGistsHomeCard data={props.data.githubGists} />
+				<GithubGistsHomeCard data={props.data.github} />
 				<SketchfabHomeCard data={props.data.sketchfab} />
 				{/* <WhereHomeCard /> */}
 				{/* <FlickrHomeCard /> */}
@@ -231,6 +188,4 @@ const Home: NextPage = (
 			</Grid>
 		</Box>
 	);
-};
-
-export default Home;
+}
