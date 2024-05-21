@@ -40,15 +40,9 @@ async function getLatestData() {
 
 export default async function Page() {
 	const headersList = headers();
+	const isMobile = headersList.get("isMobile") == "1";
 
 	const data = await getLatestData();
 
-	// TODO: fix isMobile
-
-	// console.log(headersList);
-	// console.log(headersList.keys());
-	// const contentType = headersList.get("Content-Type");
-	// console.log(contentType);
-
-	return <Home isMobile={false} data={data} />;
+	return <Home isMobile={isMobile} data={data} />;
 }
