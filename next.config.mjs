@@ -5,7 +5,7 @@ import { fileURLToPath } from "url";
 
 // const CopyPlugin = require("copy-webpack-plugin");
 
-// TODO: try react compiler
+// TODO: try react compiler when stable
 
 const nextConfig = {
 	// https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
