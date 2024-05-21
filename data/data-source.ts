@@ -41,14 +41,10 @@ export class DataSource<T> {
 		try {
 			await fs.writeFile(
 				this.cacheJsonPath,
-				JSON.stringify(
-					{
-						date: new Date(),
-						data: this.latest,
-					},
-					null,
-					4,
-				),
+				JSON.stringify({
+					date: new Date(),
+					data: this.latest,
+				}),
 			);
 		} catch (error) {}
 	}

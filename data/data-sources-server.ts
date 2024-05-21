@@ -1,7 +1,8 @@
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { DataSource } from "./data-source";
-import { GitHubData, GitHubDataResponse } from "./sources/github-gists";
+import { GitHubData, GitHubDataResponse } from "./sources/github";
+import { MastodonData, MastodonDataResponse } from "./sources/mastodon";
 import { SketchfabData, SketchfabDataResponse } from "./sources/sketchfab";
 import {
 	SlMarketplaceData,
@@ -12,6 +13,7 @@ import { UptimeData, UptimeDataResponse } from "./sources/uptime";
 export interface LatestData {
 	// flickr: FlickrDataResponse;
 	github: GitHubDataResponse;
+	mastodon: MastodonDataResponse;
 	sketchfab: SketchfabDataResponse;
 	slMarketplace: SlMarketplaceDataResponse;
 	uptime: UptimeDataResponse;
@@ -21,6 +23,7 @@ class DataSources {
 	dataSources: { [key: string]: DataSource<any> } = {
 		// flickr: new FlickrData("flickr"),
 		github: new GitHubData("github"),
+		mastodon: new MastodonData("mastodon"),
 		sketchfab: new SketchfabData("sketchfab"),
 		slMarketplace: new SlMarketplaceData("sl-marketplace"),
 		uptime: new UptimeData("uptime"),

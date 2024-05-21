@@ -177,7 +177,7 @@ export default function Home(props: { isMobile: boolean; data: LatestData }) {
 				<DiscordHomeCard />
 				<StuffIveMadeHomeCard />
 				<SlMarketplaceHomeCard data={props.data.slMarketplace} />
-				<MastodonMediaHomeCard />
+				<MastodonMediaHomeCard data={props.data.mastodon} />
 				{homelab}
 				<GamesHomeCard />
 				<GithubGistsHomeCard data={props.data.github} />

@@ -8,81 +8,21 @@ import {
 	Link,
 	Text,
 } from "@chakra-ui/react";
-import axios from "axios";
 import Image from "next/image";
-import { useEffect, useState } from "react";
+import { MastodonDataResponse } from "../../data/sources/mastodon";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { MastodonIcon } from "../ui/social-icons/MastodonIcon";
 
-interface MastodonStatus {
-	content: string;
-	created_at: string;
-	sensitive: boolean;
-	emojis: { shortcode: string; url: string }[];
-	account: {
-		acct: string;
-		avatar: string;
-		display_name: string;
-	};
-	url: string;
-	media_attachments: {
-		url: string;
-		preview_url: string;
-		type: "image";
-	}[];
-}
-
-interface Image {
-	url: string;
-	sensitive: boolean;
-	image_url: string;
-}
-
-export default function MastodonMediaHomeCard() {
-	const [images, setImages] = useState<Image[]>();
-
-	useEffect(() => {
-		// https://docs.joinmastodon.org/methods/accounts/#statuses
-
-		const statusesUrl = new URL(
-			`https://${config.socialIds.mastodon.instance}/api/v1/accounts/${config.socialIds.mastodon.id}/statuses`,
-		);
-
-		statusesUrl.searchParams.set("pinned", "false");
-		statusesUrl.searchParams.set("only_media", "true");
-		statusesUrl.searchParams.set("exclude_replies", "true");
-		statusesUrl.searchParams.set("exclude_reblogs", "true");
-
-		axios<MastodonStatus[]>(statusesUrl.href)
-			.then(res => {
-				const images: Image[] = [];
-
-				for (const status of res.data) {
-					for (const media_attachment of status.media_attachments) {
-						if (media_attachment.type != "image") continue;
-
-						images.push({
-							url: status.url,
-							sensitive: status.sensitive,
-							image_url: media_attachment.preview_url,
-						});
-					}
-				}
-
-				setImages(images.slice(0, 20));
-			})
-			.catch(error => {
-				console.error(error);
-			});
-	}, []);
-
-	if (images == null) {
+export default function MastodonMediaHomeCard(props: {
+	data: MastodonDataResponse;
+}) {
+	if (props.data == null) {
 		return (
 			<HomeCard>
-				<HomeCardLoading />
+				<HomeCardFailedToLoad />
 			</HomeCard>
 		);
 	}
@@ -118,7 +58,7 @@ export default function MastodonMediaHomeCard() {
 					gap={1}
 					mt={4}
 				>
-					{images.map((image, i) => (
+					{props.data.map((image, i) => (
 						<GridItem
 							key={i}
 							transition={config.styles.hoverTransition}
