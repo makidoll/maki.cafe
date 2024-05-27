@@ -55,7 +55,7 @@ export default function StuffIveMadeHomeCard() {
 		},
 		{
 			name: "melonds\nmetroid\nhunters",
-			link: "https://github.com/makidoll/melonDS-Metroid-Prime-Hunters",
+			link: "https://github.com/makidoll/melonPrimeDS",
 			image: melondsMetroidHuntersImage.src,
 			color: "#872e0c",
 			fontSize: 13,
