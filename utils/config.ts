@@ -23,6 +23,7 @@ const socialIds = {
 	secondLifeUuid: "b7c5f366-7a39-4289-8157-d3a8ae6d57f4",
 	shaderToy: "MakiXx",
 	email: "maki@hotmilk.space",
+	aur: "makidoll",
 };
 
 const socialLinks = {
@@ -50,6 +51,7 @@ const socialLinks = {
 	shaderToy: "https://www.shadertoy.com/user/" + socialIds.shaderToy,
 	email: "mailto:" + socialIds.email,
 	slMarketplace: "https://marketplace.secondlife.com/stores/65674",
+	aur: "https://aur.archlinux.org/packages?K=" + socialIds.aur + "&SeB=m",
 };
 
 const title = "🎀 ✨ Maki Doll";

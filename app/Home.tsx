@@ -4,6 +4,7 @@ import { Box, Grid } from "@chakra-ui/react";
 import { useState } from "react";
 import IntroPony from "../components/IntroPony";
 import Social from "../components/Social";
+import AurHomeCard from "../components/home-cards/AurHomeCard";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
 import GithubGistsHomeCard from "../components/home-cards/GithubGistsHomeCard";
@@ -181,6 +182,7 @@ export default function Home(props: { isMobile: boolean; data: LatestData }) {
 				{homelab}
 				<GamesHomeCard />
 				<GithubGistsHomeCard data={props.data.github} />
+				<AurHomeCard data={props.data.aur} />
 				<SketchfabHomeCard data={props.data.sketchfab} />
 				{/* <WhereHomeCard /> */}
 				{/* <FlickrHomeCard /> */}

@@ -1,6 +1,5 @@
 import { chakra, ChakraProps } from "@chakra-ui/react";
 
-import archLinuxEmoji from "./custom-emojis/arch-linux.png";
 import babaDroneEmoji from "./custom-emojis/baba-drone.gif";
 import babaIsEmoji from "./custom-emojis/baba-is.gif";
 import babaEmoji from "./custom-emojis/baba.gif";
@@ -22,7 +21,6 @@ import t4tFlagEmoji from "./custom-emojis/t4t-flag.svg";
 import transHeartEmoji from "./custom-emojis/trans-heart.png";
 
 const customEmojis = {
-	"arch-linux": archLinuxEmoji,
 	"baba-drone": babaDroneEmoji,
 	"baba-is": babaIsEmoji,
 	baba: babaEmoji,

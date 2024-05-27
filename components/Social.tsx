@@ -18,11 +18,13 @@ import {
 import { useState } from "react";
 import { IconType } from "react-icons";
 import { FaArrowRight, FaTwitch } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
 import { config } from "../utils/config";
 import { colorMix } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
 import Emoji from "./ui/Emoji";
 import SubHeading from "./ui/SubHeading";
+import { ArchLinuxIcon } from "./ui/social-icons/ArchLinuxIcon";
 import { ElementIcon } from "./ui/social-icons/ElementIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
 import { KofiIcon } from "./ui/social-icons/KofiIcon";
@@ -30,7 +32,6 @@ import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
 import { SecondLifeIcon } from "./ui/social-icons/SecondLifeIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { XmppIcon } from "./ui/social-icons/XmppIcon";
-import { MdEmail } from "react-icons/md";
 
 interface Popup {
 	title: string;
@@ -446,11 +447,11 @@ export default function Social() {
 							_hover={{ transform: "scale(1.05)" }}
 						>
 							<HStack spacing={2}>
-								<Emoji
-									opacity={tertiaryTextOpacity}
+								<ArchLinuxIcon
 									size={24}
-									custom="arch-linux"
-								></Emoji>
+									fill="#1793d1"
+									opacity={tertiaryTextOpacity}
+								/>
 								<Text opacity={tertiaryTextOpacity - 0.1}>
 									i use arch btw lmao
 								</Text>

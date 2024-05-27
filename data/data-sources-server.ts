@@ -1,6 +1,7 @@
 import { dirname, resolve } from "path";
 import { fileURLToPath } from "url";
 import { DataSource } from "./data-source";
+import { AurData, AurDataResponse } from "./sources/aur";
 import { GitHubData, GitHubDataResponse } from "./sources/github";
 import { MastodonData, MastodonDataResponse } from "./sources/mastodon";
 import { SketchfabData, SketchfabDataResponse } from "./sources/sketchfab";
@@ -11,6 +12,7 @@ import {
 import { UptimeData, UptimeDataResponse } from "./sources/uptime";
 
 export interface LatestData {
+	aur: AurDataResponse;
 	// flickr: FlickrDataResponse;
 	github: GitHubDataResponse;
 	mastodon: MastodonDataResponse;
@@ -21,6 +23,7 @@ export interface LatestData {
 
 class DataSources {
 	dataSources: { [key: string]: DataSource<any> } = {
+		aur: new AurData("aur"),
 		// flickr: new FlickrData("flickr"),
 		github: new GitHubData("github"),
 		mastodon: new MastodonData("mastodon"),

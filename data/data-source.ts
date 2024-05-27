@@ -59,6 +59,8 @@ export class DataSource<T> {
 			await this.tryFetchData();
 		}
 
+		if (this.intervalMinutes <= 0) return;
+
 		this.cronJob = new CronJob(
 			`*/${this.intervalMinutes} * * * *`,
 			this.tryFetchData.bind(this),
