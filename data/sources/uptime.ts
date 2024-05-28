@@ -1,100 +1,66 @@
 import axios from "axios";
+import { JSDOM } from "jsdom";
 import { DataSource } from "../data-source";
 
-// export type UptimeStatus = "success" | "warning" | "black";
-
-// export type UptimeResponse = {
-// 	psp: {
-// 		monitors: {
-// 			monitorId: number;
-// 			createdAt: number;
-// 			statusClass: UptimeStatus;
-// 			name: string;
-// 			url: string;
-// 			type: string;
-// 			dailyRatios: { ratio: string; label: UptimeStatus }[];
-// 			"90dRatio": { ratio: string; label: UptimeStatus };
-// 			"30dRatio": { ratio: string; label: UptimeStatus };
-// 		}[];
-// 	};
-// 	statistics: {
-// 		uptime: {
-// 			l90: {
-// 				ratio: string;
-// 				label: UptimeStatus;
-// 			};
-// 		};
-// 	};
-// };
-
-// export enum UptimeStatus {
-// 	None = -1,
-// 	Offline = 0,
-// 	Online = 1,
-// }
-
-export type UptimeStatus = -1 | 0 | 1;
-
-export type UptimeDataResponse = {
+export type UptimeService = {
 	name: string;
 	url: string;
-	uptime24h: number;
-	// status: UptimeStatus;
-	heartbeat: UptimeStatus[];
-}[];
+	up: boolean;
+	uptimeWeek: number;
+};
+
+export type UptimeDataResponse = UptimeService[];
 
 export class UptimeData extends DataSource<UptimeDataResponse> {
 	protected intervalMinutes = 5;
 
 	async fetchData() {
-		const uptimeRes = await axios(
-			"https://uptime.hotmilk.space/status/hotmilk?" + Date.now(),
-		);
-
-		const matches = uptimeRes.data.match(
-			/window\.preloadData = ({[^]+?});/,
-		);
-		if (matches == null) return [];
-
-		const preloadData = eval("(" + matches[1] + ")");
-
-		const uptimeHeartbeatRes = await axios(
-			"https://uptime.hotmilk.space/api/status-page/heartbeat/hotmilk?" +
-				Date.now(),
+		const res = await axios(
+			"https://uptime.hotmilk.space/api/v1/endpoints/statuses?page=1",
 		);
 
 		const response: UptimeDataResponse = [];
 
-		const heartbeatLength = 50;
+		for (const result of res.data) {
+			const badgeUptimeWeekRes = await axios(
+				"https://uptime.hotmilk.space/api/v1/endpoints/" +
+					result.key +
+					"/uptimes/7d/badge.svg",
+			);
 
-		for (const group of preloadData.publicGroupList) {
-			for (const monitor of group.monitorList) {
-				let heartbeat =
-					uptimeHeartbeatRes.data.heartbeatList[monitor.id];
-				if (heartbeat == null) heartbeat = [];
+			const dom = new JSDOM(badgeUptimeWeekRes.data);
 
-				// should be 50 length but make sure its never more. then map status
-				heartbeat = heartbeat
-					.slice(-heartbeatLength)
-					.map(h => h.status);
+			const percentage = Array.from(
+				dom.window.document.querySelectorAll("text").values(),
+			)
+				.map(e => e.textContent.trim())
+				.find(v => v.endsWith("%"));
 
-				if (heartbeat.length < heartbeatLength) {
-					const missingLength = heartbeatLength - heartbeat.length;
-					heartbeat = [
-						...new Array(missingLength).fill(-1),
-						...heartbeat,
-					];
+			const lastResult =
+				result.results.length == 0 ? null : result.results.pop();
+
+			const hostname = lastResult?.hostname;
+
+			let url = null;
+			if (hostname != null) {
+				switch (result.name.toLowerCase()) {
+					case "mumble":
+						url = "mumble://" + hostname;
+						break;
+					default:
+						url = "https://" + hostname;
+						break;
 				}
-
-				response.push({
-					name: monitor.name,
-					url: monitor.url,
-					uptime24h:
-						uptimeHeartbeatRes.data.uptimeList[monitor.id + "_24"],
-					// status: heartbeat[heartbeat.length - 1],
-					heartbeat,
-				});
 			}
+
+			const service: UptimeService = {
+				name: result.name,
+				url,
+				up: lastResult?.success,
+				uptimeWeek: Number(percentage.replace(/%$/, "")),
+			};
+
+			response.push(service);
 		}
 
 		return response;
