@@ -13,7 +13,7 @@ import { IoGameController } from "react-icons/io5";
 import { MdHelp } from "react-icons/md";
 import { useLanyard } from "../../hooks/UseLanyard";
 import { config } from "../../utils/config";
-import { capitalize } from "../../utils/utils";
+import { capitalize, clamp } from "../../utils/utils";
 import DancingLetters from "../ui/DancingLetters";
 import DiscordUserImage from "../ui/DiscordUserImage";
 import SubHeading from "../ui/SubHeading";
@@ -21,9 +21,6 @@ import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import styles from "./DiscordHomeCard.module.scss";
-
-const clamp = (n: number, min: number, max: number) =>
-	Math.min(Math.max(n, min), max);
 
 const msToTimeStr = (ms: number) => {
 	let s = Math.floor(ms / 1000);
@@ -174,10 +171,10 @@ export default function DiscordHomeCard() {
 							style={{
 								width:
 									clamp(
-										activityTime.current /
-											activityTime.length,
 										0,
 										1,
+										activityTime.current /
+											activityTime.length,
 									) *
 										100 +
 									"%",

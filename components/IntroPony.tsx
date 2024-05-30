@@ -7,6 +7,7 @@ import { TweenManager } from "../utils/tween-manager";
 import ponyDesktop from "./assets/pony-desktop.webm";
 import ponyMobile from "./assets/pony-mobile.webm";
 import HomeCardLoading from "./ui/home-card/HomeCardLoading";
+import { glslMod, invLerp } from "../utils/utils";
 
 const Deg2Rad = 0.0174533;
 
@@ -48,12 +49,6 @@ const endScale = 1;
 
 // > aah it never ends. im constantly tweaking this
 // > find make-video.sh in components/assets
-
-const glslMod = (a: number, n: number) => (a + n) % n;
-
-const clamp = (a: number, min = 0, max = 1) => Math.min(max, Math.max(min, a));
-
-const invLerp = (x: number, y: number, a: number) => clamp((a - x) / (y - x));
 
 function isElementInFrame(el: HTMLElement) {
 	const rect = el.getBoundingClientRect();
