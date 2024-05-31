@@ -83,9 +83,7 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 						mr={0.5}
 						fontWeight={600}
 					>
-						{service.uptimeWeek == 100
-							? 100
-							: service.uptimeWeek.toFixed(1)}
+						{service.uptimeWeek.toFixed(1).replace(/100\.0/, "100")}
 						<chakra.span fontWeight={700}>%</chakra.span>
 					</Center>
 				</chakra.td>
