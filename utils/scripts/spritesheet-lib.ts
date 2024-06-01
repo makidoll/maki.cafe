@@ -1,16 +1,16 @@
 import sharp from "sharp";
 
-const cssPercentageNumbers = numbers =>
+const cssPercentageNumbers = (numbers: number[]) =>
 	numbers.map(p => (p * 100).toFixed(2).replace(/\.00/, "") + "%").join(" ");
 
 export async function makeSpriteSheet(
-	imageWidth,
-	imageHeight,
-	imagePadding,
-	sheetWidth,
-	sheetHeight,
-	imagesInputs,
-	outputPath,
+	imageWidth: number,
+	imageHeight: number,
+	imagePadding: number,
+	sheetWidth: number,
+	sheetHeight: number,
+	imagesInputs: (Buffer | string)[],
+	outputPath: string,
 ) {
 	if (imagesInputs.length > sheetWidth * sheetHeight) {
 		throw new Error(

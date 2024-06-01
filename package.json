@@ -7,7 +7,7 @@
 		"start:dev": "next dev",
 		"start:serve": "next start",
 		"start:data": "cross-env MAKI_SERVER=1 tsx data/data-sources-server.ts",
-		"make": "node utils/scripts/make-games.mjs",
+		"make": "tsx utils/scripts/make-games.ts",
 		"build": "next build",
 		"serve": "concurrently -r npm:start:serve npm:start:data"
 	},

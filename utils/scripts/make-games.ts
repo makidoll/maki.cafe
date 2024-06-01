@@ -1,11 +1,11 @@
 import axios from "axios";
 // import axiosNoCookiejar from "axios";
 // import * as axiosCookiejar from "axios-cookiejar-support";
-import * as fs from "fs";
+import * as fs from "fs/promises";
 import * as os from "os";
 import * as path from "path";
 // import { CookieJar } from "tough-cookie";
-import { makeSpriteSheet } from "./spritesheet-lib.mjs";
+import { makeSpriteSheet } from "./spritesheet-lib";
 
 const __dirname = path.dirname(
 	import.meta.url.replace(
@@ -38,7 +38,7 @@ const sheetHeight = 9;
 
 // banners from https://www.steamgriddb.com
 
-const games = [
+const games: (string | { banner: string; url: string })[] = [
 	{
 		banner: "../games/metroid-dread.png",
 		url: "https://metroid.nintendo.com/",
@@ -136,7 +136,7 @@ const games = [
 		games.map(async (steamIdOrObj, i) => {
 			if (typeof steamIdOrObj == "object") {
 				return {
-					buffer: fs.readFileSync(
+					buffer: await fs.readFile(
 						path.resolve(__dirname, steamIdOrObj.banner),
 					),
 					url: steamIdOrObj.url,
@@ -151,7 +151,7 @@ const games = [
 				);
 
 				return {
-					buffer: res.data,
+					buffer: res.data as Buffer,
 					url: "https://store.steampowered.com/app/" + steamIdOrObj,
 				};
 			}
@@ -171,7 +171,7 @@ const games = [
 		),
 	);
 
-	fs.writeFileSync(
+	await fs.writeFile(
 		path.resolve(__dirname, "../../components/assets/games-info.ts"),
 		"export const gamesInfo = " +
 			JSON.stringify({
