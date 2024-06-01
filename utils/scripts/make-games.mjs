@@ -53,35 +53,35 @@ const games = [
 	"504230", // celeste
 	"620", // portal 2
 	// -- now smaller, new line
-	"2357570", // overwatch
+	"524220", // nier automata
 	"782330", // doom eternal
 	"17410", // mirrors edge
-	"219890", // anti chamber
+	"1113560", // nier replicant
 	// -- new line
 	"257850", // hyper light drifer
 	"367520", // hollow knight
 	"570940", // dark souls
 	"553420", // tunic
 	// -- new line
-	"1113560", // nier replicant
-	"524220", // nier automata
+	"219890", // anti chamber
 	"1055540", // a short hike
 	"1332010", // stray
-	// -- new line
 	"972660", // spiritfarer
+	// -- new line
 	"413150", // stardew valley
 	"427520", // factorio
 	"650700", // yume nikki
-	// -- new line
 	"319630", // life is strange
+	// -- new line
 	"447040", // watch dogs 2
 	"253230", // a hat in time
 	"963000", // frog detective 1
-	// -- new line
 	"220", // half life 2
+	// -- new line
 	"976730", // halo mcc
 	"438100", // vrchat
 	"394690", // tower unite
+	"2357570", // overwatch
 	// -- new line
 	"1895880", // ratchet and clank rift apart
 	"499180", // braid anniversary edition
