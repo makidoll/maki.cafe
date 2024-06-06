@@ -34,8 +34,6 @@ export const metadata: Metadata = {
 	],
 	manifest: "/site.webmanifest",
 	other: {
-		"msapplication-TileColor": "#e91e63",
-		"msapplication-config": "/browserconfig.xml",
 		"theme-color": "#111111",
 	},
 	openGraph: {

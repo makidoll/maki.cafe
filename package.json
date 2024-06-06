@@ -8,6 +8,7 @@
 		"start:serve": "next start",
 		"start:data": "cross-env MAKI_SERVER=1 tsx data/data-sources-server.ts",
 		"make": "tsx utils/scripts/make-games.ts",
+		"favicon": "tsx utils/scripts/generate-favicons.ts",
 		"build": "next build",
 		"serve": "concurrently -r npm:start:serve npm:start:data"
 	},
@@ -41,6 +42,7 @@
 		"cross-env": "^7.0.3",
 		"sass": "^1.77.2",
 		"sharp": "^0.33.4",
+		"sharp-ico-v32": "^0.1.6",
 		"tsx": "^4.10.5",
 		"typescript": "^5.4.5"
 	}
