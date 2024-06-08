@@ -143,13 +143,13 @@ export default function Social() {
 				icon: SteamIcon,
 				href: config.socialLinks.steam,
 				name: "Steam",
-				color: "#333",
+				color: "#222",
 				small: true,
 			},
 			{
 				icon: MdEmail,
 				name: "Email",
-				color: "transparent",
+				color: "#222",
 				small: true,
 				openPopup: {
 					title: "Email",
@@ -160,7 +160,7 @@ export default function Social() {
 			{
 				icon: MdLock,
 				name: "PGP",
-				color: "transparent",
+				color: "#222",
 				small: true,
 				openPopup: {
 					title: "Maki's Public Key",
