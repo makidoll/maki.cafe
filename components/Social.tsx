@@ -17,8 +17,8 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { IconType } from "react-icons";
-import { FaArrowRight, FaTwitch } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
+import { FaArrowRight } from "react-icons/fa";
+import { MdEmail, MdLock } from "react-icons/md";
 import { config } from "../utils/config";
 import { colorMix } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
@@ -35,8 +35,11 @@ import { XmppIcon } from "./ui/social-icons/XmppIcon";
 
 interface Popup {
 	title: string;
-	username: string;
-	uri: string;
+	text: string;
+	href: string;
+	buttonText?: string;
+	fontSize?: string;
+	openWithJs?: boolean;
 }
 
 interface Social {
@@ -105,8 +108,8 @@ export default function Social() {
 				small: true,
 				openPopup: {
 					title: "XMPP",
-					username: config.socialIds.xmpp,
-					uri: "xmpp:" + config.socialIds.xmpp,
+					text: config.socialIds.xmpp,
+					href: "xmpp:" + config.socialIds.xmpp,
 				},
 			},
 			{
@@ -116,8 +119,8 @@ export default function Social() {
 				small: true,
 				openPopup: {
 					title: "Second Life",
-					username: config.socialIds.secondLifeName,
-					uri: config.socialLinks.secondLife,
+					text: config.socialIds.secondLifeName,
+					href: config.socialLinks.secondLife,
 				},
 			},
 			{
@@ -129,13 +132,13 @@ export default function Social() {
 			},
 		],
 		[
-			{
-				icon: FaTwitch,
-				href: config.socialLinks.twitch,
-				name: "Twitch",
-				color: "#9146ff",
-				small: true,
-			},
+			// {
+			// 	icon: FaTwitch,
+			// 	href: config.socialLinks.twitch,
+			// 	name: "Twitch",
+			// 	color: "#9146ff",
+			// 	small: true,
+			// },
 			{
 				icon: SteamIcon,
 				href: config.socialLinks.steam,
@@ -145,11 +148,27 @@ export default function Social() {
 			},
 			{
 				icon: MdEmail,
-				href: config.socialLinks.email,
 				name: "Email",
-				color: "#222",
+				color: "transparent",
 				small: true,
-				openWithJs: true,
+				openPopup: {
+					title: "Email",
+					text: config.socialIds.email,
+					href: config.socialLinks.email,
+				},
+			},
+			{
+				icon: MdLock,
+				name: "GPG",
+				color: "transparent",
+				small: true,
+				openPopup: {
+					title: "Maki's Public Key",
+					text: config.gpgPublicKey,
+					href: "/BD9158A9ED0A2BE89CCEA2C362B5572AEF805F9A.asc",
+					buttonText: "Get .asc file",
+					fontSize: "0.5em",
+				},
 			},
 			// {
 			// 	icon: PronounsPageIcon,
@@ -497,6 +516,7 @@ export default function Social() {
 				<ModalContent
 					background={"#222"}
 					width={"fit-content"}
+					maxWidth={"fit-content"}
 					borderRadius={16}
 				>
 					<ModalHeader
@@ -516,6 +536,8 @@ export default function Social() {
 								px={1.5}
 								py={0.5}
 								borderRadius={4}
+								whiteSpace={"pre-line"}
+								fontSize={popupInfo?.fontSize}
 								onClick={e => {
 									const el = e.target as HTMLElement;
 									const range = document.createRange();
@@ -529,6 +551,8 @@ export default function Social() {
 										el.textContent ?? "",
 									);
 
+									selection.removeAllRanges();
+
 									toast({
 										title: "Copied to clipboard",
 										position: "bottom-left",
@@ -540,12 +564,12 @@ export default function Social() {
 								}}
 								fontFamily={"var(--chakra-fonts-monospace)"}
 							>
-								{popupInfo?.username}
+								{popupInfo?.text}
 							</Code>
 						</HStack>
 						<Button
 							as="a"
-							href={popupInfo?.uri}
+							href={popupInfo?.href}
 							onClick={popupOnClose}
 							background={"brand.500"}
 							size={"sm"}
@@ -558,7 +582,7 @@ export default function Social() {
 							}}
 							fontWeight={700}
 						>
-							Open using client
+							{popupInfo?.buttonText ?? "Open using client"}
 						</Button>
 					</ModalHeader>
 					{/* <ModalCloseButton /> */}
