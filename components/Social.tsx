@@ -159,12 +159,12 @@ export default function Social() {
 			},
 			{
 				icon: MdLock,
-				name: "GPG",
+				name: "PGP",
 				color: "transparent",
 				small: true,
 				openPopup: {
 					title: "Maki's Public Key",
-					text: config.gpgPublicKey,
+					text: config.pgpPublicKey,
 					href: "/BD9158A9ED0A2BE89CCEA2C362B5572AEF805F9A.asc",
 					buttonText: "Get .asc file",
 					fontSize: "0.5em",
