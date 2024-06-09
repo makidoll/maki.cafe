@@ -21,7 +21,7 @@ import Logo from "../components/ui/Logo";
 import { LatestData } from "../data/data-sources-server";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import styles from "./Home.module.scss";
-import gnomeDarkImage from "./gnome-dark.png";
+import gnomeDarkImage from "./gnome-dark.svg";
 
 export default function Home(props: { isMobile: boolean; data: LatestData }) {
 	const [ready, setReady] = useState(false);
@@ -66,8 +66,11 @@ export default function Home(props: { isMobile: boolean; data: LatestData }) {
 				right={0}
 				h={2}
 				zIndex={999999}
-				backgroundImage={gnomeDarkImage.src}
-				backgroundSize={"100% 100%"}
+				backgroundImage={gnomeDarkImage}
+				backgroundSize={"100%"}
+				style={{
+					imageRendering: "pixelated",
+				}}
 			></Box>
 			<Box
 				position={"absolute"}
@@ -81,7 +84,7 @@ export default function Home(props: { isMobile: boolean; data: LatestData }) {
 				// 	.map(v => v * 0.2 + "px")
 				// 	.join(" ")}
 				// backgroundImage={militarismTile.src}
-				backgroundImage={polkaDotPattern.src}
+				backgroundImage={polkaDotPattern}
 				backgroundSize={[10, 11.547].map(v => v * 10 + "px").join(" ")}
 				backgroundPosition={"center 0"}
 				backgroundRepeat={"repeat"}

@@ -13,7 +13,12 @@ declare module "*.tar" {
 	export default src;
 }
 
-// declare module "*?inline" {
-// 	const src: string;
-// 	export default src;
-// }
+declare module "*.svg" {
+	const src: string;
+	export default src;
+}
+
+declare module "*?inline" {
+	const src: string;
+	export default src;
+}

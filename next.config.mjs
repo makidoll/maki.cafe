@@ -7,6 +7,8 @@ import { fileURLToPath } from "url";
 
 // TODO: try react compiler when stable
 
+const extsRegExp = exts => new RegExp(`\\.(${exts.join("|")})$`, "i");
+
 const nextConfig = {
 	// https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
 	reactStrictMode: false,
@@ -48,9 +50,60 @@ const nextConfig = {
 
 		const prefix = config.assetPrefix ?? config.basePath ?? "";
 
+		// config.module.rules.push({
+		// 	test: extsRegExp([...imageExts, ...otherExts]),
+		// 	use: [
+		// 		{
+		// 			loader: "url-loader",
+		// 			options: {
+		// 				limit: 8192,
+		// 				fallback: "file-loader",
+		// 				publicPath: `${prefix}/_next/static/media/`,
+		// 				outputPath: `${isServer ? "../" : ""}static/images/`,
+		// 				name: "[name].[hash:8].[ext]",
+		// 			},
+		// 		},
+		// 	],
+		// });
+
+		// when ?inline use url-loader
+
+		const imageLoaderRule = config.module.rules.find(
+			rule => rule.loader == "next-image-loader",
+		);
+
+		imageLoaderRule.resourceQuery = { not: [/inline/] };
+		imageLoaderRule.exclude = /\.(svg)$/i;
+
+		// const urlLoader = {
+		// 	loader: "url-loader",
+		// 	options: {
+		// 		generator: content => svgToMiniDataURI(content.toString()),
+		// 	},
+		// };
+
+		// anything with ?inline except svg becomes data uri
+		config.module.rules.push({
+			exclude: /\.(svg)$/i,
+			resourceQuery: /inline/,
+			use: ["url-loader"],
+		});
+
+		// all svgs turn minified
+		config.module.rules.push({
+			test: /\.(svg)$/i,
+			use: ["url-loader", "svgo-loader"], // order is reversed wtf
+		});
+
+		// config.module.rules.push({
+		// 	test: /\.(svg)$/i,
+		// 	resourceQuery: /component/,
+		// 	use: ["@svgr/webpack"],
+		// });
+
 		// add more files to file loading via url
 		config.module.rules.push({
-			test: /\.(mp4)|(webm)|(tar)$/i,
+			test: extsRegExp(["mp4", "webm", "tar"]),
 			use: [
 				{
 					loader: "file-loader",
@@ -62,20 +115,6 @@ const nextConfig = {
 				},
 			],
 		});
-
-		// inline loading with import ... as ".png?inline"
-		// config.module.rules.unshift({
-		// 	test: /\.(png)$/i,
-		// 	resourceQuery: /makiinline/,
-		// 	use: [
-		// 		{
-		// 			loader: "url-loader",
-		// 			options: {
-		// 				limit: true,
-		// 			},
-		// 		},
-		// 	],
-		// });
 
 		return config;
 	},
