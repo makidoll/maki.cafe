@@ -8,3 +8,5 @@ Used to be built with Angular in [outdated-angular-version](https://github.com/m
 -   `pnpm make` generates spritesheets
 -   `pnpm start` develop
 -   `pnpm build && pnpm serve` deploy
+
+I'd like to rewrite this with Vite some day to optimize everything myself, and drop Chakra
