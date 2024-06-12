@@ -83,13 +83,10 @@ const games: (string | { banner: string; url: string })[] = [
 	"394690", // tower unite
 	"2357570", // overwatch
 	// -- new line
-	"1895880", // ratchet and clank rift apart
-	"499180", // braid anniversary edition
+	"420530", // one shot
 	"1003590", // tetris effect
-	{
-		banner: "../games/picross-3d-round-2.jpg",
-		url: "https://www.nintendo.com/store/products/picross-3d-round-2-3ds/",
-	},
+	"499180", // braid anniversary edition
+	"1895880", // ratchet and clank rift apart
 	// -- new line
 	{
 		banner: "../games/earthbound.png",
@@ -128,6 +125,10 @@ const games: (string | { banner: string; url: string })[] = [
 	{
 		banner: "../games/animal-crossing-cropped.png",
 		url: "https://animalcrossing.nintendo.com/",
+	},
+	{
+		banner: "../games/picross-3d-round-2.jpg",
+		url: "https://www.nintendo.com/store/products/picross-3d-round-2-3ds/",
 	},
 ];
 
