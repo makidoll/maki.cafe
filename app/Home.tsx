@@ -23,7 +23,11 @@ import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import styles from "./Home.module.scss";
 import gnomeDarkImage from "./gnome-dark.svg";
 
-export default function Home(props: { isMobile: boolean; data: LatestData }) {
+export default function Home(props: {
+	isMobile: boolean;
+	isSafari: boolean;
+	data: LatestData;
+}) {
 	const [ready, setReady] = useState(false);
 
 	const [olderHomelab, setOlderHomelab] = useState(OlderHomelab.None);
@@ -111,6 +115,7 @@ export default function Home(props: { isMobile: boolean; data: LatestData }) {
 						setReady(true);
 					}}
 					isMobile={props.isMobile}
+					isSafari={props.isSafari}
 				/>
 				<Box
 					width={350}

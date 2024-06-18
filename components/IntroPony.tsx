@@ -58,18 +58,19 @@ function isElementInFrame(el: HTMLElement) {
 }
 
 // https://developer.mozilla.org/en-US/docs/Web/API/HTMLMediaElement/readyState
-enum VideoReadyState {
-	HAVE_NOTHING = 0,
-	HAVE_METADATA = 1,
-	HAVE_CURRENT_DATA = 2,
-	HAVE_FUTURE_DATA = 3,
-	HAVE_ENOUGH_DATA = 4,
-}
+// enum VideoReadyState {
+// 	HAVE_NOTHING = 0,
+// 	HAVE_METADATA = 1,
+// 	HAVE_CURRENT_DATA = 2,
+// 	HAVE_FUTURE_DATA = 3,
+// 	HAVE_ENOUGH_DATA = 4,
+// }
 
 const init = async (
 	parent: HTMLDivElement,
 	video: HTMLVideoElement,
 	isMobile: boolean,
+	isSafari: boolean,
 	setProgress: (progress: number) => any,
 ) => {
 	// const ctx = canvas.getContext("2d");
@@ -90,7 +91,10 @@ const init = async (
 
 	// get video loading progress
 
-	{
+	if (isSafari) {
+		// TODO: safari is awful. transparency doesnt work either and cant scrub
+		video.src = isMobile ? ponyMobile : ponyDesktop;
+	} else {
 		const res = await fetch(isMobile ? ponyMobile : ponyDesktop, {
 			cache: "force-cache",
 		});
@@ -268,7 +272,11 @@ const init = async (
 };
 
 export default function IntroPony(
-	props: BoxProps & { onLoaded: () => any; isMobile: boolean },
+	props: BoxProps & {
+		onLoaded: () => any;
+		isMobile: boolean;
+		isSafari: boolean;
+	},
 ) {
 	const size = (props.h ?? props.height ?? 0) as number;
 
@@ -279,7 +287,7 @@ export default function IntroPony(
 	const parentRef = useRef<HTMLDivElement>();
 	const videoRef = useRef<HTMLVideoElement>();
 
-	const { onLoaded, isMobile, ...flexProps } = props;
+	const { onLoaded, isMobile, isSafari, ...flexProps } = props;
 
 	useEffect(() => {
 		// setLoadingOpacity(0);
@@ -302,6 +310,7 @@ export default function IntroPony(
 				parentRef.current,
 				videoRef.current,
 				isMobile,
+				isSafari,
 				setProgress,
 			);
 
@@ -331,7 +340,7 @@ export default function IntroPony(
 			updating = false;
 			cleanup();
 		};
-	}, [parentRef, videoRef, isMobile, setProgress]);
+	}, [parentRef, videoRef, isMobile, isSafari, setProgress]);
 
 	return (
 		<Flex

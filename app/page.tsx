@@ -41,8 +41,9 @@ async function getLatestData() {
 export default async function Page() {
 	const headersList = headers();
 	const isMobile = headersList.get("isMobile") == "1";
+	const isSafari = headersList.get("isSafari") == "1";
 
 	const data = await getLatestData();
 
-	return <Home isMobile={isMobile} data={data} />;
+	return <Home isMobile={isMobile} isSafari={isSafari} data={data} />;
 }
