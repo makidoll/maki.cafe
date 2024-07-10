@@ -54,40 +54,41 @@ const games: (string | { banner: string; url: string })[] = [
 	"620", // portal 2
 	// -- now smaller, new line
 	"524220", // nier automata
-	"782330", // doom eternal
-	"17410", // mirrors edge
-	"1113560", // nier replicant
-	// -- new line
 	"257850", // hyper light drifer
-	"367520", // hollow knight
-	"570940", // dark souls
 	"553420", // tunic
+	"813230", // animal well
+	// -- new line
+	"1113560", // nier replicant
+	"782330", // doom eternal
+	"570940", // dark souls
+	"367520", // hollow knight
 	// -- new line
 	"219890", // anti chamber
+	"17410", // mirrors edge
 	"1055540", // a short hike
 	"1332010", // stray
-	"972660", // spiritfarer
 	// -- new line
+	"972660", // spiritfarer
 	"413150", // stardew valley
 	"427520", // factorio
 	"650700", // yume nikki
-	"319630", // life is strange
 	// -- new line
 	"447040", // watch dogs 2
 	"253230", // a hat in time
 	"963000", // frog detective 1
-	"220", // half life 2
+	"319630", // life is strange
 	// -- new line
+	"220", // half life 2
 	"976730", // halo mcc
+	"2357570", // overwatch
+	"420530", // one shot
+	// -- new line
 	"438100", // vrchat
 	"394690", // tower unite
-	"2357570", // overwatch
-	// -- new line
-	"420530", // one shot
 	"1003590", // tetris effect
 	"499180", // braid anniversary edition
-	"1895880", // ratchet and clank rift apart
 	// -- new line
+	"1895880", // ratchet and clank rift apart
 	{
 		banner: "../games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
