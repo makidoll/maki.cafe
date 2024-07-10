@@ -226,8 +226,9 @@ export default function Social() {
 					color={"#fff"}
 					background={social.color}
 					_hover={{
-						background: colorMix(social.color, "#ffffff", 0.2),
+						background: colorMix(social.color, "#ffffff", 0.1),
 						opacity: 1,
+						transform: "scale(1.05)",
 					}}
 					rel={social.rel}
 					position={"relative"}
@@ -321,9 +322,9 @@ export default function Social() {
 						fontSize="2xl"
 						letterSpacing={primaryLetterSpacing}
 					>
-						cute pony doll
+						shy mare
 					</SubHeading>
-					<Emoji size={24} custom="cyber-heart"></Emoji>
+					{/* <Emoji size={24} custom="cyber-heart"></Emoji> */}
 					{/* <SubHeading
 						opacity={lerp(
 							primaryTextOpacity,
@@ -380,7 +381,7 @@ export default function Social() {
 							programming and running servers
 						</Text>
 					</HStack>
-					<HStack spacing={0} mt={7} opacity={0.5}>
+					<HStack spacing={0} mt={7}>
 						{[
 							"🦄",
 							"🦐",
@@ -393,7 +394,16 @@ export default function Social() {
 							"🦆",
 							"🪱",
 						].map((emoji, i) => (
-							<Emoji key={i} size={24} font="noto">
+							<Emoji
+								key={i}
+								size={24}
+								font="noto"
+								opacity={0.5}
+								transition={"opacity .1s ease-in-out"}
+								_hover={{
+									opacity: 0.7,
+								}}
+							>
 								{emoji}
 							</Emoji>
 						))}

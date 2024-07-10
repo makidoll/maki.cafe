@@ -1,13 +1,13 @@
-import { BoxProps, Flex } from "@chakra-ui/react";
+import { BoxProps, Flex, Text } from "@chakra-ui/react";
 import { useEffect, useRef, useState } from "react";
 import { PerspectiveCamera } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Easing } from "../utils/easing-functions";
 import { TweenManager } from "../utils/tween-manager";
+import { glslMod, invLerp } from "../utils/utils";
 import ponyDesktop from "./assets/pony-desktop.webm";
 import ponyMobile from "./assets/pony-mobile.webm";
 import HomeCardLoading from "./ui/home-card/HomeCardLoading";
-import { glslMod, invLerp } from "../utils/utils";
 
 const Deg2Rad = 0.0174533;
 
@@ -281,6 +281,7 @@ export default function IntroPony(
 	const size = (props.h ?? props.height ?? 0) as number;
 
 	const [loadingOpacity, setLoadingOpacity] = useState(1);
+	const [unsupportedOpacity, setUnsupportedOpacity] = useState(0);
 	const [opacity, setOpacity] = useState(0);
 	const [progress, setProgress] = useState(0);
 
@@ -332,6 +333,9 @@ export default function IntroPony(
 					setOpacity(1);
 					newFunctions.afterInit();
 					onLoaded();
+					setTimeout(() => {
+						setUnsupportedOpacity(1);
+					}, 100);
 				}, 100);
 			}, 100);
 		})();
@@ -363,6 +367,7 @@ export default function IntroPony(
 				style={{
 					transition: "opacity 0.1s linear",
 					zIndex: 20,
+					// opacity: 0.1,
 					opacity,
 					width: size + "px",
 					minWidth: size + "px",
@@ -392,6 +397,32 @@ export default function IntroPony(
 				zIndex={10}
 			>
 				<HomeCardLoading size={16} progress={progress} />
+			</Flex>
+			<Flex
+				position={"absolute"}
+				w={"100%"}
+				h={"60%"}
+				left={0}
+				bottom={0}
+				alignItems={"center"}
+				justifyContent={"center"}
+				transition={"opacity 0.1s linear"}
+				opacity={unsupportedOpacity}
+				zIndex={10}
+			>
+				<Text
+					fontSize={"large"}
+					fontWeight={600}
+					opacity={0.3}
+					textAlign={"center"}
+					lineHeight={"1.3em"}
+				>
+					there's supposed to be a cute
+					<br />
+					3d model here but unfortunately
+					<br />
+					your browser doesn't support it :(
+				</Text>
 			</Flex>
 		</Flex>
 	);

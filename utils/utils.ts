@@ -59,7 +59,7 @@ export function colorMix(hexA: string, hexB: string, amount: number) {
 	if (colors[0] == null) return;
 	if (colors[1] == null) return;
 
-	const clamped = clamp(amount, 0, 1);
+	const clamped = clamp(0, 1, amount);
 
 	const r = Math.floor(lerp(colors[0][0], colors[1][0], clamped));
 	const g = Math.floor(lerp(colors[0][1], colors[1][1], clamped));
