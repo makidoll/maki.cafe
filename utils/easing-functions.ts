@@ -58,7 +58,7 @@ const InOutElasticOffset =
 	Math.pow(2, -10) *
 	Math.sin(((1 - ElasticConst2 * 1.5) * ElasticConst) / 1.5);
 
-export function Ease(t: number, easing: Easing) {
+export function ease(t: number, easing: Easing): number {
 	switch (easing) {
 		default:
 		case Easing.None:
@@ -227,8 +227,8 @@ export function Ease(t: number, easing: Easing) {
 			return 7.5625 * (t -= 2.625 * BounceConst) * t + 0.984375;
 
 		case Easing.InOutBounce:
-			if (t < 0.5) return 0.5 - 0.5 * Ease(1 - t * 2, Easing.OutBounce);
-			return Ease((t - 0.5) * 2, Easing.OutBounce) * 0.5 + 0.5;
+			if (t < 0.5) return 0.5 - 0.5 * ease(1 - t * 2, Easing.OutBounce);
+			return ease((t - 0.5) * 2, Easing.OutBounce) * 0.5 + 0.5;
 
 		case Easing.OutPow10:
 			return --t * Math.pow(t, 10) + 1;

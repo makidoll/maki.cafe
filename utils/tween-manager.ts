@@ -1,4 +1,4 @@
-import { Ease as ease, Easing } from "./easing-functions";
+import { ease, Easing } from "./easing-functions";
 
 function lerp(a: number, b: number, alpha: number) {
 	return a + alpha * (b - a);

@@ -12,7 +12,6 @@ const extsRegExp = exts => new RegExp(`\\.(${exts.join("|")})$`, "i");
 const nextConfig = {
 	// https://stackoverflow.com/questions/60618844/react-hooks-useeffect-is-called-twice-even-if-an-empty-array-is-used-as-an-ar
 	reactStrictMode: false,
-	swcMinify: true,
 	images: {
 		remotePatterns: [
 			{ protocol: "https", hostname: "i.scdn.co" },
@@ -32,6 +31,9 @@ const nextConfig = {
 	i18n: {
 		locales: ["en"],
 		defaultLocale: "en",
+	},
+	experimental: {
+		reactCompiler: true,
 	},
 	webpack: (config, { isServer }) => {
 		// config.experiments = { ...config.experiments, asyncWebAssembly: true };
