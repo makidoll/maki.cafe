@@ -205,17 +205,14 @@ export default class IntroPony extends Component<
 
 		// init tweeners
 
-		const tweenValues = {
-			rotation: startDegrees,
-			scale: startScale,
-		};
+		let tweenRotation = 0;
 
-		const rotationTweener = this.tweenMangager.newTweener((y: number) => {
-			tweenValues.rotation = y;
+		const rotationTweener = this.tweenMangager.newTweener((deg: number) => {
+			tweenRotation = deg;
 		}, startDegrees);
 
 		const scaleTweener = this.tweenMangager.newTweener((s: number) => {
-			tweenValues.scale = s;
+			this.videoRef.current.style.transform = `scale(${s})`;
 		}, startScale);
 
 		// init fake 3d camera for angle
@@ -263,15 +260,14 @@ export default class IntroPony extends Component<
 
 			const azimuthalAngle = controls.getAzimuthalAngle();
 			const rotation = glslMod(
-				invLerp(-Math.PI, Math.PI, azimuthalAngle) -
-					tweenValues.rotation,
+				invLerp(-Math.PI, Math.PI, azimuthalAngle) - tweenRotation,
 				1,
 			);
 
 			// const frame = frames[Math.floor(rotation * frames.length)];
 
 			// ctx.clearRect(0, 0, size, size);
-			// ctx.drawImage(frame, 0, 0, frameSize, frameSize, 0, 0, size, size);
+			// ctx.drawImage(frame, 0, 0, frameSize, frameSize, 0, 0, size, size);'
 
 			this.videoRef.current.currentTime =
 				rotation * this.videoRef.current.duration;
@@ -343,6 +339,7 @@ export default class IntroPony extends Component<
 						height: size + "px",
 						pointerEvents: "none",
 						userSelect: "none",
+						transformOrigin: "50% 70%",
 					}}
 					playsInline={true}
 					preload={"auto"}
