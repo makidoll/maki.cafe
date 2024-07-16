@@ -23,6 +23,9 @@ dependencies:
   babel-plugin-react-compiler:
     specifier: 0.0.0-experimental-696af53-20240625
     version: 0.0.0-experimental-696af53-20240625
+  bezier-easing:
+    specifier: ^2.1.0
+    version: 2.1.0
   cron:
     specifier: ^3.1.7
     version: 3.1.7
@@ -2362,6 +2365,10 @@ packages:
       pretty-format: 24.9.0
       zod: 3.23.8
       zod-validation-error: 2.1.0(zod@3.23.8)
+    dev: false
+
+  /bezier-easing@2.1.0:
+    resolution: {integrity: sha512-gbIqZ/eslnUFC1tjEvtz0sgx+xTK20wDnYMIA27VA04R7w6xxXQPZDbibjA9DTWZRA2CXtwHykkVzlCaAJAZig==}
     dev: false
 
   /big.js@5.2.2:

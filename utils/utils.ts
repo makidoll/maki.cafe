@@ -19,6 +19,8 @@ export function getBackgroundPositionsForSpritesheet(
 export const clamp = (min: number, max: number, n: number) =>
 	Math.min(Math.max(n, min), max);
 
+export const clamp01 = (n: number) => Math.min(Math.max(n, 0), 1);
+
 export const lerp = (a: number, b: number, alpha: number) =>
 	a + alpha * (b - a);
 
@@ -27,34 +29,36 @@ export const invLerp = (a: number, b: number, alpha: number) =>
 
 export const glslMod = (a: number, n: number) => (a + n) % n;
 
+export function hexColorToRgb(hexColor: string) {
+	let matches = hexColor
+		.trim()
+		.match(/^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
+
+	if (matches != null) {
+		return [
+			parseInt(matches[1], 16),
+			parseInt(matches[2], 16),
+			parseInt(matches[3], 16),
+		];
+	}
+
+	matches = hexColor
+		.trim()
+		.match(/^#?([0-9a-f]{1})([0-9a-f]{1})([0-9a-f]{1})$/i);
+
+	if (matches != null) {
+		return [
+			parseInt(matches[1] + matches[1], 16),
+			parseInt(matches[2] + matches[2], 16),
+			parseInt(matches[3] + matches[3], 16),
+		];
+	}
+
+	return null;
+}
+
 export function colorMix(hexA: string, hexB: string, amount: number) {
-	const colors = [hexA, hexB].map(hexCode => {
-		let matches = hexCode
-			.trim()
-			.match(/^#?([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
-
-		if (matches != null) {
-			return [
-				parseInt(matches[1], 16),
-				parseInt(matches[2], 16),
-				parseInt(matches[3], 16),
-			];
-		}
-
-		matches = hexCode
-			.trim()
-			.match(/^#?([0-9a-f]{1})([0-9a-f]{1})([0-9a-f]{1})$/i);
-
-		if (matches != null) {
-			return [
-				parseInt(matches[1] + matches[1], 16),
-				parseInt(matches[2] + matches[2], 16),
-				parseInt(matches[3] + matches[3], 16),
-			];
-		}
-
-		return null;
-	});
+	const colors = [hexA, hexB].map(hexCode => hexColorToRgb(hexCode));
 
 	if (colors[0] == null) return;
 	if (colors[1] == null) return;
