@@ -17,12 +17,11 @@ import MastodonMediaHomeCard from "../components/home-cards/MastodonMediaHomeCar
 import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import SlMarketplaceHomeCard from "../components/home-cards/SlMarketplaceHomeCard";
 import StuffIveMadeHomeCard from "../components/home-cards/StuffIveMadeHomeCard";
-import LogoCanvas from "../components/ui/LogoCanvas";
+import Logo from "../components/ui/Logo";
 import { LatestData } from "../data/data-sources-server";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import styles from "./Home.module.scss";
 import gnomeDarkImage from "./gnome-dark.svg";
-import Logo from "../components/ui/Logo";
 
 export default function Home(props: {
 	isMobile: boolean;
@@ -48,14 +47,14 @@ export default function Home(props: {
 			/>
 		);
 
-	let logoUseCanvas = true;
-	if (typeof window !== "undefined") {
-		// on client, not ssr
-		if (typeof Path2D === "undefined") {
-			// that dont support path2d
-			logoUseCanvas = false;
-		}
-	}
+	// let logoUseCanvas = true;
+	// if (typeof window !== "undefined") {
+	// 	// on client, not ssr
+	// 	if (typeof Path2D === "undefined") {
+	// 		// that dont support path2d
+	// 		logoUseCanvas = false;
+	// 	}
+	// }
 
 	return (
 		<Box
@@ -168,11 +167,12 @@ export default function Home(props: {
 							</textPath>
 						</text>
 					</chakra.svg> */}
-					{logoUseCanvas ? (
+					{/* {logoUseCanvas ? (
 						<LogoCanvas width={350} ready={ready} />
 					) : (
 						<Logo ready={ready} />
-					)}
+					)} */}
+					<Logo ready={ready} />
 				</Box>
 				<Box marginTop={4}>
 					<Social />

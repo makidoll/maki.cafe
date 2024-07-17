@@ -1,4 +1,6 @@
+import { chakra } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
+import { sleep } from "../../utils/utils";
 import styles from "./Logo.module.scss";
 
 const animationForwardTime = 2800;
@@ -24,38 +26,41 @@ export default function Logo(props: { ready: boolean }) {
 	const [animateHide, setAnimateHide] = useState(true);
 	const [animating, setAnimating] = useState(false);
 
-	const playForward = (force = false) => {
+	const playForward = async (force = false) => {
 		if (animating && !force) return;
 
 		setAnimateHide(false);
 		setAnimating(true);
 		setAnimateForward(true);
-		setTimeout(() => {
-			// keeping it in the above state is what we want for prerender
-			// if (isScullyRunning()) return;
 
-			setAnimateForward(false);
-			setAnimating(false);
-			// console.log("forward done");
-		}, animationForwardTime);
+		await sleep(animationForwardTime);
+
+		// keeping it in the above state is what we want for prerender
+		// if (isScullyRunning()) return;
+
+		setAnimateForward(false);
+		setAnimating(false);
+		// console.log("forward done");
 	};
 
-	const playBackward = () => {
+	const playBackward = async () => {
 		if (animating) return;
 
 		setAnimateHide(false);
 		setAnimating(true);
 		setAnimateBackward(true);
-		setTimeout(() => {
-			setAnimateHide(true); // or it will flash the logo
-			setAnimateBackward(false);
-			// console.log("backward done");
-			// css needs to acclimate
-			setTimeout(() => {
-				playForward(true); // will finally finish animation
-				setAnimateHide(false);
-			}, 100);
-		}, animationBackwardTime);
+
+		await sleep(animationBackwardTime);
+
+		setAnimateHide(true); // or it will flash the logo
+		setAnimateBackward(false);
+		// console.log("backward done");
+
+		// css needs to acclimate
+		await sleep(100);
+
+		playForward(true); // will finally finish animation
+		setAnimateHide(false);
 	};
 
 	useEffect(() => {
@@ -64,7 +69,7 @@ export default function Logo(props: { ready: boolean }) {
 	}, [props.ready]);
 
 	return (
-		<svg
+		<chakra.svg
 			className={[
 				styles.logo,
 				animateForward ? styles["animate-forward"] : null,
@@ -75,6 +80,7 @@ export default function Logo(props: { ready: boolean }) {
 				.join(" ")}
 			onClick={playBackward}
 			viewBox="0 0 630 380"
+			cursor={animating ? "default" : "pointer"}
 		>
 			<LogoPiece
 				letter="m"
@@ -93,6 +99,6 @@ export default function Logo(props: { ready: boolean }) {
 				letter="i-dot"
 				d="M645.688,92.031c-0,-3.125 -1.042,-3.125 3.125,-3.125"
 			/>
-		</svg>
+		</chakra.svg>
 	);
 }
