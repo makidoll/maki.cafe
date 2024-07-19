@@ -22,6 +22,7 @@ import { LatestData } from "../data/data-sources-server";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import styles from "./Home.module.scss";
 import gnomeDarkImage from "./gnome-dark.svg";
+import WebringCard from "../components/home-cards/WebringCard";
 
 export default function Home(props: {
 	isMobile: boolean;
@@ -206,6 +207,7 @@ export default function Home(props: {
 				<GithubGistsHomeCard data={props.data.github} />
 				<AurHomeCard data={props.data.aur} />
 				<SketchfabHomeCard data={props.data.sketchfab} />
+				<WebringCard />
 				{/* <WhereHomeCard /> */}
 				{/* <FlickrHomeCard /> */}
 				{/* <MfcHomeCard /> */}
