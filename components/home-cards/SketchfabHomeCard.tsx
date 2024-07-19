@@ -1,4 +1,4 @@
-import { Box, Center, Grid, GridItem, Link } from "@chakra-ui/react";
+import { Box, Center, Grid, GridItem, Link, Text } from "@chakra-ui/react";
 import Image from "next/image";
 import { SketchfabDataResponse } from "../../data/sources/sketchfab";
 import { config } from "../../utils/config";
@@ -29,14 +29,21 @@ export default function SketchfabHomeCard(props: {
 				<HomeCardHeading
 					icon={SketchfabIcon}
 					href={config.socialLinks.sketchfab}
+					mb={3}
 				>
 					sketchfab
 				</HomeCardHeading>
-				<Grid
-					templateColumns={"repeat(" + columns + ", 1fr)"}
-					gap={1}
-					mt={4}
+				<Text
+					textAlign={"center"}
+					fontSize={14}
+					fontWeight={500}
+					lineHeight={1.2}
+					mb={3}
+					opacity={0.8}
 				>
+					havent uploaded to sketchfab for a long time
+				</Text>
+				<Grid templateColumns={"repeat(" + columns + ", 1fr)"} gap={1}>
 					{props.data.map((model, i) => (
 						<GridItem key={i}>
 							<Link href={model.url}>

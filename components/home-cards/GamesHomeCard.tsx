@@ -54,13 +54,7 @@ export default function GamesHomeCard() {
 			>
 				in no particular order...
 			</Text>
-			<Grid
-				templateColumns="repeat(4, 1fr)"
-				gap={1}
-				w={350}
-				maxW={350}
-				mt={1}
-			>
+			<Grid templateColumns="repeat(4, 1fr)" gap={1} w={350} maxW={350}>
 				{gamesInfo.games.slice(6).map((game, i) => (
 					<GameGridItem game={game} key={i} />
 				))}

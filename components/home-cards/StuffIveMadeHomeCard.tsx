@@ -181,7 +181,7 @@ export default function StuffIveMadeHomeCard() {
 				fontWeight={500}
 				lineHeight={1.2}
 				mt={3}
-				opacity={0.35}
+				opacity={0.4}
 			>
 				i kinda keep to myself a lot now a days. im trying my best to
 				add more!
