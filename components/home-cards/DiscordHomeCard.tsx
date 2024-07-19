@@ -220,7 +220,7 @@ export default function DiscordHomeCard() {
 						/>
 						<VStack
 							paddingLeft={2}
-							spacing={-1}
+							spacing={0}
 							alignItems={"start"}
 						>
 							<SubHeading
@@ -234,6 +234,7 @@ export default function DiscordHomeCard() {
 								opacity={0.6}
 								fontSize={"1em"}
 								fontWeight={600}
+								mt={-1}
 							>
 								{/* {data.discord_user.discriminator == "0"
 								? `@${data.discord_user.username}`
