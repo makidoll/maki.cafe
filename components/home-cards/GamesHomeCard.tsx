@@ -65,7 +65,7 @@ export default function GamesHomeCard() {
 					<GameGridItem game={game} key={i} />
 				))}
 			</Grid>
-			<HomeCardFooterLink
+			{/* <HomeCardFooterLink
 				multi={[
 					{
 						name: "Steam",
@@ -83,7 +83,7 @@ export default function GamesHomeCard() {
 						icon: OsuIcon,
 					},
 				]}
-			/>
+			/> */}
 		</HomeCard>
 	);
 }
