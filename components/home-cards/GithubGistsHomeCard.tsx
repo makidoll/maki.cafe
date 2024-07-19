@@ -38,13 +38,13 @@ export default function GithubGistsHomeCard(props: {
 						href={post.url}
 					>
 						<Text color={"brand.500"} fontWeight={600}>
-							{post.name}
+							{post.name.toLowerCase()}
 						</Text>
-						<Text>{post.description}</Text>
+						<Text>{post.description.toLowerCase()}</Text>
 					</Link>
 				))}
 				<HomeCardFooterLink href={config.socialLinks.githubGist}>
-					View more
+					view more
 				</HomeCardFooterLink>
 			</Flex>
 		</HomeCard>

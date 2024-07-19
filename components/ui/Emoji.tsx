@@ -7,6 +7,7 @@ import bastionComfyEmoji from "./custom-emojis/bastion-comfy.png";
 import blahajChocolateEmoji from "./custom-emojis/blahaj-chocolate.png";
 import blahajPetPetEmoji from "./custom-emojis/blahaj-pet-pet.gif";
 import blahajTransEmoji from "./custom-emojis/blahaj-trans.png";
+import codiumEmoji from "./custom-emojis/codium.svg";
 import cyberHeartEmoji from "./custom-emojis/cyber-heart.gif";
 import droneComfyEmoji from "./custom-emojis/drone-comfy.png";
 import frogPogEmoji from "./custom-emojis/frog-pog.png";
@@ -28,6 +29,7 @@ const customEmojis = {
 	"blahaj-chocolate": blahajChocolateEmoji,
 	"blahaj-pet-pet": blahajPetPetEmoji,
 	"blahaj-trans": blahajTransEmoji,
+	codium: codiumEmoji,
 	"cyber-heart": cyberHeartEmoji,
 	"drone-comfy": droneComfyEmoji,
 	"frog-pog": frogPogEmoji,
@@ -82,10 +84,18 @@ export default function Emoji(
 	delete props.children;
 
 	let emojiUrl = "";
+	let alt = "";
 
 	if (props.custom != null) {
 		const customEmoji = customEmojis[props.custom];
-		if (customEmoji != null) emojiUrl = customEmoji.src;
+		if (customEmoji != null) {
+			if (typeof customEmoji == "string") {
+				emojiUrl = customEmoji;
+			} else {
+				emojiUrl = customEmoji.src;
+			}
+		}
+		alt = props.custom;
 	} else {
 		if (props.font == null || props.font == "twemoji") {
 			// "https://twemoji.maxcdn.com/v/14.0.2/svg/"
@@ -101,6 +111,7 @@ export default function Emoji(
 				toCodePoint(emoji, "_").replaceAll("_fe0f", "") +
 				".svg";
 		}
+		alt = emoji;
 	}
 
 	return (
@@ -112,7 +123,7 @@ export default function Emoji(
 			marginX="0.1em"
 			marginBottom="-0.15em"
 			src={emojiUrl}
-			alt={emoji}
+			alt={alt}
 			{...props}
 		/>
 	);

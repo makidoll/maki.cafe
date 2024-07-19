@@ -35,7 +35,7 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 		const serviceLabel = (
 			<Flex pr={3} pl={1}>
 				{service.url == null ? (
-					service.name
+					service.name.toLowerCase()
 				) : (
 					<Link
 						href={service.url}
@@ -50,7 +50,7 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 								marginRight: "2px",
 							}}
 						/>
-						{service.name}
+						{service.name.toLowerCase()}
 					</Link>
 				)}
 			</Flex>
@@ -144,7 +144,7 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 						alignItems={"center"}
 						justifyContent={"center"}
 					>
-						See more here
+						see more here
 						<MdArrowForward
 							size={12}
 							style={{
@@ -193,13 +193,13 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 				</VStack>
 				<Box fontSize="0.65em" lineHeight={1.2}>
 					<Text fontWeight={600}>
-						Everything on this site is hosted here!
+						site is hosted on this machine
 						<br />
-						Last updated:{" "}
-						<chakra.span fontWeight={800}>Feb 11, 2024</chakra.span>
+						last updated:{" "}
+						<chakra.span fontWeight={800}>feb 11, 2024</chakra.span>
 						<br />
 						<br />
-						Older homelab:
+						older homelab:
 					</Text>
 					<Flex flexDir={"column"}>
 						<Link
@@ -210,15 +210,15 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 							}
 						>
 							<MdArrowForward
-								size={16}
+								size={14}
 								style={{
 									display: "inline",
 									verticalAlign: "middle",
-									marginRight: "4px",
-									marginLeft: "-4px",
+									marginRight: "2px",
+									marginLeft: "-2px",
 								}}
 							/>
-							Cutelab Blahaj (Nov 11, 2022)
+							cutelab blahaj (nov 11, 2022)
 						</Link>
 						<Link
 							onClick={() =>
@@ -228,15 +228,15 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 							}
 						>
 							<MdArrowForward
-								size={16}
+								size={14}
 								style={{
 									display: "inline",
 									verticalAlign: "middle",
-									marginRight: "4px",
-									marginLeft: "-4px",
+									marginRight: "2px",
+									marginLeft: "-2px",
 								}}
 							/>
-							Cutelab Yeti (Feb 21, 2022)
+							cutelab yeti (feb 21, 2022)
 						</Link>
 					</Flex>
 					<br />

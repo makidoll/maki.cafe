@@ -71,7 +71,7 @@ export default function FlickrHomeCard(props: { data: FlickrDataResponse }) {
 					))}
 				</Grid>
 				<HomeCardFooterLink href={config.socialLinks.flickr}>
-					View more
+					view more
 				</HomeCardFooterLink>
 			</Center>
 		</HomeCard>

@@ -50,7 +50,7 @@ export default function GamesHomeCard() {
 				py={1}
 				opacity={0.4}
 				fontSize={"sm"}
-				fontWeight={600}
+				fontWeight={500}
 			>
 				in no particular order...
 			</Text>

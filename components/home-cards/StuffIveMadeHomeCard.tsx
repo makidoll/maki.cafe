@@ -76,30 +76,32 @@ export default function StuffIveMadeHomeCard() {
 		},
 	];
 
+	const stuffThinnerColor = "rgba(255,255,255,0.06)";
+
 	const stuffThinner: (Thing | null)[] = [
 		{
 			name: "pokemon names",
 			link: "https://makidoll.github.io/pokemon-names",
 			image: "",
-			color: "#333",
+			color: stuffThinnerColor,
 		},
 		{
 			name: "cloudflare ddns",
 			link: "https://github.com/makidoll/cloudflare-ddns",
 			image: "",
-			color: "#333",
+			color: stuffThinnerColor,
 		},
 		{
 			name: "twinkly shaders",
 			link: "https://github.com/makidoll/twinkly-shaders",
 			image: "",
-			color: "#333",
+			color: stuffThinnerColor,
 		},
 		{
 			name: "msa millenium lcd",
 			link: "https://github.com/makidoll/msa-millenium-rp2040-touch-lcd",
 			image: "",
-			color: "#333",
+			color: stuffThinnerColor,
 		},
 	];
 
@@ -110,7 +112,7 @@ export default function StuffIveMadeHomeCard() {
 					h={thin ? 6 : 12}
 					borderRadius={8}
 					lineHeight={1}
-					fontSize={thing.fontSize ?? (thin ? 14 : 18)}
+					fontSize={thing.fontSize ?? (thin ? 12 : 18)}
 					fontWeight={700}
 					backgroundImage={thing.image}
 					backgroundColor={thing.image == "" ? thing.color : ""}
@@ -157,16 +159,15 @@ export default function StuffIveMadeHomeCard() {
 				lineHeight={1.2}
 				mb={3}
 			>
-				I&apos;m not good at making lists like this, so I recommend
-				looking through my{" "}
-				<chakra.span fontWeight={700}>Mastodon</chakra.span> or{" "}
-				<chakra.span fontWeight={700}>GitHub</chakra.span> if you wanna
-				see what I might be up to.
+				i just kinda keep to myself now a days. would recommend looking
+				through my <chakra.span fontWeight={700}>mastodon</chakra.span>{" "}
+				or <chakra.span fontWeight={700}>github</chakra.span> if you
+				wanna see what i might be up to
 			</Text>
 			<Grid templateColumns="repeat(4, 1fr)" gap={1} mb={1}>
 				{stuff.map((thing, i) => makeButton(thing, i))}
 			</Grid>
-			<Grid templateColumns="repeat(2, 1fr)" gap={1}>
+			<Grid templateColumns="repeat(3, 1fr)" gap={1}>
 				{stuffThinner.map((thing, i) =>
 					thing == null ? (
 						<GridItem key={i} />
@@ -175,17 +176,17 @@ export default function StuffIveMadeHomeCard() {
 					),
 				)}
 			</Grid>
-			<Text
+			{/* <Text
 				textAlign={"center"}
 				fontSize={12}
 				fontWeight={500}
 				lineHeight={1.2}
 				mt={3}
-				opacity={0.4}
+				mb={1}
+				opacity={0.6}
 			>
-				i kinda keep to myself a lot now a days. im trying my best to
-				add more!
-			</Text>
+				i just kinda keep to myself now a days
+			</Text> */}
 			<HomeCardFooterLink
 				multi={[
 					// {
@@ -194,17 +195,17 @@ export default function StuffIveMadeHomeCard() {
 					// 	icon: MastodonIcon,
 					// },
 					{
-						name: "GitHub",
+						name: "github",
 						url: config.socialLinks.github,
 						icon: GitHubIcon,
 					},
 					{
-						name: "ShaderToy",
+						name: "shadertoy",
 						url: config.socialLinks.shaderToy,
 						icon: ShaderToyIcon,
 					},
 					{
-						name: "Codewars",
+						name: "codewars",
 						url: config.socialLinks.codewars,
 						icon: CodewarsIcon,
 					},

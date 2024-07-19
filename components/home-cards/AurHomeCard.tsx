@@ -39,7 +39,7 @@ export default function AurHomeCard(props: { data: AurDataResponse }) {
 					>
 						<HStack spacing={3}>
 							<Text color={"brand.500"} fontWeight={600}>
-								{pkg.name}
+								{pkg.name.toLowerCase()}
 							</Text>
 							{/* <Text opacity={0.5}>{pkg.version}</Text> */}
 							<Text opacity={0.5}>
@@ -55,11 +55,11 @@ export default function AurHomeCard(props: { data: AurDataResponse }) {
 								{plural(pkg.votes, "vote")}
 							</Text>
 						</HStack>
-						<Text>{pkg.description}</Text>
+						<Text>{pkg.description.toLowerCase()}</Text>
 					</Link>
 				))}
 				<HomeCardFooterLink href={config.socialLinks.aur}>
-					View more
+					view more
 				</HomeCardFooterLink>
 			</Flex>
 		</HomeCard>

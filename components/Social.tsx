@@ -25,13 +25,15 @@ import rainbowShaderGif from "./assets/rainbow-shader.gif";
 import Emoji from "./ui/Emoji";
 import SubHeading from "./ui/SubHeading";
 import { ArchLinuxIcon } from "./ui/social-icons/ArchLinuxIcon";
+import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementIcon } from "./ui/social-icons/ElementIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
-import { KofiIcon } from "./ui/social-icons/KofiIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
 import { SecondLifeIcon } from "./ui/social-icons/SecondLifeIcon";
+import { SoundCloudIcon } from "./ui/social-icons/SoundCloudIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { XmppIcon } from "./ui/social-icons/XmppIcon";
+import { KofiIcon } from "./ui/social-icons/KofiIcon";
 
 interface Popup {
 	title: string;
@@ -65,39 +67,70 @@ export default function Social() {
 		onClose: popupOnClose,
 	} = useDisclosure();
 
-	const socialsSpacing = 3;
+	// {
+	// 	icon: TwitterIcon,
+	// 	href: config.socialLinks.twitter,
+	// 	name: "Twitter",
+	// 	color: "#1DA1F2",
+	// 	small: false,
+	// }
+	// {
+	// 	icon: FaTwitch,
+	// 	href: config.socialLinks.twitch,
+	// 	name: "Twitch",
+	// 	color: "#9146ff",
+	// 	small: true,
+	// },
+	// {
+	// 	icon: PronounsPageIcon,
+	// 	href: config.socialLinks.pronounsPage,
+	// 	name: "Pronouns",
+	// 	color: "#e91e63", // original #ff95bb
+	// 	small: true,
+	// },
+	// {
+	// 	icon: MdLock,
+	// 	name: "PGP",
+	// 	color: "#222",
+	// 	small: true,
+	// 	openPopup: {
+	// 		title: "Maki's Public Key",
+	// 		text: config.pgpPublicKey,
+	// 		href: "/BD9158A9ED0A2BE89CCEA2C362B5572AEF805F9A.asc",
+	// 		buttonText: "Get .asc file",
+	// 		fontSize: "0.5em",
+	// 	},
+	// },
+
+	const socialsSpacing = 2;
 	const socialsRows: Social[][] = [
 		[
-			{
-				icon: MastodonIcon,
-				href: config.socialLinks.mastodon,
-				name: "Mastodon",
-				color: "#6364FF",
-				small: false,
-				rel: "me",
-			},
-			// {
-			// 	icon: TwitterIcon,
-			// 	href: config.socialLinks.twitter,
-			// 	name: "Twitter",
-			// 	color: "#1DA1F2",
-			// 	small: false,
-			// },
 			{
 				icon: GitHubIcon,
 				href: config.socialLinks.github,
 				name: "GitHub",
 				color: "#333",
-				small: false,
+				small: true,
 			},
 			{
-				icon: KofiIcon,
-				href: config.socialLinks.kofi,
-				name: "Support me",
-				color: "#13C3FF",
-				small: false,
-				rainbow: true,
-				iconSize: 26,
+				icon: MastodonIcon,
+				href: config.socialLinks.mastodon,
+				name: "Mastodon",
+				color: "#6364FF",
+				small: true,
+				rel: "me",
+			},
+
+			{
+				icon: SecondLifeIcon,
+				name: "Second Life",
+				color: "#00bfff",
+				small: true,
+				openPopup: {
+					title: "Second Life",
+					text: config.socialIds.secondLifeName,
+					href: config.socialLinks.secondLife,
+				},
 			},
 		],
 		[
@@ -113,37 +146,42 @@ export default function Social() {
 				},
 			},
 			{
-				icon: SecondLifeIcon,
-				name: "Second Life",
-				color: "#00bfff",
-				small: true,
-				openPopup: {
-					title: "Second Life",
-					text: config.socialIds.secondLifeName,
-					href: config.socialLinks.secondLife,
-				},
-			},
-			{
 				icon: ElementIcon,
 				href: config.socialLinks.matrix,
 				name: "Matrix",
 				color: "#0dbd8b", // element color
 				small: true,
 			},
-		],
-		[
-			// {
-			// 	icon: FaTwitch,
-			// 	href: config.socialLinks.twitch,
-			// 	name: "Twitch",
-			// 	color: "#9146ff",
-			// 	small: true,
-			// },
+			{
+				icon: DiscordIcon,
+				href: config.socialLinks.discord,
+				name: "Discord",
+				color: "#5865F2",
+				small: true,
+			},
 			{
 				icon: SteamIcon,
 				href: config.socialLinks.steam,
 				name: "Steam",
 				color: "#222",
+				small: true,
+			},
+		],
+		[
+			{
+				icon: KofiIcon,
+				href: config.socialLinks.kofi,
+				name: "Support me",
+				color: "#13C3FF",
+				small: true,
+				rainbow: true,
+				iconSize: 26,
+			},
+			{
+				icon: SoundCloudIcon,
+				href: config.socialLinks.soundcloud,
+				name: "SoundCloud",
+				color: "#ff7700",
 				small: true,
 			},
 			{
@@ -157,40 +195,6 @@ export default function Social() {
 					href: config.socialLinks.email,
 				},
 			},
-			{
-				icon: MdLock,
-				name: "PGP",
-				color: "#222",
-				small: true,
-				openPopup: {
-					title: "Maki's Public Key",
-					text: config.pgpPublicKey,
-					href: "/BD9158A9ED0A2BE89CCEA2C362B5572AEF805F9A.asc",
-					buttonText: "Get .asc file",
-					fontSize: "0.5em",
-				},
-			},
-			// {
-			// 	icon: PronounsPageIcon,
-			// 	href: config.socialLinks.pronounsPage,
-			// 	name: "Pronouns",
-			// 	color: "#e91e63", // original #ff95bb
-			// 	small: true,
-			// },
-			// {
-			// 	icon: DiscordIcon,
-			// 	href: config.socialLinks.discord,
-			// 	name: "Discord",
-			// 	color: "#5865F2",
-			// 	small: true,
-			// },
-			// {
-			// 	icon: SoundCloudIcon,
-			// 	href: config.socialLinks.soundcloud,
-			// 	name: "SoundCloud",
-			// 	color: "#ff7700",
-			// 	small: true,
-			// },
 		],
 	];
 
@@ -301,9 +305,9 @@ export default function Social() {
 	const secondaryLetterSpacing = -1.0;
 	const secondaryTextOpacity = 0.7;
 
-	const tertiaryFontWeight = 600;
-	const tertiaryLetterSpacing = -1.0;
-	const tertiaryTextOpacity = 0.6;
+	// const tertiaryFontWeight = 600;
+	// const tertiaryLetterSpacing = -1.0;
+	const tertiaryTextOpacity = 0.5;
 
 	return (
 		<>
@@ -322,9 +326,9 @@ export default function Social() {
 						fontSize="2xl"
 						letterSpacing={primaryLetterSpacing}
 					>
-						shy mare
+						cute shy mare
 					</SubHeading>
-					{/* <Emoji size={24} custom="cyber-heart"></Emoji> */}
+					<Emoji size={24} custom="cyber-heart"></Emoji>
 					{/* <SubHeading
 						opacity={lerp(
 							primaryTextOpacity,
@@ -340,7 +344,7 @@ export default function Social() {
 					<Emoji size={24} custom="trans-heart"></Emoji> */}
 					{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}
 				</HStack>
-				<VStack spacing={0} mt={3}>
+				<VStack spacing={0} mt={4}>
 					<HStack spacing={1}>
 						<Emoji size={24} font="noto">
 							🌱
@@ -368,9 +372,7 @@ export default function Social() {
 						</Text>
 					</HStack>
 					<HStack spacing={1}>
-						<Emoji size={24} font="noto">
-							👩‍💻
-						</Emoji>
+						<Emoji size={24} custom="codium"></Emoji>
 						<Text
 							opacity={secondaryTextOpacity}
 							fontWeight={secondaryFontWeight}
@@ -381,7 +383,16 @@ export default function Social() {
 							programming and running servers
 						</Text>
 					</HStack>
-					<HStack spacing={0} mt={7}>
+					<Text
+						opacity={tertiaryTextOpacity}
+						fontWeight={secondaryFontWeight}
+						fontSize="md"
+						mt={6}
+						letterSpacing={secondaryLetterSpacing}
+					>
+						idk i just kinda exist. yay look cute aminals
+					</Text>
+					<HStack spacing={0} mt={2}>
 						{[
 							"🦄",
 							"🦐",
@@ -462,7 +473,7 @@ export default function Social() {
 				<VStack mt={10} spacing={socialsSpacing}>
 					{SocialsRows}
 				</VStack>
-				<VStack spacing={1} mt={6}>
+				<VStack spacing={0} mt={8}>
 					<HStack spacing={0}>
 						<Link
 							fontWeight={secondaryFontWeight}
@@ -479,14 +490,14 @@ export default function Social() {
 								<ArchLinuxIcon
 									size={24}
 									fill="#1793d1"
-									opacity={tertiaryTextOpacity}
+									opacity={tertiaryTextOpacity + 0.1}
 								/>
-								<Text opacity={tertiaryTextOpacity - 0.1}>
+								<Text opacity={tertiaryTextOpacity}>
 									i use arch btw lmao
 								</Text>
 								<FaArrowRight
-									opacity={tertiaryTextOpacity - 0.1}
-									size={16}
+									opacity={tertiaryTextOpacity}
+									size={14}
 									color="#fff"
 									style={{ marginBottom: "0px" }}
 								/>
@@ -508,7 +519,7 @@ export default function Social() {
 								see site&apos;s code
 							</Text>
 							<FaArrowRight
-								size={16}
+								size={14}
 								color="#fff"
 								style={{ marginBottom: "0px" }}
 							/>
@@ -537,7 +548,7 @@ export default function Social() {
 						gap={1}
 					>
 						<Heading size={"md"} fontWeight={800} mb={2}>
-							{popupInfo?.title}
+							{popupInfo?.title.toLowerCase()}
 							{/* <chakra.span fontWeight={700}>add at</chakra.span> */}
 						</Heading>
 						<HStack spacing={3}>
@@ -592,7 +603,7 @@ export default function Social() {
 							}}
 							fontWeight={700}
 						>
-							{popupInfo?.buttonText ?? "Open using client"}
+							{popupInfo?.buttonText ?? "open using client"}
 						</Button>
 					</ModalHeader>
 					{/* <ModalCloseButton /> */}

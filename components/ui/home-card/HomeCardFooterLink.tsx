@@ -1,6 +1,6 @@
 import { Flex, Text, Link, HStack } from "@chakra-ui/react";
 import { IconType } from "react-icons";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaLink, FaLongArrowAltRight } from "react-icons/fa";
 import { MdOpenInNew } from "react-icons/md";
 
 export default function HomeCardFooterLink(props: {
@@ -23,7 +23,7 @@ export default function HomeCardFooterLink(props: {
 				alignItems="center"
 				justifyContent="center"
 				opacity={0.4}
-				mt={3}
+				mt={2}
 				mb={-3}
 			>
 				{beforeIcon}
@@ -60,7 +60,7 @@ export default function HomeCardFooterLink(props: {
 			{makeButton(
 				props.children as string,
 				undefined,
-				<FaArrowRight size={16} color="#fff" />,
+				<FaArrowRight size={14} color="#fff" opacity={0.8} />,
 			)}
 		</Link>
 	);

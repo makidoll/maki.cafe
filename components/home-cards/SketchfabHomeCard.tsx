@@ -41,7 +41,7 @@ export default function SketchfabHomeCard(props: {
 					mb={3}
 					opacity={0.8}
 				>
-					havent uploaded to sketchfab for a long time
+					i havent uploaded to sketchfab for a long time
 				</Text>
 				<Grid templateColumns={"repeat(" + columns + ", 1fr)"} gap={1}>
 					{props.data.map((model, i) => (
@@ -72,7 +72,7 @@ export default function SketchfabHomeCard(props: {
 					))}
 				</Grid>
 				<HomeCardFooterLink href={config.socialLinks.sketchfab}>
-					View more
+					view more
 				</HomeCardFooterLink>
 			</Center>
 		</HomeCard>

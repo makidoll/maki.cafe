@@ -15,6 +15,7 @@ import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import { MastodonIcon } from "../ui/social-icons/MastodonIcon";
+import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 
 export default function MastodonMediaHomeCard(props: {
 	data: MastodonDataResponse;
@@ -30,19 +31,6 @@ export default function MastodonMediaHomeCard(props: {
 	const columns = 4;
 	const imageWidth = 80;
 	const imageAspectRatio = 4 / 3;
-
-	const socials = [
-		// {
-		// 	name: "Twitter",
-		// 	url: config.socialLinks.twitter,
-		// 	icon: TwitterIcon,
-		// },
-		{
-			name: "Mastodon",
-			url: config.socialLinks.mastodon,
-			icon: MastodonIcon,
-		},
-	];
 
 	return (
 		<HomeCard>
@@ -96,30 +84,9 @@ export default function MastodonMediaHomeCard(props: {
 						</GridItem>
 					))}
 				</Grid>
-				<HStack spacing={6} justifyContent={"center"}>
-					{socials.map((social, i) => (
-						<Link
-							key={i}
-							href={social.url}
-							textDecor="none"
-							color="#fff"
-						>
-							<Flex
-								width="100%"
-								alignItems="center"
-								justifyContent="center"
-								opacity={0.4}
-								mt={3}
-								mb={-2}
-							>
-								<social.icon size={18} color="#fff" />
-								<Text ml={1} fontWeight={500}>
-									{social.name}
-								</Text>
-							</Flex>
-						</Link>
-					))}
-				</HStack>
+				<HomeCardFooterLink href={config.socialLinks.mastodon}>
+					view more
+				</HomeCardFooterLink>
 			</Center>
 		</HomeCard>
 	);

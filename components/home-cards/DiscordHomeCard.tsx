@@ -13,7 +13,7 @@ import { IoGameController } from "react-icons/io5";
 import { MdHelp } from "react-icons/md";
 import { useLanyard } from "../../hooks/UseLanyard";
 import { config } from "../../utils/config";
-import { capitalize, clamp } from "../../utils/utils";
+import { clamp } from "../../utils/utils";
 import DancingLetters from "../ui/DancingLetters";
 import DiscordUserImage from "../ui/DiscordUserImage";
 import SubHeading from "../ui/SubHeading";
@@ -108,7 +108,11 @@ export default function DiscordHomeCard() {
 					whiteSpace="nowrap"
 					overflow="hidden"
 				>
-					<HStack opacity={0.6} spacing={1} pb={0.5}>
+					<HStack
+						opacity={activity == null ? 0.3 : 0.6}
+						spacing={1}
+						pb={0.5}
+					>
 						{activity == null ? (
 							<MdHelp color="#fff" size={14} />
 						) : (
@@ -116,16 +120,16 @@ export default function DiscordHomeCard() {
 						)}
 						<SubHeading size={"xs"} fontWeight={500}>
 							{activity == null
-								? "No activity"
-								: activity.activityName}
+								? "no activity"
+								: activity.activityName.toLowerCase()}
 						</SubHeading>
 					</HStack>
 					<SubHeading size={"sm"}>
 						{activity == null ? (
-							"Not listening to anything"
+							"not listening to anything"
 						) : (
 							<DancingLetters>
-								{activity.firstLine}
+								{activity.firstLine.toLowerCase()}
 							</DancingLetters>
 						)}
 					</SubHeading>
@@ -133,7 +137,7 @@ export default function DiscordHomeCard() {
 						{activity == null
 							? "or playing any games"
 							: activity.secondLine != ""
-							? activity.secondLine
+							? activity.secondLine.toLowerCase()
 							: activityTime != null
 							? formatDistance(
 									Date.now() - activityTime.current,
@@ -234,7 +238,8 @@ export default function DiscordHomeCard() {
 								{/* {data.discord_user.discriminator == "0"
 								? `@${data.discord_user.username}`
 								: `${data.discord_user.username}#${data.discord_user.discriminator}`} */}
-								{capitalize(data.discord_status)}
+								{/* {capitalize(data.discord_status)} */}
+								{data.discord_status.toLowerCase()}
 							</SubHeading>
 						</VStack>
 					</HStack>
@@ -251,7 +256,7 @@ export default function DiscordHomeCard() {
 			</HStack>
 			{activityCard}
 			<HomeCardFooterLink href="https://github.com/Phineas/lanyard">
-				Powered by Lanyard
+				powered by lanyard
 			</HomeCardFooterLink>
 		</HomeCard>
 	);

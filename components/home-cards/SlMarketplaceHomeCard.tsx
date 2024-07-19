@@ -57,13 +57,19 @@ export default function SlMarketplaceHomeCard(props: {
 			>
 				second life marketplace
 			</HomeCardHeading>
-			<Grid templateColumns="repeat(3, 1fr)" gap={1} w={400} maxW={400}>
+			{/* 3 columns, 400 width */}
+			<Grid
+				templateColumns="repeat(2, 1fr)"
+				gap={1}
+				w={266.666}
+				maxW={266.666}
+			>
 				{props.data.map((item, i) => (
 					<MarketplaceItem item={item} key={i} />
 				))}
 			</Grid>
 			<HomeCardFooterLink href={config.socialLinks.slMarketplace}>
-				View more
+				view more
 			</HomeCardFooterLink>
 		</HomeCard>
 	);
