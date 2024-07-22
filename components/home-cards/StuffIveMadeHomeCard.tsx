@@ -1,28 +1,17 @@
-import {
-	Box,
-	Flex,
-	Grid,
-	GridItem,
-	HStack,
-	Link,
-	Text,
-	VStack,
-	chakra,
-} from "@chakra-ui/react";
-import HomeCard from "../ui/home-card/HomeCard";
-import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import blahajFinderImage from "./stuff-ive-made/blahaj-finder.png";
-import hexcorpImage from "./stuff-ive-made/hexcorp.jpg";
-import froggyBotImage from "./stuff-ive-made/froggy-bot.png";
-import essenceBgImage from "./stuff-ive-made/essence-bg.png";
-import tivoliIconImage from "./stuff-ive-made/tivoli-icon.png";
-import melondsMetroidHuntersImage from "./stuff-ive-made/melonds-metroid-hunters.jpg";
-import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
+import { Box, Grid, GridItem, Link, Text, chakra } from "@chakra-ui/react";
 import { config } from "../../utils/config";
-import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
-import { MastodonIcon } from "../ui/social-icons/MastodonIcon";
+import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
+import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import { CodewarsIcon } from "../ui/social-icons/CodewarsIcon";
+import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
 import { ShaderToyIcon } from "../ui/social-icons/ShaderToyIcon";
+import blahajFinderImage from "./stuff-ive-made/blahaj-finder.png";
+import essenceBgImage from "./stuff-ive-made/essence-bg.png";
+import froggyBotImage from "./stuff-ive-made/froggy-bot.png";
+import hexcorpImage from "./stuff-ive-made/hexcorp.jpg";
+import melondsMetroidHuntersImage from "./stuff-ive-made/melonds-metroid-hunters.jpg";
+import tivoliIconImage from "./stuff-ive-made/tivoli-icon.png";
 
 interface Thing {
 	name: string;
