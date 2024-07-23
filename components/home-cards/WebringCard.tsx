@@ -70,7 +70,7 @@ export default function WebringCard() {
 				fontSize={14}
 				fontWeight={500}
 				lineHeight={1.2}
-				mt={1}
+				mt={2}
 				opacity={0.3}
 			>
 				...will eventually make a button
@@ -80,7 +80,7 @@ export default function WebringCard() {
 				fontSize={14}
 				fontWeight={700}
 				lineHeight={1.2}
-				mt={5}
+				mt={4}
 				mb={2}
 				opacity={1}
 			>
