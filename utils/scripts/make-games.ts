@@ -40,18 +40,27 @@ const sheetHeight = 9;
 
 const games: (string | { banner: string; url: string })[] = [
 	{
-		banner: "../games/metroid-dread.png",
+		banner: "../games/metroid.png",
 		url: "https://metroid.nintendo.com/",
+	},
+	"504230", // celeste
+	{
+		banner: "../games/overwatch.png",
+		url: "https://store.steampowered.com/app/2357570/Overwatch_2/",
+	},
+	// -- new line
+	{
+		banner: "../games/fez.jpg",
+		url: "https://store.steampowered.com/app/224760/FEZ/",
 	},
 	{
-		banner: "../games/metroid-prime.png",
-		url: "https://metroid.nintendo.com/",
+		banner: "../games/the-witness.jpg",
+		url: "https://store.steampowered.com/app/210970/The_Witness/",
 	},
-	"210970", // the witness
-	// -- new line
-	"224760", // fez
-	"504230", // celeste
-	"620", // portal 2
+	{
+		banner: "../games/portal2.png",
+		url: "https://store.steampowered.com/app/620/Portal_2/",
+	},
 	// -- now smaller, new line
 	"524220", // nier automata
 	"257850", // hyper light drifer
@@ -80,15 +89,14 @@ const games: (string | { banner: string; url: string })[] = [
 	// -- new line
 	"220", // half life 2
 	"976730", // halo mcc
-	"2357570", // overwatch
 	"420530", // one shot
-	// -- new line
 	"438100", // vrchat
+	// -- new line
 	"394690", // tower unite
 	"1003590", // tetris effect
 	"499180", // braid anniversary edition
-	// -- new line
 	"1895880", // ratchet and clank rift apart
+	// -- new line
 	{
 		banner: "../games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
