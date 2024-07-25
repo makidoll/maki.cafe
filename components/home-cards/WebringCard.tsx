@@ -33,7 +33,11 @@ export default function WebringCard() {
 		},
 	];
 
-	const others = ["https://pony.town", "http://wetmares.org"];
+	const others = [
+		"https://pea.moe",
+		"https://pony.town",
+		"http://wetmares.org",
+	];
 
 	return (
 		<HomeCard>
