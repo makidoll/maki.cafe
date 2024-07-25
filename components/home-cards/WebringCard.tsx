@@ -1,24 +1,21 @@
-import {
-	Box,
-	Grid,
-	GridItem,
-	Image,
-	Link,
-	Text,
-	chakra,
-} from "@chakra-ui/react";
+import { Grid, GridItem, Image, Link, Text } from "@chakra-ui/react";
 import { StaticImageData } from "next/image";
+import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import anonfilly from "./webring/anonfilly.png";
 import parfait from "./webring/parfait.gif";
+import pea from "./webring/pea.png";
 import yno from "./webring/yno.png";
-import { config } from "../../utils/config";
 
 export default function WebringCard() {
 	const columns = 3;
 
 	const buttons: { image: StaticImageData; url: string }[] = [
+		{
+			image: pea,
+			url: "https://pea.moe",
+		},
 		{
 			image: anonfilly,
 			url: "https://anonfilly.horse",
@@ -33,11 +30,7 @@ export default function WebringCard() {
 		},
 	];
 
-	const others = [
-		"https://pea.moe",
-		"https://pony.town",
-		"http://wetmares.org",
-	];
+	const others = ["https://pony.town", "http://wetmares.org"];
 
 	return (
 		<HomeCard>
