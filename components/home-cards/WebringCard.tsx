@@ -13,16 +13,16 @@ export default function WebringCard() {
 
 	const buttons: { image: StaticImageData; url: string }[] = [
 		{
-			image: pea,
-			url: "https://pea.moe",
-		},
-		{
 			image: anonfilly,
 			url: "https://anonfilly.horse",
 		},
 		{
 			image: yno,
 			url: "https://ynoproject.net",
+		},
+		{
+			image: pea,
+			url: "https://pea.moe",
 		},
 		{
 			image: parfait,
