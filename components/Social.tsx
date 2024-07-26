@@ -18,7 +18,7 @@ import {
 import { useState } from "react";
 import { IconType } from "react-icons";
 import { FaArrowRight } from "react-icons/fa";
-import { MdEmail, MdLock } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 import { config } from "../utils/config";
 import { colorMix } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
@@ -28,12 +28,11 @@ import { ArchLinuxIcon } from "./ui/social-icons/ArchLinuxIcon";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementIcon } from "./ui/social-icons/ElementIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
+import { KofiIcon } from "./ui/social-icons/KofiIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
 import { SecondLifeIcon } from "./ui/social-icons/SecondLifeIcon";
-import { SoundCloudIcon } from "./ui/social-icons/SoundCloudIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { XmppIcon } from "./ui/social-icons/XmppIcon";
-import { KofiIcon } from "./ui/social-icons/KofiIcon";
 
 interface Popup {
 	title: string;
@@ -101,6 +100,22 @@ export default function Social() {
 	// 		fontSize: "0.5em",
 	// 	},
 	// },
+	// {
+	// 	icon: KofiIcon,
+	// 	href: config.socialLinks.kofi,
+	// 	name: "Support me",
+	// 	color: "#13C3FF",
+	// 	small: true,
+	// 	rainbow: true,
+	// 	iconSize: 26,
+	// },
+	// {
+	// 	icon: SoundCloudIcon,
+	// 	href: config.socialLinks.soundcloud,
+	// 	name: "SoundCloud",
+	// 	color: "#ff7700",
+	// 	small: true,
+	// },
 
 	const socialsSpacing = 2;
 	const socialsRows: Social[][] = [
@@ -120,7 +135,6 @@ export default function Social() {
 				small: true,
 				rel: "me",
 			},
-
 			{
 				icon: SecondLifeIcon,
 				name: "Second Life",
@@ -159,29 +173,13 @@ export default function Social() {
 				color: "#5865F2",
 				small: true,
 			},
+		],
+		[
 			{
 				icon: SteamIcon,
 				href: config.socialLinks.steam,
 				name: "Steam",
 				color: "#222",
-				small: true,
-			},
-		],
-		[
-			{
-				icon: KofiIcon,
-				href: config.socialLinks.kofi,
-				name: "Support me",
-				color: "#13C3FF",
-				small: true,
-				rainbow: true,
-				iconSize: 26,
-			},
-			{
-				icon: SoundCloudIcon,
-				href: config.socialLinks.soundcloud,
-				name: "SoundCloud",
-				color: "#ff7700",
 				small: true,
 			},
 			{
@@ -326,7 +324,7 @@ export default function Social() {
 						fontSize="2xl"
 						letterSpacing={primaryLetterSpacing}
 					>
-						cute shy mare
+						shy mare
 					</SubHeading>
 					<Emoji size={24} custom="cyber-heart"></Emoji>
 					{/* <SubHeading

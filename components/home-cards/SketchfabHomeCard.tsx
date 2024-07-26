@@ -41,7 +41,7 @@ export default function SketchfabHomeCard(props: {
 					mb={3}
 					opacity={0.8}
 				>
-					i havent uploaded to sketchfab for a long time
+					i dont really use sketchfab much at all
 				</Text>
 				<Grid templateColumns={"repeat(" + columns + ", 1fr)"} gap={1}>
 					{props.data.map((model, i) => (

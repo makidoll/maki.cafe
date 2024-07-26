@@ -12,6 +12,7 @@ import froggyBotImage from "./stuff-ive-made/froggy-bot.png";
 import hexcorpImage from "./stuff-ive-made/hexcorp.jpg";
 import melondsMetroidHuntersImage from "./stuff-ive-made/melonds-metroid-hunters.jpg";
 import tivoliIconImage from "./stuff-ive-made/tivoli-icon.png";
+import { SoundCloudIcon } from "../ui/social-icons/SoundCloudIcon";
 
 interface Thing {
 	name: string;
@@ -193,10 +194,15 @@ export default function StuffIveMadeHomeCard() {
 						url: config.socialLinks.shaderToy,
 						icon: ShaderToyIcon,
 					},
+					// {
+					// 	name: "codewars",
+					// 	url: config.socialLinks.codewars,
+					// 	icon: CodewarsIcon,
+					// },
 					{
-						name: "codewars",
-						url: config.socialLinks.codewars,
-						icon: CodewarsIcon,
+						name: "soundcloud",
+						url: config.socialLinks.soundcloud,
+						icon: SoundCloudIcon,
 					},
 				]}
 			/>
