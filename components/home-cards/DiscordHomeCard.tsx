@@ -67,8 +67,10 @@ export default function DiscordHomeCard() {
 						{activity == null || activity.type == "other" ? (
 							<Text
 								fontSize="32px"
-								color="rgba(255, 255, 255, 0.5)"
+								color="white"
+								opacity={0.333}
 								textShadow={"none"}
+								fontWeight={600}
 							>
 								#!
 							</Text>
@@ -109,7 +111,7 @@ export default function DiscordHomeCard() {
 					overflow="hidden"
 				>
 					<HStack
-						opacity={activity == null ? 0.3 : 0.6}
+						opacity={activity == null ? 0.4 : 0.6}
 						spacing={1}
 						pb={0.5}
 					>
