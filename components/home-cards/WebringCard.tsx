@@ -8,18 +8,83 @@ import parfait from "./webring/parfait.gif";
 import pea from "./webring/pea.png";
 import yno from "./webring/yno.png";
 
-export default function WebringCard() {
-	const columns = 3;
+interface Button {
+	image?: StaticImageData;
+	name?: string;
+	url: string;
+}
 
-	const buttons: { image: StaticImageData; url: string }[] = [
-		{
-			image: anonfilly,
-			url: "https://anonfilly.horse",
-		},
-		{
-			image: yno,
-			url: "https://ynoproject.net",
-		},
+const columns = 3;
+
+function Buttons(props: {
+	title: string;
+	buttons: Button[];
+	mt?: string;
+	mb?: string;
+}) {
+	return (
+		<>
+			<Text
+				fontSize={20}
+				fontWeight={700}
+				lineHeight={1.2}
+				mb={2}
+				mt={props.mt}
+			>
+				{props.title}
+			</Text>
+			<Grid
+				templateColumns={"repeat(" + columns + ", 1fr)"}
+				gap={2}
+				mb={props.mb}
+			>
+				{props.buttons.map((button, i) => (
+					<GridItem key={i}>
+						<Link
+							minW={"88px"}
+							maxW={"88px"}
+							minH={"32px"}
+							maxH={"32px"}
+							borderRadius={4}
+							backgroundColor={"rgba(255,255,255,0.06)"}
+							overflow={"hidden"}
+							display={"flex"}
+							alignItems={"center"}
+							justifyContent={"center"}
+							_hover={{
+								transform: `scale(1.05)`,
+							}}
+							href={button.url}
+						>
+							{button.image != null ? (
+								<Image
+									src={button.image.src}
+									w={"100%"}
+									h={"100%"}
+									style={{ imageRendering: "pixelated" }}
+								/>
+							) : (
+								<Text
+									opacity={0.6}
+									lineHeight={1}
+									fontSize={12}
+									fontWeight={700}
+									color={"white"}
+									// textShadow={"2px 2px 0 rgba(0,0,0,0.1)"}
+								>
+									{button.name}
+								</Text>
+							)}
+						</Link>
+					</GridItem>
+				))}
+			</Grid>
+		</>
+	);
+}
+
+export default function WebringCard() {
+	const frens: Button[] = [
 		{
 			image: pea,
 			url: "https://pea.moe",
@@ -28,9 +93,24 @@ export default function WebringCard() {
 			image: parfait,
 			url: "https://parfaitcake.art",
 		},
+		{
+			name: "ironsm4sh",
+			url: "https://blog.ironsm4sh.nl",
+		},
 	];
 
-	const others = ["https://pony.town", "http://wetmares.org"];
+	const other: Button[] = [
+		{
+			image: anonfilly,
+			url: "https://anonfilly.horse",
+		},
+		{
+			image: yno,
+			url: "https://ynoproject.net",
+		},
+		{ name: "pony.town", url: "https://pony.town" },
+		{ name: "wetmares.org", url: "http://wetmares.org" },
+	];
 
 	return (
 		<HomeCard>
@@ -40,79 +120,24 @@ export default function WebringCard() {
 				fontSize={14}
 				fontWeight={500}
 				lineHeight={1.2}
-				mb={3}
 				opacity={0.8}
+				mb={1}
 			>
 				content warning for some of the sites
 			</Text>
-			<Grid templateColumns={"repeat(" + columns + ", 1fr)"} gap={2}>
-				{buttons.map((button, i) => (
-					<GridItem key={i}>
-						<Link href={button.url}>
-							<Image
-								src={button.image.src}
-								borderRadius={4}
-								style={{ imageRendering: "pixelated" }}
-								transition={config.styles.hoverTransition}
-								_hover={{
-									transform: `scale(1.05)`,
-								}}
-							/>
-						</Link>
-					</GridItem>
-				))}
-			</Grid>
+			<Buttons title="frens" buttons={frens} />
 			<Text
 				textAlign={"center"}
 				fontSize={14}
 				fontWeight={500}
 				lineHeight={1.2}
 				mt={2}
-				opacity={0.3}
+				mb={2}
+				opacity={0.4}
 			>
 				...will eventually make a button
 			</Text>
-			<Text
-				textAlign={"center"}
-				fontSize={14}
-				fontWeight={700}
-				lineHeight={1.2}
-				mt={4}
-				mb={2}
-				opacity={1}
-			>
-				other cute sites
-			</Text>
-			<Grid templateColumns="repeat(3, 1fr)" gap={2}>
-				{others.map((url, i) => (
-					<GridItem key={i}>
-						<Link
-							maxW={"88px"}
-							minW={"88px"}
-							h={6}
-							borderRadius={8}
-							lineHeight={1}
-							fontSize={12}
-							fontWeight={700}
-							backgroundColor={"rgba(255,255,255,0.06)"}
-							overflow={"hidden"}
-							display={"flex"}
-							alignItems={"center"}
-							justifyContent={"center"}
-							_hover={{
-								transform: `scale(1.03)`,
-							}}
-							href={url}
-							color={"white"}
-							// textShadow={"2px 2px 0 rgba(0,0,0,0.1)"}
-						>
-							<Text opacity={0.5}>
-								{url.replace(/^https?:\/\//i, "")}
-							</Text>
-						</Link>
-					</GridItem>
-				))}
-			</Grid>
+			<Buttons title="other" buttons={other} />
 		</HomeCard>
 	);
 }
