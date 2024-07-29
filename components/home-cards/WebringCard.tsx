@@ -7,6 +7,7 @@ import anonfilly from "./webring/anonfilly.png";
 import parfait from "./webring/parfait.gif";
 import pea from "./webring/pea.png";
 import yno from "./webring/yno.png";
+import { FaGlobeAmericas } from "react-icons/fa";
 
 interface Button {
 	image?: StaticImageData;
@@ -114,7 +115,9 @@ export default function WebringCard() {
 
 	return (
 		<HomeCard>
-			<HomeCardHeading mb={2}>webring</HomeCardHeading>
+			<HomeCardHeading mb={2} icon={FaGlobeAmericas}>
+				webring
+			</HomeCardHeading>
 			<Text
 				textAlign={"center"}
 				fontSize={14}
