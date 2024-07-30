@@ -95,16 +95,16 @@ export default function WebringCard() {
 			url: "https://parfaitcake.art",
 		},
 		{
+			image: anonfilly,
+			url: "https://anonfilly.horse",
+		},
+		{
 			name: "ironsm4sh",
 			url: "https://blog.ironsm4sh.nl",
 		},
 	];
 
 	const other: Button[] = [
-		{
-			image: anonfilly,
-			url: "https://anonfilly.horse",
-		},
 		{
 			image: yno,
 			url: "https://ynoproject.net",
