@@ -54,8 +54,8 @@ const socialLinks = {
 	aur: "https://aur.archlinux.org/packages?K=" + socialIds.aur + "&SeB=m",
 };
 
-const title = "🎀 ✨ Maki Doll";
-const description = "i make things ❤️";
+const title = "Maki";
+const description = "cute mare site";
 
 const domain = "maki.cafe";
 const url = "https://" + domain;

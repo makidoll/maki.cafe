@@ -99,8 +99,8 @@ export default function WebringCard() {
 			url: "https://anonfilly.horse",
 		},
 		{
-			name: "ironsm4sh",
-			url: "https://blog.ironsm4sh.nl",
+			name: "ironsm4sh.nl",
+			url: "https://ironsm4sh.nl",
 		},
 	];
 
@@ -126,7 +126,7 @@ export default function WebringCard() {
 				opacity={0.8}
 				mb={1}
 			>
-				content warning for some of the sites
+				explicit content warning for some sites
 			</Text>
 			<Buttons title="frens" buttons={frens} />
 			<Text

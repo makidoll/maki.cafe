@@ -194,9 +194,9 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 				<Box fontSize="0.65em" lineHeight={1.2}>
 					<Text fontWeight={600}>
 						site is hosted on this machine
-						<br />
+						{/* <br />
 						last updated:{" "}
-						<chakra.span fontWeight={800}>feb 11, 2024</chakra.span>
+						<chakra.span fontWeight={800}>feb 11, 2024</chakra.span> */}
 						<br />
 						<br />
 						older homelab:

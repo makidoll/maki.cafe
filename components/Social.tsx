@@ -20,7 +20,7 @@ import { IconType } from "react-icons";
 import { FaArrowRight } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { config } from "../utils/config";
-import { colorMix } from "../utils/utils";
+import { colorMix, lerp } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
 import Emoji from "./ui/Emoji";
 import SubHeading from "./ui/SubHeading";
@@ -135,17 +135,6 @@ export default function Social() {
 				small: true,
 				rel: "me",
 			},
-			{
-				icon: SecondLifeIcon,
-				name: "Second Life",
-				color: "#00bfff",
-				small: true,
-				openPopup: {
-					title: "Second Life",
-					text: config.socialIds.secondLifeName,
-					href: config.socialLinks.secondLife,
-				},
-			},
 		],
 		[
 			{
@@ -167,14 +156,25 @@ export default function Social() {
 				small: true,
 			},
 			{
+				icon: SecondLifeIcon,
+				name: "Second Life",
+				color: "#00bfff",
+				small: true,
+				openPopup: {
+					title: "Second Life",
+					text: config.socialIds.secondLifeName,
+					href: config.socialLinks.secondLife,
+				},
+			},
+		],
+		[
+			{
 				icon: DiscordIcon,
 				href: config.socialLinks.discord,
 				name: "Discord",
 				color: "#5865F2",
 				small: true,
 			},
-		],
-		[
 			{
 				icon: SteamIcon,
 				href: config.socialLinks.steam,
@@ -295,9 +295,9 @@ export default function Social() {
 		</HStack>
 	));
 
-	const primaryFontWeight = 800;
-	const primaryLetterSpacing = -1.0;
-	const primaryTextOpacity = 0.8;
+	// const primaryFontWeight = 800;
+	// const primaryLetterSpacing = -1.0;
+	// const primaryTextOpacity = 0.8;
 
 	const secondaryFontWeight = 600;
 	const secondaryLetterSpacing = -1.0;
@@ -310,14 +310,13 @@ export default function Social() {
 	return (
 		<>
 			<Flex flexDir="column" alignItems="center" justifyContent="center">
-				<HStack spacing={2}>
+				{/* <HStack spacing={2}>
 					<Emoji size={24} font="noto" mr={-0.5}>
 						🎀
 					</Emoji>
 					<Emoji size={24} font="twemoji" mr={-0.5}>
 						✨
 					</Emoji>
-					{/* <Emoji size={24} custom="pleading-hypno"></Emoji> */}
 					<SubHeading
 						opacity={primaryTextOpacity}
 						fontWeight={primaryFontWeight}
@@ -327,23 +326,9 @@ export default function Social() {
 						shy mare
 					</SubHeading>
 					<Emoji size={24} custom="cyber-heart"></Emoji>
-					{/* <SubHeading
-						opacity={lerp(
-							primaryTextOpacity,
-							secondaryTextOpacity,
-							0.5,
-						)}
-						fontWeight={primaryFontWeight}
-						fontSize="md"
-						letterSpacing={primaryLetterSpacing + 0.25}
-					>
-						she/they/it
-					</SubHeading>
-					<Emoji size={24} custom="trans-heart"></Emoji> */}
-					{/* <Emoji size={24} custom="blahaj-trans"></Emoji> */}
-				</HStack>
-				<VStack spacing={0} mt={4}>
-					<HStack spacing={1}>
+				</HStack> */}
+				<VStack spacing={0} mt={-2}>
+					{/* <HStack spacing={1}>
 						<Emoji size={24} font="noto">
 							🌱
 						</Emoji>
@@ -356,7 +341,7 @@ export default function Social() {
 						>
 							creator of virtual worlds
 						</Text>
-					</HStack>
+					</HStack> */}
 					<HStack spacing={1}>
 						<Emoji size={24} custom="shaderlab"></Emoji>
 						<Text
@@ -381,7 +366,7 @@ export default function Social() {
 							programming and running servers
 						</Text>
 					</HStack>
-					<Text
+					{/* <Text
 						opacity={tertiaryTextOpacity}
 						fontWeight={secondaryFontWeight}
 						fontSize="md"
@@ -389,28 +374,34 @@ export default function Social() {
 						letterSpacing={secondaryLetterSpacing}
 					>
 						idk i just kinda exist. yay look cute aminals
-					</Text>
-					<HStack spacing={0} mt={2}>
+					</Text> */}
+					<HStack spacing={0.5} mt={2}>
 						{[
 							"🦄",
 							"🦐",
 							"🦞",
 							"🦊",
+							// "🐤",
+							"🐝",
 							"🐍",
 							"🐸",
 							"🐦",
+							"🐟",
 							"🐿️",
 							"🦆",
 							"🪱",
+							// "🦋",
+							// "🐓",
 						].map((emoji, i) => (
 							<Emoji
 								key={i}
 								size={24}
 								font="noto"
-								opacity={0.5}
-								transition={"opacity .1s ease-in-out"}
+								opacity={0.8}
+								transition={"all .1s ease-in-out"}
 								_hover={{
-									opacity: 0.7,
+									opacity: 1,
+									transform: "translateY(-2px)",
 								}}
 							>
 								{emoji}
@@ -442,7 +433,7 @@ export default function Social() {
 						<Emoji size={20} font="noto">
 							🐸
 						</Emoji>
-					</HStack> */}
+					</HStack>
 					{/* <HStack spacing={0.5} mt={3}>
 						<Emoji size={18} custom="trans-heart"></Emoji>
 						<Text
@@ -454,7 +445,7 @@ export default function Social() {
 						>
 							she/they/it
 						</Text>
-						<Emoji size={18} font="noto">
+						<Emoji size={18} fonst="noto">
 							🐿️
 						</Emoji>
 						<Text

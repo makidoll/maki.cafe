@@ -45,7 +45,13 @@ export default function SketchfabHomeCard(props: {
 				</Text>
 				<Grid templateColumns={"repeat(" + columns + ", 1fr)"} gap={1}>
 					{props.data.map((model, i) => (
-						<GridItem key={i}>
+						<GridItem
+							key={i}
+							transition={config.styles.hoverTransition}
+							_hover={{
+								transform: "scale(1.05)",
+							}}
+						>
 							<Link href={model.url}>
 								<Box
 									width={imageWidth + "px"}
