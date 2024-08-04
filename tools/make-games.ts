@@ -40,25 +40,25 @@ const sheetHeight = 9;
 
 const games: (string | { banner: string; url: string })[] = [
 	{
-		banner: "../games/metroid.png",
+		banner: "games/metroid.png",
 		url: "https://metroid.nintendo.com/",
 	},
 	"504230", // celeste
 	{
-		banner: "../games/overwatch.png",
+		banner: "games/overwatch.png",
 		url: "https://store.steampowered.com/app/2357570/Overwatch_2/",
 	},
 	// -- new line
 	{
-		banner: "../games/fez.jpg",
+		banner: "games/fez.jpg",
 		url: "https://store.steampowered.com/app/224760/FEZ/",
 	},
 	{
-		banner: "../games/the-witness.jpg",
+		banner: "games/the-witness.jpg",
 		url: "https://store.steampowered.com/app/210970/The_Witness/",
 	},
 	{
-		banner: "../games/portal2.png",
+		banner: "games/portal2.png",
 		url: "https://store.steampowered.com/app/620/Portal_2/",
 	},
 	// -- now smaller, new line
@@ -98,46 +98,50 @@ const games: (string | { banner: string; url: string })[] = [
 	"1895880", // ratchet and clank rift apart
 	// -- new line
 	{
-		banner: "../games/earthbound.png",
+		banner: "games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
 	},
 	{
-		banner: "../games/mother-3.png",
+		banner: "games/mother-3.png",
 		url: "http://mother3.fobby.net/",
 	},
 	{
-		banner: "../games/super-mario-odyssey.png",
+		banner: "games/super-mario-odyssey.png",
 		url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
 	},
 	{
-		banner: "../games/splatoon-2.png",
+		banner: "games/splatoon-2.png",
 		url: "https://splatoon.nintendo.com",
 	},
 	// -- new line
 	{
-		banner: "../games/universal-paperclips.png",
+		banner: "games/universal-paperclips.png",
 		url: "https://www.decisionproblem.com/paperclips/",
 	},
 	{
-		banner: "../games/catherine-full-body.png",
+		banner: "games/catherine-full-body.png",
 		url: "https://www.catherinethegame.com/fullbody/",
 	},
 	{
-		banner: "../games/world-of-warcraft.png",
+		banner: "games/world-of-warcraft.png",
 		url: "https://worldofwarcraft.blizzard.com/en-us/",
 	},
 	{
-		banner: "../games/tropix-2.png",
+		banner: "games/tropix-2.png",
 		url: "https://www.tropixgame.com/",
 	},
 	// -- new line
 	{
-		banner: "../games/animal-crossing-cropped.png",
+		banner: "games/animal-crossing-cropped.png",
 		url: "https://animalcrossing.nintendo.com/",
 	},
 	{
-		banner: "../games/picross-3d-round-2.jpg",
+		banner: "games/picross-3d-round-2.jpg",
 		url: "https://www.nintendo.com/store/products/picross-3d-round-2-3ds/",
+	},
+	{
+		banner: "games/kirby-and-the-forgotten-land.png",
+		url: "https://kirbyandtheforgottenland.nintendo.com/",
 	},
 ];
 
@@ -175,14 +179,11 @@ const games: (string | { banner: string; url: string })[] = [
 		sheetWidth,
 		sheetHeight,
 		buffersAndUrls.map(o => o.buffer),
-		path.resolve(
-			__dirname,
-			"../../components/assets/games-spritesheet.png",
-		),
+		path.resolve(__dirname, "../components/assets/games-spritesheet.png"),
 	);
 
 	await fs.writeFile(
-		path.resolve(__dirname, "../../components/assets/games-info.ts"),
+		path.resolve(__dirname, "../components/assets/games-info.ts"),
 		"export const gamesInfo = " +
 			JSON.stringify({
 				cssSize: spriteSheetOut.cssSize,
