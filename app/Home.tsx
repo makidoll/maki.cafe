@@ -188,14 +188,14 @@ export default function Home(props: {
 					"@media (min-width: 1350px)": {
 						gridTemplateColumns: "repeat(3, 450px)",
 					},
-					"@media (min-width: 1800px)": {
-						gridTemplateColumns: "repeat(4, 450px)",
-					},
+					// "@media (min-width: 1800px)": {
+					// 	gridTemplateColumns: "repeat(4, 450px)",
+					// },
 				}}
 				gap={6}
 				alignItems="center"
 				justifyContent="center"
-				mt={8}
+				mt={12}
 				mb={32}
 			>
 				<DiscordHomeCard />
@@ -204,7 +204,7 @@ export default function Home(props: {
 				<MastodonMediaHomeCard data={props.data.mastodon} />
 				{homelab}
 				<GamesHomeCard />
-				<GithubGistsHomeCard data={props.data.github} />
+				{/* <GithubGistsHomeCard data={props.data.github} /> */}
 				<AurHomeCard data={props.data.aur} />
 				<SketchfabHomeCard data={props.data.sketchfab} />
 				<WebringCard />
