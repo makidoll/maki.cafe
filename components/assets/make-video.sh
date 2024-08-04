@@ -1,6 +1,6 @@
 #!/bin/bash
 
-cd /home/maki/git/makidoll.io/components/assets
+cd /home/maki/git/maki.cafe/components/assets
 
 # ffmpeg -help encoder=libvpx-vp9
 

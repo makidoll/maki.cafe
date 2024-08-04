@@ -293,7 +293,7 @@ export function useLanyard(discordId: string) {
 
 		// there used to be more players like deadbeef and apple music
 		// and they'd use musicbrainz to guess cover images
-		// https://github.com/makidoll/makidoll.io/blob/outdated-angular-version/src/app/cards/discord/discord.component.ts
+		// https://github.com/makidoll/maki.cafe/blob/outdated-angular-version/src/app/cards/discord/discord.component.ts
 
 		const clearActivityTimeInterval = () => {
 			if (activityTimeInterval) {
