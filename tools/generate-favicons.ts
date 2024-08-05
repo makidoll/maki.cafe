@@ -10,7 +10,7 @@ if (process.argv.length == 2) {
 
 const imagePath = process.argv[2];
 
-const outDir = path.resolve(__dirname, "../../public");
+const outDir = path.resolve(__dirname, "../public");
 
 const inputImage = sharp(imagePath).removeAlpha();
 
