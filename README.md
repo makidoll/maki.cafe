@@ -1,8 +1,8 @@
-# maki.cafe
+# makidoll.io
 
 Built with **Next.js** and **Chakra UI**
 
-Used to be built with Angular in [outdated-angular-version](https://github.com/makidoll/maki.cafe/tree/outdated-angular-version) branch
+Used to be built with Angular in [outdated-angular-version](https://github.com/makidoll/makidoll.io/tree/outdated-angular-version) branch
 
 -   `pnpm install`
 -   `pnpm make` generates spritesheets

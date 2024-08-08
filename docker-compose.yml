@@ -2,34 +2,34 @@ networks:
     traefik:
         external: true
 services:
-    maki-cafe:
+    makidoll-io:
         build: .
         restart: always
         labels:
             - traefik.enable=true
 
             - >
-                traefik.http.routers.maki-cafe.rule=
-                Host(`maki.cafe`) || Host(`www.maki.cafe`) ||
+                traefik.http.routers.makidoll-io.rule=
                 Host(`makidoll.io`) || Host(`www.makidoll.io`) ||
-                Host(`makidrone.io`) || Host(`www.makidrone.io`)
+                Host(`makidrone.io`) || Host(`www.makidrone.io`) ||
+                Host(`maki.cafe`) || Host(`www.maki.cafe`)
 
-            - traefik.http.routers.maki-cafe.entrypoints=websecure
-            - traefik.http.routers.maki-cafe.service=maki-cafe
-            - traefik.http.routers.maki-cafe.middlewares=www-maki-cafe,makidoll-redirect,makidrone-redirect
-            - traefik.http.routers.maki-cafe.tls.certResolver=le
-            - traefik.http.services.maki-cafe.loadbalancer.server.port=3000
+            - traefik.http.routers.makidoll-io.entrypoints=websecure
+            - traefik.http.routers.makidoll-io.service=makidoll-io
+            - traefik.http.routers.makidoll-io.middlewares=www-to-makidoll,maki-cafe-redirect,makidrone-redirect
+            - traefik.http.routers.makidoll-io.tls.certResolver=le
+            - traefik.http.services.makidoll-io.loadbalancer.server.port=3000
 
-            - traefik.http.middlewares.www-maki-cafe.redirectregex.regex=^https?://(?:www\.)?(.+)
-            - traefik.http.middlewares.www-maki-cafe.redirectregex.replacement=https://$${1}
-            - traefik.http.middlewares.www-maki-cafe.redirectregex.permanent=true
+            - traefik.http.middlewares.www-to-makidoll.redirectregex.regex=^https?://(?:www\.)?(.+)
+            - traefik.http.middlewares.www-to-makidoll.redirectregex.replacement=https://$${1}
+            - traefik.http.middlewares.www-to-makidoll.redirectregex.permanent=true
 
-            - traefik.http.middlewares.makidoll-redirect.redirectregex.regex=^https?://(?:www\.)?makidoll.io(.+)
-            - traefik.http.middlewares.makidoll-redirect.redirectregex.replacement=https://maki.cafe$${1}
-            - traefik.http.middlewares.makidoll-redirect.redirectregex.permanent=false
+            - traefik.http.middlewares.maki-cafe-redirect.redirectregex.regex=^https?://(?:www\.)?maki.cafe(.+)
+            - traefik.http.middlewares.maki-cafe-redirect.redirectregex.replacement=https://makidoll.io$${1}
+            - traefik.http.middlewares.maki-cafe-redirect.redirectregex.permanent=false
 
             - traefik.http.middlewares.makidrone-redirect.redirectregex.regex=^https?://(?:www\.)?makidrone.io(.+)
-            - traefik.http.middlewares.makidrone-redirect.redirectregex.replacement=https://maki.cafe$${1}
+            - traefik.http.middlewares.makidrone-redirect.redirectregex.replacement=https://makidoll.io$${1}
             - traefik.http.middlewares.makidrone-redirect.redirectregex.permanent=false
 
             - traefik.docker.network=traefik
