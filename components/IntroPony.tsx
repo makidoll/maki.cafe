@@ -12,7 +12,7 @@ import HomeCardLoading from "./ui/home-card/HomeCardLoading";
 const Deg2Rad = 0.0174533;
 
 const startDegrees = 180 / 360; // deg
-const endDegrees = -60 / 360; // deg
+const endDegrees = -30 / 360; // deg
 
 const startScale = 0.5;
 const endScale = 1;
