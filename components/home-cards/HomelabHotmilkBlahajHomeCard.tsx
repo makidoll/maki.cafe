@@ -129,8 +129,8 @@ export default function HomelabHotmilkBlahajHomeCard(props: {
 								0,
 							) / props.data.length
 						).toFixed(2)}
-						<chakra.span fontWeight={800}>%</chakra.span> weekly
-						uptime
+						<chakra.span fontWeight={800}>%</chakra.span>
+						uptime this week
 					</Box>
 					<Link
 						pl={1.5}
