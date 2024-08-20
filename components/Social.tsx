@@ -397,7 +397,7 @@ export default function Social() {
 								key={i}
 								size={24}
 								font="noto"
-								opacity={0.8}
+								opacity={0.6}
 								transition={"all .1s ease-in-out"}
 								_hover={{
 									opacity: 1,
