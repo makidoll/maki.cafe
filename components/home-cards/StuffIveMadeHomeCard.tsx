@@ -3,16 +3,16 @@ import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
-import { CodewarsIcon } from "../ui/social-icons/CodewarsIcon";
 import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
 import { ShaderToyIcon } from "../ui/social-icons/ShaderToyIcon";
+import { SoundCloudIcon } from "../ui/social-icons/SoundCloudIcon";
 import blahajFinderImage from "./stuff-ive-made/blahaj-finder.png";
 import essenceBgImage from "./stuff-ive-made/essence-bg.png";
 import froggyBotImage from "./stuff-ive-made/froggy-bot.png";
+import baltimareImage from "./stuff-ive-made/baltimare.jpg";
 import hexcorpImage from "./stuff-ive-made/hexcorp.jpg";
 import melondsMetroidHuntersImage from "./stuff-ive-made/melonds-metroid-hunters.jpg";
 import tivoliIconImage from "./stuff-ive-made/tivoli-icon.png";
-import { SoundCloudIcon } from "../ui/social-icons/SoundCloudIcon";
 
 interface Thing {
 	name: string;
@@ -38,10 +38,11 @@ export default function StuffIveMadeHomeCard() {
 			color: "#3C8EA7",
 		},
 		{
-			name: "frog\nbot",
-			link: "https://github.com/makidoll/frog-bot",
-			image: froggyBotImage.src,
-			color: "#B7D019",
+			name: "baltimare\nleader\nboard",
+			link: "https://baltimare.hotmilk.space",
+			image: baltimareImage.src,
+			color: "#689F38",
+			fontSize: 13,
 		},
 		{
 			name: "melonds\nmetroid\nhunters",
@@ -51,27 +52,33 @@ export default function StuffIveMadeHomeCard() {
 			fontSize: 13,
 		},
 		{
+			name: "frog\nbot",
+			link: "https://github.com/makidoll/frog-bot",
+			image: froggyBotImage.src,
+			color: "#B7D019",
+		},
+		{
 			name: "mechanyx\ncoil\nlauncher",
 			link: "https://github.com/makidoll/coil-launcher",
 			image: essenceBgImage.src,
 			color: "#393d4b",
 			fontSize: 13,
 		},
-		{
-			name: "hexdrone\nstatus\ncodes",
-			link: "https://makidoll.github.io/hexdrone-status-codes/",
-			image: hexcorpImage.src,
-			color: "#ff64ff",
-			fontSize: 13,
-		},
+		// {
+		// 	name: "hexdrone\nstatus\ncodes",
+		// 	link: "",
+		// 	image: hexcorpImage.src,
+		// 	color: "#ff64ff",
+		// 	fontSize: 13,
+		// },
 	];
 
 	const stuffThinnerColor = "rgba(255,255,255,0.06)";
 
 	const stuffThinner: (Thing | null)[] = [
 		{
-			name: "pokemon names",
-			link: "https://makidoll.github.io/pokemon-names",
+			name: "hexdrone status",
+			link: "https://makidoll.github.io/hexdrone-status-codes/",
 			image: "",
 			color: stuffThinnerColor,
 		},
@@ -84,6 +91,12 @@ export default function StuffIveMadeHomeCard() {
 		{
 			name: "twinkly shaders",
 			link: "https://github.com/makidoll/twinkly-shaders",
+			image: "",
+			color: stuffThinnerColor,
+		},
+		{
+			name: "pokemon names",
+			link: "https://makidoll.github.io/pokemon-names",
 			image: "",
 			color: stuffThinnerColor,
 		},
@@ -154,10 +167,10 @@ export default function StuffIveMadeHomeCard() {
 				or <chakra.span fontWeight={700}>github</chakra.span> if you
 				wanna see what i might be up to
 			</Text>
-			<Grid templateColumns="repeat(4, 1fr)" gap={1} mb={1}>
+			<Grid templateColumns="repeat(4, 1fr)" gap={1} mb={3}>
 				{stuff.map((thing, i) => makeButton(thing, i))}
 			</Grid>
-			<Grid templateColumns="repeat(3, 1fr)" gap={1}>
+			<Grid templateColumns="repeat(3, 1fr)" gap={1} mb={1}>
 				{stuffThinner.map((thing, i) =>
 					thing == null ? (
 						<GridItem key={i} />
