@@ -21,7 +21,7 @@ export class AurData extends DataSource<AurDataResponse> {
 				"?by=maintainer",
 		);
 
-		const results = res.data.results.map(result => ({
+		let results: AurPackage[] = res.data.results.map(result => ({
 			name: result.Name,
 			version: result.Version,
 			votes: result.NumVotes,
@@ -29,6 +29,8 @@ export class AurData extends DataSource<AurDataResponse> {
 			description: result.Description,
 			lastModified: result.LastModified,
 		}));
+
+		results = results.sort((a, b) => b.lastModified - a.lastModified);
 
 		return results;
 	}
