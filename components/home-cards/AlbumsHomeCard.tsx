@@ -45,7 +45,7 @@ export default function AlbumsHomeCard() {
 			<HomeCardFooterLink
 				multi={[
 					{
-						name: "Bandcamp",
+						name: "bandcamp",
 						url: config.socialLinks.bandcamp,
 						icon: FaBandcamp,
 					},
