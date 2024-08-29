@@ -3,14 +3,11 @@
 	"version": "0.1.0",
 	"private": true,
 	"scripts": {
-		"start": "concurrently -r npm:start:dev npm:start:data",
-		"start:dev": "next dev",
-		"start:serve": "next start",
-		"start:data": "cross-env MAKI_SERVER=1 tsx data/data-sources-server.ts",
+		"start": "tsx --watch --watch-path server server/main.ts",
 		"make": "tsx tools/make-games.ts",
 		"favicon": "tsx tools/generate-favicons.ts",
 		"build": "next build",
-		"serve": "concurrently -r npm:start:serve npm:start:data"
+		"serve": "cross-env NODE_ENV=production tsx server/main.ts"
 	},
 	"dependencies": {
 		"@chakra-ui/next-js": "^2.2.0",
@@ -21,6 +18,7 @@
 		"babel-plugin-react-compiler": "0.0.0-experimental-696af53-20240625",
 		"bezier-easing": "^2.1.0",
 		"cron": "^3.1.7",
+		"cross-env": "^7.0.3",
 		"date-fns": "^3.6.0",
 		"file-loader": "^6.2.0",
 		"framer-motion": "^11.3.2",
@@ -34,6 +32,7 @@
 		"svgo-loader": "^4.0.0",
 		"swr": "^2.2.5",
 		"three": "^0.166.1",
+		"ua-parser-js": "^1.0.38",
 		"url-loader": "^4.1.1"
 	},
 	"devDependencies": {
@@ -42,12 +41,11 @@
 		"@types/react": "^18.3.3",
 		"@types/react-dom": "^18.3.0",
 		"@types/three": "^0.166.0",
-		"concurrently": "^8.2.2",
-		"cross-env": "^7.0.3",
+		"@types/ua-parser-js": "^0.7.39",
 		"sass": "^1.77.8",
 		"sharp": "^0.33.4",
 		"sharp-ico-v32": "^0.1.6",
 		"tsx": "^4.16.2",
-		"typescript": "^5.5.3"
+		"typescript": "5.5.4"
 	}
 }

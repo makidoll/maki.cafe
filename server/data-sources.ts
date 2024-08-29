@@ -1,5 +1,3 @@
-import { dirname, resolve } from "path";
-import { fileURLToPath } from "url";
 import { DataSource } from "./data-source";
 import { AurData, AurDataResponse } from "./sources/aur";
 import { MastodonData, MastodonDataResponse } from "./sources/mastodon";
@@ -20,7 +18,7 @@ export interface LatestData {
 	uptime: UptimeDataResponse;
 }
 
-class DataSources {
+export class DataSources {
 	dataSources: { [key: string]: DataSource<any> } = {
 		aur: new AurData("aur"),
 		// flickr: new FlickrData("flickr"),
@@ -46,24 +44,4 @@ class DataSources {
 
 		return latest as LatestData;
 	}
-}
-
-// const dataSources = new GlobalRef<DataSources>(
-// 	"data.sources",
-// 	new DataSources(),
-// );
-
-// export function getLatestData() {
-// 	return dataSources.value.getLatest();
-// }
-
-if (process.env.MAKI_SERVER != undefined) {
-	console.log("Running data sources server outside of Next.js");
-
-	process.env.APP_ROOT = resolve(
-		dirname(fileURLToPath(import.meta.url)),
-		"..",
-	);
-
-	new DataSources();
 }

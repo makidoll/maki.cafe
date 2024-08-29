@@ -1,8 +1,5 @@
 /** @type {import('next').NextConfig} */
 
-import { dirname } from "path";
-import { fileURLToPath } from "url";
-
 // const CopyPlugin = require("copy-webpack-plugin");
 
 // TODO: try react compiler when stable
@@ -23,10 +20,6 @@ const nextConfig = {
 			{ protocol: "https", hostname: "static-cdn.jtvnw.net" },
 			{ protocol: "https", hostname: "img.youtube.com" },
 		],
-	},
-	env: {
-		USING_NEXT: "1",
-		APP_ROOT: dirname(fileURLToPath(import.meta.url)),
 	},
 	i18n: {
 		locales: ["en"],

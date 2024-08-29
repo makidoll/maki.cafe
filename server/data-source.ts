@@ -2,7 +2,7 @@ import { CronJob } from "cron";
 import * as fs from "fs/promises";
 import path from "path";
 
-const cacheDir = path.resolve(process.env.APP_ROOT ?? "", "cache");
+const cacheDir = path.resolve(__dirname, "../cache");
 
 export class DataSource<T> {
 	protected readonly intervalMinutes: number = 60; // once an hour
