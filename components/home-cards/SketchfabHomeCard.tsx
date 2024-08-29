@@ -1,6 +1,6 @@
 import { Box, Center, Grid, GridItem, Link, Text } from "@chakra-ui/react";
 import Image from "next/image";
-import { SketchfabDataResponse } from "../../data/sources/sketchfab";
+import { SketchfabDataResponse } from "../../server/sources/sketchfab";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";

@@ -9,7 +9,7 @@ import {
 	Text,
 } from "@chakra-ui/react";
 import Image from "next/image";
-import { MastodonDataResponse } from "../../data/sources/mastodon";
+import { MastodonDataResponse } from "../../server/sources/mastodon";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";

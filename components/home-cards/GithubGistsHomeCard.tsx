@@ -1,5 +1,5 @@
 import { Flex, Link, Text } from "@chakra-ui/react";
-import { GitHubDataResponse } from "../../data/sources/github";
+import { GitHubDataResponse } from "../../server/sources/github";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";

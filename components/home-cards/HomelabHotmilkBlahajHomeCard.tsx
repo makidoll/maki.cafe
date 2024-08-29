@@ -10,7 +10,7 @@ import {
 	chakra,
 } from "@chakra-ui/react";
 import { MdArrowForward } from "react-icons/md";
-import { UptimeDataResponse, UptimeService } from "../../data/sources/uptime";
+import { UptimeDataResponse, UptimeService } from "../../server/sources/uptime";
 import { config } from "../../utils/config";
 import OpenableImage from "../ui/OpenableImage";
 import HomeCard from "../ui/home-card/HomeCard";

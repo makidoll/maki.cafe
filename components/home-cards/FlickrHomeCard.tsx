@@ -1,6 +1,6 @@
 import { Box, Center, Grid, GridItem, Link } from "@chakra-ui/react";
 import Image from "next/image";
-import { FlickrDataResponse } from "../../data/sources/flickr";
+import { FlickrDataResponse } from "../../server/sources/flickr";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";

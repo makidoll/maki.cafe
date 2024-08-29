@@ -1,5 +1,5 @@
 import { Box, Grid, GridItem, Link } from "@chakra-ui/react";
-import { SlMarketplaceDataResponse } from "../../data/sources/sl-marketplace";
+import { SlMarketplaceDataResponse } from "../../server/sources/sl-marketplace";
 import { config } from "../../utils/config";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFailedToLoad from "../ui/home-card/HomeCardFailedToLoad";

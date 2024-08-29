@@ -1,6 +1,6 @@
 import { Flex, HStack, Link, Text } from "@chakra-ui/react";
 import { formatDistance } from "date-fns";
-import { AurDataResponse } from "../../data/sources/aur";
+import { AurDataResponse } from "../../server/sources/aur";
 import { config } from "../../utils/config";
 import { plural } from "../../utils/utils";
 import HomeCard from "../ui/home-card/HomeCard";
