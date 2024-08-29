@@ -4,10 +4,10 @@ import { Box, Grid } from "@chakra-ui/react";
 import { useState } from "react";
 import IntroPony from "../components/IntroPony";
 import Social from "../components/Social";
+import AlbumsHomeCard from "../components/home-cards/AlbumsHomeCard";
 import AurHomeCard from "../components/home-cards/AurHomeCard";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
 import GamesHomeCard from "../components/home-cards/GamesHomeCard";
-import GithubGistsHomeCard from "../components/home-cards/GithubGistsHomeCard";
 import HomelabCutelabBlahajHomeCard from "../components/home-cards/HomelabCutelabBlahajHomeCard";
 import HomelabCutelabYetiHomeCard from "../components/home-cards/HomelabCutelabYetiHomeCard";
 import HomelabHotmilkBlahajHomeCard, {
@@ -17,12 +17,12 @@ import MastodonMediaHomeCard from "../components/home-cards/MastodonMediaHomeCar
 import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import SlMarketplaceHomeCard from "../components/home-cards/SlMarketplaceHomeCard";
 import StuffIveMadeHomeCard from "../components/home-cards/StuffIveMadeHomeCard";
+import WebringCard from "../components/home-cards/WebringCard";
 import Logo from "../components/ui/Logo";
-import { LatestData } from "../data/data-sources-server";
+import type { LatestData } from "../server/data-sources";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import styles from "./Home.module.scss";
 import gnomeDarkImage from "./gnome-dark.svg";
-import WebringCard from "../components/home-cards/WebringCard";
 
 export default function Home(props: {
 	isMobile: boolean;
@@ -204,6 +204,7 @@ export default function Home(props: {
 				<MastodonMediaHomeCard data={props.data.mastodon} />
 				{homelab}
 				<GamesHomeCard />
+				<AlbumsHomeCard />
 				{/* <GithubGistsHomeCard data={props.data.github} /> */}
 				<AurHomeCard data={props.data.aur} />
 				<SketchfabHomeCard data={props.data.sketchfab} />

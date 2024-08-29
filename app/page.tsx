@@ -1,5 +1,5 @@
 import { headers } from "next/headers";
-import { ServerData } from "../server/main";
+import type { ServerData } from "../server/main";
 import Home from "./Home";
 
 export default async function Page() {

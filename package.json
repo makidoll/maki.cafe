@@ -4,7 +4,8 @@
 	"private": true,
 	"scripts": {
 		"start": "tsx --watch --watch-path server server/main.ts",
-		"make": "tsx tools/make-games.ts",
+		"make:games": "tsx tools/make-games.ts",
+		"make:music": "tsx tools/make-music.ts",
 		"favicon": "tsx tools/generate-favicons.ts",
 		"build": "next build",
 		"serve": "cross-env NODE_ENV=production tsx server/main.ts"

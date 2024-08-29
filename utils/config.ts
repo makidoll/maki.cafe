@@ -52,6 +52,7 @@ const socialLinks = {
 	email: "mailto:" + socialIds.email,
 	slMarketplace: "https://marketplace.secondlife.com/stores/65674",
 	aur: "https://aur.archlinux.org/packages?K=" + socialIds.aur + "&SeB=m",
+	bandcamp: "https://bandcamp.com/makidoll",
 };
 
 const title = "Maki";
