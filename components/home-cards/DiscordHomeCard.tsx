@@ -123,7 +123,7 @@ export default function DiscordHomeCard() {
 						<SubHeading size={"xs"} fontWeight={500}>
 							{activity == null
 								? "no activity"
-								: activity.activityName.toLowerCase()}
+								: activity.activityName}
 						</SubHeading>
 					</HStack>
 					<SubHeading size={"sm"}>
@@ -131,7 +131,7 @@ export default function DiscordHomeCard() {
 							"not listening to anything"
 						) : (
 							<DancingLetters>
-								{activity.firstLine.toLowerCase()}
+								{activity.firstLine}
 							</DancingLetters>
 						)}
 					</SubHeading>
@@ -140,7 +140,7 @@ export default function DiscordHomeCard() {
 							? "or playing any games"
 							: activity.secondLine != null &&
 							  activity.secondLine != ""
-							? activity.secondLine.toLowerCase()
+							? activity.secondLine
 							: activityTime != null
 							? formatDistance(
 									Date.now() - activityTime.current,
