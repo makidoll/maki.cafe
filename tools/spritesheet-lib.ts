@@ -69,9 +69,7 @@ export async function makeSpriteSheet(
 		},
 	})
 		.composite(images)
-		.jpeg({
-			quality: 90,
-		})
+		.png()
 		.toFile(outputPath);
 
 	return { cssSize, cssPositions };
