@@ -34,7 +34,7 @@ const bannerHeight = 87;
 const bannerPadding = 4;
 
 const sheetWidth = 5;
-const sheetHeight = 9;
+const sheetHeight = 10;
 
 // banners from https://www.steamgriddb.com
 
@@ -142,6 +142,10 @@ const games: (string | { banner: string; url: string })[] = [
 	{
 		banner: "games/kirby-and-the-forgotten-land.png",
 		url: "https://kirbyandtheforgottenland.nintendo.com/",
+	},
+	{
+		banner: "games/minecraft.png",
+		url: "https://www.betterthanadventure.net",
 	},
 ];
 
