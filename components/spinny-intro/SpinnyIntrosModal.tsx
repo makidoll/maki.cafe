@@ -5,14 +5,13 @@ import {
 	Heading,
 	Modal,
 	ModalBody,
-	ModalCloseButton,
 	ModalContent,
 	ModalOverlay,
 	Text,
 	UseDisclosureReturn,
 	VStack,
 } from "@chakra-ui/react";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { ClientInfo } from "../../server/main";
 import { config } from "../../utils/config";
 import { SpinnyIntros, SpinnyIntrosSortedByYear } from "./spinny-intros";
@@ -130,6 +129,32 @@ export default function SpinnyIntrosModal(props: {
 		return SpinnyIntros[selectedIntroIndex];
 	}, [selectedIntroIndex]);
 
+	useEffect(() => {
+		const onKeydown = (e: KeyboardEvent) => {
+			if (!spinnyIntroReady) return;
+
+			switch (e.key) {
+				case "a":
+				case "ArrowLeft":
+					if (selectedIntroIndex <= 0) break;
+					setSelectedIntroIndex(selectedIntroIndex - 1);
+					break;
+
+				case "d":
+				case "ArrowRight":
+					if (selectedIntroIndex >= SpinnyIntros.length - 1) break;
+					setSelectedIntroIndex(selectedIntroIndex + 1);
+					break;
+			}
+		};
+
+		document.addEventListener("keydown", onKeydown);
+
+		return () => {
+			document.removeEventListener("keydown", onKeydown);
+		};
+	}, [spinnyIntroReady, selectedIntroIndex]);
+
 	return (
 		<Modal
 			isOpen={props.disclosure.isOpen}
@@ -143,16 +168,8 @@ export default function SpinnyIntrosModal(props: {
 				width={"fit-content"}
 				maxWidth={"fit-content"}
 				borderRadius={16}
+				overflow={"hidden"}
 			>
-				{/* TODO: should not do this based on user agent lmao */}
-				{props.client.isMobile ? (
-					<ModalCloseButton
-						zIndex={999}
-						color={`rgba(255,255,255,0.2)`}
-					/>
-				) : (
-					<></>
-				)}
 				<ModalBody>
 					<VStack spacing={0}>
 						<SpinnyIntro
@@ -172,6 +189,30 @@ export default function SpinnyIntrosModal(props: {
 								spinnyIntro.date[2]
 							}, ${spinnyIntro.date[0]}`}
 						</Heading> */}
+						{spinnyIntro.changes.length > 0 ? (
+							<>
+								<Box mb={8}>
+									<Text fontWeight={700} opacity={1} ml={4}>
+										changes:
+									</Text>
+									{spinnyIntro.changes.map((text, i) => (
+										<Text
+											key={i}
+											opacity={0.6}
+											fontWeight={700}
+											fontSize={14}
+											fontFamily={
+												"var(--chakra-fonts-monospace)"
+											}
+										>
+											• {text}
+										</Text>
+									))}
+								</Box>
+							</>
+						) : (
+							<></>
+						)}
 						<SpinnyIntroSelector
 							spinnyIntroReady={spinnyIntroReady}
 							selectedIntroIndex={selectedIntroIndex}
