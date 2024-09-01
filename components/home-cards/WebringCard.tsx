@@ -1,13 +1,15 @@
-import { Grid, GridItem, Image, Link, Text } from "@chakra-ui/react";
+import { Grid, GridItem, HStack, Image, Link, Text } from "@chakra-ui/react";
 import { StaticImageData } from "next/image";
-import { config } from "../../utils/config";
+import { FaGlobeAmericas } from "react-icons/fa";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import anonfilly from "./webring/anonfilly.png";
 import parfait from "./webring/parfait.gif";
 import pea from "./webring/pea.png";
 import yno from "./webring/yno.png";
-import { FaGlobeAmericas } from "react-icons/fa";
+import { FaCircleExclamation, FaTriangleExclamation } from "react-icons/fa6";
+import { NoMinorsIcon } from "../ui/social-icons/NoMinorsIcon";
+import Emoji from "../ui/Emoji";
 
 interface Button {
 	image?: StaticImageData;
@@ -85,32 +87,37 @@ function Buttons(props: {
 }
 
 export default function WebringCard() {
-	const frens: Button[] = [
+	const frends: Button[] = [
 		{
 			image: pea,
 			url: "https://pea.moe",
 		},
 		{
-			image: parfait,
-			url: "https://parfaitcake.art",
-		},
-		{
-			image: anonfilly,
-			url: "https://anonfilly.horse",
-		},
-		{
 			name: "ironsm4sh.nl",
 			url: "https://ironsm4sh.nl",
 		},
+		{
+			name: "0x0a.de",
+			url: "https://0x0a.de",
+		},
+		// <3 just dont feel comfortable with this on my site
+		// {
+		// 	image: parfait,
+		// 	url: "https://parfaitcake.art",
+		// },
 	];
 
 	const other: Button[] = [
 		{
-			image: yno,
-			url: "https://ynoproject.net",
+			image: anonfilly,
+			url: "https://anonfilly.horse",
 		},
 		{ name: "pony.town", url: "https://pony.town" },
 		{ name: "wetmares.org", url: "http://wetmares.org" },
+		{
+			image: yno,
+			url: "https://ynoproject.net",
+		},
 	];
 
 	return (
@@ -118,27 +125,31 @@ export default function WebringCard() {
 			<HomeCardHeading mb={2} icon={FaGlobeAmericas}>
 				webring
 			</HomeCardHeading>
-			<Text
+			{/* <HStack
 				textAlign={"center"}
 				fontSize={14}
-				fontWeight={500}
+				fontWeight={700}
 				lineHeight={1.2}
-				opacity={0.8}
+				opacity={0.5}
 				mb={1}
+				alignItems={"center"}
+				justifyContent={"center"}
+				spacing={1.5}
 			>
-				explicit content warning for some sites
-			</Text>
-			<Buttons title="frens" buttons={frens} />
+				<FaCircleExclamation />
+				<Text>explicit content warning</Text>
+			</HStack> */}
+			<Buttons title="frends" buttons={frends} />
 			<Text
 				textAlign={"center"}
 				fontSize={14}
-				fontWeight={500}
+				fontWeight={600}
 				lineHeight={1.2}
 				mt={2}
 				mb={2}
 				opacity={0.4}
 			>
-				...will eventually make a button
+				...will eventually make my own button
 			</Text>
 			<Buttons title="other" buttons={other} />
 		</HomeCard>
