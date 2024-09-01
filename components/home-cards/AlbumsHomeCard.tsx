@@ -1,11 +1,11 @@
 import { Box, Grid, GridItem, Link } from "@chakra-ui/react";
+import { FaBandcamp } from "react-icons/fa6";
 import { config } from "../../utils/config";
 import { albumsInfo } from "../assets/albums-info";
 import albumsSpritesheet from "../assets/albums-spritesheet.png";
 import HomeCard from "../ui/home-card/HomeCard";
-import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
-import { FaBandcamp } from "react-icons/fa";
+import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 
 function AlbumGridItem(props: { album: { url: string; position: string } }) {
 	return (

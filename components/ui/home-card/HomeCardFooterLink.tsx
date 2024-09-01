@@ -1,7 +1,6 @@
-import { Flex, Text, Link, HStack } from "@chakra-ui/react";
+import { Flex, HStack, Link, Text } from "@chakra-ui/react";
 import { IconType } from "react-icons";
-import { FaArrowRight, FaLink, FaLongArrowAltRight } from "react-icons/fa";
-import { MdOpenInNew } from "react-icons/md";
+import { FaArrowRight } from "react-icons/fa6";
 
 export default function HomeCardFooterLink(props: {
 	href?: string;

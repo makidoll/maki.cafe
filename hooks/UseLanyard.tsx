@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { IconType } from "react-icons";
-import { FaTwitch } from "react-icons/fa";
+import { FaTwitch } from "react-icons/fa6";
 import { MdGamepad } from "react-icons/md";
 import { CrunchyrollIcon } from "../components/ui/social-icons/CrunchyrollIcon";
 import { DeadBeefIcon } from "../components/ui/social-icons/DeadBeefIcon";

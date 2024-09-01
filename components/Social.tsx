@@ -17,7 +17,7 @@ import {
 } from "@chakra-ui/react";
 import { useState } from "react";
 import { IconType } from "react-icons";
-import { FaArrowRight } from "react-icons/fa";
+import { FaArrowRight, FaArrowsRotate, FaCode } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { config } from "../utils/config";
 import { colorMix, lerp } from "../utils/utils";
