@@ -20,15 +20,13 @@ import { IconType } from "react-icons";
 import { FaArrowRight, FaArrowsRotate, FaCode } from "react-icons/fa6";
 import { MdEmail } from "react-icons/md";
 import { config } from "../utils/config";
-import { colorMix, lerp } from "../utils/utils";
+import { colorMix } from "../utils/utils";
 import rainbowShaderGif from "./assets/rainbow-shader.gif";
 import Emoji from "./ui/Emoji";
-import SubHeading from "./ui/SubHeading";
 import { ArchLinuxIcon } from "./ui/social-icons/ArchLinuxIcon";
 import { DiscordIcon } from "./ui/social-icons/DiscordIcon";
 import { ElementIcon } from "./ui/social-icons/ElementIcon";
 import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
-import { KofiIcon } from "./ui/social-icons/KofiIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
 import { SecondLifeIcon } from "./ui/social-icons/SecondLifeIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
@@ -56,7 +54,7 @@ interface Social {
 	openWithJs?: boolean;
 }
 
-export default function Social() {
+export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 	const toast = useToast();
 
 	const [popupInfo, setPopupInfo] = useState<Popup>();
@@ -268,12 +266,13 @@ export default function Social() {
 								_hover={{
 									backgroundColor: "rgba(20,20,20,0.15)",
 								}}
-								transitionProperty={
-									"var(--chakra-transition-property-common)"
-								}
-								transitionDuration={
-									"var(--chakra-transition-duration-normal)"
-								}
+								transition={config.styles.hoverTransition}
+								// transitionProperty={
+								// 	"var(--chakra-transition-property-common)"
+								// }
+								// transitionDuration={
+								// 	"var(--chakra-transition-duration-normal)"
+								// }
 							>
 								<social.icon
 									color={"#fff"}
@@ -295,17 +294,17 @@ export default function Social() {
 		</HStack>
 	));
 
-	// const primaryFontWeight = 800;
-	// const primaryLetterSpacing = -1.0;
-	// const primaryTextOpacity = 0.8;
+	const primaryFontWeight = 700;
+	const primaryLetterSpacing = -1.0;
+	const primaryTextOpacity = 0.7;
 
-	const secondaryFontWeight = 600;
+	const secondaryFontWeight = 700;
 	const secondaryLetterSpacing = -1.0;
-	const secondaryTextOpacity = 0.7;
+	const secondaryTextOpacity = 0.5;
 
-	// const tertiaryFontWeight = 600;
-	// const tertiaryLetterSpacing = -1.0;
-	const tertiaryTextOpacity = 0.5;
+	const tertiaryFontWeight = 600;
+	const tertiaryLetterSpacing = -1.0;
+	const tertiaryTextOpacity = 0.3;
 
 	return (
 		<>
@@ -345,11 +344,11 @@ export default function Social() {
 					<HStack spacing={1}>
 						<Emoji size={24} custom="shaderlab"></Emoji>
 						<Text
-							opacity={secondaryTextOpacity}
-							fontWeight={secondaryFontWeight}
+							opacity={primaryTextOpacity}
+							fontWeight={primaryFontWeight}
 							fontSize="xl"
 							pl={1}
-							letterSpacing={secondaryLetterSpacing}
+							letterSpacing={primaryLetterSpacing}
 						>
 							play and make video games
 						</Text>
@@ -357,11 +356,11 @@ export default function Social() {
 					<HStack spacing={1}>
 						<Emoji size={24} custom="codium"></Emoji>
 						<Text
-							opacity={secondaryTextOpacity}
-							fontWeight={secondaryFontWeight}
+							opacity={primaryTextOpacity}
+							fontWeight={primaryFontWeight}
 							fontSize="xl"
 							pl={1}
-							letterSpacing={secondaryLetterSpacing}
+							letterSpacing={primaryLetterSpacing}
 						>
 							programming and running servers
 						</Text>
@@ -462,51 +461,75 @@ export default function Social() {
 				<VStack mt={10} spacing={socialsSpacing}>
 					{SocialsRows}
 				</VStack>
-				<VStack spacing={0} mt={8}>
-					<HStack spacing={0}>
-						<Link
-							fontWeight={secondaryFontWeight}
-							fontSize="lg"
-							px={1}
-							letterSpacing={secondaryLetterSpacing}
-							fontStyle={"italic"}
-							href={config.socialLinks.github + "/dots"}
-							color="white"
-							transition={config.styles.hoverTransition}
-							_hover={{ transform: "scale(1.05)" }}
-						>
-							<HStack spacing={2}>
-								<ArchLinuxIcon
-									size={24}
-									fill="#1793d1"
-									opacity={tertiaryTextOpacity + 0.1}
-								/>
-								<Text opacity={tertiaryTextOpacity}>
-									i use arch btw lmao
-								</Text>
-								<FaArrowRight
-									opacity={tertiaryTextOpacity}
-									size={14}
-									color="#fff"
-									style={{ marginBottom: "0px" }}
-								/>
-							</HStack>
-						</Link>
-					</HStack>
+				<VStack spacing={0} mt={6}>
 					<Link
-						href={config.socialLinks.github + "/makidoll.io"}
-						transformOrigin="center"
-						transition={config.styles.hoverTransition}
-						_hover={{ transform: "scale(1.05)" }}
-						color="#fff"
+						fontWeight={secondaryFontWeight}
+						fontSize="lg"
+						letterSpacing={secondaryLetterSpacing}
+						color="white"
+						opacity={secondaryTextOpacity}
+						as={"button"}
+						onClick={props.onSpinnyIntrosOpen}
+						// href={config.socialLinks.github + "/dots"}
+						// transformOrigin="center"
+						// transition={config.styles.hoverTransition}
+						// _hover={{ transform: "scale(1.05)" }}
 					>
-						<HStack spacing={1.5} opacity={0.25}>
-							<Text
-								fontWeight={secondaryFontWeight}
-								fontSize="md"
-							>
-								see site&apos;s code
-							</Text>
+						<HStack spacing={2}>
+							<FaArrowsRotate
+								size={16}
+								fill="#fff"
+								style={{ marginBottom: -2 }}
+							/>
+							<Text mb={0}>see all spinny intros</Text>
+							<FaArrowRight
+								size={14}
+								color="#fff"
+								style={{ marginBottom: "0px" }}
+							/>
+						</HStack>
+					</Link>
+					<Link
+						fontWeight={tertiaryFontWeight}
+						fontSize="lg"
+						letterSpacing={tertiaryLetterSpacing}
+						fontStyle={"italic"}
+						color="white"
+						opacity={tertiaryTextOpacity}
+						href={config.socialLinks.github + "/dots"}
+						// transformOrigin="center"
+						// transition={config.styles.hoverTransition}
+						// _hover={{ transform: "scale(1.05)" }}
+						mt={3}
+					>
+						<HStack spacing={2}>
+							<ArchLinuxIcon
+								size={16}
+								// fill="#1793d1"
+								fill="#fff"
+							/>
+							<Text>i use arch btw lmao</Text>
+							<FaArrowRight
+								size={14}
+								color="#fff"
+								style={{ marginBottom: "0px" }}
+							/>
+						</HStack>
+					</Link>
+					<Link
+						fontWeight={tertiaryFontWeight}
+						fontSize="md"
+						letterSpacing={tertiaryLetterSpacing}
+						color="#fff"
+						opacity={tertiaryTextOpacity}
+						href={config.socialLinks.github + "/makidoll.io"}
+						// transformOrigin="center"
+						// transition={config.styles.hoverTransition}
+						// _hover={{ transform: "scale(1.05)" }}
+					>
+						<HStack spacing={1.5}>
+							<FaCode size={16} fill="#fff" />
+							<Text letterSpacing={0}>see site&apos;s code</Text>
 							<FaArrowRight
 								size={14}
 								color="#fff"

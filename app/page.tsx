@@ -13,11 +13,5 @@ export default async function Page() {
 		console.error("Failed to get server data");
 	}
 
-	return (
-		<Home
-			isMobile={serverData.isMobile}
-			isSafari={serverData.isSafari}
-			data={serverData.data}
-		/>
-	);
+	return <Home client={serverData.client} data={serverData.data} />;
 }

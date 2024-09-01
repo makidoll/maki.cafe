@@ -7,9 +7,13 @@ import { DataSources, LatestData } from "./data-sources";
 const port = process.env.PORT ?? 3000;
 const dev = process.env.NODE_ENV !== "production";
 
-export interface ServerData {
+export interface ClientInfo {
 	isMobile: boolean;
 	isSafari: boolean;
+}
+
+export interface ServerData {
+	client: ClientInfo;
 	data: LatestData;
 }
 
@@ -36,8 +40,7 @@ export interface ServerData {
 		const isSafari = ua.getBrowser().name == "Safari";
 
 		const serverData: ServerData = {
-			isMobile,
-			isSafari,
+			client: { isMobile, isSafari },
 			data: dataSources.getLatest(),
 		};
 

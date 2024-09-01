@@ -1,9 +1,10 @@
 "use client";
 
-import { Box, Grid } from "@chakra-ui/react";
+import { Box, Grid, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-import IntroPony from "../components/IntroPony";
 import Social from "../components/Social";
+import SpinnyIntro from "../components/SpinnyIntro";
+import SpinnyIntrosModal from "../components/SpinnyIntrosModal";
 import AlbumsHomeCard from "../components/home-cards/AlbumsHomeCard";
 import AurHomeCard from "../components/home-cards/AurHomeCard";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
@@ -18,18 +19,18 @@ import SketchfabHomeCard from "../components/home-cards/SketchfabHomeCard";
 import SlMarketplaceHomeCard from "../components/home-cards/SlMarketplaceHomeCard";
 import StuffIveMadeHomeCard from "../components/home-cards/StuffIveMadeHomeCard";
 import WebringCard from "../components/home-cards/WebringCard";
+import { SpinnyIntros } from "../components/spinny-intros";
 import Logo from "../components/ui/Logo";
 import type { LatestData } from "../server/data-sources";
+import { ClientInfo } from "../server/main";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import styles from "./Home.module.scss";
 import gnomeDarkImage from "./gnome-dark.svg";
 
-export default function Home(props: {
-	isMobile: boolean;
-	isSafari: boolean;
-	data: LatestData;
-}) {
+export default function Home(props: { client: ClientInfo; data: LatestData }) {
 	const [ready, setReady] = useState(false);
+
+	const spinnyIntrosDisclosue = useDisclosure();
 
 	const [olderHomelab, setOlderHomelab] = useState(OlderHomelab.None);
 	const resetHomelab = () => {
@@ -117,16 +118,20 @@ export default function Home(props: {
 				flexDirection="column"
 				width="100%"
 			>
-				<IntroPony
-					h={600}
-					mt={0}
-					mb={0}
-					onLoaded={() => {
-						setReady(true);
-					}}
-					isMobile={props.isMobile}
-					isSafari={props.isSafari}
-				/>
+				{spinnyIntrosDisclosue.isOpen ? (
+					<Box h={600} />
+				) : (
+					<SpinnyIntro
+						h={600}
+						mt={0}
+						mb={0}
+						client={props.client}
+						intro={SpinnyIntros[0]}
+						onReady={() => {
+							setReady(true);
+						}}
+					/>
+				)}
 				<Box
 					width={350}
 					marginTop={-4}
@@ -176,8 +181,12 @@ export default function Home(props: {
 					<Logo ready={ready} />
 				</Box>
 				<Box marginTop={4}>
-					<Social />
+					<Social onSpinnyIntrosOpen={spinnyIntrosDisclosue.onOpen} />
 				</Box>
+				<SpinnyIntrosModal
+					client={props.client}
+					disclosure={spinnyIntrosDisclosue}
+				/>
 			</Box>
 			<Grid
 				sx={{
