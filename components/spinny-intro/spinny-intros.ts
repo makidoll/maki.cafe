@@ -175,7 +175,10 @@ export const SpinnyIntros: ISpinnyIntro[] = [
 		date: [2023, 9, 21],
 		desktop: video_2023_09_21,
 		mobile: video_2023_09_21,
-		changes: [],
+		changes: [
+			"start using webm for spinny intro",
+			"there are more, but those used three.js",
+		],
 	},
 ];
 

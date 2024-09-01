@@ -1,8 +1,7 @@
 import {
-	Box,
 	Grid,
 	GridItem,
-	Heading,
+	HStack,
 	Modal,
 	ModalBody,
 	ModalContent,
@@ -12,8 +11,9 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
+import { FaCross, FaX } from "react-icons/fa6";
 import type { ClientInfo } from "../../server/main";
-import { config } from "../../utils/config";
+import { Button } from "../ui/Button";
 import { SpinnyIntros, SpinnyIntrosSortedByYear } from "./spinny-intros";
 import SpinnyIntro from "./SpinnyIntro";
 
@@ -47,38 +47,6 @@ const fullMonths = [
 	"December",
 ];
 
-function SelectorButton(props: {
-	disabled: boolean;
-	text: string;
-	onClick: () => any;
-}) {
-	return (
-		<Box
-			background={"#444"}
-			px={2}
-			py={1}
-			m={1}
-			borderRadius={8}
-			textAlign={"center"}
-			fontWeight={700}
-			cursor={props.disabled ? null : "pointer"}
-			opacity={props.disabled ? 0.4 : 1}
-			transition={config.styles.hoverTransition}
-			transformOrigin={"center center"}
-			_hover={{
-				transform: props.disabled ? "" : "scale(1.05)",
-			}}
-			onClick={() => {
-				if (props.disabled) return;
-				props.onClick();
-			}}
-			userSelect={"none"}
-		>
-			{props.text}
-		</Box>
-	);
-}
-
 function SpinnyIntroSelector(props: {
 	spinnyIntroReady: boolean;
 	selectedIntroIndex: number;
@@ -87,27 +55,26 @@ function SpinnyIntroSelector(props: {
 	return (
 		<VStack spacing={4}>
 			{SpinnyIntrosSortedByYear.map(({ year, intros }) => (
-				<VStack key={year} spacing={1}>
-					<Heading size={"lg"} fontWeight={700}>
+				<VStack key={year} spacing={0}>
+					<Text fontSize={24} fontWeight={700}>
 						{year}
-					</Heading>
-					<Grid templateColumns="repeat(5, 1fr)">
+					</Text>
+					<Grid templateColumns="repeat(4, 1fr)">
 						{intros.map(intro => (
 							<GridItem key={intro.index}>
-								<SelectorButton
+								<Button
 									disabled={
 										!props.spinnyIntroReady ||
 										props.selectedIntroIndex == intro.index
 									}
-									text={`${shortMonths[intro.date[1] - 1]} ${
-										intro.date[2]
-									}`}
 									onClick={() => {
 										props.setSelectedIntroIndex(
 											intro.index,
 										);
 									}}
-								/>
+								>{`${shortMonths[
+									intro.date[1] - 1
+								].toLowerCase()} ${intro.date[2]}`}</Button>
 							</GridItem>
 						))}
 					</Grid>
@@ -184,43 +151,67 @@ export default function SpinnyIntrosModal(props: {
 							disableScaleTween
 							disableAutoSpin
 						/>
-						{/* <Heading size={"lg"} mb={16}>
-							{`${fullMonths[spinnyIntro.date[1] - 1]} ${
-								spinnyIntro.date[2]
-							}, ${spinnyIntro.date[0]}`}
-						</Heading> */}
-						{spinnyIntro.changes.length > 0 ? (
-							<>
-								<Box mb={8}>
-									<Text fontWeight={700} opacity={1} ml={4}>
-										changes:
-									</Text>
-									{spinnyIntro.changes.map((text, i) => (
-										<Text
-											key={i}
-											opacity={0.6}
-											fontWeight={700}
-											fontSize={14}
-											fontFamily={
-												"var(--chakra-fonts-monospace)"
-											}
-										>
-											• {text}
-										</Text>
-									))}
-								</Box>
-							</>
-						) : (
-							<></>
-						)}
-						<SpinnyIntroSelector
-							spinnyIntroReady={spinnyIntroReady}
-							selectedIntroIndex={selectedIntroIndex}
-							setSelectedIntroIndex={setSelectedIntroIndex}
-						/>
-						<Text mt={8} mb={8} fontWeight={600} opacity={0.4}>
-							there are more, but those used three.js
-						</Text>
+						<HStack
+							alignItems={"flex-start"}
+							spacing={6}
+							minW={640}
+							maxW={640}
+							pb={8}
+						>
+							<VStack minW={310} maxW={310}>
+								<SpinnyIntroSelector
+									spinnyIntroReady={spinnyIntroReady}
+									selectedIntroIndex={selectedIntroIndex}
+									setSelectedIntroIndex={
+										setSelectedIntroIndex
+									}
+								/>
+								{/* <Text
+									mt={4}
+									mb={8}
+									fontWeight={600}
+									opacity={0.4}
+								>
+									there are more, but those used three.js
+								</Text> */}
+							</VStack>
+							<VStack
+								mt={2}
+								spacing={1}
+								alignItems={"flex-start"}
+							>
+								<Text
+									fontWeight={700}
+									opacity={1}
+									ml={4}
+									mb={0}
+								>
+									{`changes on ${fullMonths[
+										spinnyIntro.date[1] - 1
+									].toLowerCase()} ${spinnyIntro.date[2]}, ${
+										spinnyIntro.date[0]
+									}:`}
+								</Text>
+								{spinnyIntro.changes.map((text, i) => (
+									<HStack alignItems={"flex-start"}>
+										{["•", text].map((text, j) => (
+											<Text
+												key={i + "-" + j}
+												opacity={0.6}
+												fontWeight={700}
+												fontSize={14}
+												fontFamily={
+													"var(--chakra-fonts-monospace)"
+												}
+											>
+												{text}
+											</Text>
+										))}
+									</HStack>
+								))}
+								{/* TODO: need to add close button */}
+							</VStack>
+						</HStack>
 					</VStack>
 				</ModalBody>
 			</ModalContent>
