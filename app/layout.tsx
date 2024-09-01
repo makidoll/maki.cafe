@@ -72,7 +72,7 @@ export default function RootLayout({
 				<Script
 					id="ithelpsme"
 					defer
-					data-domain="makidoll.io"
+					data-domain="maki.cafe"
 					data-api="https://ithelpsme.hotmilk.space/api/event"
 					dangerouslySetInnerHTML={{
 						// https://ithelpsme.hotmilk.space/js/script.js
