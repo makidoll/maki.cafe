@@ -11,7 +11,6 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
-import { FaCross, FaX } from "react-icons/fa6";
 import type { ClientInfo } from "../../server/main";
 import { Button } from "../ui/Button";
 import { SpinnyIntros, SpinnyIntrosSortedByYear } from "./spinny-intros";
