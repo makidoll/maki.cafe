@@ -13,8 +13,8 @@ import {
 	VStack,
 } from "@chakra-ui/react";
 import { useMemo, useState } from "react";
-import { ClientInfo } from "../server/main";
-import { config } from "../utils/config";
+import type { ClientInfo } from "../../server/main";
+import { config } from "../../utils/config";
 import { SpinnyIntros, SpinnyIntrosSortedByYear } from "./spinny-intros";
 import SpinnyIntro from "./SpinnyIntro";
 

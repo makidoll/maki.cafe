@@ -2,12 +2,12 @@ import { BoxProps, Flex, Text } from "@chakra-ui/react";
 import { Component, createRef } from "react";
 import { PerspectiveCamera } from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
-import { ClientInfo } from "../server/main";
-import { Easing } from "../utils/easing-functions";
-import { TweenManager } from "../utils/tween-manager";
-import { glslMod, invLerp, sleep } from "../utils/utils";
+import type { ClientInfo } from "../../server/main";
+import { Easing } from "../../utils/easing-functions";
+import { TweenManager } from "../../utils/tween-manager";
+import { glslMod, invLerp, sleep } from "../../utils/utils";
+import HomeCardLoading from "../ui/home-card/HomeCardLoading";
 import { ISpinnyIntro } from "./spinny-intros";
-import HomeCardLoading from "./ui/home-card/HomeCardLoading";
 
 const Deg2Rad = 0.0174533;
 
