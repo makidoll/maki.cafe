@@ -1,15 +1,11 @@
-import { Grid, GridItem, HStack, Image, Link, Text } from "@chakra-ui/react";
+import { Grid, GridItem, Image, Link, Text } from "@chakra-ui/react";
 import { StaticImageData } from "next/image";
 import { FaGlobeAmericas } from "react-icons/fa";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import anonfilly from "./webring/anonfilly.png";
-import parfait from "./webring/parfait.gif";
 import pea from "./webring/pea.png";
 import yno from "./webring/yno.png";
-import { FaCircleExclamation, FaTriangleExclamation } from "react-icons/fa6";
-import { NoMinorsIcon } from "../ui/social-icons/NoMinorsIcon";
-import Emoji from "../ui/Emoji";
 
 interface Button {
 	image?: StaticImageData;
