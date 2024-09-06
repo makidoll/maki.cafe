@@ -130,16 +130,12 @@ const albums: Albums = [
 		image: "music/spiritfarer.jpg",
 		url: "https://maxll.bandcamp.com/album/spiritfarer-original-soundtrack",
 	},
+	...snailsHouse,
+	...frogDetective,
 	{
 		image: "music/008.jpg",
 		url: "https://funwari-chan.bandcamp.com/album/008",
 	},
-	...snailsHouse,
-	{
-		image: "music/pale-machine.jpg",
-		url: "https://boen.bandcamp.com/album/pale-machine-maru-123",
-	},
-	...frogDetective,
 ];
 
 (async () => {
