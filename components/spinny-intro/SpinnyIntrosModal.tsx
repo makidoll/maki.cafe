@@ -192,10 +192,10 @@ export default function SpinnyIntrosModal(props: {
 									}:`}
 								</Text>
 								{spinnyIntro.changes.map((text, i) => (
-									<HStack alignItems={"flex-start"}>
+									<HStack alignItems={"flex-start"} key={i}>
 										{["•", text].map((text, j) => (
 											<Text
-												key={i + "-" + j}
+												key={j}
 												opacity={0.6}
 												fontWeight={700}
 												fontSize={14}
