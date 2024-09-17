@@ -136,6 +136,10 @@ const albums: Albums = [
 		image: "music/008.jpg",
 		url: "https://funwari-chan.bandcamp.com/album/008",
 	},
+	{
+		image: "music/kikuo.jpg",
+		url: "https://kikuo.bandcamp.com",
+	},
 ];
 
 (async () => {
