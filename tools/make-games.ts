@@ -43,29 +43,31 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/metroid.png",
 		url: "https://metroid.nintendo.com/",
 	},
-	"504230", // celeste
-	{
-		banner: "games/overwatch.png",
-		url: "https://store.steampowered.com/app/2357570/Overwatch_2/",
-	},
-	// -- new line
-	{
-		banner: "games/fez.jpg",
-		url: "https://store.steampowered.com/app/224760/FEZ/",
-	},
 	{
 		banner: "games/the-witness.jpg",
 		url: "https://store.steampowered.com/app/210970/The_Witness/",
 	},
+	// "210970",
+	{
+		banner: "games/fez.jpg",
+		url: "https://store.steampowered.com/app/224760/FEZ/",
+	},
+	// -- new line
 	{
 		banner: "games/portal2.png",
 		url: "https://store.steampowered.com/app/620/Portal_2/",
 	},
+	"504230", // celeste
+	"553420", // -- tunic
+
 	// -- now smaller, new line
 	"524220", // nier automata
 	"257850", // hyper light drifer
-	"553420", // tunic
 	"813230", // animal well
+	{
+		banner: "games/overwatch.png",
+		url: "https://store.steampowered.com/app/2357570/Overwatch_2/",
+	},
 	// -- new line
 	"1113560", // nier replicant
 	"782330", // doom eternal
