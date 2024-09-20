@@ -6,7 +6,7 @@ const socialIds = {
 	soundcloud: "makidoll",
 	steam: "makidoll",
 	skeb: "@Maki",
-	psnProfiles: "makifoxgirl",
+	psnProfiles: "makidoll",
 	matrix: "@maki:hotmilk.space",
 	mfc: "MakiXx_",
 	sketchfab: "makidoll",
@@ -24,6 +24,7 @@ const socialIds = {
 	shaderToy: "MakiXx",
 	email: "maki@hotmilk.space",
 	aur: "makidoll",
+	tetrio: "makifoxgirl",
 };
 
 const socialLinks = {
@@ -53,6 +54,7 @@ const socialLinks = {
 	slMarketplace: "https://marketplace.secondlife.com/stores/65674",
 	aur: "https://aur.archlinux.org/packages?K=" + socialIds.aur + "&SeB=m",
 	bandcamp: "https://bandcamp.com/makidoll",
+	tetrio: "https://ch.tetr.io/u/" + socialIds.tetrio,
 };
 
 const title = "Maki";

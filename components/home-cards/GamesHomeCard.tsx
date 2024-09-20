@@ -3,7 +3,10 @@ import { config } from "../../utils/config";
 import { gamesInfo } from "../assets/games-info";
 import gamesSpritesheet from "../assets/games-spritesheet.png";
 import HomeCard from "../ui/home-card/HomeCard";
+import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
+import { SteamIcon } from "../ui/social-icons/SteamIcon";
+import { TetrioIcon } from "../ui/social-icons/TetrioIcon";
 
 const steamHorizontalAspectRatio = "231 / 87";
 
@@ -55,25 +58,30 @@ export default function GamesHomeCard() {
 					<GameGridItem game={game} key={i} />
 				))}
 			</Grid>
-			{/* <HomeCardFooterLink
+			<HomeCardFooterLink
 				multi={[
 					{
-						name: "Steam",
+						name: "steam",
 						url: config.socialLinks.steam,
 						icon: SteamIcon,
 					},
+					// {
+					// 	name: "PlayStation",
+					// 	url: config.socialLinks.psnProfiles,
+					// 	icon: PlayStationIcon,
+					// },
+					// {
+					// 	name: "Osu",
+					// 	url: config.socialLinks.osu,
+					// 	icon: OsuIcon,
+					// },
 					{
-						name: "PlayStation",
-						url: config.socialLinks.psnProfiles,
-						icon: PlayStationIcon,
-					},
-					{
-						name: "Osu",
-						url: config.socialLinks.osu,
-						icon: OsuIcon,
+						name: "tetr.io",
+						url: config.socialLinks.tetrio,
+						icon: TetrioIcon,
 					},
 				]}
-			/> */}
+			/>
 		</HomeCard>
 	);
 }
