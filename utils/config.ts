@@ -24,7 +24,7 @@ const socialIds = {
 	shaderToy: "MakiXx",
 	email: "maki@hotmilk.space",
 	aur: "makidoll",
-	tetrio: "makifoxgirl",
+	tetrio: "makidoll",
 };
 
 const socialLinks = {
