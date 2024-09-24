@@ -26,6 +26,7 @@ import { ClientInfo } from "../server/main";
 import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import styles from "./Home.module.scss";
 import gnomeDarkImage from "./gnome-dark.svg";
+import { PonyCounter } from "../components/pony-counter/PonyCounter";
 
 export default function Home(props: { client: ClientInfo; data: LatestData }) {
 	const [ready, setReady] = useState(false);
@@ -222,6 +223,7 @@ export default function Home(props: { client: ClientInfo; data: LatestData }) {
 				{/* <FlickrHomeCard /> */}
 				{/* <MfcHomeCard /> */}
 			</Grid>
+			{/* <PonyCounter n={1234567890} /> */}
 		</Box>
 	);
 }
