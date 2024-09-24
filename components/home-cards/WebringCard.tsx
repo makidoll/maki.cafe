@@ -96,11 +96,10 @@ export default function WebringCard() {
 			name: "0x0a.de",
 			url: "https://0x0a.de",
 		},
-		// <3 just dont feel comfortable with this on my site
-		// {
-		// 	image: parfait,
-		// 	url: "https://parfaitcake.art",
-		// },
+		{
+			name: "kneesox.moe",
+			url: "https://kneesox.moe",
+		},
 	];
 
 	const other: Button[] = [
