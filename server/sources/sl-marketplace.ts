@@ -28,6 +28,8 @@ const args = [
 export type SlMarketplaceDataResponse = SlItem[];
 
 export class SlMarketplaceData extends DataSource<SlMarketplaceDataResponse> {
+	protected intervalMinutes = 60 * 12; // every 12 hours
+
 	async fetchData() {
 		const browser = await getBrowser();
 		const page = await browser.newPage();
