@@ -6,6 +6,7 @@ import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import anonfilly from "./webring/anonfilly.png";
 import pea from "./webring/pea.png";
 import yno from "./webring/yno.png";
+import kneesox from "./webring/kneesox.png";
 
 interface Button {
 	image?: StaticImageData;
@@ -89,16 +90,16 @@ export default function WebringCard() {
 			url: "https://pea.moe",
 		},
 		{
+			image: kneesox,
+			url: "https://kneesox.moe",
+		},
+		{
 			name: "ironsm4sh.nl",
 			url: "https://ironsm4sh.nl",
 		},
 		{
 			name: "0x0a.de",
 			url: "https://0x0a.de",
-		},
-		{
-			name: "kneesox.moe",
-			url: "https://kneesox.moe",
 		},
 	];
 
