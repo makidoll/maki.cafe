@@ -59,7 +59,6 @@ const games: (string | { banner: string; url: string })[] = [
 	},
 	"504230", // celeste
 	"553420", // -- tunic
-
 	// -- now smaller, new line
 	"524220", // nier automata
 	"257850", // hyper light drifer
@@ -75,9 +74,14 @@ const games: (string | { banner: string; url: string })[] = [
 	"367520", // hollow knight
 	// -- new line
 	"219890", // anti chamber
+	"499180", // braid anniversary edition
+	"375820", // human resource machine
+	"1003590", // tetris effect
+	// -- new line
 	"17410", // mirrors edge
-	"1055540", // a short hike
 	"1332010", // stray
+	"1709170", // paradise marsh
+	"1055540", // a short hike
 	// -- new line
 	"972660", // spiritfarer
 	"413150", // stardew valley
@@ -95,10 +99,7 @@ const games: (string | { banner: string; url: string })[] = [
 	"438100", // vrchat
 	// -- new line
 	"394690", // tower unite
-	"1003590", // tetris effect
-	"499180", // braid anniversary edition
 	"1895880", // ratchet and clank rift apart
-	// -- new line
 	{
 		banner: "games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
@@ -107,6 +108,7 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/mother-3.png",
 		url: "http://mother3.fobby.net/",
 	},
+	// -- new line
 	{
 		banner: "games/super-mario-odyssey.png",
 		url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
@@ -115,7 +117,6 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/splatoon-2.png",
 		url: "https://splatoon.nintendo.com",
 	},
-	// -- new line
 	{
 		banner: "games/universal-paperclips.png",
 		url: "https://www.decisionproblem.com/paperclips/",
@@ -124,6 +125,7 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/catherine-full-body.png",
 		url: "https://www.catherinethegame.com/fullbody/",
 	},
+	// -- new line
 	{
 		banner: "games/world-of-warcraft.png",
 		url: "https://worldofwarcraft.blizzard.com/en-us/",
@@ -132,7 +134,6 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/tropix-2.png",
 		url: "https://www.tropixgame.com/",
 	},
-	// -- new line
 	{
 		banner: "games/animal-crossing-cropped.png",
 		url: "https://animalcrossing.nintendo.com/",
@@ -141,6 +142,7 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/picross-3d-round-2.jpg",
 		url: "https://www.nintendo.com/store/products/picross-3d-round-2-3ds/",
 	},
+	// -- new line
 	{
 		banner: "games/kirby-and-the-forgotten-land.png",
 		url: "https://kirbyandtheforgottenland.nintendo.com/",
