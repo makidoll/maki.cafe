@@ -1,6 +1,7 @@
-import { DataSource } from "../data-source";
 import { getBrowser } from "../../utils/api/playwright-browser";
 import { config } from "../../utils/config";
+import { sleep } from "../../utils/utils";
+import { DataSource } from "../data-source";
 
 interface SlItem {
 	url: string;
@@ -40,6 +41,9 @@ export class SlMarketplaceData extends DataSource<SlMarketplaceDataResponse> {
 				waitUntil: "networkidle",
 			},
 		);
+
+		// idk if this is gonna help
+		await sleep(1000 * 5);
 
 		const itemEls = await page.$$(".gallery-item");
 
