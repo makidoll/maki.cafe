@@ -43,7 +43,8 @@ export class SlMarketplaceData extends DataSource<SlMarketplaceDataResponse> {
 		);
 
 		// idk if this is gonna help
-		await sleep(1000 * 5);
+		// await sleep(1000 * 5);
+		// TODO: idk why this fails
 
 		const itemEls = await page.$$(".gallery-item");
 
@@ -66,6 +67,10 @@ export class SlMarketplaceData extends DataSource<SlMarketplaceDataResponse> {
 		}
 
 		page.close();
+
+		if (items.length == 0) {
+			throw new Error("SL marketplace returned nothing again");
+		}
 
 		return items.slice(0, 9);
 	}
