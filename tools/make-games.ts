@@ -38,6 +38,8 @@ const sheetHeight = 10;
 
 // banners from https://www.steamgriddb.com
 
+// TODO: add beginners guide
+
 const games: (string | { banner: string; url: string })[] = [
 	{
 		banner: "games/metroid.png",
@@ -95,11 +97,17 @@ const games: (string | { banner: string; url: string })[] = [
 	// -- new line
 	"220", // half life 2
 	"976730", // halo mcc
-	"420530", // one shot
-	"438100", // vrchat
-	// -- new line
-	"394690", // tower unite
 	"1895880", // ratchet and clank rift apart
+	"420530", // one shot
+	// -- new line
+	"303210", // the beginners guide
+	"394690", // tower unite
+	"438100", // vrchat
+	{
+		banner: "games/universal-paperclips.png",
+		url: "https://www.decisionproblem.com/paperclips/",
+	},
+	// -- new line
 	{
 		banner: "games/earthbound.png",
 		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
@@ -108,7 +116,6 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/mother-3.png",
 		url: "http://mother3.fobby.net/",
 	},
-	// -- new line
 	{
 		banner: "games/super-mario-odyssey.png",
 		url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
@@ -117,15 +124,11 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/splatoon-2.png",
 		url: "https://splatoon.nintendo.com",
 	},
-	{
-		banner: "games/universal-paperclips.png",
-		url: "https://www.decisionproblem.com/paperclips/",
-	},
+	// -- new line
 	{
 		banner: "games/catherine-full-body.png",
 		url: "https://www.catherinethegame.com/fullbody/",
 	},
-	// -- new line
 	{
 		banner: "games/world-of-warcraft.png",
 		url: "https://worldofwarcraft.blizzard.com/en-us/",
@@ -138,11 +141,11 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/animal-crossing-cropped.png",
 		url: "https://animalcrossing.nintendo.com/",
 	},
+	// -- new line
 	{
 		banner: "games/picross-3d-round-2.jpg",
 		url: "https://www.nintendo.com/store/products/picross-3d-round-2-3ds/",
 	},
-	// -- new line
 	{
 		banner: "games/kirby-and-the-forgotten-land.png",
 		url: "https://kirbyandtheforgottenland.nintendo.com/",
