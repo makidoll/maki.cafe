@@ -11,7 +11,7 @@ import { formatDistance } from "date-fns";
 import Image from "next/image";
 import { IoGameController } from "react-icons/io5";
 import { MdHelp } from "react-icons/md";
-import { useLanyard } from "../../hooks/UseLanyard";
+import { discordStatusMap, useLanyard } from "../../hooks/UseLanyard";
 import { config } from "../../utils/config";
 import { clamp } from "../../utils/utils";
 import DancingLetters from "../ui/DancingLetters";
@@ -243,7 +243,9 @@ export default function DiscordHomeCard() {
 								? `@${data.discord_user.username}`
 								: `${data.discord_user.username}#${data.discord_user.discriminator}`} */}
 								{/* {capitalize(data.discord_status)} */}
-								{data.discord_status.toLowerCase()}
+								{discordStatusMap[
+									data.discord_status
+								].toLowerCase()}
 							</SubHeading>
 						</VStack>
 					</HStack>

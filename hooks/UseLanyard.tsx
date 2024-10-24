@@ -45,6 +45,8 @@ enum DiscordActivityType {
 	Competing = 5,
 }
 
+type DiscordStatus = "online" | "idle" | "dnd" | "offline";
+
 interface DataEvent {
 	active_on_discord_desktop: boolean;
 	active_on_discord_mobile: boolean;
@@ -71,7 +73,7 @@ interface DataEvent {
 		details: string;
 		url: string;
 	}[];
-	discord_status: "online" | "idle" | "dnd" | "offline";
+	discord_status: DiscordStatus;
 	discord_user: {
 		avatar: string;
 		avtar_decoration: null;
@@ -109,6 +111,13 @@ interface CurrentActivity {
 	timestampEnd: number | null;
 	type: "game" | "other";
 }
+
+export const discordStatusMap: Record<DiscordStatus, string> = {
+	online: "online",
+	idle: "away",
+	dnd: "do not disturb",
+	offline: "offline",
+};
 
 function discordImageToUrl(imageStr: string) {
 	if (typeof imageStr != "string") return "";
