@@ -5,6 +5,7 @@ import gamesSpritesheet from "../assets/games-spritesheet.png";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
+import { BackloggdIcon } from "../ui/social-icons/BackloggdIcon";
 import { SteamIcon } from "../ui/social-icons/SteamIcon";
 import { TetrioIcon } from "../ui/social-icons/TetrioIcon";
 
@@ -79,6 +80,11 @@ export default function GamesHomeCard() {
 						name: "tetr.io",
 						url: config.socialLinks.tetrio,
 						icon: TetrioIcon,
+					},
+					{
+						name: "backloggd",
+						url: config.socialLinks.backloggd,
+						icon: BackloggdIcon,
 					},
 				]}
 			/>

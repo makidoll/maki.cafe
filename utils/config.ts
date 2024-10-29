@@ -55,6 +55,7 @@ const socialLinks = {
 	aur: "https://aur.archlinux.org/packages?K=" + socialIds.aur + "&SeB=m",
 	bandcamp: "https://bandcamp.com/makidoll",
 	tetrio: "https://ch.tetr.io/u/" + socialIds.tetrio,
+	backloggd: "https://backloggd.com/u/makidoll/journal",
 };
 
 const title = "Maki";
