@@ -56,6 +56,7 @@ const socialLinks = {
 	bandcamp: "https://bandcamp.com/makidoll",
 	tetrio: "https://ch.tetr.io/u/" + socialIds.tetrio,
 	backloggd: "https://backloggd.com/u/makidoll/journal",
+	spotify: "https://open.spotify.com/user/2ua27nd91pdj4pl7868okdn66",
 };
 
 const title = "Maki";

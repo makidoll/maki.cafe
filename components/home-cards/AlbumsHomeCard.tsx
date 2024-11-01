@@ -1,5 +1,5 @@
 import { Box, Grid, GridItem, Link } from "@chakra-ui/react";
-import { FaBandcamp } from "react-icons/fa6";
+import { FaBandcamp, FaSpotify } from "react-icons/fa6";
 import { config } from "../../utils/config";
 import { albumsInfo } from "../assets/albums-info";
 import albumsSpritesheet from "../assets/albums-spritesheet.png";
@@ -36,7 +36,6 @@ export default function AlbumsHomeCard() {
 	return (
 		<HomeCard>
 			<HomeCardHeading mb={4}>favorite music</HomeCardHeading>
-
 			<Grid templateColumns="repeat(5, 1fr)" gap={1} w={350} maxW={350}>
 				{albumsInfo.albums.map((album, i) => (
 					<AlbumGridItem album={album} key={i} />
@@ -48,6 +47,11 @@ export default function AlbumsHomeCard() {
 						name: "bandcamp",
 						url: config.socialLinks.bandcamp,
 						icon: FaBandcamp,
+					},
+					{
+						name: "spotify",
+						url: config.socialLinks.spotify,
+						icon: FaSpotify,
 					},
 				]}
 			/>
