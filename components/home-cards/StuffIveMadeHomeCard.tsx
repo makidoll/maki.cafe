@@ -6,11 +6,12 @@ import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import { GitHubIcon } from "../ui/social-icons/GitHubIcon";
 import { ShaderToyIcon } from "../ui/social-icons/ShaderToyIcon";
 import { SoundCloudIcon } from "../ui/social-icons/SoundCloudIcon";
+import baltimareImage from "./stuff-ive-made/baltimare.jpg";
 import blahajFinderImage from "./stuff-ive-made/blahaj-finder.png";
 import essenceBgImage from "./stuff-ive-made/essence-bg.png";
 import froggyBotImage from "./stuff-ive-made/froggy-bot.png";
-import baltimareImage from "./stuff-ive-made/baltimare.jpg";
 import hexcorpImage from "./stuff-ive-made/hexcorp.jpg";
+import mahjongPonyTilesImage from "./stuff-ive-made/mahjong-pony-tiles.png";
 import melondsMetroidHuntersImage from "./stuff-ive-made/melonds-metroid-hunters.jpg";
 import tivoliIconImage from "./stuff-ive-made/tivoli-icon.png";
 
@@ -58,27 +59,34 @@ export default function StuffIveMadeHomeCard() {
 			color: "#B7D019",
 		},
 		{
+			name: "hexdrone\nstatus\ncodes",
+			link: "",
+			image: hexcorpImage.src,
+			color: "#cc66cc", // #ff64ff
+			fontSize: 13,
+		},
+		{
+			name: "mahjong\npony\ntiles",
+			link: "https://github.com/makidoll/classic-mahjong-pony-tiles",
+			image: mahjongPonyTilesImage.src,
+			color: "#a43333",
+			fontSize: 13,
+		},
+		{
 			name: "mechanyx\ncoil\nlauncher",
 			link: "https://github.com/makidoll/coil-launcher",
 			image: essenceBgImage.src,
 			color: "#393d4b",
 			fontSize: 13,
 		},
-		// {
-		// 	name: "hexdrone\nstatus\ncodes",
-		// 	link: "",
-		// 	image: hexcorpImage.src,
-		// 	color: "#ff64ff",
-		// 	fontSize: 13,
-		// },
 	];
 
 	const stuffThinnerColor = "rgba(255,255,255,0.06)";
 
 	const stuffThinner: (Thing | null)[] = [
 		{
-			name: "hexdrone status",
-			link: "https://makidoll.github.io/hexdrone-status-codes/",
+			name: "twinkly shaders",
+			link: "https://github.com/makidoll/twinkly-shaders",
 			image: "",
 			color: stuffThinnerColor,
 		},
@@ -89,17 +97,17 @@ export default function StuffIveMadeHomeCard() {
 			color: stuffThinnerColor,
 		},
 		{
-			name: "twinkly shaders",
-			link: "https://github.com/makidoll/twinkly-shaders",
-			image: "",
-			color: stuffThinnerColor,
-		},
-		{
 			name: "pokemon names",
 			link: "https://makidoll.github.io/pokemon-names",
 			image: "",
 			color: stuffThinnerColor,
 		},
+		// {
+		// 	name: "hexdrone codes",
+		// 	link: "https://makidoll.github.io/hexdrone-status-codes/",
+		// 	image: "",
+		// 	color: stuffThinnerColor,
+		// },
 		{
 			name: "msa millenium lcd",
 			link: "https://github.com/makidoll/msa-millenium-rp2040-touch-lcd",
