@@ -63,12 +63,9 @@ const games: (string | { banner: string; url: string })[] = [
 	"553420", // -- tunic
 	// -- now smaller, new line
 	"524220", // nier automata
-	"257850", // hyper light drifer
+	"220", // half life 2
 	"813230", // animal well
-	{
-		banner: "games/overwatch.png",
-		url: "https://store.steampowered.com/app/2357570/Overwatch_2/",
-	},
+	"257850", // hyper light drifer
 	// -- new line
 	"1113560", // nier replicant
 	"782330", // doom eternal
@@ -95,7 +92,10 @@ const games: (string | { banner: string; url: string })[] = [
 	"963000", // frog detective 1
 	"319630", // life is strange
 	// -- new line
-	"220", // half life 2
+	{
+		banner: "games/overwatch.png",
+		url: "https://store.steampowered.com/app/2357570/Overwatch_2/",
+	},
 	"976730", // halo mcc
 	"1895880", // ratchet and clank rift apart
 	"420530", // one shot

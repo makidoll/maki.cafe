@@ -45,7 +45,7 @@ export default function GamesHomeCard() {
 					<GameGridItem game={game} key={i} />
 				))}
 			</Grid>
-			<Text
+			{/* <Text
 				textAlign={"left"}
 				py={1}
 				opacity={0.4}
@@ -53,7 +53,7 @@ export default function GamesHomeCard() {
 				fontWeight={500}
 			>
 				in no particular order...
-			</Text>
+			</Text> */}
 			<Grid templateColumns="repeat(4, 1fr)" gap={1} w={350} maxW={350}>
 				{gamesInfo.games.slice(6).map((game, i) => (
 					<GameGridItem game={game} key={i} />
