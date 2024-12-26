@@ -60,7 +60,7 @@ export default function StuffIveMadeHomeCard() {
 		},
 		{
 			name: "hexdrone\nstatus\ncodes",
-			link: "",
+			link: "https://makidoll.github.io/hexdrone-status-codes",
 			image: hexcorpImage.src,
 			color: "#cc66cc", // #ff64ff
 			fontSize: 13,
