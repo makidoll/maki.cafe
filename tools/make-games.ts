@@ -154,6 +154,10 @@ const games: (string | { banner: string; url: string })[] = [
 		banner: "games/minecraft.png",
 		url: "https://www.betterthanadventure.net",
 	},
+	{
+		banner: "games/vintage-story.png",
+		url: "https://www.vintagestory.at/",
+	},
 ];
 
 (async () => {
