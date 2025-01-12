@@ -51,12 +51,10 @@ export const SpinnyIntros: ISpinnyIntro[] = [
 		desktop: video_2025_01_12_desktop,
 		mobile: video_2025_01_12_mobile,
 		changes: [
-			"add huel",
-			"add mercy staff",
-			"add rubiks cube",
+			"add huel, mercy staff and rubiks cube",
 			"remove fresnel on kirby",
-			"move blahaj closer to me",
 			"improve pony sticker visibility",
+			"accidentally move blahaj a little",
 		],
 	},
 	{
