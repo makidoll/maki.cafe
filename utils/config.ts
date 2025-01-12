@@ -57,6 +57,8 @@ const socialLinks = {
 	tetrio: "https://ch.tetr.io/u/" + socialIds.tetrio,
 	backloggd: "https://backloggd.com/u/makidoll/journal",
 	spotify: "https://open.spotify.com/user/2ua27nd91pdj4pl7868okdn66",
+	overwatch:
+		"https://overwatch.blizzard.com/en-us/career/df5fa783fe23c8ffb0a3%7Cda95b6dd816bd4cb3098e9384779dd01",
 };
 
 const title = "Maki";

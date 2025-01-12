@@ -1,4 +1,4 @@
-import { Box, Grid, GridItem, Link, Text } from "@chakra-ui/react";
+import { Box, Grid, GridItem, Link } from "@chakra-ui/react";
 import { config } from "../../utils/config";
 import { gamesInfo } from "../assets/games-info";
 import gamesSpritesheet from "../assets/games-spritesheet.png";
@@ -6,8 +6,8 @@ import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
 import { BackloggdIcon } from "../ui/social-icons/BackloggdIcon";
+import { OverwatchIcon } from "../ui/social-icons/OverwatchIcon";
 import { SteamIcon } from "../ui/social-icons/SteamIcon";
-import { TetrioIcon } from "../ui/social-icons/TetrioIcon";
 
 const steamHorizontalAspectRatio = "231 / 87";
 
@@ -76,10 +76,15 @@ export default function GamesHomeCard() {
 					// 	url: config.socialLinks.osu,
 					// 	icon: OsuIcon,
 					// },
+					// {
+					// 	name: "tetr.io",
+					// 	url: config.socialLinks.tetrio,
+					// 	icon: TetrioIcon,
+					// },
 					{
-						name: "tetr.io",
-						url: config.socialLinks.tetrio,
-						icon: TetrioIcon,
+						name: "overwatch",
+						url: config.socialLinks.overwatch,
+						icon: OverwatchIcon,
 					},
 					{
 						name: "backloggd",
