@@ -30,6 +30,8 @@ import video_2024_10_24_desktop from "./videos/2024-10-24-desktop.webm";
 import video_2024_10_24_mobile from "./videos/2024-10-24-mobile.webm";
 import video_2025_01_12_desktop from "./videos/2025-01-12-desktop.webm";
 import video_2025_01_12_mobile from "./videos/2025-01-12-mobile.webm";
+import video_2025_01_15_desktop from "./videos/2025-01-15-desktop.webm";
+import video_2025_01_15_mobile from "./videos/2025-01-15-mobile.webm";
 
 export interface ISpinnyIntro {
 	date: [number, number, number];
@@ -46,6 +48,12 @@ export interface ISpinnyIntroWithIndex extends ISpinnyIntro {
 // TODO: dynamic import??
 
 export const SpinnyIntros: ISpinnyIntro[] = [
+	{
+		date: [2025, 1, 15],
+		desktop: video_2025_01_15_desktop,
+		mobile: video_2025_01_15_mobile,
+		changes: ["rotate huel slightly", "move blahaj back"],
+	},
 	{
 		date: [2025, 1, 12],
 		desktop: video_2025_01_12_desktop,
