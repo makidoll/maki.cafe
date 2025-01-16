@@ -32,6 +32,8 @@ import video_2025_01_12_desktop from "./videos/2025-01-12-desktop.webm";
 import video_2025_01_12_mobile from "./videos/2025-01-12-mobile.webm";
 import video_2025_01_15_desktop from "./videos/2025-01-15-desktop.webm";
 import video_2025_01_15_mobile from "./videos/2025-01-15-mobile.webm";
+import video_2025_01_16_desktop from "./videos/2025-01-16-desktop.webm";
+import video_2025_01_16_mobile from "./videos/2025-01-16-mobile.webm";
 
 export interface ISpinnyIntro {
 	date: [number, number, number];
@@ -48,6 +50,12 @@ export interface ISpinnyIntroWithIndex extends ISpinnyIntro {
 // TODO: dynamic import??
 
 export const SpinnyIntros: ISpinnyIntro[] = [
+	{
+		date: [2025, 1, 16],
+		desktop: video_2025_01_16_desktop,
+		mobile: video_2025_01_16_mobile,
+		changes: ["update keyboard to femboy flag"],
+	},
 	{
 		date: [2025, 1, 15],
 		desktop: video_2025_01_15_desktop,
