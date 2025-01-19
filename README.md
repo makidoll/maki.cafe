@@ -2,7 +2,7 @@
 
 Built with **Next.js** and **Chakra UI**
 
-Also https://makidoll.io
+<!-- Also https://makidoll.io -->
 
 Used to be built with Angular in [outdated-angular-version](https://github.com/makidoll/maki.cafe/tree/outdated-angular-version) branch
 

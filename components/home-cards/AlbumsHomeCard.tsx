@@ -46,7 +46,7 @@ export default function AlbumsHomeCard() {
 				multi={[
 					{
 						name: "bandcamp",
-						url: config.socialLinks.bandcamp,
+						url: config.socialLinks.bandcampFan,
 						icon: FaBandcamp,
 					},
 					{

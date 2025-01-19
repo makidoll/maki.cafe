@@ -143,7 +143,7 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 				openPopup: {
 					title: "XMPP",
 					text: config.socialIds.xmpp,
-					href: "xmpp:" + config.socialIds.xmpp,
+					href: config.socialLinks.xmpp,
 				},
 			},
 			{
