@@ -25,6 +25,7 @@ const socialIds = {
 	email: "maki@hotmilk.space",
 	aur: "makidoll",
 	tetrio: "makidoll",
+	anilist: "makidoll",
 };
 
 const socialLinks = {
@@ -59,6 +60,7 @@ const socialLinks = {
 	spotify: "https://open.spotify.com/user/2ua27nd91pdj4pl7868okdn66",
 	overwatch:
 		"https://overwatch.blizzard.com/en-us/career/df5fa783fe23c8ffb0a3%7Cda95b6dd816bd4cb3098e9384779dd01",
+	anilist: "https://anilist.co/user/" + socialIds.anilist,
 };
 
 const title = "Maki";

@@ -6,6 +6,7 @@ import albumsSpritesheet from "../assets/albums-spritesheet.png";
 import HomeCard from "../ui/home-card/HomeCard";
 import HomeCardFooterLink from "../ui/home-card/HomeCardFooterLink";
 import HomeCardHeading from "../ui/home-card/HomeCardHeading";
+import { AnilistIcon } from "../ui/social-icons/AnilistIcon";
 
 function AlbumGridItem(props: { album: { url: string; position: string } }) {
 	return (
@@ -52,6 +53,11 @@ export default function AlbumsHomeCard() {
 						name: "spotify",
 						url: config.socialLinks.spotify,
 						icon: FaSpotify,
+					},
+					{
+						name: "anilist",
+						url: config.socialLinks.anilist,
+						icon: AnilistIcon,
 					},
 				]}
 			/>

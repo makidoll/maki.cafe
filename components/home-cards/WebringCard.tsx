@@ -105,15 +105,15 @@ export default function WebringCard() {
 
 	const other: Button[] = [
 		{
+			image: yno,
+			url: "https://ynoproject.net",
+		},
+		{
 			image: anonfilly,
 			url: "https://anonfilly.horse",
 		},
 		{ name: "pony.town", url: "https://pony.town" },
 		{ name: "wetmares.org", url: "http://wetmares.org" },
-		{
-			image: yno,
-			url: "https://ynoproject.net",
-		},
 	];
 
 	return (
