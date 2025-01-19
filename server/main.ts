@@ -2,6 +2,7 @@ import * as http from "http";
 import next from "next";
 import UAParser from "ua-parser-js";
 import * as url from "url";
+import { config } from "../utils/config";
 import { DataSources, LatestData } from "./data-sources";
 
 const port = process.env.PORT ?? 3000;
@@ -30,9 +31,30 @@ export interface ServerData {
 	function handler(req: http.IncomingMessage, res: http.ServerResponse) {
 		const parsedUrl = url.parse(req.url!, true);
 
-		// if (parsedUrl.path.startsWith("/api")) {
-		// 	expressApp(req, res);
-		// }
+		const githubMatches = parsedUrl.path.match(/\/gh(\/[^/]+)?(\/page)?$/i);
+
+		if (githubMatches != null) {
+			const path = githubMatches[1];
+			const pages = githubMatches[2] != null;
+
+			if (path == null) {
+				res.writeHead(302, {
+					location: config.socialLinks.github,
+				});
+			} else {
+				res.writeHead(302, {
+					location: pages
+						? "https://" +
+						  config.socialIds.github +
+						  ".github.io" +
+						  path
+						: config.socialLinks.github + path,
+				});
+			}
+
+			res.end();
+			return;
+		}
 
 		const ua = new UAParser(req.headers["user-agent"]);
 
