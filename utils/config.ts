@@ -33,6 +33,7 @@ const socialIds = {
 	spotify: "2ua27nd91pdj4pl7868okdn66",
 	overwatch: "df5fa783fe23c8ffb0a3%7Cda95b6dd816bd4cb3098e9384779dd01",
 	anilist: "makipony",
+	tox: "F5A8FBAB3464147B2733AA2781B8CE56C24EF93C196E65BA2E142682428C322646DE03EA9648",
 };
 
 const socialLinks = {
@@ -69,6 +70,7 @@ const socialLinks = {
 	overwatch:
 		"https://overwatch.blizzard.com/en-us/career/" + socialIds.overwatch,
 	anilist: "https://anilist.co/user/" + socialIds.anilist,
+	tox: "tox:" + socialIds.tox,
 };
 
 const title = "Maki";

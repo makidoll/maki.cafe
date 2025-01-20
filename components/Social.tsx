@@ -30,6 +30,7 @@ import { GitHubIcon } from "./ui/social-icons/GitHubIcon";
 import { MastodonIcon } from "./ui/social-icons/MastodonIcon";
 import { SecondLifeIcon } from "./ui/social-icons/SecondLifeIcon";
 import { SteamIcon } from "./ui/social-icons/SteamIcon";
+import { ToxIcon } from "./ui/social-icons/ToxIcon";
 import { XmppIcon } from "./ui/social-icons/XmppIcon";
 
 interface Popup {
@@ -133,8 +134,6 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 				small: true,
 				rel: "me",
 			},
-		],
-		[
 			{
 				icon: XmppIcon,
 				name: "XMPP",
@@ -144,6 +143,19 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 					title: "XMPP",
 					text: config.socialIds.xmpp,
 					href: config.socialLinks.xmpp,
+				},
+			},
+		],
+		[
+			{
+				icon: ToxIcon,
+				name: "Tox",
+				color: "#f5a500", // #ffba2b -10 lightness
+				small: true,
+				openPopup: {
+					title: "Tox",
+					text: config.socialIds.tox.match(/.{1,38}/g).join("\n"),
+					href: config.socialLinks.tox,
 				},
 			},
 			{
@@ -581,7 +593,10 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 									selection?.addRange(range);
 
 									navigator.clipboard.writeText(
-										el.textContent ?? "",
+										(el.textContent ?? "").replaceAll(
+											"\n",
+											"",
+										),
 									);
 
 									selection.removeAllRanges();
