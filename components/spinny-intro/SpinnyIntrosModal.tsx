@@ -139,6 +139,7 @@ export default function SpinnyIntrosModal(props: {
 				<ModalBody>
 					<VStack spacing={0}>
 						<SpinnyIntro
+							w={600}
 							h={600}
 							mx={0}
 							mt={-12}

@@ -3,6 +3,7 @@
 import { Box, Grid, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import Social from "../components/Social";
+import pinesBackground from "../components/assets/pines-lighter.jpg";
 import AlbumsHomeCard from "../components/home-cards/AlbumsHomeCard";
 import AurHomeCard from "../components/home-cards/AurHomeCard";
 import DiscordHomeCard from "../components/home-cards/DiscordHomeCard";
@@ -23,10 +24,8 @@ import { SpinnyIntros } from "../components/spinny-intro/spinny-intros";
 import Logo from "../components/ui/Logo";
 import type { LatestData } from "../server/data-sources";
 import { ClientInfo } from "../server/main";
-import polkaDotPattern from "../tools/polka-dot-pattern/polka-dot-pattern.svg";
 import styles from "./Home.module.scss";
 import gnomeDarkImage from "./gnome-dark.svg";
-import { PonyCounter } from "../components/pony-counter/PonyCounter";
 
 export default function Home(props: { client: ClientInfo; data: LatestData }) {
 	const [ready, setReady] = useState(false);
@@ -100,17 +99,21 @@ export default function Home(props: { client: ClientInfo; data: LatestData }) {
 				// 	.map(v => v * 0.2 + "px")
 				// 	.join(" ")}
 				// backgroundImage={militarismTile.src}
-				backgroundImage={polkaDotPattern}
-				backgroundSize={[10, 11.547].map(v => v * 10 + "px").join(" ")}
+				// backgroundImage={polkaDotPattern}
+				// backgroundSize={[10, 11.547].map(v => v * 10 + "px").join(" ")}
+				// backgroundPosition={"center 0"}
+				// backgroundRepeat={"repeat"}
+				// opacity={0.02}
+				// style={{
+				// 	// it can flash white if opacity is only set above
+				// 	opacity: "0.02 !important",
+				// 	WebkitMaskImage:
+				// 		"linear-gradient(0deg, transparent, black)",
+				// }}
+				backgroundImage={pinesBackground.src}
+				backgroundSize={"1600px auto"}
 				backgroundPosition={"center 0"}
-				backgroundRepeat={"repeat"}
-				opacity={0.02}
-				style={{
-					// it can flash white if opacity is only set above
-					opacity: "0.02 !important",
-					WebkitMaskImage:
-						"linear-gradient(0deg, transparent, black)",
-				}}
+				backgroundRepeat={"no-repeat"}
 			></Box>
 			<Box
 				display="flex"
@@ -120,12 +123,13 @@ export default function Home(props: { client: ClientInfo; data: LatestData }) {
 				width="100%"
 			>
 				{spinnyIntrosDisclosue.isOpen ? (
-					<Box h={600} />
+					<Box w={600} h={600} />
 				) : (
 					<SpinnyIntro
-						h={600}
-						mt={0}
-						mb={0}
+						w={600}
+						h={500}
+						mt={50}
+						mb={50}
 						client={props.client}
 						intro={SpinnyIntros[0]}
 						onReady={() => {

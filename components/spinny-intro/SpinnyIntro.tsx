@@ -336,13 +336,14 @@ export default class SpinnyIntro extends Component<SpinnyIntroProps> {
 			...flexProps
 		} = this.props;
 
-		const size = (flexProps.h ?? flexProps.height ?? 0) as number;
+		// const width = (flexProps.w ?? flexProps.width ?? 0) as number;
+		// const height = (flexProps.h ?? flexProps.height ?? 0) as number;
 
 		return (
 			<Flex
-				w={size + "px"}
-				minW={size + "px"}
-				h={size + "px"}
+				// w={width + "px"}
+				// minW={width + "px"}
+				// h={height + "px"}
 				{...flexProps}
 				position={"relative"}
 				ref={this.parentRef}
