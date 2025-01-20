@@ -27,6 +27,10 @@ import { ClientInfo } from "../server/main";
 import styles from "./Home.module.scss";
 import gnomeDarkImage from "./gnome-dark.svg";
 
+const layout2Wide = 900;
+const layout3Wide = 1350;
+// const layout4Wide = 1800;
+
 export default function Home(props: { client: ClientInfo; data: LatestData }) {
 	const [ready, setReady] = useState(false);
 
@@ -111,7 +115,15 @@ export default function Home(props: { client: ClientInfo; data: LatestData }) {
 				// 		"linear-gradient(0deg, transparent, black)",
 				// }}
 				backgroundImage={pinesBackground.src}
-				backgroundSize={"1600px auto"}
+				sx={{
+					backgroundSize: "800px auto",
+					[`@media (min-width: ${layout2Wide}px)`]: {
+						backgroundSize: "1200px auto",
+					},
+					[`@media (min-width: ${layout3Wide}px)`]: {
+						backgroundSize: "1600px auto",
+					},
+				}}
 				backgroundPosition={"center 0"}
 				backgroundRepeat={"no-repeat"}
 			></Box>
@@ -196,13 +208,13 @@ export default function Home(props: { client: ClientInfo; data: LatestData }) {
 			<Grid
 				sx={{
 					gridTemplateColumns: "repeat(1, 450px)",
-					"@media (min-width: 900px)": {
+					[`@media (min-width: ${layout2Wide}px)`]: {
 						gridTemplateColumns: "repeat(2, 450px)",
 					},
-					"@media (min-width: 1350px)": {
+					[`@media (min-width: ${layout3Wide}px)`]: {
 						gridTemplateColumns: "repeat(3, 450px)",
 					},
-					// "@media (min-width: 1800px)": {
+					// [`@media (min-width: ${layout4Wide}px)`]: {
 					// 	gridTemplateColumns: "repeat(4, 450px)",
 					// },
 				}}
