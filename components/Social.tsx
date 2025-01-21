@@ -150,7 +150,8 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 			{
 				icon: ToxIcon,
 				name: "Tox",
-				color: "#f5a500", // #ffba2b -10 lightness
+				// #f5a500: #ffba2b -10 lightness
+				color: "#ff8f00", // amber 800
 				small: true,
 				openPopup: {
 					title: "Tox",
