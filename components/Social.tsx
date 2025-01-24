@@ -128,6 +128,19 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 		],
 		[
 			{
+				icon: ToxIcon,
+				name: "Tox",
+				// #f5a500: #ffba2b -10 lightness
+				color: "#ff8f00", // amber 800
+				small: true,
+				openPopup: {
+					title: "Tox",
+					text: config.socialIds.tox.match(/.{1,38}/g).join("\n"),
+					href: config.socialLinks.tox,
+					noNewLinesOnCopy: true,
+				},
+			},
+			{
 				icon: ElementIcon,
 				href: config.socialLinks.matrix,
 				name: "Matrix",
@@ -156,19 +169,6 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 								config.socialIds.secondLifeUuid,
 						},
 					],
-				},
-			},
-			{
-				icon: ToxIcon,
-				name: "Tox",
-				// #f5a500: #ffba2b -10 lightness
-				color: "#ff8f00", // amber 800
-				small: true,
-				openPopup: {
-					title: "Tox",
-					text: config.socialIds.tox.match(/.{1,38}/g).join("\n"),
-					href: config.socialLinks.tox,
-					noNewLinesOnCopy: true,
 				},
 			},
 		],
