@@ -33,6 +33,12 @@ import { SteamIcon } from "./ui/social-icons/SteamIcon";
 import { ToxIcon } from "./ui/social-icons/ToxIcon";
 import { XmppIcon } from "./ui/social-icons/XmppIcon";
 
+interface PopupButton {
+	text: string;
+	href: string;
+	main?: boolean;
+}
+
 interface Popup {
 	title: string;
 	text: string;
@@ -40,6 +46,8 @@ interface Popup {
 	buttonText?: string;
 	fontSize?: string;
 	openWithJs?: boolean;
+	noNewLinesOnCopy?: boolean;
+	extraButtons?: PopupButton[];
 }
 
 interface Social {
@@ -79,35 +87,7 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 	// 	color: "#9146ff",
 	// 	small: true,
 	// },
-	// {
-	// 	icon: PronounsPageIcon,
-	// 	href: config.socialLinks.pronounsPage,
-	// 	name: "Pronouns",
-	// 	color: "#e91e63", // original #ff95bb
-	// 	small: true,
-	// },
-	// {
-	// 	icon: MdLock,
-	// 	name: "PGP",
-	// 	color: "#222",
-	// 	small: true,
-	// 	openPopup: {
-	// 		title: "Maki's Public Key",
-	// 		text: config.pgpPublicKey,
-	// 		href: "/BD9158A9ED0A2BE89CCEA2C362B5572AEF805F9A.asc",
-	// 		buttonText: "Get .asc file",
-	// 		fontSize: "0.5em",
-	// 	},
-	// },
-	// {
-	// 	icon: KofiIcon,
-	// 	href: config.socialLinks.kofi,
-	// 	name: "Support me",
-	// 	color: "#13C3FF",
-	// 	small: true,
-	// 	rainbow: true,
-	// 	iconSize: 26,
-	// },
+
 	// {
 	// 	icon: SoundCloudIcon,
 	// 	href: config.socialLinks.soundcloud,
@@ -148,23 +128,16 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 		],
 		[
 			{
-				icon: ToxIcon,
-				name: "Tox",
-				// #f5a500: #ffba2b -10 lightness
-				color: "#ff8f00", // amber 800
-				small: true,
-				openPopup: {
-					title: "Tox",
-					text: config.socialIds.tox.match(/.{1,38}/g).join("\n"),
-					href: config.socialLinks.tox,
-				},
-			},
-			{
 				icon: ElementIcon,
 				href: config.socialLinks.matrix,
 				name: "Matrix",
 				color: "#0dbd8b", // element color
 				small: true,
+				openPopup: {
+					title: "Matrix",
+					text: config.socialIds.matrix,
+					href: config.socialLinks.matrix,
+				},
 			},
 			{
 				icon: SecondLifeIcon,
@@ -175,6 +148,27 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 					title: "Second Life",
 					text: config.socialIds.secondLifeName,
 					href: config.socialLinks.secondLife,
+					extraButtons: [
+						{
+							text: "open page",
+							href:
+								"https://world.secondlife.com/resident/" +
+								config.socialIds.secondLifeUuid,
+						},
+					],
+				},
+			},
+			{
+				icon: ToxIcon,
+				name: "Tox",
+				// #f5a500: #ffba2b -10 lightness
+				color: "#ff8f00", // amber 800
+				small: true,
+				openPopup: {
+					title: "Tox",
+					text: config.socialIds.tox.match(/.{1,38}/g).join("\n"),
+					href: config.socialLinks.tox,
+					noNewLinesOnCopy: true,
 				},
 			},
 		],
@@ -190,7 +184,7 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 				icon: SteamIcon,
 				href: config.socialLinks.steam,
 				name: "Steam",
-				color: "#222",
+				color: "#333",
 				small: true,
 			},
 			{
@@ -204,6 +198,28 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 					href: config.socialLinks.email,
 				},
 			},
+			// {
+			// 	icon: MdLock,
+			// 	name: "PGP",
+			// 	color: "#222",
+			// 	small: true,
+			// 	openPopup: {
+			// 		title: "Maki's Public Key",
+			// 		text: config.pgpPublicKey,
+			// 		href: "/BD9158A9ED0A2BE89CCEA2C362B5572AEF805F9A.asc",
+			// 		buttonText: "download key",
+			// 		fontSize: "0.65em",
+			// 	},
+			// },
+			// {
+			// 	icon: KofiIcon,
+			// 	href: config.socialLinks.kofi,
+			// 	name: "Support me",
+			// 	color: "#13C3FF",
+			// 	small: true,
+			// 	rainbow: true,
+			// 	iconSize: 26,
+			// },
 		],
 	];
 
@@ -570,9 +586,14 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 						display={"flex"}
 						flexDir={"column"}
 						alignItems={"center"}
-						gap={1}
+						gap={2}
 					>
-						<Heading size={"md"} fontWeight={800} mb={2}>
+						<Heading
+							size={"md"}
+							fontSize={"1.2em"}
+							fontWeight={800}
+							mb={2}
+						>
 							{popupInfo?.title.toLowerCase()}
 							{/* <chakra.span fontWeight={700}>add at</chakra.span> */}
 						</Heading>
@@ -584,6 +605,7 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 								borderRadius={4}
 								whiteSpace={"pre-line"}
 								fontSize={popupInfo?.fontSize}
+								cursor={"pointer"}
 								onClick={e => {
 									const el = e.target as HTMLElement;
 									const range = document.createRange();
@@ -593,12 +615,13 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 									selection?.removeAllRanges();
 									selection?.addRange(range);
 
-									navigator.clipboard.writeText(
-										(el.textContent ?? "").replaceAll(
-											"\n",
-											"",
-										),
-									);
+									let text = el.textContent ?? "";
+
+									if (popupInfo?.noNewLinesOnCopy) {
+										text = text.replaceAll("\n", "");
+									}
+
+									navigator.clipboard.writeText(text);
 
 									selection.removeAllRanges();
 
@@ -616,23 +639,46 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 								{popupInfo?.text}
 							</Code>
 						</HStack>
-						<Button
-							as="a"
-							href={popupInfo?.href}
-							onClick={popupOnClose}
-							background={"brand.500"}
-							size={"sm"}
-							mt={4}
-							_hover={{
-								background: "brand.400",
-							}}
-							_active={{
-								background: "brand.300",
-							}}
-							fontWeight={700}
-						>
-							{popupInfo?.buttonText ?? "open using client"}
-						</Button>
+						<HStack spacing={4}>
+							{(
+								[
+									{
+										text:
+											popupInfo?.buttonText ??
+											"open using client",
+										href: popupInfo?.href,
+										main: true,
+									},
+									...(popupInfo?.extraButtons ?? []),
+								] as PopupButton[]
+							).map(button => (
+								<Button
+									as="a"
+									href={button.href}
+									onClick={popupOnClose}
+									background={
+										button.main
+											? "brand.500"
+											: "makiGray.400"
+									}
+									size={"sm"}
+									mt={4}
+									_hover={{
+										background: button.main
+											? "brand.400"
+											: "makiGray.300",
+									}}
+									_active={{
+										background: button.main
+											? "brand.300"
+											: "makiGray.200",
+									}}
+									fontWeight={700}
+								>
+									{button.text?.toLowerCase()}
+								</Button>
+							))}
+						</HStack>
 					</ModalHeader>
 					{/* <ModalCloseButton /> */}
 					{/* <ModalBody>

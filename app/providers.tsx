@@ -48,6 +48,14 @@ const theme = extendTheme({
 		hexcorp: "#ff64ff",
 		hexcorpDark: "#231929",
 		justKindaDark: "#111111",
+		makiGray: {
+			100: "#111111",
+			200: "#222222",
+			300: "#333333",
+			400: "#444444",
+			500: "#555555",
+			600: "#666666",
+		},
 	},
 	styles: {
 		global: {
