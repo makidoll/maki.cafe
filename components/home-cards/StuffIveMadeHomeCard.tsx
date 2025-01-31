@@ -175,7 +175,7 @@ export default function StuffIveMadeHomeCard() {
 				or <chakra.span fontWeight={700}>github</chakra.span> if you
 				wanna see what i might be up to
 			</Text>
-			<Grid templateColumns="repeat(4, 1fr)" gap={1} mb={3}>
+			<Grid templateColumns="repeat(4, 1fr)" gap={1} mb={1}>
 				{stuff.map((thing, i) => makeButton(thing, i))}
 			</Grid>
 			<Grid templateColumns="repeat(3, 1fr)" gap={1} mb={1}>

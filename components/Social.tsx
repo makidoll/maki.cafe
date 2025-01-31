@@ -651,9 +651,10 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 									},
 									...(popupInfo?.extraButtons ?? []),
 								] as PopupButton[]
-							).map(button => (
+							).map((button, i) => (
 								<Button
 									as="a"
+									key={i}
 									href={button.href}
 									onClick={popupOnClose}
 									background={
