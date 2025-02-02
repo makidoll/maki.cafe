@@ -10,6 +10,10 @@ export default function HomeCardFooterLink(props: {
 		icon: IconType;
 		url: string;
 	}[];
+	altIcon?: IconType;
+	onClick?: () => any;
+	mt?: number;
+	mb?: number;
 }) {
 	function makeButton(
 		text: string,
@@ -40,7 +44,12 @@ export default function HomeCardFooterLink(props: {
 
 	if (props.multi != null) {
 		return (
-			<HStack spacing={6} justifyContent={"center"}>
+			<HStack
+				spacing={6}
+				justifyContent={"center"}
+				mt={props.mt}
+				mb={props.mb}
+			>
 				{props.multi.map((link, i) => (
 					<Link key={i} href={link.url} textDecor="none" color="#fff">
 						{makeButton(
@@ -55,11 +64,23 @@ export default function HomeCardFooterLink(props: {
 	}
 
 	return (
-		<Link href={props.href} textDecor="none" color="#fff">
+		<Link
+			display={"block"}
+			href={props.href}
+			textDecor="none"
+			color="#fff"
+			onClick={props.onClick}
+			mt={props.mt}
+			mb={props.mb}
+		>
 			{makeButton(
 				props.children as string,
 				undefined,
-				<FaArrowRight size={14} color="#fff" opacity={0.8} />,
+				props.altIcon ? (
+					<props.altIcon size={14} color="#fff" opacity={0.8} />
+				) : (
+					<FaArrowRight size={14} color="#fff" opacity={0.8} />
+				),
 			)}
 		</Link>
 	);

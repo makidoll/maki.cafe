@@ -34,158 +34,182 @@ const bannerHeight = 87;
 const bannerPadding = 4;
 
 const sheetWidth = 5;
-const sheetHeight = 10;
+const sheetHeight = 12;
 
 // banners from https://www.steamgriddb.com
 
-// TODO: add beginners guide
+const games: Record<string, (string | { banner: string; url: string })[]> = {
+	metroidbrania: [
+		{
+			banner: "games/the-witness.jpg",
+			url: "https://store.steampowered.com/app/210970/The_Witness/",
+		},
+		"553420", // tunic
+		{
+			banner: "games/fez.jpg",
+			url: "https://store.steampowered.com/app/224760/FEZ/",
+		},
+		"813230", // animal well
+	],
+	souls: [
+		"570940", // dark souls
+		"1627720", // lies of p
+		"257850", // hyper light drifer
+		"367520", // hollow knight
+	],
+	puzzle: [
+		{
+			banner: "games/metroid.png",
+			url: "https://metroid.nintendo.com/",
+		},
+		{
+			banner: "games/portal2.png",
+			url: "https://store.steampowered.com/app/620/Portal_2/",
+		},
+		"219890", // anti chamber
+		"375820", // human resource machine
+		"1003590", // tetris effect
+		"427520", // factorio
+		"499180", // braid anniversary edition
+		{
+			banner: "games/picross-3d-round-2.jpg",
+			url: "https://www.youtube.com/watch?v=jA-et0LCpNo",
+		},
+	],
+	"fps story": [
+		"220", // half life 2
+		"782330", // doom eternal
+		"976730", // halo mcc
+	],
+	platformer: [
+		"504230", // celeste
+		"17410", // mirrors edge
+		{
+			banner: "games/super-mario-odyssey.png",
+			url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
+		},
+		{
+			banner: "games/kirby-and-the-forgotten-land.png",
+			url: "https://kirbyandtheforgottenland.nintendo.com/",
+		},
+	],
+	story: [
+		"972660", // spiritfarer
+		"1709170", // paradise marsh
+		"1055540", // a short hike
+		"1332010", // stray
+		// -- new line
+		"524220", // nier automata
+		"1113560", // nier replicant
+		{
+			banner: "games/earthbound.png",
+			url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
+		},
+		{
+			banner: "games/mother-3.png",
+			url: "http://mother3.fobby.net/",
+		},
+		// -- new line
+		"303210", // the beginners guide
+		"963000", // frog detective 1
+		"420530", // one shot
+		"319630", // life is strange
+		// -- new line
+		"447040", // watch dogs 2
+		"1895880", // ratchet and clank rift apart
+		"253230", // a hat in time
+		{
+			banner: "games/catherine-full-body.png",
+			url: "https://www.catherinethegame.com/fullbody/",
+		},
+	],
+	multiplayer: [
+		{
+			banner: "games/fortnite-cropped.png",
+			url: "https://www.fortnite.com",
+		},
+		{
+			banner: "games/overwatch.png",
+			url: "https://store.steampowered.com/app/2357570/Overwatch_2/",
+		},
+		{
+			banner: "games/vintage-story.png",
+			url: "https://www.vintagestory.at/",
+		},
+		"394690", // tower unite
+		{
+			banner: "games/world-of-warcraft.png",
+			url: "https://worldofwarcraft.blizzard.com/en-us/",
+		},
+		{
+			banner: "games/minecraft.png",
+			url: "https://www.betterthanadventure.net",
+		},
+		{
+			banner: "games/splatoon-2.png",
+			url: "https://splatoon.nintendo.com",
+		},
+		"438100", // vrchat
+	],
+	chill: [
+		{
+			banner: "games/tropix-2.png",
+			url: "https://www.tropixgame.com/",
+		},
+		{
+			banner: "games/animal-crossing-cropped.png",
+			url: "https://animalcrossing.nintendo.com/",
+		},
+		"413150", // stardew valley
+		"650700", // yume nikki
+		{
+			banner: "games/universal-paperclips.png",
+			url: "https://www.decisionproblem.com/paperclips/",
+		},
+	],
+};
 
-const games: (string | { banner: string; url: string })[] = [
-	{
-		banner: "games/metroid.png",
-		url: "https://metroid.nintendo.com/",
-	},
-	{
-		banner: "games/the-witness.jpg",
-		url: "https://store.steampowered.com/app/210970/The_Witness/",
-	},
-	// "210970",
-	{
-		banner: "games/fez.jpg",
-		url: "https://store.steampowered.com/app/224760/FEZ/",
-	},
-	// -- new line
-	{
-		banner: "games/portal2.png",
-		url: "https://store.steampowered.com/app/620/Portal_2/",
-	},
-	"504230", // celeste
-	"553420", // -- tunic
-	// -- now smaller, new line
-	"524220", // nier automata
-	"220", // half life 2
-	"813230", // animal well
-	"257850", // hyper light drifer
-	// -- new line
-	"1113560", // nier replicant
-	"782330", // doom eternal
-	"570940", // dark souls
-	"367520", // hollow knight
-	// -- new line
-	"219890", // anti chamber
-	"499180", // braid anniversary edition
-	"375820", // human resource machine
-	"1003590", // tetris effect
-	// -- new line
-	"17410", // mirrors edge
-	"1332010", // stray
-	"1709170", // paradise marsh
-	"1055540", // a short hike
-	// -- new line
-	"972660", // spiritfarer
-	"413150", // stardew valley
-	"427520", // factorio
-	"650700", // yume nikki
-	// -- new line
-	"447040", // watch dogs 2
-	"253230", // a hat in time
-	"963000", // frog detective 1
-	"319630", // life is strange
-	// -- new line
-	{
-		banner: "games/overwatch.png",
-		url: "https://store.steampowered.com/app/2357570/Overwatch_2/",
-	},
-	"976730", // halo mcc
-	"1895880", // ratchet and clank rift apart
-	"420530", // one shot
-	// -- new line
-	"303210", // the beginners guide
-	"394690", // tower unite
-	"438100", // vrchat
-	{
-		banner: "games/universal-paperclips.png",
-		url: "https://www.decisionproblem.com/paperclips/",
-	},
-	// -- new line
-	{
-		banner: "games/earthbound.png",
-		url: "https://www.youtube.com/watch?v=KXQqhRETBeE",
-	},
-	{
-		banner: "games/mother-3.png",
-		url: "http://mother3.fobby.net/",
-	},
-	{
-		banner: "games/super-mario-odyssey.png",
-		url: "https://www.nintendo.com/store/products/super-mario-odyssey-switch/",
-	},
-	{
-		banner: "games/splatoon-2.png",
-		url: "https://splatoon.nintendo.com",
-	},
-	// -- new line
-	{
-		banner: "games/catherine-full-body.png",
-		url: "https://www.catherinethegame.com/fullbody/",
-	},
-	{
-		banner: "games/world-of-warcraft.png",
-		url: "https://worldofwarcraft.blizzard.com/en-us/",
-	},
-	{
-		banner: "games/tropix-2.png",
-		url: "https://www.tropixgame.com/",
-	},
-	{
-		banner: "games/animal-crossing-cropped.png",
-		url: "https://animalcrossing.nintendo.com/",
-	},
-	// -- new line
-	{
-		banner: "games/picross-3d-round-2.jpg",
-		url: "https://www.nintendo.com/store/products/picross-3d-round-2-3ds/",
-	},
-	{
-		banner: "games/kirby-and-the-forgotten-land.png",
-		url: "https://kirbyandtheforgottenland.nintendo.com/",
-	},
-	{
-		banner: "games/minecraft.png",
-		url: "https://www.betterthanadventure.net",
-	},
-	{
-		banner: "games/vintage-story.png",
-		url: "https://www.vintagestory.at/",
-	},
-];
+interface GameInfo {
+	buffer: Buffer;
+	url: string;
+	genre: string;
+}
+
+interface OutGameInfo {
+	url: string;
+	pos: string;
+}
 
 (async () => {
-	const buffersAndUrls = await Promise.all(
-		games.map(async (steamIdOrObj, i) => {
-			if (typeof steamIdOrObj == "object") {
-				return {
+	let gamesInfo: GameInfo[] = [];
+
+	for (const genre in games) {
+		for (const game of games[genre]) {
+			if (typeof game == "object") {
+				gamesInfo.push({
 					buffer: await fs.readFile(
-						path.resolve(__dirname, steamIdOrObj.banner),
+						path.resolve(__dirname, game.banner),
 					),
-					url: steamIdOrObj.url,
-				};
+					url: game.url,
+					genre,
+				});
 			} else {
 				const res = await axios(
 					"https://cdn.cloudflare.steamstatic.com/steam/apps/" +
-						steamIdOrObj +
+						game +
 						// "/header.jpg",
 						"/capsule_184x69.jpg",
 					{ responseType: "arraybuffer" },
 				);
 
-				return {
-					buffer: res.data as Buffer,
-					url: "https://store.steampowered.com/app/" + steamIdOrObj,
-				};
+				gamesInfo.push({
+					buffer: res.data,
+					url: "https://store.steampowered.com/app/" + game,
+					genre,
+				});
 			}
-		}),
-	);
+		}
+	}
 
 	const spriteSheetOut = await makeSpriteSheet(
 		bannerWidth,
@@ -193,19 +217,33 @@ const games: (string | { banner: string; url: string })[] = [
 		bannerPadding,
 		sheetWidth,
 		sheetHeight,
-		buffersAndUrls.map(o => o.buffer),
+		gamesInfo.map(g => g.buffer),
 		path.resolve(__dirname, "../components/assets/games-spritesheet.png"),
 	);
+
+	const outGamesInfo: Record<string, OutGameInfo[]> = {};
+
+	let i = 0;
+
+	for (const game of gamesInfo) {
+		if (outGamesInfo[game.genre] == null) {
+			outGamesInfo[game.genre] = [];
+		}
+
+		outGamesInfo[game.genre].push({
+			url: game.url,
+			pos: spriteSheetOut.cssPositions[i],
+		});
+
+		i++;
+	}
 
 	await fs.writeFile(
 		path.resolve(__dirname, "../components/assets/games-info.ts"),
 		"export const gamesInfo = " +
 			JSON.stringify({
-				cssSize: spriteSheetOut.cssSize,
-				games: buffersAndUrls.map((o, i) => ({
-					url: o.url,
-					position: spriteSheetOut.cssPositions[i],
-				})),
+				size: spriteSheetOut.cssSize,
+				games: outGamesInfo,
 			}),
 	);
 })();

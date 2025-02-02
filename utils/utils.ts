@@ -94,3 +94,27 @@ export function plural(n: number, single: string, plural: string = null) {
 	if (n == 1 || n == -1) return n + " " + single;
 	else return n + " " + plural;
 }
+
+export function hsvToHex(h: number, s: number, v: number) {
+	h = clamp01(h);
+	s = clamp01(s);
+	v = clamp01(v);
+
+	const K = [1, 2 / 3, 1 / 3, 3];
+	const p = [h + K[0], h + K[1], h + K[2]].map(x =>
+		Math.abs((x % 1) * 6 - K[3]),
+	);
+
+	const out = p.map(x => v * lerp(K[0], clamp01(x - K[0]), s));
+
+	return (
+		"#" +
+		out
+			.map(x =>
+				Math.floor(clamp01(x) * 255)
+					.toString(16)
+					.padStart(2, "0"),
+			)
+			.join("")
+	);
+}
