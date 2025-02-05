@@ -27,7 +27,7 @@ const socialIds = {
 	email: "maki@hotmilk.space",
 	slMarketplace: "65674",
 	aur: "makidoll",
-	bandcampFan: "makipony",
+	bandcampFan: "makidoll",
 	tetrio: "makidoll",
 	backloggd: "makipony",
 	spotify: "2ua27nd91pdj4pl7868okdn66",
