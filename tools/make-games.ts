@@ -52,8 +52,8 @@ const games: Record<string, (string | { banner: string; url: string })[]> = {
 		"813230", // animal well
 	],
 	souls: [
-		"570940", // dark souls
 		"1627720", // lies of p
+		"570940", // dark souls
 		"257850", // hyper light drifer
 		"367520", // hollow knight
 	],
@@ -76,7 +76,7 @@ const games: Record<string, (string | { banner: string; url: string })[]> = {
 			url: "https://www.youtube.com/watch?v=jA-et0LCpNo",
 		},
 	],
-	"fps story": [
+	fps: [
 		"220", // half life 2
 		"782330", // doom eternal
 		"976730", // halo mcc
@@ -122,6 +122,10 @@ const games: Record<string, (string | { banner: string; url: string })[]> = {
 			banner: "games/catherine-full-body.png",
 			url: "https://www.catherinethegame.com/fullbody/",
 		},
+		{
+			banner: "games/splatoon-2.png",
+			url: "https://splatoon.nintendo.com",
+		},
 	],
 	multiplayer: [
 		{
@@ -144,10 +148,6 @@ const games: Record<string, (string | { banner: string; url: string })[]> = {
 		{
 			banner: "games/minecraft.png",
 			url: "https://www.betterthanadventure.net",
-		},
-		{
-			banner: "games/splatoon-2.png",
-			url: "https://splatoon.nintendo.com",
 		},
 		"438100", // vrchat
 	],

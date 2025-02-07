@@ -159,7 +159,12 @@ export default function GamesHomeCard() {
 								setShowAll(true);
 							}}
 						>
-							<HomeCardFooterLink altIcon={FaArrowDown}>
+							<HomeCardFooterLink
+								altIcon={FaArrowDown}
+								fontSize={"1.15em"}
+								fontWeight={700}
+								opacity={0.6}
+							>
 								view more
 							</HomeCardFooterLink>
 						</Box>
@@ -172,6 +177,9 @@ export default function GamesHomeCard() {
 						altIcon={FaArrowUp}
 						onClick={() => setShowAll(false)}
 						mb={3}
+						fontSize={"1.15em"}
+						fontWeight={700}
+						opacity={0.6}
 					>
 						view less
 					</HomeCardFooterLink>

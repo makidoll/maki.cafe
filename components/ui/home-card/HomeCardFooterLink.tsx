@@ -14,6 +14,9 @@ export default function HomeCardFooterLink(props: {
 	onClick?: () => any;
 	mt?: number;
 	mb?: number;
+	fontSize?: number | string;
+	fontWeight?: number;
+	opacity?: number;
 }) {
 	function makeButton(
 		text: string,
@@ -25,7 +28,7 @@ export default function HomeCardFooterLink(props: {
 				width="100%"
 				alignItems="center"
 				justifyContent="center"
-				opacity={0.4}
+				opacity={props.opacity ?? 0.4}
 				mt={2}
 				mb={-3}
 			>
@@ -33,7 +36,7 @@ export default function HomeCardFooterLink(props: {
 				<Text
 					ml={beforeIcon == null ? 0 : 1.5}
 					mr={afterIcon == null ? 0 : 1.5}
-					fontWeight={500}
+					fontWeight={props.fontWeight ?? 500}
 				>
 					{text}
 				</Text>
@@ -72,14 +75,15 @@ export default function HomeCardFooterLink(props: {
 			onClick={props.onClick}
 			mt={props.mt}
 			mb={props.mb}
+			fontSize={props.fontSize}
 		>
 			{makeButton(
 				props.children as string,
 				undefined,
 				props.altIcon ? (
-					<props.altIcon size={14} color="#fff" opacity={0.8} />
+					<props.altIcon size={14} color="#fff" />
 				) : (
-					<FaArrowRight size={14} color="#fff" opacity={0.8} />
+					<FaArrowRight size={14} color="#fff" />
 				),
 			)}
 		</Link>
