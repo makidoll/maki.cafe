@@ -34,6 +34,8 @@ import video_2025_01_15_desktop from "./videos/2025-01-15-desktop.webm";
 import video_2025_01_15_mobile from "./videos/2025-01-15-mobile.webm";
 import video_2025_01_16_desktop from "./videos/2025-01-16-desktop.webm";
 import video_2025_01_16_mobile from "./videos/2025-01-16-mobile.webm";
+import video_2025_02_13_desktop from "./videos/2025-02-13-desktop.webm";
+import video_2025_02_13_mobile from "./videos/2025-02-13-mobile.webm";
 
 export interface ISpinnyIntro {
 	date: [number, number, number];
@@ -50,6 +52,17 @@ export interface ISpinnyIntroWithIndex extends ISpinnyIntro {
 // TODO: dynamic import??
 
 export const SpinnyIntros: ISpinnyIntro[] = [
+	{
+		date: [2025, 2, 13],
+		desktop: video_2025_02_13_desktop,
+		mobile: video_2025_02_13_mobile,
+		changes: [
+			"add sigma hypersphere",
+			"update keyboard to just black keycaps",
+			"remove bunny girl and bubbline stickers",
+			"add boykisser, vortigaunt and princess bubblegum stickers",
+		],
+	},
 	{
 		date: [2025, 1, 16],
 		desktop: video_2025_01_16_desktop,
