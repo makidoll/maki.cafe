@@ -105,6 +105,10 @@ export default function WebringCard() {
 			name: "cmtaz.net",
 			url: "https://cmtaz.net",
 		},
+		{
+			name: "lemon.horse",
+			url: "https://lemon.horse",
+		},
 	];
 
 	const other: Button[] = [
