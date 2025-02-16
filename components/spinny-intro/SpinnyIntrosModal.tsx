@@ -192,23 +192,43 @@ export default function SpinnyIntrosModal(props: {
 										spinnyIntro.date[0]
 									}:`}
 								</Text>
-								{spinnyIntro.changes.map((text, i) => (
-									<HStack alignItems={"flex-start"} key={i}>
-										{["•", text].map((text, j) => (
-											<Text
-												key={j}
-												opacity={0.6}
-												fontWeight={700}
-												fontSize={14}
-												fontFamily={
-													"var(--chakra-fonts-monospace)"
-												}
-											>
-												{text}
-											</Text>
-										))}
-									</HStack>
-								))}
+								{spinnyIntro.changes.map((line, i) => {
+									const matches =
+										line.match(/^([+-] )?([^]+)$/);
+
+									const point = (matches[1] ?? "•").trim();
+									const text = matches[2].trim();
+
+									const color =
+										point == "+"
+											? "#AED581" // 300 light green
+											: point == "-"
+											? "#E57373" // 300 red
+											: "";
+
+									return (
+										<HStack
+											alignItems={"flex-start"}
+											key={i}
+										>
+											{[point, text].map((value, j) => (
+												<Text
+													key={j}
+													opacity={0.6}
+													fontWeight={700}
+													fontSize={14}
+													color={color}
+													fontFamily={
+														"var(--chakra-fonts-monospace)"
+													}
+												>
+													{value}
+												</Text>
+											))}
+										</HStack>
+									);
+								})}
+
 								{/* TODO: need to add close button */}
 							</VStack>
 						</HStack>
