@@ -56,7 +56,6 @@ function GenreGamesGrid(props: { genre: string; games: Game[]; i: number }) {
 
 	return (
 		<Box
-			key={props.genre}
 			border={`solid 2px ${hsvToHex(hue, 0.5, 0.3)}`}
 			padding={gameGridMargin + "px"}
 			borderRadius={8}
@@ -113,7 +112,12 @@ export default function GamesHomeCard() {
 				mt={-4}
 			>
 				{Object.entries(gamesInfo.games).map(([genre, games], i) => (
-					<GenreGamesGrid genre={genre} games={games} i={i} />
+					<GenreGamesGrid
+						key={genre}
+						genre={genre}
+						games={games}
+						i={i}
+					/>
 				))}
 				{showAll ? (
 					<></>
