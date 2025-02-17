@@ -36,6 +36,8 @@ import video_2025_01_16_desktop from "./videos/2025-01-16-desktop.webm";
 import video_2025_01_16_mobile from "./videos/2025-01-16-mobile.webm";
 import video_2025_02_13_desktop from "./videos/2025-02-13-desktop.webm";
 import video_2025_02_13_mobile from "./videos/2025-02-13-mobile.webm";
+import video_2025_02_17_desktop from "./videos/2025-02-17-desktop.webm";
+import video_2025_02_17_mobile from "./videos/2025-02-17-mobile.webm";
 
 export interface ISpinnyIntro {
 	date: [number, number, number];
@@ -52,6 +54,21 @@ export interface ISpinnyIntroWithIndex extends ISpinnyIntro {
 // TODO: dynamic import??
 
 export const SpinnyIntros: ISpinnyIntro[] = [
+	{
+		date: [2025, 2, 17],
+		desktop: video_2025_02_17_desktop,
+		mobile: video_2025_02_17_mobile,
+		changes: [
+			"- remove princess bubblegum sticker",
+			"update boykisser sticker and reorganize",
+			"upscale rubiks cube and downscale sigma hypersphere",
+			"increase pony neck length",
+			"restore ear size by scaling up",
+			"remove pony eyeliner flicks",
+			"+ add finn and jake sticker",
+			"+ add mouth and nose to pony. it's subtle",
+		],
+	},
 	{
 		date: [2025, 2, 13],
 		desktop: video_2025_02_13_desktop,
