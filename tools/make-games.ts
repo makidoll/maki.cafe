@@ -129,16 +129,16 @@ const games: Record<string, (string | { banner: string; url: string })[]> = {
 	],
 	multiplayer: [
 		{
-			banner: "games/fortnite-cropped.png",
-			url: "https://www.fortnite.com",
-		},
-		{
 			banner: "games/overwatch.png",
 			url: "https://store.steampowered.com/app/2357570/Overwatch_2/",
 		},
 		{
 			banner: "games/vintage-story.png",
 			url: "https://www.vintagestory.at/",
+		},
+		{
+			banner: "games/fortnite-cropped.png",
+			url: "https://www.fortnite.com",
 		},
 		"394690", // tower unite
 		{
