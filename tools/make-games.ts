@@ -152,6 +152,7 @@ const games: Record<string, (string | { banner: string; url: string })[]> = {
 		"438100", // vrchat
 	],
 	chill: [
+		"1868140", // dave the diver
 		{
 			banner: "games/tropix-2.png",
 			url: "https://www.tropixgame.com/",
