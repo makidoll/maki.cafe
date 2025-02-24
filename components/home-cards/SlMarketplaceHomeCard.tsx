@@ -53,7 +53,7 @@ export default function SlMarketplaceHomeCard(props: {
 			<HomeCardHeading
 				mb={4}
 				icon={SecondLifeIcon}
-				href={config.socialLinks.slMarketplace}
+				href={config.socialLinks.secondLife.marketplace}
 			>
 				second life marketplace
 			</HomeCardHeading>
@@ -68,7 +68,9 @@ export default function SlMarketplaceHomeCard(props: {
 					<MarketplaceItem item={item} key={i} />
 				))}
 			</Grid>
-			<HomeCardFooterLink href={config.socialLinks.slMarketplace}>
+			<HomeCardFooterLink
+				href={config.socialLinks.secondLife.marketplace}
+			>
 				view more
 			</HomeCardFooterLink>
 		</HomeCard>

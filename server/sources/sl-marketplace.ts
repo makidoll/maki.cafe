@@ -36,7 +36,7 @@ export class SlMarketplaceData extends DataSource<SlMarketplaceDataResponse> {
 		const page = await browser.newPage();
 
 		await page.goto(
-			config.socialLinks.slMarketplace + "?" + args.join("&"),
+			config.socialLinks.secondLife.marketplace + "?" + args.join("&"),
 			{
 				waitUntil: "networkidle",
 			},

@@ -159,14 +159,12 @@ export default function Social(props: { onSpinnyIntrosOpen: () => any }) {
 				small: true,
 				openPopup: {
 					title: "Second Life",
-					text: config.socialIds.secondLifeName,
-					href: config.socialLinks.secondLife,
+					text: config.socialIds.secondLife.name,
+					href: config.socialLinks.secondLife.profile,
 					extraButtons: [
 						{
 							text: "open page",
-							href:
-								"https://world.secondlife.com/resident/" +
-								config.socialIds.secondLifeUuid,
+							href: config.socialLinks.secondLife.profilePage,
 						},
 					],
 				},

@@ -21,11 +21,13 @@ const socialIds = {
 	codewars: "maki_nori",
 	xmpp: "maki@hotmilk.space",
 	twitch: "maki_pony",
-	secondLifeName: "makidoll.resident",
-	secondLifeUuid: "b7c5f366-7a39-4289-8157-d3a8ae6d57f4",
+	secondLife: {
+		name: "norimaki.resident",
+		uuid: "b7c5f366-7a39-4289-8157-d3a8ae6d57f4",
+		marketplace: "65674",
+	},
 	shaderToy: "MakiXx",
 	email: "maki@hotmilk.space",
-	slMarketplace: "65674",
 	aur: "maki_nori",
 	bandcampFan: "maki_nori",
 	tetrio: "makidoll",
@@ -57,11 +59,17 @@ const socialLinks = {
 	codewars: "https://www.codewars.com/users/" + socialIds.codewars,
 	xmpp: "xmpp:" + socialIds.xmpp,
 	twitch: "https://www.twitch.tv/" + socialIds.twitch,
-	secondLife: `secondlife:///app/agent/${socialIds.secondLifeUuid}/about`,
+	secondLife: {
+		profile: `secondlife:///app/agent/${socialIds.secondLife.uuid}/about`,
+		profilePage:
+			"https://world.secondlife.com/resident/" +
+			socialIds.secondLife.uuid,
+		marketplace:
+			"https://marketplace.secondlife.com/stores/" +
+			socialIds.secondLife.marketplace,
+	},
 	shaderToy: "https://www.shadertoy.com/user/" + socialIds.shaderToy,
 	email: "mailto:" + socialIds.email,
-	slMarketplace:
-		"https://marketplace.secondlife.com/stores/" + socialIds.slMarketplace,
 	aur: "https://aur.archlinux.org/packages?K=" + socialIds.aur + "&SeB=m",
 	bandcampFan: "https://bandcamp.com/" + socialIds.bandcampFan,
 	tetrio: "https://ch.tetr.io/u/" + socialIds.tetrio,
