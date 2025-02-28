@@ -7,8 +7,8 @@ const width = 630;
 const height = 380;
 const invAspectRatio = height / width;
 
-const letterColor = hexColorToRgb("#e91e63");
-const letterShadowColor = hexColorToRgb("#e91e63");
+const letterColor = hexColorToRgb("#ff1744");
+const letterShadowColor = hexColorToRgb("#ff1744");
 const letterShadowOpacity = 0.333;
 
 const letterDelay = 0.4; // seconds
