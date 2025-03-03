@@ -92,6 +92,7 @@ const games: Record<string, (string | { banner: string; url: string })[]> = {
 			banner: "games/kirby-and-the-forgotten-land.png",
 			url: "https://kirbyandtheforgottenland.nintendo.com/",
 		},
+		"1533420", // neon white
 	],
 	story: [
 		"972660", // spiritfarer
