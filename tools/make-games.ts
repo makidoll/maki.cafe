@@ -138,17 +138,17 @@ const games: Record<string, (string | { banner: string; url: string })[]> = {
 			url: "https://www.vintagestory.at/",
 		},
 		{
-			banner: "games/fortnite-cropped.png",
-			url: "https://www.fortnite.com",
+			banner: "games/minecraft.png",
+			url: "https://www.betterthanadventure.net",
 		},
 		"394690", // tower unite
 		{
-			banner: "games/world-of-warcraft.png",
-			url: "https://worldofwarcraft.blizzard.com/en-us/",
+			banner: "games/fortnite-cropped.png",
+			url: "https://www.fortnite.com",
 		},
 		{
-			banner: "games/minecraft.png",
-			url: "https://www.betterthanadventure.net",
+			banner: "games/world-of-warcraft.png",
+			url: "https://worldofwarcraft.blizzard.com/en-us/",
 		},
 		"438100", // vrchat
 	],
